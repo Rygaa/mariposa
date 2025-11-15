@@ -34,6 +34,7 @@
   let name = $state("");
   let type = $state<"TAKEAWAY" | "EMPLOYEES" | "WAST" | "GIFT">("TAKEAWAY");
   let isActive = $state(true);
+  let isDefault = $state(false);
   let isSubmitting = $state(false);
   let error = $state("");
 
@@ -43,6 +44,7 @@
       name = table.name || "";
       type = table.type || "TAKEAWAY";
       isActive = table.isActive ?? true;
+      isDefault = table.isDefault ?? false;
     }
   });
 
@@ -50,6 +52,7 @@
     name = "";
     type = "TAKEAWAY";
     isActive = true;
+    isDefault = false;
     error = "";
   }
 
@@ -79,6 +82,7 @@
         name,
         type,
         isActive,
+        isDefault,
       });
 
       if (result.success) {
@@ -147,6 +151,18 @@
         />
         <label for="isActiveUpdate" class="ml-2 block text-sm text-gray-900">
           Active (table is available for use)
+        </label>
+      </div>
+
+      <div class="flex items-center">
+        <input
+          type="checkbox"
+          id="isDefaultUpdate"
+          bind:checked={isDefault}
+          class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+        />
+        <label for="isDefaultUpdate" class="ml-2 block text-sm text-gray-900">
+          Default table (auto-selected in client orders)
         </label>
       </div>
 

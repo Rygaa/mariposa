@@ -13,6 +13,8 @@
   import { isInProtectedRoutes } from "./utils/routes";
   import Categories from "./routes/Categories/Categories.svelte";
   import NodesDemo from "./routes/NodesDemo.svelte";
+  import ClientOrders from "./routes/ClientOrders/ClientOrders.svelte";
+  import Orders from "./routes/Orders/ClientOrders.svelte";
 
   $effect(() => {
     if (wsMessage) {
@@ -88,6 +90,8 @@
       icon: "📂",
       section: "main",
     },
+    { name: "Orders", path: "/orders", icon: "📋", section: "main" },
+    { name: "Client Orders", path: "/client-orders", icon: "🛒", section: "main" },
     { name: "Users", path: "/users", icon: "👥", section: "main" },
     { name: "Nodes Demo", path: "/nodes-demo", icon: "🔗", section: "main" },
     ...(_globalStore.user?.role?.includes("ADMIN")
@@ -182,6 +186,12 @@
         </Route>
         <Route path="/menu-items">
           <MenuItems />
+        </Route>
+        <Route path="/orders">
+          <Orders />
+        </Route>
+        <Route path="/client-orders">
+          <ClientOrders />
         </Route>
         <Route path="/users">
           <Users />

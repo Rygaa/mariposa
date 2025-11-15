@@ -12,16 +12,18 @@ export const create = protectedProcedureGlobalTransaction
       name: z.string().optional(),
       type: z.enum(["TAKEAWAY", "EMPLOYEES", "WAST", "GIFT"]).default("TAKEAWAY"),
       isActive: z.boolean().default(true).optional(),
+      isDefault: z.boolean().default(false).optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
-    const { name, type, isActive } = input;
+    const { name, type, isActive, isDefault } = input;
 
     const createdEatingTable = await _ServiceEatingTables.create(
       {
         name,
         type,
         isActive,
+        isDefault,
       },
       ctx.globalTx
     );
@@ -40,10 +42,11 @@ export const update = protectedProcedureGlobalTransaction
       name: z.string().optional(),
       type: z.enum(["TAKEAWAY", "EMPLOYEES", "WAST", "GIFT"]).optional(),
       isActive: z.boolean().optional(),
+      isDefault: z.boolean().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
-    const { id, name, type, isActive } = input;
+    const { id, name, type, isActive, isDefault } = input;
 
     const updatedEatingTable = await _ServiceEatingTables.update(
       {
@@ -51,6 +54,7 @@ export const update = protectedProcedureGlobalTransaction
         ...(name !== undefined && { name }),
         ...(type !== undefined && { type }),
         ...(isActive !== undefined && { isActive }),
+        ...(isDefault !== undefined && { isDefault }),
       },
       ctx.globalTx
     );

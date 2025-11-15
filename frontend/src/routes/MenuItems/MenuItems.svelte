@@ -58,7 +58,7 @@
         filters.isAvailable = filterAvailable === "available";
       }
 
-      const result = await trpc.listMenuItems.query(filters);
+      const result = await trpc.listAllMenuItems.query(filters);
       if (result.success) {
         menuItems = result.menuItems;
       }

@@ -12,10 +12,9 @@ import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
 import { eq } from "drizzle-orm";
-import { db } from "./db";
 import { User, users } from "./db/schema";
 import { catchErrors } from "./utils/catchErrors";
-import type { DbTransaction } from "./db/utils";
+import { db, type DbTransaction } from "./db/utils";
 import websocket from "@fastify/websocket";
 
 dotenv.config();
@@ -70,6 +69,7 @@ const tTx = initTRPC
   }>()
   .create({
     errorFormatter: ({ shape, error }) => {
+      // Don't include ctx in error to avoid circular reference issues with transaction objects
       return {
         ...shape,
         data: {
@@ -144,7 +144,6 @@ const withAuth = t.middleware(async ({ ctx, next }) => {
 
 const withAuthTx = tTx.middleware(async ({ ctx, next }) => {
   const { user } = await authenticate(ctx.token);
-
   if (!user) {
     throw new TRPCError({ code: "UNAUTHORIZED", message: "User not found" });
   }
@@ -160,15 +159,47 @@ const withAuthTx = tTx.middleware(async ({ ctx, next }) => {
 });
 
 const withTransaction = tTx.middleware(async ({ ctx, next }) => {
-  return await catchErrors(async (globalTx: DbTransaction) => {
-    // Preserve the context type - if user exists, maintain it
-    return await next({ 
-      ctx: { 
-        ...ctx,
-        globalTx 
-      }
+  try {
+    return await db.transaction(async (globalTx) => {
+      return await next({ 
+        ctx: { 
+          ...ctx,
+          globalTx: globalTx as DbTransaction
+        }
+      });
     });
-  });
+  } catch (error: any) {
+    // Handle specific PostgreSQL errors
+    if (error.code === "23505") {
+      throw new TRPCError({
+        code: "CONFLICT",
+        message: "A record with this data already exists",
+      });
+    }
+
+    if (error.code === "23503") {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: "Referenced record does not exist",
+      });
+    }
+
+    if (error.code === "23502") {
+      throw new TRPCError({
+        code: "BAD_REQUEST",
+        message: "Required field is missing",
+      });
+    }
+
+    if (error instanceof TRPCError) {
+      throw error;
+    }
+
+    throw new TRPCError({
+      code: "INTERNAL_SERVER_ERROR",
+      message: error?.message || "Operation failed",
+    });
+  }
 });
 
 // ============================================================================
@@ -270,7 +301,12 @@ async function setupRoutes(): Promise<void> {
       router: appRouter,
       createContext: createContext,
       onError({ path, error }: any) {
-        console.error(`tRPC error on path '${path}':`, error);
+        // Avoid logging full error object which may contain circular references (transaction objects)
+        console.error(`tRPC error on path '${path}':`, {
+          message: error.message,
+          code: error.code,
+          name: error.name,
+        });
       },
     },
   });

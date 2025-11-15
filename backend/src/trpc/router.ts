@@ -3,7 +3,7 @@ import { getAllUsers, createUser, updateUser, deleteUser } from "./admin/users";
 import { auth, login, signup, updateMyPassword } from "./user/users";
 import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById } from "./user/eatingTables";
 import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById } from "./user/categories";
-import { create as createMenuItem, update as updateMenuItem, deleteMenuItem, list as listMenuItems, getById as getMenuItemById } from "./user/menuItems";
+import { create as createMenuItem, update as updateMenuItem, deleteMenuItem, list as listMenuItems, listAll as listAllMenuItems, getById as getMenuItemById } from "./user/menuItems";
 import { create as createItemPrice, deleteItemPrice, listByMenuItem as listItemPricesByMenuItem } from "./user/itemPrices";
 import { 
   createMenuItemSubMenuItem,
@@ -11,6 +11,25 @@ import {
   listMenuItemSubMenuItems,
   updateMenuItemSubMenuItem
 } from "./user/menuItemLinks";
+import { 
+  create as createOrder, 
+  update as updateOrder, 
+  deleteOrder, 
+  list as listOrders, 
+  getById as getOrderById,
+  getByIdWithRelations as getOrderByIdWithRelations,
+  printOrder,
+  printReceiptOfEatingTable,
+  printReceiptOfOrder
+} from "./user/orders";
+import {
+  create as createMenuItemOrder,
+  update as updateMenuItemOrder,
+  deleteMenuItemOrder,
+  list as listMenuItemOrders,
+  getById as getMenuItemOrderById,
+  updateQuantity as updateMenuItemOrderQuantity
+} from "./user/menuItemOrders";
 
 export const appRouter = router({
   ping,
@@ -38,6 +57,7 @@ export const appRouter = router({
   updateMenuItem,
   deleteMenuItem,
   listMenuItems,
+  listAllMenuItems,
   getMenuItemById,
   createItemPrice,
   deleteItemPrice,
@@ -46,6 +66,21 @@ export const appRouter = router({
   deleteMenuItemSubMenuItem,
   listMenuItemSubMenuItems,
   updateMenuItemSubMenuItem,
+  createOrder,
+  updateOrder,
+  deleteOrder,
+  listOrders,
+  getOrderById,
+  getOrderByIdWithRelations,
+  printOrder,
+  printReceiptOfEatingTable,
+  printReceiptOfOrder,
+  createMenuItemOrder,
+  updateMenuItemOrder,
+  deleteMenuItemOrder,
+  listMenuItemOrders,
+  getMenuItemOrderById,
+  updateMenuItemOrderQuantity,
 });
 
 export type AppRouter = typeof appRouter;

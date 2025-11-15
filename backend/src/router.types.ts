@@ -7,3 +7,6 @@ export type getCategoryById = RouterOutput["getCategoryById"];
 export type getEatingTableById = RouterOutput["getEatingTableById"];
 export type listCategories = RouterOutput["listCategories"];
 export type listItemPricesByMenuItem = RouterOutput["listItemPricesByMenuItem"];
+export type listEatingTables = RouterOutput["listEatingTables"];
+export type listMenuItems = RouterOutput["listMenuItems"];
+export type getOrderByIdWithRelations = RouterOutput["getOrderByIdWithRelations"];

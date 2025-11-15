@@ -99,7 +99,7 @@
   }
 
   async function loadAvailableMenuItems() {
-    const result = await trpc.listMenuItems.query({
+    const result = await trpc.listAllMenuItems.query({
       excludeIds: [menuItem.id],
       type: [filterByType],
     });

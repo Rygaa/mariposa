@@ -247,6 +247,9 @@ export const trpc = {
   listMenuItems: {
     query: wrapMutation(baseClient.listMenuItems.query),
   },
+  listAllMenuItems: {
+    query: wrapMutation(baseClient.listAllMenuItems.query),
+  },
   getMenuItemById: {
     query: wrapMutation(baseClient.getMenuItemById.query),
   },
@@ -271,5 +274,50 @@ export const trpc = {
   updateMenuItemSubMenuItem: {
     mutate: wrapMutation(baseClient.updateMenuItemSubMenuItem.mutate),
   },  
+  updateOrder: {
+    mutate: wrapMutation(baseClient.updateOrder.mutate),
+  },
+  printOrder: {
+    mutate: wrapMutation(baseClient.printOrder.mutate),
+  },
+  printReceiptOfEatingTable: {
+    mutate: wrapMutation(baseClient.printReceiptOfEatingTable.mutate),
+  },
+  printReceiptOfOrder: {
+    mutate: wrapMutation(baseClient.printReceiptOfOrder.mutate),
+  },
+  deleteOrder: {
+    mutate: wrapMutation(baseClient.deleteOrder.mutate),
+  },
+  createOrder: {
+    mutate: wrapMutation(baseClient.createOrder.mutate),
+  },
+  getOrderById: {
+    query: wrapMutation(baseClient.getOrderById.query),
+  },
+  listOrders: {
+    query: wrapMutation(baseClient.listOrders.query),
+  },
+  getOrderByIdWithRelations: {
+    query: wrapMutation(baseClient.getOrderByIdWithRelations.query),
+  },
+  createMenuItemOrder: {
+    mutate: wrapMutation(baseClient.createMenuItemOrder.mutate),
+  },
+  updateMenuItemOrder: {
+    mutate: wrapMutation(baseClient.updateMenuItemOrder.mutate),
+  },
+  deleteMenuItemOrder: {
+    mutate: wrapMutation(baseClient.deleteMenuItemOrder.mutate),
+  },
+  listMenuItemOrders: {
+    query: wrapMutation(baseClient.listMenuItemOrders.query),
+  },
+  getMenuItemOrderById: {
+    query: wrapMutation(baseClient.getMenuItemOrderById.query),
+  },
+  updateMenuItemOrderQuantity: {
+    mutate: wrapMutation(baseClient.updateMenuItemOrderQuantity.mutate),
+  },
 };
 

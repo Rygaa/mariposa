@@ -1,0 +1,1 @@
+ALTER TABLE "EatingTable" ADD COLUMN "isDefault" boolean DEFAULT false NOT NULL;

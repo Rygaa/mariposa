@@ -105,6 +105,7 @@ export const list = protectedProcedure
         limit: z.number().int().positive().max(500).default(100).optional(),
         offset: z.number().int().nonnegative().default(0).optional(),
         excludeIds: z.array(z.string().uuid()).default([]).optional(),
+        shouldIncludeSupplements: z.boolean().default(false).optional(),
       })
       .optional()
   )
@@ -134,5 +135,37 @@ export const getById = protectedProcedure
     return {
       success: true,
       menuItem,
+    };
+  });
+
+export const listAll = protectedProcedure
+  .input(
+    z
+      .object({
+        search: z.string().optional(),
+        type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
+        categoryId: z.string().uuid().optional(),
+        isAvailable: z.boolean().optional(),
+        limit: z.number().int().positive().max(10000).optional(),
+        offset: z.number().int().nonnegative().default(0).optional(),
+        excludeIds: z.array(z.string().uuid()).default([]).optional(),
+        shouldIncludeSupplements: z.boolean().default(false).optional(),
+      })
+      .optional()
+  )
+  .query(async ({ ctx, input }) => {
+    const filters = input || {};
+    
+    // If no limit specified, set it to a very high number to get all items
+    if (!filters.limit) {
+      filters.limit = 10000;
+    }
+
+    const menuItems = await _ServiceMenuItems.list(filters);
+
+    return {
+      success: true,
+      menuItems,
+      count: menuItems.length,
     };
   });

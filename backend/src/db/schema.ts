@@ -100,6 +100,7 @@ export const eatingTables = pgTable("EatingTable", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   isActive: boolean("isActive").default(true).notNull(),
+  isDefault: boolean("isDefault").default(false).notNull(),
   type: eatingTableTypeEnum("type").default("TAKEAWAY").notNull(),
 });
 

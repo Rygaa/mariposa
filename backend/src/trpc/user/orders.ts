@@ -20,7 +20,6 @@ export const create = protectedProcedureGlobalTransaction
   )
   .mutation(async ({ ctx, input }) => {
     const { eatingTableId, status } = input;
-
     const createdOrder = await _ServiceOrders.create(
       {
         eatingTableId,
@@ -113,6 +112,23 @@ export const getById = protectedProcedure
     const { id } = input;
 
     const order = await _ServiceOrders.getById(id);
+
+    return {
+      success: true,
+      order,
+    };
+  });
+
+export const getByIdWithRelations = protectedProcedure
+  .input(
+    z.object({
+      id: z.string().uuid("Invalid order ID"),
+    })
+  )
+  .query(async ({ ctx, input }) => {
+    const { id } = input;
+
+    const order = await _ServiceOrders.getByIdWithRelations(id);
 
     return {
       success: true,

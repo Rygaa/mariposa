@@ -15,11 +15,54 @@ async function findById(
   return order;
 }
 
+async function findByIdWithRelations(
+  orderId: string,
+  tx: DbTransactionOrDB = db
+): Promise<any | undefined> {
+  const order = await tx.query.orders.findFirst({
+    where: eq(SchemaDrizzle.orders.id, orderId),
+    with: {
+      eatingTable: true,
+      menuItemOrders: {
+        with: {
+          menuItem: {
+            with: {
+              category: true,
+              subMenuItems: {
+                with: {
+                  subMenuItem: true,
+                },
+              },
+            },
+          },
+        },
+      },
+    },
+  });
+  return order;
+}
+
 async function getById(
   orderId: string,
   tx: DbTransactionOrDB = db
 ): Promise<SchemaDrizzle.Orders> {
   const order = await findById(orderId, tx);
+
+  if (!order) {
+    throw new TRPCError({
+      code: "NOT_FOUND",
+      message: "Order not found",
+    });
+  }
+
+  return order;
+}
+
+async function getByIdWithRelations(
+  orderId: string,
+  tx: DbTransactionOrDB = db
+): Promise<any> {
+  const order = await findByIdWithRelations(orderId, tx);
 
   if (!order) {
     throw new TRPCError({
@@ -128,6 +171,8 @@ async function printReceiptOfOrder(orderId: string): Promise<{ success: boolean;
 const _ServiceOrders = {
   findById,
   getById,
+  findByIdWithRelations,
+  getByIdWithRelations,
   create,
   update,
   deleteOrder,
