@@ -1,7 +1,7 @@
 <script lang="ts">
   import Button from "../../lib/components/Button.svelte";
   import Input from "../../lib/components/Input.svelte";
-  import { navigate } from "svelte-routing";
+  import { navigate, Link } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
   import { _globalStore } from "../../store/globalStore.svelte";
   import Stepper from "../../lib/shadcn/Stepper.svelte";
@@ -132,7 +132,7 @@
   class="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 flex items-center justify-center p-4 w-full"
 >
   <div class="w-full max-w-2xl">
-    <Card>
+    <Card useAvailableHeight={false}>
       <CardHeader>
         <div class="text-center w-full">
           <CardTitle>
@@ -294,9 +294,11 @@
         <div class="w-full text-center">
           <p class="text-sm text-gray-600">
             Already have an account?
-            <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
-              Sign in
-            </a>
+            <Link to="/login">
+              <span class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
+                Sign in
+              </span>
+            </Link>
           </p>
         </div>
       </CardFooter>

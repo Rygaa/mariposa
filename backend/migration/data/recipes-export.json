@@ -1,0 +1,1675 @@
+{
+  "exportDate": "2025-11-15T04:21:29.752Z",
+  "totalRecipes": 12,
+  "recipes": [
+    {
+      "id": "6677905d-f056-4156-84b9-c4152edbac96",
+      "name": "Cheesecake",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T04:24:03.434Z",
+      "updatedAt": "2025-08-10T04:24:13.092Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": null,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "942b70df-2e4f-447e-b116-ccd35fae791c",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "b1c02362-da7c-4e51-a339-df2fef8ac057",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 2,
+          "expense": {
+            "id": "b1c02362-da7c-4e51-a339-df2fef8ac057",
+            "name": "Soumame Nature",
+            "unit": "portion",
+            "averagePrice": 25
+          }
+        },
+        {
+          "id": "22e98292-92d4-49e2-b8e4-b78064c629cd",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "ca83324b-eea1-497f-8771-5b2b71fd3c1f",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 2,
+          "expense": {
+            "id": "ca83324b-eea1-497f-8771-5b2b71fd3c1f",
+            "name": "Regim Soumame",
+            "unit": "gramme",
+            "averagePrice": 0.5
+          }
+        },
+        {
+          "id": "f59eb1b8-8996-47a9-8efa-718cc6e32762",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 60,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        },
+        {
+          "id": "a9cbbe39-7306-41f3-89a6-20056490af9a",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 15,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "c6b87188-d988-40ba-89c0-e984d6182955",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 0.5,
+          "expense": {
+            "id": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f",
+            "name": "Biscuit Tinger",
+            "unit": "portion",
+            "averagePrice": 110
+          }
+        },
+        {
+          "id": "3c52ac17-5595-482c-883a-5455b3bd7afa",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 100,
+          "expense": {
+            "id": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+            "name": "Creme Chantilly",
+            "unit": "gramme",
+            "averagePrice": 0.9
+          }
+        },
+        {
+          "id": "33a2829e-5c87-49d2-b9f1-231b6f176a44",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "3bb3eb59-bc17-4753-b2b8-05546fc8e184",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 10,
+          "expense": {
+            "id": "3bb3eb59-bc17-4753-b2b8-05546fc8e184",
+            "name": "Gelatine Poudre",
+            "unit": "gramme",
+            "averagePrice": 2
+          }
+        },
+        {
+          "id": "d53da1dd-b614-4421-97a1-3db43cd3ae07",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 50,
+          "expense": {
+            "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+            "name": "Ayris",
+            "unit": "milliliter",
+            "averagePrice": 0.017
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": []
+    },
+    {
+      "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+      "name": "Creme au citron",
+      "price": 1,
+      "image": null,
+      "description": "Separate the eggs\nIn a small bowl, crack one whole egg and add one egg yolk. Set aside.\n\nPrepare the dry and wet base\nIn another large bowl, add the cornstarch first.\nThen add the sugar on top.\nPour in the liquid lemon juice over the sugar.\nThen add the water on top.\n\nCombine\nAfter everything is in, pour in the egg mixture and whisk until smooth.\n\nCook the mixture\nPour the mixture into a saucepan.\nSet the heat to high (maximum).\nStir constantly with a whisk.\nOnce the mixture thickens and starts to bubble slightly, remove it immediately from the heat.\n\nAdd butter\nAdd a small piece of regular (not melted) butter to the hot mixture.\nStir until it melts completely and the cream is smooth.\n\nCool the lemon cream\nTransfer the lemon cream to a clean bowl.\nCover it directly on contact with plastic wrap (so it touches the surface of the cream).\nLet it cool at room temperature for 30 minutes, then refrigerate until cold.\n\nWhip the Chantilly cream\nIn a cold bowl, add 100g of cold heavy cream.\nBeat with a mixer on high speed until it becomes very fluffy and forms stiff peaks.\n\nAdd lemon flavor (optional)\nAdd a small amount of lemon concentrate.\nMix again just enough to fully incorporate the flavor — don’t overwhip.\nDivide the whipped cream into 3 equal parts.\nGently fold in each part, one at a time, using a spatula.\nMix carefully to avoid adding air.\nStop once the texture is smooth, airy, and mousse-like.\n\nFinal steps — store or pipe\n\nTo use it right away, transfer to a piping bag. Let it sit a few minutes to cool slightly, then start piping.\n\nTo use it later, cover the mousse normally and store in the fridge until needed.",
+      "createdAt": "2025-08-10T04:24:29.975Z",
+      "updatedAt": "2025-08-10T04:29:31.156Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 0,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "aaad1c13-3cc3-439b-b8a6-7e75432e655c",
+          "createdAt": "2025-08-10T04:30:31.250Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 20,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        },
+        {
+          "id": "a6520ddb-0af5-4c1b-9e98-ada9c02f10e7",
+          "createdAt": "2025-08-10T04:30:31.250Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 2,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "415f3057-efaa-4d56-8410-373e303e1d65",
+          "createdAt": "2025-08-10T04:30:31.250Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 75,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "d09c3ef0-281d-4894-bc21-75d088afc762",
+          "createdAt": "2025-08-10T04:30:31.250Z",
+          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 22,
+          "expense": {
+            "id": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+            "name": "Mayzena",
+            "unit": "gramme",
+            "averagePrice": 0.2
+          }
+        },
+        {
+          "id": "0b4f3e90-5bf0-4b35-9f99-12c56c03b085",
+          "createdAt": "2025-08-10T04:30:31.250Z",
+          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 150,
+          "expense": {
+            "id": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+            "name": "Citron Liquid",
+            "unit": "milliliter",
+            "averagePrice": 0.667
+          }
+        },
+        {
+          "id": "9a76e48d-108c-4f79-a8b5-c4fd6ae37930",
+          "createdAt": "2025-08-10T04:30:31.250Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 50,
+          "expense": {
+            "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+            "name": "Ayris",
+            "unit": "milliliter",
+            "averagePrice": 0.017
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": []
+    },
+    {
+      "id": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+      "name": "Pate Tarte Citron",
+      "price": 1,
+      "image": null,
+      "description": "Put some butter with sifted powdered sugar. Beat it with a mixer until it turns white. After that, add the vanilla.\nThen we add the eggs — however you like (your choice).\nA pinch of salt.\nNow, in a separate bowl, add the flour and baking powder.\nAdd half of the flour in one go, sifted.\nThen gradually add the rest, bit by bit.\nLet the dough rest, then shape it.",
+      "createdAt": "2025-08-10T04:24:24.393Z",
+      "updatedAt": "2025-08-10T04:28:44.393Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 94.05,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "990f749c-ac15-4f47-9835-2851b86a40f3",
+          "createdAt": "2025-08-10T04:28:44.387Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+          "quantity": 250,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        },
+        {
+          "id": "2022bfff-0c81-4878-8fed-ccb44babf30e",
+          "createdAt": "2025-08-10T04:28:44.388Z",
+          "expenseId": "59960ecb-c46c-4e8d-b761-1aa933b50e19",
+          "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+          "quantity": 125,
+          "expense": {
+            "id": "59960ecb-c46c-4e8d-b761-1aa933b50e19",
+            "name": "Sucre Glace",
+            "unit": "gramme",
+            "averagePrice": 0
+          }
+        },
+        {
+          "id": "3c5e0a2a-5b7d-4d21-b747-e6d121a1ab30",
+          "createdAt": "2025-08-10T04:28:44.389Z",
+          "expenseId": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+          "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+          "quantity": 10,
+          "expense": {
+            "id": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+            "name": "Vanille",
+            "unit": "gramme",
+            "averagePrice": 0.7
+          }
+        },
+        {
+          "id": "729f926b-1cf5-473f-a112-a076ec174ac3",
+          "createdAt": "2025-08-10T04:28:44.389Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+          "quantity": 1,
+          "expense": {
+            "id": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+            "name": "Khamara",
+            "unit": "gramme",
+            "averagePrice": 0.8
+          }
+        },
+        {
+          "id": "3ca3a5ee-dee2-4329-9b3e-78de622e8004",
+          "createdAt": "2025-08-10T04:28:44.389Z",
+          "expenseId": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+          "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+          "quantity": 500,
+          "expense": {
+            "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+            "name": "Farine",
+            "unit": "gramme",
+            "averagePrice": 0.06
+          }
+        },
+        {
+          "id": "e89572e2-2b72-4c63-a83b-bdba013d4906",
+          "createdAt": "2025-08-10T04:28:44.390Z",
+          "expenseId": "42868413-9891-46a3-9ca0-9efee3478be5",
+          "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
+          "quantity": 1,
+          "expense": {
+            "id": "42868413-9891-46a3-9ca0-9efee3478be5",
+            "name": "Malh",
+            "unit": "gramme",
+            "averagePrice": 0
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": []
+    },
+    {
+      "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+      "name": "Crepe Basic",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T04:36:57.176Z",
+      "updatedAt": "2025-08-10T20:31:59.524Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 437,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "79d838a8-fecd-4682-a9f4-7d7c16383569",
+          "createdAt": "2025-08-10T20:31:59.515Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 10,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "8c1ad1d9-0ec6-4d57-8017-4dbac0f824d5",
+          "createdAt": "2025-08-10T20:31:59.517Z",
+          "expenseId": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1500,
+          "expense": {
+            "id": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+            "name": "Hlib",
+            "unit": "milliliter",
+            "averagePrice": 0.12
+          }
+        },
+        {
+          "id": "73f94fc1-62b2-4474-98bf-847e911a9003",
+          "createdAt": "2025-08-10T20:31:59.517Z",
+          "expenseId": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1000,
+          "expense": {
+            "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+            "name": "Farine",
+            "unit": "gramme",
+            "averagePrice": 0.06
+          }
+        },
+        {
+          "id": "b5253498-804f-4600-946e-3bdf805d6dac",
+          "createdAt": "2025-08-10T20:31:59.518Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 200,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "82046fd0-b246-4521-b650-3827aef83ae1",
+          "createdAt": "2025-08-10T20:31:59.519Z",
+          "expenseId": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 75,
+          "expense": {
+            "id": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+            "name": "Vanille",
+            "unit": "gramme",
+            "averagePrice": 0.7
+          }
+        },
+        {
+          "id": "b4ba64ff-43e2-41a5-9521-91719880c095",
+          "createdAt": "2025-08-10T20:31:59.519Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 100,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [
+        {
+          "id": "fabe9e2a-2751-4904-b12e-0806a6989b93",
+          "parentMenuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-10-05T02:29:40.359Z",
+          "parentMenuItem": {
+            "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+            "name": "Crêpe Dubai",
+            "price": 750,
+            "cost": 17.48
+          }
+        },
+        {
+          "id": "69a4a776-f0ce-41d1-a83b-563bb2df09d2",
+          "parentMenuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-30T15:38:43.781Z",
+          "parentMenuItem": {
+            "id": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+            "name": "Crêpe Nutella",
+            "price": 700,
+            "cost": 17.48
+          }
+        },
+        {
+          "id": "3734fc44-6230-4887-a1a2-2b2fbd68424d",
+          "parentMenuItemId": "2e66c5fe-9eef-42be-aafe-50bc8881641b",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-31T13:34:13.724Z",
+          "parentMenuItem": {
+            "id": "2e66c5fe-9eef-42be-aafe-50bc8881641b",
+            "name": "Crêpe Marshmallow",
+            "price": 550,
+            "cost": 17.48
+          }
+        },
+        {
+          "id": "04aed111-616b-4abc-b663-522f9ef2f769",
+          "parentMenuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-09-03T14:19:57.540Z",
+          "parentMenuItem": {
+            "id": "046658e8-de68-468f-b92c-c9504160ec31",
+            "name": "Crêpe Morjene Ferrero",
+            "price": 400,
+            "cost": 17.48
+          }
+        },
+        {
+          "id": "a5da803b-22cf-47d4-93ba-6fa1dfcdff02",
+          "parentMenuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-13T10:33:59.078Z",
+          "parentMenuItem": {
+            "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+            "name": "Crêpe Sushi Brownies",
+            "price": 600,
+            "cost": 17.48
+          }
+        },
+        {
+          "id": "8f2c4bfc-1590-4fe6-9ae9-d84064058a0e",
+          "parentMenuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:55:59.403Z",
+          "parentMenuItem": {
+            "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+            "name": "Crêpe Morjene",
+            "price": 300,
+            "cost": 104.29
+          }
+        },
+        {
+          "id": "cbfffe74-2919-4a14-8b65-f56a51f8c329",
+          "parentMenuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:56:06.612Z",
+          "parentMenuItem": {
+            "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+            "name": "Crêpe Morjene Bueno",
+            "price": 350,
+            "cost": 113.29
+          }
+        },
+        {
+          "id": "ea2aab25-fcab-42d1-accb-55a443e063a6",
+          "parentMenuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:56:23.195Z",
+          "parentMenuItem": {
+            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+            "name": "Crêpe Rouler Banane",
+            "price": 750,
+            "cost": 323.49
+          }
+        },
+        {
+          "id": "272f4945-9543-4934-9678-7edd5c635cab",
+          "parentMenuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:56:39.643Z",
+          "parentMenuItem": {
+            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+            "name": "Crêpe Foure Banane",
+            "price": 700,
+            "cost": 323.49
+          }
+        },
+        {
+          "id": "577de144-9aaa-4715-91e7-44d99feb67a3",
+          "parentMenuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:57:01.704Z",
+          "parentMenuItem": {
+            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+            "name": "Crêpe Morjene Spaghetti",
+            "price": 500,
+            "cost": 138.29
+          }
+        },
+        {
+          "id": "f0b1eda1-1810-4765-bb03-c1efffb0d8ef",
+          "parentMenuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:57:09.688Z",
+          "parentMenuItem": {
+            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+            "name": "Crêpe Morjene Bueno Spaghetti",
+            "price": 550,
+            "cost": 138.29
+          }
+        },
+        {
+          "id": "f001f852-c598-4b53-b1fc-a5259cf15f24",
+          "parentMenuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:57:19.271Z",
+          "parentMenuItem": {
+            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+            "name": "Crêpe Morjene Ferrero Spaghetti",
+            "price": 600,
+            "cost": 165.39
+          }
+        },
+        {
+          "id": "f0979822-5cf7-4f41-accf-98490d96da69",
+          "parentMenuItemId": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-08-11T06:57:35.849Z",
+          "parentMenuItem": {
+            "id": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
+            "name": "Crêpe Nutella Spaghetti",
+            "price": 700,
+            "cost": 291.99
+          }
+        }
+      ]
+    },
+    {
+      "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+      "name": "Gaufre Belgium ",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T22:06:59.878Z",
+      "updatedAt": "2025-08-10T22:09:05.826Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 555.5,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "bceb93d2-d558-44af-ae38-c5af876a9024",
+          "createdAt": "2025-08-10T22:09:05.816Z",
+          "expenseId": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1000,
+          "expense": {
+            "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+            "name": "Farine",
+            "unit": "gramme",
+            "averagePrice": 0.06
+          }
+        },
+        {
+          "id": "a875150b-5801-49e6-88a8-86ddc2c0a89d",
+          "createdAt": "2025-08-10T22:09:05.817Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 400,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        },
+        {
+          "id": "bcc034cc-5d10-4c5f-a7bf-e497333178a0",
+          "createdAt": "2025-08-10T22:09:05.818Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 12,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "49ed1ed7-1dd0-48ab-8e40-8d0bd9642ddb",
+          "createdAt": "2025-08-10T22:09:05.819Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 250,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "603d0be7-047a-4bc7-a1fa-4914bf354d74",
+          "createdAt": "2025-08-10T22:09:05.819Z",
+          "expenseId": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1000,
+          "expense": {
+            "id": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+            "name": "Hlib",
+            "unit": "milliliter",
+            "averagePrice": 0.12
+          }
+        },
+        {
+          "id": "3272600e-2437-4b12-bdfe-368b6ee81604",
+          "createdAt": "2025-08-10T22:09:05.820Z",
+          "expenseId": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 75,
+          "expense": {
+            "id": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+            "name": "Vanille",
+            "unit": "gramme",
+            "averagePrice": 0.7
+          }
+        },
+        {
+          "id": "ecdee720-580d-4664-af61-6dc4eb52a5b5",
+          "createdAt": "2025-08-10T22:09:05.821Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 50,
+          "expense": {
+            "id": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+            "name": "Khamara",
+            "unit": "gramme",
+            "averagePrice": 0.8
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [
+        {
+          "id": "5c0cd9ab-07ed-4685-93ee-d64fabd91615",
+          "parentMenuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+          "subMenuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 21,
+          "createdAt": "2025-10-03T17:07:32.170Z",
+          "parentMenuItem": {
+            "id": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+            "name": "Gaufre Nutella",
+            "price": 750,
+            "cost": 26.45
+          }
+        },
+        {
+          "id": "80616be7-4355-4edd-baae-74dcd5e54f22",
+          "parentMenuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+          "subMenuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 21,
+          "createdAt": "2025-10-30T15:54:00.049Z",
+          "parentMenuItem": {
+            "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+            "name": "Gaufre Morjene Bueno",
+            "price": 450,
+            "cost": 26.45
+          }
+        },
+        {
+          "id": "ac6a227b-7bda-4349-9be8-0fcb18e99755",
+          "parentMenuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+          "subMenuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 21,
+          "createdAt": "2025-10-30T15:54:00.255Z",
+          "parentMenuItem": {
+            "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+            "name": "Gaufre Caramel",
+            "price": 350,
+            "cost": 26.45
+          }
+        },
+        {
+          "id": "50bc88a9-39ee-482e-a6ce-74e2bbc4a640",
+          "parentMenuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+          "subMenuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 21,
+          "createdAt": "2025-10-30T15:54:00.371Z",
+          "parentMenuItem": {
+            "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+            "name": "Gaufre Miel Espagnol",
+            "price": 550,
+            "cost": 26.45
+          }
+        },
+        {
+          "id": "52d43f28-6774-431f-935d-9022934474c6",
+          "parentMenuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+          "subMenuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 21,
+          "createdAt": "2025-10-30T15:54:00.412Z",
+          "parentMenuItem": {
+            "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+            "name": "Gaufre Morjene",
+            "price": 400,
+            "cost": 26.45
+          }
+        }
+      ]
+    },
+    {
+      "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
+      "name": "Gaufres",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T04:25:30.017Z",
+      "updatedAt": "2025-08-10T22:30:24.516Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 526.45,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "2f2193c0-da14-46f6-b9ea-3659f56eae63",
+          "createdAt": "2025-08-10T22:30:24.496Z",
+          "expenseId": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 850,
+          "expense": {
+            "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+            "name": "Farine",
+            "unit": "gramme",
+            "averagePrice": 0.06
+          }
+        },
+        {
+          "id": "5b785c95-9124-4a6c-8953-63cfb5c336d2",
+          "createdAt": "2025-08-10T22:30:24.497Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 850,
+          "expense": {
+            "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+            "name": "Ayris",
+            "unit": "milliliter",
+            "averagePrice": 0.017
+          }
+        },
+        {
+          "id": "61b4eb56-67fb-4e0f-9bbd-f3f6b7ef77e0",
+          "createdAt": "2025-08-10T22:30:24.498Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 500,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "0231623c-ceb0-47ad-9ea2-c61d769d456f",
+          "createdAt": "2025-08-10T22:30:24.499Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 12,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "c8c94d24-29e0-4191-833e-5b3891564b48",
+          "createdAt": "2025-08-10T22:30:24.500Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 100,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        },
+        {
+          "id": "b1d8c80a-76bf-4d92-b913-ce3e96121363",
+          "createdAt": "2025-08-10T22:30:24.500Z",
+          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 100,
+          "expense": {
+            "id": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+            "name": "Mayzena",
+            "unit": "gramme",
+            "averagePrice": 0.2
+          }
+        },
+        {
+          "id": "052fe7e1-b07a-42a3-92cb-d3752409f5d5",
+          "createdAt": "2025-08-10T22:30:24.504Z",
+          "expenseId": "c79e51b5-a536-4427-83c7-fb0cd87f0716",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 150,
+          "expense": {
+            "id": "c79e51b5-a536-4427-83c7-fb0cd87f0716",
+            "name": "Nestle hlib concentrer",
+            "unit": "gramme",
+            "averagePrice": 0
+          }
+        },
+        {
+          "id": "55e58ee2-af8f-487b-b60c-bdbf57fc0243",
+          "createdAt": "2025-08-10T22:30:24.506Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 150,
+          "expense": {
+            "id": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+            "name": "Creme Chantilly",
+            "unit": "gramme",
+            "averagePrice": 0.9
+          }
+        },
+        {
+          "id": "10d70c94-89b4-4274-b2a4-b9a4b8d66c27",
+          "createdAt": "2025-08-10T22:30:24.507Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 50,
+          "expense": {
+            "id": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+            "name": "Khamara",
+            "unit": "gramme",
+            "averagePrice": 0.8
+          }
+        },
+        {
+          "id": "e962c1e3-f571-406c-80aa-918bd486b2a8",
+          "createdAt": "2025-08-10T22:30:24.509Z",
+          "expenseId": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 75,
+          "expense": {
+            "id": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+            "name": "Vanille",
+            "unit": "gramme",
+            "averagePrice": 0.7
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": []
+    },
+    {
+      "id": "1bd947bc-4735-4731-95ae-4e4023461972",
+      "name": "Pancakes",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T04:25:35.857Z",
+      "updatedAt": "2025-08-10T22:30:45.764Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 242.5,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "6d982822-b91d-4556-97c5-2db0b42320cf",
+          "createdAt": "2025-08-10T22:30:45.757Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 6,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "4bc2d5c1-b0c2-48df-8257-0fc584907257",
+          "createdAt": "2025-08-10T22:30:45.758Z",
+          "expenseId": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 500,
+          "expense": {
+            "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+            "name": "Farine",
+            "unit": "gramme",
+            "averagePrice": 0.06
+          }
+        },
+        {
+          "id": "d6a70955-7f48-4d42-9b7c-414ac2e980d5",
+          "createdAt": "2025-08-10T22:30:45.758Z",
+          "expenseId": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 500,
+          "expense": {
+            "id": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+            "name": "Hlib",
+            "unit": "milliliter",
+            "averagePrice": 0.12
+          }
+        },
+        {
+          "id": "e0c3b474-ecc8-43db-a456-90c398806624",
+          "createdAt": "2025-08-10T22:30:45.759Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 50,
+          "expense": {
+            "id": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+            "name": "Khamara",
+            "unit": "gramme",
+            "averagePrice": 0.8
+          }
+        },
+        {
+          "id": "f81d80b7-4129-40e6-9406-e976b346812f",
+          "createdAt": "2025-08-10T22:30:45.760Z",
+          "expenseId": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 75,
+          "expense": {
+            "id": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+            "name": "Vanille",
+            "unit": "gramme",
+            "averagePrice": 0.7
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [
+        {
+          "id": "8921966e-aa7f-444b-8109-614cc5420bd5",
+          "parentMenuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-09-10T13:25:59.613Z",
+          "parentMenuItem": {
+            "id": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+            "name": "Pancakes Nutella",
+            "price": 750,
+            "cost": 30.31
+          }
+        },
+        {
+          "id": "156f907f-62bd-4f98-bf02-a808b2596a2f",
+          "parentMenuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-11-05T13:57:32.708Z",
+          "parentMenuItem": {
+            "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+            "name": "Pancakes Bueno",
+            "price": 450,
+            "cost": 30.31
+          }
+        },
+        {
+          "id": "77273206-e9a2-4c80-8405-9125a42a9dc2",
+          "parentMenuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-11-05T13:57:33.481Z",
+          "parentMenuItem": {
+            "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+            "name": "Pancakes Miel Espagnol",
+            "price": 550,
+            "cost": 30.31
+          }
+        },
+        {
+          "id": "c709e2ad-3620-4a7a-abc0-f84994be7dd1",
+          "parentMenuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-11-05T13:57:34.619Z",
+          "parentMenuItem": {
+            "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+            "name": "Pancakes Caramel",
+            "price": 400,
+            "cost": 30.31
+          }
+        },
+        {
+          "id": "d143aa17-8d15-4590-a3be-085cdc53015d",
+          "parentMenuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-11-05T13:57:35.203Z",
+          "parentMenuItem": {
+            "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+            "name": "Pancakes Morjene",
+            "price": 400,
+            "cost": 30.31
+          }
+        }
+      ]
+    },
+    {
+      "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+      "name": "Milkshake",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T04:25:43.025Z",
+      "updatedAt": "2025-08-11T09:43:32.976Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 78.5,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "1bc16f13-42d3-4b05-bb6b-3f2828655d68",
+          "createdAt": "2025-08-11T09:43:32.966Z",
+          "expenseId": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 50,
+          "expense": {
+            "id": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+            "name": "Hlib",
+            "unit": "milliliter",
+            "averagePrice": 0.12
+          }
+        },
+        {
+          "id": "e49f8f97-0614-4d8f-89e0-f3e5ae91d57d",
+          "createdAt": "2025-08-11T09:43:32.968Z",
+          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 10,
+          "expense": {
+            "id": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+            "name": "Glace Eau",
+            "unit": "gramme",
+            "averagePrice": 0
+          }
+        },
+        {
+          "id": "1da6aa45-486c-4765-bcb0-1de4d2735ac0",
+          "createdAt": "2025-08-11T09:43:32.969Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 0.2,
+          "expense": {
+            "id": "d9f41343-48ff-40db-bc56-0abc3300b144",
+            "name": "Crème Glacée Gini",
+            "unit": "liter",
+            "averagePrice": 250
+          }
+        },
+        {
+          "id": "d3b27a32-e6b2-4f3a-bc97-5418fefeffde",
+          "createdAt": "2025-08-11T09:43:32.970Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 25,
+          "expense": {
+            "id": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+            "name": "Creme Chantilly",
+            "unit": "gramme",
+            "averagePrice": 0.9
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [
+        {
+          "id": "eb6a614e-3a08-40d2-a291-9d80d7ec1cf1",
+          "parentMenuItemId": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-29T18:46:19.580Z",
+          "parentMenuItem": {
+            "id": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+            "name": "Milkshake Nutella",
+            "price": 750,
+            "cost": 78.5
+          }
+        },
+        {
+          "id": "f3063e46-3711-485b-899c-2474fcc10046",
+          "parentMenuItemId": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-09-01T13:56:41.294Z",
+          "parentMenuItem": {
+            "id": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+            "name": "Milkshake Banane",
+            "price": 450,
+            "cost": 78.5
+          }
+        },
+        {
+          "id": "d51f292d-79c8-4e0c-ac43-cc3ecf386228",
+          "parentMenuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:04.431Z",
+          "parentMenuItem": {
+            "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+            "name": "Milkshake Oreo",
+            "price": 400,
+            "cost": 115.39
+          }
+        },
+        {
+          "id": "6ffa1b16-a70a-497e-85b5-d3fc577e2cfd",
+          "parentMenuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:10.304Z",
+          "parentMenuItem": {
+            "id": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+            "name": "Milkshake Caramel",
+            "price": 400,
+            "cost": 78.5
+          }
+        },
+        {
+          "id": "381288c0-4499-4b74-8f76-8005704d943d",
+          "parentMenuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:20.577Z",
+          "parentMenuItem": {
+            "id": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+            "name": "Milkshake Morjene",
+            "price": 400,
+            "cost": 160.8
+          }
+        },
+        {
+          "id": "6a92e689-fe8a-41dd-abb7-52144e641579",
+          "parentMenuItemId": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:25.153Z",
+          "parentMenuItem": {
+            "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+            "name": "Milkshake Morjene Bueno",
+            "price": 400,
+            "cost": 169.8
+          }
+        }
+      ]
+    },
+    {
+      "id": "2525543e-8314-46ec-b906-8e0861578a91",
+      "name": "Crêpe Croustillante",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-10T04:24:53.481Z",
+      "updatedAt": "2025-08-11T20:45:53.083Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 262,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "9ffcfa8e-a3ed-4e9a-b548-a8e6209c89f3",
+          "createdAt": "2025-08-11T20:45:53.075Z",
+          "expenseId": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 400,
+          "expense": {
+            "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
+            "name": "Farine",
+            "unit": "gramme",
+            "averagePrice": 0.06
+          }
+        },
+        {
+          "id": "248fe342-50d5-408b-a371-a6edaee85c6f",
+          "createdAt": "2025-08-11T20:45:53.076Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 5,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "3e589a1b-8b3e-4e85-9b56-4d4148bf6221",
+          "createdAt": "2025-08-11T20:45:53.076Z",
+          "expenseId": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 1000,
+          "expense": {
+            "id": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
+            "name": "Hlib",
+            "unit": "milliliter",
+            "averagePrice": 0.12
+          }
+        },
+        {
+          "id": "42f67a4b-1070-4975-9f93-61d14c463524",
+          "createdAt": "2025-08-11T20:45:53.077Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 80,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "b935ef7f-0b73-4481-8499-83a28612d1f1",
+          "createdAt": "2025-08-11T20:45:53.078Z",
+          "expenseId": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 50,
+          "expense": {
+            "id": "55bf3346-1b4f-410c-9781-a90f0a05e3dd",
+            "name": "Vanille",
+            "unit": "gramme",
+            "averagePrice": 0.7
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [
+        {
+          "id": "f43a6b33-db7f-4333-9561-208652f4d044",
+          "parentMenuItemId": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+          "subMenuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-08-11T20:47:50.638Z",
+          "parentMenuItem": {
+            "id": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+            "name": "Crêpe Croustillante Morjene",
+            "price": 300,
+            "cost": 78.91
+          }
+        },
+        {
+          "id": "162eeb8a-c296-4d69-aa7b-705e7942a897",
+          "parentMenuItemId": "0625e445-8449-44b8-b020-ca865043f897",
+          "subMenuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-08-11T20:48:30.938Z",
+          "parentMenuItem": {
+            "id": "0625e445-8449-44b8-b020-ca865043f897",
+            "name": "Crêpe Croustillante Morjene Bueno",
+            "price": 350,
+            "cost": 82.06
+          }
+        }
+      ]
+    },
+    {
+      "id": "0625e445-8449-44b8-b020-ca865043f897",
+      "name": "Crêpe Croustillante Morjene Bueno",
+      "price": 350,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-11T20:46:42.164Z",
+      "updatedAt": "2025-08-11T20:48:30.943Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 82.06,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "99806f9f-7a74-4e60-b69e-48483d67e23c",
+          "createdAt": "2025-08-11T20:48:30.939Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "0625e445-8449-44b8-b020-ca865043f897",
+          "quantity": 45,
+          "expense": {
+            "id": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+            "name": "Morjene Bueno",
+            "unit": "gramme",
+            "averagePrice": 0.913
+          }
+        },
+        {
+          "id": "0e7be156-deb8-4455-a0cd-0f12da462adf",
+          "createdAt": "2025-08-11T20:48:30.939Z",
+          "expenseId": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
+          "menuItemId": "0625e445-8449-44b8-b020-ca865043f897",
+          "quantity": 10,
+          "expense": {
+            "id": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
+            "name": "Morjene Noir",
+            "unit": "gramme",
+            "averagePrice": 0.823
+          }
+        }
+      ],
+      "parentMenuItemContainer": [
+        {
+          "id": "162eeb8a-c296-4d69-aa7b-705e7942a897",
+          "parentMenuItemId": "0625e445-8449-44b8-b020-ca865043f897",
+          "subMenuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-08-11T20:48:30.938Z",
+          "subMenuItem": {
+            "id": "2525543e-8314-46ec-b906-8e0861578a91",
+            "name": "Crêpe Croustillante",
+            "price": 1,
+            "cost": 262
+          }
+        }
+      ],
+      "subMenuItemContainer": []
+    },
+    {
+      "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+      "name": "R_Mojito",
+      "price": 1,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-11T21:03:18.699Z",
+      "updatedAt": "2025-08-11T21:04:35.888Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 107.55,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": true,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "91965b0b-5237-45c1-87e3-f9b7efcd122b",
+          "createdAt": "2025-08-11T21:04:35.879Z",
+          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 150,
+          "expense": {
+            "id": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+            "name": "Citron Liquid",
+            "unit": "milliliter",
+            "averagePrice": 0.667
+          }
+        },
+        {
+          "id": "89961d4b-cbb7-4a3f-984e-e55b517d0050",
+          "createdAt": "2025-08-11T21:04:35.880Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 50,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "bc3cb873-3e6d-41eb-86f8-c0d8386f87d0",
+          "createdAt": "2025-08-11T21:04:35.881Z",
+          "expenseId": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 5,
+          "expense": {
+            "id": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41",
+            "name": "Menthe",
+            "unit": "portion",
+            "averagePrice": 0.5
+          }
+        },
+        {
+          "id": "b3c4b40a-c574-48d4-83e0-4770a7c7b0ad",
+          "createdAt": "2025-08-11T21:04:35.882Z",
+          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 10,
+          "expense": {
+            "id": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+            "name": "Glace Eau",
+            "unit": "gramme",
+            "averagePrice": 0
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [
+        {
+          "id": "e7bf0ce0-ac8f-4a66-acbd-d3961c77a017",
+          "parentMenuItemId": "961ca05c-864c-4148-97b3-c39201984a2e",
+          "subMenuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-11T21:04:50.702Z",
+          "parentMenuItem": {
+            "id": "961ca05c-864c-4148-97b3-c39201984a2e",
+            "name": "Mojito Nature",
+            "price": 400,
+            "cost": 107.55
+          }
+        },
+        {
+          "id": "5cea9d15-c8f1-40d7-ac94-2d6e137d2e34",
+          "parentMenuItemId": "798f90f0-7591-43da-aca4-e6b9e8d7dd28",
+          "subMenuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-11T21:05:21.089Z",
+          "parentMenuItem": {
+            "id": "798f90f0-7591-43da-aca4-e6b9e8d7dd28",
+            "name": "Mojito Soda",
+            "price": 500,
+            "cost": 142.55
+          }
+        },
+        {
+          "id": "b847481f-8ba4-4e84-9efb-3e9f7becf19e",
+          "parentMenuItemId": "67d62cbc-ddf5-4c8e-864e-c1ce0ca9850b",
+          "subMenuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-10-31T13:06:15.162Z",
+          "parentMenuItem": {
+            "id": "67d62cbc-ddf5-4c8e-864e-c1ce0ca9850b",
+            "name": "Test",
+            "price": 1,
+            "cost": 211.84
+          }
+        }
+      ]
+    },
+    {
+      "id": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+      "name": "Crêpe Croustillante Morjene",
+      "price": 300,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-08-11T20:46:20.527Z",
+      "updatedAt": "2025-08-11T20:47:50.647Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 78.91,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "cfba5065-8474-4a80-b8f8-f92a1c7f5601",
+          "createdAt": "2025-08-11T20:47:50.639Z",
+          "expenseId": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
+          "menuItemId": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+          "quantity": 45,
+          "expense": {
+            "id": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
+            "name": "Morjene Noir",
+            "unit": "gramme",
+            "averagePrice": 0.823
+          }
+        },
+        {
+          "id": "c3c4fc95-0fd0-4a1e-8c30-c6e84b5c4012",
+          "createdAt": "2025-08-11T20:47:50.640Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+          "quantity": 10,
+          "expense": {
+            "id": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+            "name": "Morjene Bueno",
+            "unit": "gramme",
+            "averagePrice": 0.913
+          }
+        }
+      ],
+      "parentMenuItemContainer": [
+        {
+          "id": "f43a6b33-db7f-4333-9561-208652f4d044",
+          "parentMenuItemId": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+          "subMenuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-08-11T20:47:50.638Z",
+          "subMenuItem": {
+            "id": "2525543e-8314-46ec-b906-8e0861578a91",
+            "name": "Crêpe Croustillante",
+            "price": 1,
+            "cost": 262
+          }
+        }
+      ],
+      "subMenuItemContainer": []
+    }
+  ]
+}

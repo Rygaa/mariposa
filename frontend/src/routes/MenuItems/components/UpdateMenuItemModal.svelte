@@ -17,7 +17,9 @@
   import Button from "../../../lib/components/Button.svelte";
   import Input from "../../../lib/components/Input.svelte";
   import { trpc } from "../../../lib/trpc";
-  import { itemTypeEnum } from "../../../../../backend/src/db/schema";
+  import { typeEnum } from "../../../../../backend/src/db/schema";
+  import { onMount } from "svelte";
+  import type { listCategories } from "../../../../../backend/src/router.types";
 
   let {
     isOpen = $bindable(false),
@@ -32,38 +34,115 @@
   } = $props();
 
   let name = $state("");
-  let itemType = $state<
-    "MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION"
-  >("MENU_ITEM");
-  let price = $state<number | undefined>(undefined);
-  let priceString = $state("");
+  let type = $state<
+    Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">
+  >(["MENU_ITEM"]);
   let description = $state("");
   let isAvailable = $state(true);
+  let categoryId = $state<string>("");
   let isSubmitting = $state(false);
   let error = $state("");
+  let categories = $state<listCategories["categories"]>([]);
+  let loadingCategories = $state(false);
+  let latestSellingPrice = $state<number | null>(null);
+  let latestBuyingPrice = $state<number | null>(null);
+  let loadingPrices = $state(false);
+
+  onMount(async () => {
+    await loadCategories();
+  });
+
+  async function loadCategories() {
+    loadingCategories = true;
+    try {
+      const result = await trpc.listCategories.query();
+      if (result.success) {
+        categories = result.categories;
+      }
+    } catch (err) {
+      console.error("Failed to load categories:", err);
+    }
+    loadingCategories = false;
+  }
+
+  async function loadItemPrices(menuItemId: string) {
+    loadingPrices = true;
+    latestSellingPrice = null;
+    latestBuyingPrice = null;
+    try {
+      // Fetch selling prices
+      const sellingResult = await trpc.listItemPricesByMenuItem.query({
+        menuItemId,
+        priceType: "selling",
+      });
+      if (sellingResult.success && sellingResult.itemPrices.length > 0) {
+        // Get the most recent price (assuming they're ordered by createdAt)
+        const sortedSelling = [...sellingResult.itemPrices].sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        latestSellingPrice = sortedSelling[0].priceValue;
+      }
+
+      // Fetch buying prices
+      const buyingResult = await trpc.listItemPricesByMenuItem.query({
+        menuItemId,
+        priceType: "buying",
+      });
+      if (buyingResult.success && buyingResult.itemPrices.length > 0) {
+        // Get the most recent price
+        const sortedBuying = [...buyingResult.itemPrices].sort(
+          (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+        );
+        latestBuyingPrice = sortedBuying[0].priceValue;
+      }
+    } catch (err) {
+      console.error("Failed to load item prices:", err);
+    }
+    loadingPrices = false;
+  }
 
   $effect(() => {
-    if (menuItem) {
+    // Clear categoryId when type is not MENU_ITEM
+    if (!type.includes("MENU_ITEM")) {
+      categoryId = "";
+    }
+  });
+
+  // Track previous state to prevent infinite loops
+  let prevIsOpen = $state(false);
+  let prevMenuItemId = $state<string | null>(null);
+
+  $effect(() => {
+    // Only run when modal is newly opened or menu item changes
+    if (isOpen && menuItem && (isOpen !== prevIsOpen || menuItem.id !== prevMenuItemId)) {
+      prevIsOpen = isOpen;
+      prevMenuItemId = menuItem.id;
+      
       name = menuItem.name || "";
-      itemType = menuItem.itemType || "MENU_ITEM";
-      price = menuItem.price ?? undefined;
-      priceString =
-        menuItem.price !== null && menuItem.price !== undefined
-          ? String(menuItem.price)
-          : "";
+      type = menuItem.type || ["MENU_ITEM"];
       description = menuItem.description || "";
       isAvailable = menuItem.isAvailable ?? true;
+      categoryId = menuItem.categoryId || "";
+      
+      // Load item prices
+      if (menuItem.id) {
+        loadItemPrices(menuItem.id);
+      }
+    } else if (!isOpen) {
+      prevIsOpen = false;
+      prevMenuItemId = null;
     }
   });
 
   function resetForm() {
     name = "";
-    itemType = "MENU_ITEM";
-    price = undefined;
-    priceString = "";
+    type = ["MENU_ITEM"];
     description = "";
     isAvailable = true;
+    categoryId = "";
     error = "";
+    latestSellingPrice = null;
+    latestBuyingPrice = null;
   }
 
   function handleClose() {
@@ -87,14 +166,13 @@
     isSubmitting = true;
 
     try {
-      const priceValue = priceString ? parseFloat(priceString) : undefined;
       const result = await trpc.updateMenuItem.mutate({
         id: menuItem.id,
         name,
-        itemType,
-        price: priceValue,
+        type,
         description: description || undefined,
         isAvailable,
+        categoryId: categoryId || undefined,
       });
 
       if (result.success) {
@@ -114,8 +192,9 @@
   onOpenChange={(open) => {
     if (!open) handleClose();
   }}
+  
 >
-  <DialogContent class="max-w-md">
+  <DialogContent class="max-w-6xl">
     <DialogHeader>
       <DialogTitle>Update Menu Item</DialogTitle>
       <DialogDescription>Edit the menu item details</DialogDescription>
@@ -140,26 +219,84 @@
 
       <div>
         <span class="block text-sm font-medium text-gray-700 mb-2">
-          Item Type *
+          Item Types *
         </span>
-        <Select bind:value={itemType}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select item type" />
-          </SelectTrigger>
-          <SelectContent>
-            {#each itemTypeEnum.enumValues as type}
-              <SelectItem value={type}>{type}</SelectItem>
-            {/each}
-          </SelectContent>
-        </Select>
+        <div class="space-y-2">
+          {#each typeEnum.enumValues as itemType}
+            <label class="flex items-center">
+              <input
+                type="checkbox"
+                checked={type.includes(itemType)}
+                onchange={(e) => {
+                  if (e.currentTarget.checked) {
+                    type = [...type, itemType];
+                  } else {
+                    type = type.filter(t => t !== itemType);
+                  }
+                }}
+                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <span class="ml-2 text-sm text-gray-700">{itemType}</span>
+            </label>
+          {/each}
+        </div>
       </div>
 
-      <Input
-        label="Price"
-        type="number"
-        bind:value={priceString}
-        placeholder="0.00"
-      />
+      {#if type.includes("MENU_ITEM")}
+        <div>
+          <span class="block text-sm font-medium text-gray-700 mb-2">
+            Category
+          </span>
+          <Select bind:value={categoryId}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select category (optional)" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="">No Category</SelectItem>
+              {#each categories as category}
+                <SelectItem value={category.id}>{category.name}</SelectItem>
+              {/each}
+            </SelectContent>
+          </Select>
+        </div>
+      {/if}
+
+      <!-- Price Information (Read-only) -->
+      <div class="border-t border-gray-200 pt-4">
+        <span class="block text-sm font-medium text-gray-700 mb-3">
+          Latest Prices
+        </span>
+        <div class="grid grid-cols-2 gap-4">
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1">
+              Selling Price
+            </label>
+            <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+              {#if loadingPrices}
+                <span class="text-gray-400">Loading...</span>
+              {:else if latestSellingPrice !== null}
+                ${latestSellingPrice.toFixed(2)}
+              {:else}
+                <span class="text-gray-400">Not set</span>
+              {/if}
+            </div>
+          </div>
+          <div>
+            <label class="block text-xs font-medium text-gray-500 mb-1">
+              Buying Price
+            </label>
+            <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
+              {#if loadingPrices}
+                <span class="text-gray-400">Loading...</span>
+              {:else if latestBuyingPrice !== null}
+                ${latestBuyingPrice.toFixed(2)}
+              {:else}
+                <span class="text-gray-400">Not set</span>
+              {/if}
+            </div>
+          </div>
+        </div>
+      </div>
 
       <div>
         <label

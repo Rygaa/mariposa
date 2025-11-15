@@ -17,7 +17,9 @@
   import Button from "../../../lib/components/Button.svelte";
   import Input from "../../../lib/components/Input.svelte";
   import { trpc } from "../../../lib/trpc";
-  import { itemTypeEnum, unitEnum } from "../../../../../backend/src/db/schema";
+  import { typeEnum, unitEnum } from "../../../../../backend/src/db/schema";
+  import { onMount } from "svelte";
+  import type { listCategories } from "../../../../../backend/src/router.types";
 
   let {
     onMenuItemCreated,
@@ -26,22 +28,50 @@
   } = $props();
 
   let name = $state("");
-  let itemType = $state<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">("MENU_ITEM");
+  let type = $state<Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">>(["MENU_ITEM"]);
   let price = $state<number | undefined>(undefined);
   let priceString = $state("");
   let description = $state("");
   let isAvailable = $state(true);
+  let categoryId = $state<string>("");
   let isSubmitting = $state(false);
   let error = $state("");
   let isOpen = $state(false);
+  let categories = $state<listCategories["categories"]>([]);
+  let loadingCategories = $state(false);
+
+  onMount(async () => {
+    await loadCategories();
+  });
+
+  async function loadCategories() {
+    loadingCategories = true;
+    try {
+      const result = await trpc.listCategories.query();
+      if (result.success) {
+        categories = result.categories;
+      }
+    } catch (err) {
+      console.error("Failed to load categories:", err);
+    }
+    loadingCategories = false;
+  }
+
+  $effect(() => {
+    // Clear categoryId when type is not MENU_ITEM
+    if (!type.includes("MENU_ITEM")) {
+      categoryId = "";
+    }
+  });
 
   function resetForm() {
     name = "";
-    itemType = "MENU_ITEM";
+    type = ["MENU_ITEM"];
     price = undefined;
     priceString = "";
     description = "";
     isAvailable = true;
+    categoryId = "";
     error = "";
   }
 
@@ -68,10 +98,11 @@
       const priceValue = priceString ? parseFloat(priceString) : undefined;
       const result = await trpc.createMenuItem.mutate({
         name,
-        itemType,
+        type,
         price: priceValue,
         description: description || undefined,
         isAvailable,
+        categoryId: categoryId || undefined,
       });
 
       if (result.success) {
@@ -121,19 +152,47 @@
 
       <div>
         <span class="block text-sm font-medium text-gray-700 mb-2">
-          Item Type *
+          Item Types *
         </span>
-        <Select bind:value={itemType}>
-          <SelectTrigger>
-            <SelectValue placeholder="Select item type" />
-          </SelectTrigger>
-          <SelectContent>
-            {#each itemTypeEnum.enumValues as type}
-              <SelectItem value={type}>{type}</SelectItem>
-            {/each}
-          </SelectContent>
-        </Select>
+        <div class="space-y-2">
+          {#each typeEnum.enumValues as itemType}
+            <label class="flex items-center">
+              <input
+                type="checkbox"
+                checked={type.includes(itemType)}
+                onchange={(e) => {
+                  if (e.currentTarget.checked) {
+                    type = [...type, itemType];
+                  } else {
+                    type = type.filter(t => t !== itemType);
+                  }
+                }}
+                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+              />
+              <span class="ml-2 text-sm text-gray-700">{itemType}</span>
+            </label>
+          {/each}
+        </div>
       </div>
+
+      {#if type.includes("MENU_ITEM")}
+        <div>
+          <span class="block text-sm font-medium text-gray-700 mb-2">
+            Category
+          </span>
+          <Select bind:value={categoryId}>
+            <SelectTrigger>
+              <SelectValue placeholder="Select category (optional)" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="">No Category</SelectItem>
+              {#each categories as category}
+                <SelectItem value={category.id}>{category.name}</SelectItem>
+              {/each}
+            </SelectContent>
+          </Select>
+        </div>
+      {/if}
 
       <Input
         label="Price"

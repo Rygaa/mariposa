@@ -1,0 +1,2832 @@
+{
+  "exportDate": "2025-11-14T14:35:01.598Z",
+  "totalRelationships": 157,
+  "menuItemSupplements": [
+    {
+      "id": "e8737b40-942a-4a94-af20-41dd3d0ecd99",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.865Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9cd1e05c-a3b4-4643-a21e-f901e12a5d24",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.867Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "c822eaad-0bfd-4594-ad44-bc1ad3632bcc",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.869Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e49656ec-ea76-485f-97fd-9f85c2c149c3",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.870Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f8924026-ade4-47e5-ad11-ad91b4f71f9b",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.872Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0aa92fab-0117-41d0-be17-c502a1c66244",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.873Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "784e7150-d529-4309-ad4c-688315878eb2",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.875Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2a0d6e9d-3552-4055-bab6-c50e6112e305",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.876Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e1857bd7-f8a7-43f3-ab19-0a099a2f8d5f",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.877Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "c6ae67a1-c2cd-4ef1-92b7-4c1d16f33d5e",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.878Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f555acc9-23f9-46f0-8bfb-6a9bd2ceb938",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.880Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f34adaff-a927-4cb0-869f-c9d739cb5efd",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.881Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2c73d08f-2d8d-4472-a778-99d671aa7df1",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.882Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ee564471-38ab-49b4-bd64-ce5a10b82375",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.884Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f9365699-8579-4f46-87ef-5cf6f581e70e",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.889Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8f2150e5-090b-4fe5-bd3e-7e8677e04b5c",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.890Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e6e9b48b-96e4-4480-8cd2-7ab02f7b9f1c",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.891Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7d6e2edb-e57d-46fe-8ac5-410dbe52d5b6",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+      "createdAt": "2025-10-20T10:45:33.893Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+        "name": "2 Barre Moment",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "4c5899c9-a00f-4353-b450-32fdb180cead",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.514Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0dabeb54-69b0-4aaf-b607-b46d07cb875b",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.612Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "773ebbe5-a4c7-4c95-b01a-1e6d2de9b9a5",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.516Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "4294008f-74e8-465a-b157-e3e5144fd037",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.517Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8b3189ba-e832-4880-a3a5-e0f2a6a7ff27",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.520Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a096ef35-af9b-4ff1-a044-88e5d73e60d1",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.521Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ecae476c-e04f-4998-829a-35d92866d07a",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.523Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "eb5d60b4-e918-440d-9c45-07080d103a11",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.525Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "514656d8-5e18-4adf-aa80-bc4e9ccdb80c",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.526Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "454fd592-f2c6-436a-b54d-b3947751989c",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.527Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e3ac7c22-eb95-4fbd-95b7-5f65f40793a7",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.528Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "419b4191-4150-4942-b851-ea89c653c207",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.530Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7f3ef7cf-9627-4c04-8eff-71d632ea78d5",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.531Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "6a1002b4-095e-471a-be6e-cbf767f446c9",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.533Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7c3db0b1-0886-4199-912e-1a2c025a605d",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.534Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "38fe47a1-2295-4e96-915b-98f91f80760f",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.541Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "58841280-2970-46d0-9fff-7c2e2f732e6b",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.542Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "b2ccbf32-2c60-4db6-acfa-f10d62bbdf54",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.544Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "31e7d17e-c96e-4ca1-9bab-73bc71222e12",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+      "createdAt": "2025-10-20T10:43:34.545Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+        "name": "2 Barre Milka",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "1155c35c-f1bd-4448-a906-8080904733b3",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.615Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "4f5489dc-c64e-4872-827c-d819b9379a03",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.617Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2e68fd61-b85c-49b4-b517-4f6cb99702bd",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.619Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2ffb7961-ed68-46f9-ab25-2dc3116f2bc7",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.621Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "999057da-1b84-44b7-b88b-383a41e4494b",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.623Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "859c9b24-9c32-42ca-aef8-c6f2a45907f6",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.625Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "27ec98c7-4341-4cfe-b676-e271c7832abd",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.627Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "10c418f9-be8a-40c6-8f59-1cf5f0c15c6c",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.628Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "5a4bd5cb-bf86-423e-9b12-5af27125a862",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.630Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "16c5affb-202c-4ef2-98ff-1209551fdec8",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.632Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0b7f2a5f-de9a-42e6-8ff2-81429f8314f5",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.634Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f7c50a51-cf21-45e8-920a-a9b5b9973a00",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.636Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "be0e91ba-2e75-446c-8805-db773ed4554a",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.638Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8ee62822-fbbb-4cd6-bbb7-99f13aab93ed",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.647Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "394197db-c447-4ad3-b111-35d0f475e4dc",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.648Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a72b1449-249e-4e48-8d3a-b0482e45f48e",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.650Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "68d269b7-7d38-4510-b4fb-13483b1202b2",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+      "createdAt": "2025-10-20T10:45:59.651Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+        "name": "2 Barre Kitkat",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7ab5c781-f5c3-4eae-bb7f-b571ab3bcd4f",
+      "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:48:42.250Z",
+      "menuItem": {
+        "id": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+        "name": "Milkshake Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ce8b6dea-96e0-4bf5-a928-7f584b01caf7",
+      "menuItemId": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:48:42.252Z",
+      "menuItem": {
+        "id": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+        "name": "Milkshake Banane",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "248e6e09-cc52-4d31-badf-6b8d3c552919",
+      "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:48:42.254Z",
+      "menuItem": {
+        "id": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+        "name": "Milkshake Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e067efd3-f763-4f2a-9f94-201fca4f42ba",
+      "menuItemId": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:48:42.255Z",
+      "menuItem": {
+        "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+        "name": "Milkshake Morjene Bueno",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "d2f4e329-4cd0-4ea3-8e83-6a05a35ad3dd",
+      "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:48:42.256Z",
+      "menuItem": {
+        "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+        "name": "Milkshake Oreo",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9c141b0f-1770-48f0-8509-794bc212dc71",
+      "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:48:42.258Z",
+      "menuItem": {
+        "id": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+        "name": "Milkshake Pistache",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "68946dd9-c2ee-4159-abc3-9065211df2ab",
+      "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:49:19.003Z",
+      "menuItem": {
+        "id": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+        "name": "Milkshake Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "fa678b5a-8614-44d0-82c8-fa1c7bc36d86",
+      "menuItemId": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:49:19.005Z",
+      "menuItem": {
+        "id": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+        "name": "Milkshake Banane",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0032481c-a542-4e71-828c-9d342cc1245f",
+      "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:49:19.006Z",
+      "menuItem": {
+        "id": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+        "name": "Milkshake Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7070af60-4cfb-4d3d-8082-65499953065a",
+      "menuItemId": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:49:19.008Z",
+      "menuItem": {
+        "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+        "name": "Milkshake Morjene Bueno",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e4c76d5d-a23c-4fd0-a986-8d463dff3d1f",
+      "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:49:19.009Z",
+      "menuItem": {
+        "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+        "name": "Milkshake Oreo",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "50f4a73d-5bfa-448b-8cbd-e2a94368b666",
+      "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:49:46.701Z",
+      "menuItem": {
+        "id": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+        "name": "Milkshake Pistache",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "29b80275-2d0c-4e16-91f6-c49084aa4551",
+      "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+      "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+      "createdAt": "2025-10-20T10:50:01.356Z",
+      "menuItem": {
+        "id": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+        "name": "Milkshake Fraise",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+        "name": "4 Barre Moment",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2fad70cc-a039-422b-ab81-04dc9f88a9e4",
+      "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+      "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+      "createdAt": "2025-10-20T10:50:10.323Z",
+      "menuItem": {
+        "id": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+        "name": "Milkshake Fraise",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+        "name": "4 Barre Milka",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8406c0d4-04f2-45d4-aec4-67e1f6dc4e8d",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.604Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "afd1dd0f-a078-4b23-b3dd-236a05df8f33",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.605Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "922cc757-29ac-43ee-b8f6-02a7a44f4b59",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.607Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "90216fdf-6a4f-4d15-b976-f8f3603aee3a",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.609Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e09ff43b-76f1-41cc-abbf-5e44a0d8e8c6",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.610Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "dd239f68-0fda-4169-9b7a-af2654d11358",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.612Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "fc7bdc99-405f-4fad-bb40-ac9db0bef09b",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.613Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "cb4a0bb0-4d0b-4a68-ae61-d8fdbd0e876d",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.614Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "519c77f0-c82a-4730-94cc-ad5d83e62b39",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.616Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "00d8f754-8719-420c-9aae-e4215a00dbc4",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.617Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9261a2e8-450b-47cb-8f46-460dafafb07b",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.618Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "d6887116-2b81-4aaa-b698-c1f4867e4cf4",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.620Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f665a84e-c934-4004-abf3-ec692d9bfc0c",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.621Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "87a51a3e-d887-4b48-81d4-2ca663778600",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.623Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f5f280ab-e0cb-4736-98f6-fc7e1a4abeb5",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.624Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "6f130e41-7c33-445c-8110-a82f0dc95690",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.625Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a6e6909a-3b04-4047-b15a-b553c858d074",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.627Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f551e984-eaa8-45ab-8485-d1476b5315e7",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.629Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "62fd8093-8ca7-469b-9531-d59e89aae6b8",
+      "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.630Z",
+      "menuItem": {
+        "id": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+        "name": "Milkshake Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f2abce89-b555-4389-bbc4-1f6feae20e42",
+      "menuItemId": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.633Z",
+      "menuItem": {
+        "id": "30521fd0-4fdd-4d61-b5ed-7b3121704fa0",
+        "name": "Milkshake Banane",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "3aac3089-14af-4020-a98f-e12538f6acde",
+      "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.634Z",
+      "menuItem": {
+        "id": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+        "name": "Milkshake Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "fe79196a-250e-4b2f-8984-e9a75474e5a4",
+      "menuItemId": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.636Z",
+      "menuItem": {
+        "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+        "name": "Milkshake Morjene Bueno",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "45b3e4b0-74b5-4778-b6be-d7c61baa7995",
+      "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.637Z",
+      "menuItem": {
+        "id": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+        "name": "Milkshake Fraise",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a8eb6798-5758-4cbb-a2b2-e7b1427dd06e",
+      "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.639Z",
+      "menuItem": {
+        "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+        "name": "Milkshake Oreo",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "28f529dd-1c37-4e46-abd5-7d69820f4616",
+      "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+      "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+      "createdAt": "2025-10-20T10:51:08.640Z",
+      "menuItem": {
+        "id": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+        "name": "Milkshake Pistache",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "a6958263-98f8-4b45-90bd-f041c22fffed",
+        "name": "Snickers",
+        "price": 300,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9ea68a4a-6195-4789-8314-d8c58ba4cfe0",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.551Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "075348fe-3bdf-4de1-9b2b-7b61d1786e83",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.552Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "078832b4-fd76-4a47-adfd-8b164b1c48cd",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.553Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "6b47fda2-ca12-4a35-a3c2-a3e7f9c4f69a",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.554Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "54661eb6-2a34-4b90-8f85-17a7f8cbd7bf",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.556Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "150edc09-42e7-487a-8e45-ca2858e93870",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.557Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "d1e4bfec-b466-4b5e-ac7e-49220e5cf724",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.559Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "cc6fbfe3-14a5-4133-8ec3-f9a931400cd8",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.560Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "da5fbecc-9528-4362-87c1-d96c18d9594d",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.561Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "1a965f46-3db4-4e49-bfc0-22a81e0db5a6",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.562Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "698b9828-f67f-4969-bfea-09f0cc0cffe7",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.563Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "03447e05-a2c9-4b3d-83a3-daa2a78ad4f8",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.564Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2a7bc312-e77f-424d-94d7-fdce07bbd38b",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.567Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9141ab97-0d42-42b9-ac3e-c21a3ec87704",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.568Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f5fd69b7-c838-4434-9c76-d07fec6505ca",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.570Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8d0abe30-ca26-4a3b-92de-a7e2c111c97e",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.571Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "6de2a829-e57e-4082-b862-f7e862df0dee",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.572Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "92593b24-baf9-479a-a6ad-63e3752dd195",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-10-20T10:51:38.574Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0f6ec005-b1e6-48ec-b720-959ee61713da",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.310Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ff919056-6839-4d6d-a960-a588a83ffbbb",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.312Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "77600777-d1e9-4e38-a722-b5060c0d3cb0",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.314Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "dc192563-4d04-4eeb-aed2-dba8e6bda1db",
+      "menuItemId": "1fc7197d-3ff8-4da4-bce6-1d21bfda5ee5",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.315Z",
+      "menuItem": {
+        "id": "1fc7197d-3ff8-4da4-bce6-1d21bfda5ee5",
+        "name": "Churros Bueno",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e7787469-c15a-48f3-9ae2-3fea71393d55",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.316Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ca597c1b-e627-4857-99f0-e971d139639c",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.317Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "35e25344-fc3b-47c9-af9e-bed15b814e88",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.318Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "700b4b53-3c9e-45fd-9b96-e1cb239d77c2",
+      "menuItemId": "97c5583c-1c5c-46fb-bcf0-c933cbd106d3",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.320Z",
+      "menuItem": {
+        "id": "97c5583c-1c5c-46fb-bcf0-c933cbd106d3",
+        "name": "Churros Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a7ff85fd-4d4b-4a62-88b4-62f1ad2f9745",
+      "menuItemId": "a5cabd39-a7a7-406a-9da7-a9dfcde0dcf2",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.321Z",
+      "menuItem": {
+        "id": "a5cabd39-a7a7-406a-9da7-a9dfcde0dcf2",
+        "name": "Churros Pistache",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "6ac6e644-ed4e-4f3d-a03b-401c12c73f48",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.322Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "76fddc0a-8994-4788-8741-1153d23f2829",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.323Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a2ed7c08-c380-402f-a916-9bc7f3b136e0",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.324Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e6b3704b-6907-4427-ae4e-1c649249883f",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.325Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7c481ce2-820b-4385-aec1-d00b16663e9a",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.326Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "add0b81a-2549-4f1e-a808-1d472d3da915",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.327Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e4b12c05-9004-4375-995f-4d4395684c7c",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.328Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "adff0afa-08e7-4f2d-875f-a1a16f7ab55f",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.329Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8d84ae40-ebb9-4ea9-a17a-01d8407e02a5",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.330Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "4e4c8df2-68fd-4472-a8f3-8fbfaacdc2b6",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.331Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "bc7629a6-4799-42ab-bcbb-c0f239ed8c9c",
+      "menuItemId": "e09cd4c2-ef5a-4137-a566-4a9ef532ea20",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.333Z",
+      "menuItem": {
+        "id": "e09cd4c2-ef5a-4137-a566-4a9ef532ea20",
+        "name": "Churros Morjene",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "fef4c00a-8cdd-47b8-9d1d-69ef9fa89abb",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.334Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7bcad8de-77c4-44dc-ba9f-71179b8a492c",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.335Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e8768969-3fa1-48a6-8e4e-699c60e00ee0",
+      "menuItemId": "943378ac-cc23-45f4-aa99-a808cc429611",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-06T15:08:38.336Z",
+      "menuItem": {
+        "id": "943378ac-cc23-45f4-aa99-a808cc429611",
+        "name": "Pancakes au sirop d’érable",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "665f01e8-4d31-42a7-b9d2-fd249082b491",
+      "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.420Z",
+      "menuItem": {
+        "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+        "name": "Crêpe Morjene",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "bce881b6-7516-4bea-aca9-665d6be07ca8",
+      "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.422Z",
+      "menuItem": {
+        "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+        "name": "Crêpe Morjene Bueno",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9afb2fb0-9a9e-4974-9f66-a220605c58be",
+      "menuItemId": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.423Z",
+      "menuItem": {
+        "id": "fc2d548f-e18d-4466-817c-b83b24b74d7d",
+        "name": "Gaufre Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "034a0c60-dd12-4a75-aa5b-975971053bc5",
+      "menuItemId": "1fc7197d-3ff8-4da4-bce6-1d21bfda5ee5",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.424Z",
+      "menuItem": {
+        "id": "1fc7197d-3ff8-4da4-bce6-1d21bfda5ee5",
+        "name": "Churros Bueno",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "852acaf6-b12f-49e7-9ee6-b251b500c9a7",
+      "menuItemId": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.426Z",
+      "menuItem": {
+        "id": "47d128b1-f0f2-4915-81f7-f0f3a1f27ccf",
+        "name": "Gaufre Caramel",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "9b0c71fb-0aa1-471d-a6fa-3d81a88ec131",
+      "menuItemId": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.427Z",
+      "menuItem": {
+        "id": "fe6ef071-d7a7-421a-a674-c5c7475e3854",
+        "name": "Gaufre Morjene Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "046ebd36-c7e6-4e02-b971-6664f3c8917f",
+      "menuItemId": "97c5583c-1c5c-46fb-bcf0-c933cbd106d3",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.428Z",
+      "menuItem": {
+        "id": "97c5583c-1c5c-46fb-bcf0-c933cbd106d3",
+        "name": "Churros Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "19f4d18b-1eb7-40e2-be03-517bccb16c6c",
+      "menuItemId": "a5cabd39-a7a7-406a-9da7-a9dfcde0dcf2",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.429Z",
+      "menuItem": {
+        "id": "a5cabd39-a7a7-406a-9da7-a9dfcde0dcf2",
+        "name": "Churros Pistache",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "c728e52b-17ef-4936-994a-fdc146bb72e9",
+      "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.430Z",
+      "menuItem": {
+        "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+        "name": "Crêpe Rouler Banane",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8554ef94-c0cc-45a0-83da-fe607c1d9aed",
+      "menuItemId": "046658e8-de68-468f-b92c-c9504160ec31",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.431Z",
+      "menuItem": {
+        "id": "046658e8-de68-468f-b92c-c9504160ec31",
+        "name": "Crêpe Morjene Ferrero",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ee89d87b-f062-4002-942d-9066d156f039",
+      "menuItemId": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.432Z",
+      "menuItem": {
+        "id": "c96659ab-2452-4fcf-9be1-9aa2cdfb6217",
+        "name": "Crêpe Dubai",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "1f94bab9-af31-4aa0-9977-6957ba371171",
+      "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.433Z",
+      "menuItem": {
+        "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+        "name": "Crêpe Foure Banane",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "15bf3194-261c-48ca-bdeb-e6794ef7c5d0",
+      "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.434Z",
+      "menuItem": {
+        "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+        "name": "Crêpe Morjene Spaghetti",
+        "price": 500,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "28849e64-f5b0-4a66-a95d-3c02ed7053e8",
+      "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.435Z",
+      "menuItem": {
+        "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+        "name": "Crêpe Morjene Bueno Spaghetti",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "5e798d7c-1910-4da6-b820-1802b5c31e3b",
+      "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.436Z",
+      "menuItem": {
+        "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+        "name": "Crêpe Morjene Ferrero Spaghetti",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "b586ca47-d309-47f1-a10c-4a1b1706ab89",
+      "menuItemId": "233f4330-d570-401b-9edc-6bdf164249b8",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.437Z",
+      "menuItem": {
+        "id": "233f4330-d570-401b-9edc-6bdf164249b8",
+        "name": "Crêpe Sushi Brownies",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0dacd29d-a90f-4e04-83a5-e2a70b949564",
+      "menuItemId": "e09cd4c2-ef5a-4137-a566-4a9ef532ea20",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.438Z",
+      "menuItem": {
+        "id": "e09cd4c2-ef5a-4137-a566-4a9ef532ea20",
+        "name": "Churros Morjene",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a82f11ec-ad9d-4c94-ba87-1a1ad7c5d2aa",
+      "menuItemId": "53028180-fe2c-4f06-90bd-781caee9a216",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.439Z",
+      "menuItem": {
+        "id": "53028180-fe2c-4f06-90bd-781caee9a216",
+        "name": "Gaufre Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2d619b43-6d42-4d95-898f-a34e71dbfe99",
+      "menuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.440Z",
+      "menuItem": {
+        "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+        "name": "Pancakes Bueno",
+        "price": 450,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "3090e181-6ef4-4a51-8b16-49a2cefc94ce",
+      "menuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.441Z",
+      "menuItem": {
+        "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
+        "name": "Pancakes Caramel",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "14c0cb5d-0240-4232-9436-69664d5abd33",
+      "menuItemId": "943378ac-cc23-45f4-aa99-a808cc429611",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.442Z",
+      "menuItem": {
+        "id": "943378ac-cc23-45f4-aa99-a808cc429611",
+        "name": "Pancakes au sirop d’érable",
+        "price": 600,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "52c89e78-f6d4-4caa-8113-8942322ac2ec",
+      "menuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.443Z",
+      "menuItem": {
+        "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
+        "name": "Pancakes Morjene",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "d0c0bfb4-a145-4940-bad3-dafff906f491",
+      "menuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-06T15:21:40.444Z",
+      "menuItem": {
+        "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
+        "name": "Pancakes Miel Espagnol",
+        "price": 550,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    }
+  ]
+}

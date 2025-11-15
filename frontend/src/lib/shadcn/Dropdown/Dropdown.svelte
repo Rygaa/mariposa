@@ -45,7 +45,7 @@
 
   {#if open}
     <div
-      class="absolute {alignClasses[align]} mt-2 min-w-[8rem] overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-md z-50"
+      class="absolute {alignClasses[align]} mt-2 w-max overflow-hidden rounded-md border border-gray-200 bg-white p-1 shadow-md z-50"
     >
       {#if children}
         {@render children()}

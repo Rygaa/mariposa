@@ -1,5 +1,5 @@
 {
-  "id": "5ac71668-38e5-4842-b1a0-30b7d8d86b4d",
+  "id": "330e04d9-67e2-4012-9303-2ec29eeb0fcd",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -243,15 +243,15 @@
           "primaryKey": false,
           "notNull": false
         },
+        "priceType": {
+          "name": "priceType",
+          "type": "E_PriceType",
+          "typeSchema": "public",
+          "primaryKey": false,
+          "notNull": true
+        },
         "createdAt": {
           "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "updatedAt": {
-          "name": "updatedAt",
           "type": "timestamp",
           "primaryKey": false,
           "notNull": true,
@@ -260,50 +260,6 @@
         "menuItemId": {
           "name": "menuItemId",
           "type": "varchar",
-          "primaryKey": false,
-          "notNull": false
-        }
-      },
-      "indexes": {},
-      "foreignKeys": {},
-      "compositePrimaryKeys": {},
-      "uniqueConstraints": {},
-      "policies": {},
-      "checkConstraints": {},
-      "isRLSEnabled": false
-    },
-    "public.MenuItemIngredient": {
-      "name": "MenuItemIngredient",
-      "schema": "",
-      "columns": {
-        "id": {
-          "name": "id",
-          "type": "varchar",
-          "primaryKey": true,
-          "notNull": true
-        },
-        "createdAt": {
-          "name": "createdAt",
-          "type": "timestamp",
-          "primaryKey": false,
-          "notNull": true,
-          "default": "now()"
-        },
-        "parentMenuItemId": {
-          "name": "parentMenuItemId",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "ingredientMenuItemId": {
-          "name": "ingredientMenuItemId",
-          "type": "varchar",
-          "primaryKey": false,
-          "notNull": true
-        },
-        "quantity": {
-          "name": "quantity",
-          "type": "real",
           "primaryKey": false,
           "notNull": true
         }
@@ -371,7 +327,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
-          "default": "'PENDING'"
+          "default": "'INITIALIZED'"
         }
       },
       "indexes": {},
@@ -471,13 +427,12 @@
           "primaryKey": false,
           "notNull": true
         },
-        "itemType": {
-          "name": "itemType",
-          "type": "E_ItemType",
-          "typeSchema": "public",
+        "type": {
+          "name": "type",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": true,
-          "default": "'MENU_ITEM'"
+          "default": "'[\"MENU_ITEM\"]'"
         },
         "createdAt": {
           "name": "createdAt",
@@ -599,12 +554,6 @@
           "primaryKey": false,
           "notNull": false
         },
-        "sellingPrice": {
-          "name": "sellingPrice",
-          "type": "real",
-          "primaryKey": false,
-          "notNull": false
-        },
         "stockConversionRatio": {
           "name": "stockConversionRatio",
           "type": "real",
@@ -657,7 +606,7 @@
           "typeSchema": "public",
           "primaryKey": false,
           "notNull": true,
-          "default": "'PENDING'"
+          "default": "'INITIALIZED'"
         }
       },
       "indexes": {},
@@ -790,12 +739,12 @@
       "name": "E_EatingTableMenuItemStatus",
       "schema": "public",
       "values": [
-        "PENDING",
-        "STARTED",
-        "DONE",
+        "INITIALIZED",
+        "CONFIRMED",
+        "WAITING_TO_BE_PRINTED",
         "PRINTED",
-        "PAID",
-        "CONFIRMED"
+        "SERVED",
+        "PAID"
       ]
     },
     "public.E_EatingTableType": {
@@ -808,15 +757,12 @@
         "GIFT"
       ]
     },
-    "public.E_ItemType": {
-      "name": "E_ItemType",
+    "public.E_PriceType": {
+      "name": "E_PriceType",
       "schema": "public",
       "values": [
-        "MENU_ITEM",
-        "RECIPE",
-        "RAW_MATERIAL",
-        "SUPPLEMENT",
-        "MENU_ITEM_OPTION"
+        "selling",
+        "buying"
       ]
     },
     "public.ROLE": {
@@ -866,6 +812,17 @@
         "menuItemSubMenuItems_create",
         "menuItemSubMenuItems_update",
         "menuItemSubMenuItems_delete"
+      ]
+    },
+    "public.E_Type": {
+      "name": "E_Type",
+      "schema": "public",
+      "values": [
+        "MENU_ITEM",
+        "RECIPE",
+        "RAW_MATERIAL",
+        "SUPPLEMENT",
+        "MENU_ITEM_OPTION"
       ]
     },
     "public.Unit": {

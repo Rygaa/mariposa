@@ -1,4 +1,4 @@
-import { eq, and, or, like } from "drizzle-orm";
+import { eq, and, or, like, sql } from "drizzle-orm";
 import { db, DbTransactionOrDB } from "../db/utils";
 import * as SchemaDrizzle from "../db/schema";
 import { TRPCError } from "@trpc/server";
@@ -77,18 +77,19 @@ async function deleteMenuItem(
 
 type ListFilters = {
   search?: string;
-  itemType?: string;
+  type?: string[];
   categoryId?: string;
   isAvailable?: boolean;
   limit?: number;
   offset?: number;
+  excludeIds?: string[];
 };
 
 async function list(
   filters: ListFilters = {},
   tx: DbTransactionOrDB = db
 ): Promise<SchemaDrizzle.MenuItems[]> {
-  const { search, itemType, categoryId, isAvailable, limit = 100, offset = 0 } = filters;
+  const { search, type, categoryId, isAvailable, limit = 100, offset = 0, excludeIds = [] } = filters;
 
   let query = tx.select().from(SchemaDrizzle.menuItems);
 
@@ -98,8 +99,17 @@ async function list(
     conditions.push(like(SchemaDrizzle.menuItems.name, `%${search}%`));
   }
 
-  if (itemType) {
-    conditions.push(eq(SchemaDrizzle.menuItems.itemType, itemType as any));
+  // Filter by type - check if any of the filter types are in the item's type array
+  if (type && type.length > 0) {
+    const typeConditions = type.map(t => 
+      // Check if the JSONB array contains the specific type value
+      sql`${SchemaDrizzle.menuItems.type}::jsonb ? ${t}`
+    );
+    if (typeConditions.length === 1) {
+      conditions.push(typeConditions[0]);
+    } else {
+      conditions.push(or(...typeConditions));
+    }
   }
 
   if (categoryId) {
@@ -108,6 +118,15 @@ async function list(
 
   if (isAvailable !== undefined) {
     conditions.push(eq(SchemaDrizzle.menuItems.isAvailable, isAvailable));
+  }
+
+  if (excludeIds && excludeIds.length > 0) {
+    conditions.push(
+      sql`${SchemaDrizzle.menuItems.id} NOT IN (${sql.join(
+        excludeIds,
+        sql`,`
+      )})`
+    );
   }
 
   if (conditions.length > 0) {

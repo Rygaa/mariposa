@@ -14,7 +14,15 @@
     CardHeader,
     CardTitle,
   } from "../../lib/shadcn/Card/index";
+  import {
+    Select,
+    SelectContent,
+    SelectItem,
+    SelectTrigger,
+    SelectValue,
+  } from "../../lib/shadcn/Select/index";
   import type { getMenuItemById } from "../../../../backend/src/router.types";
+  import { typeEnum } from "../../../../backend/src/db/schema";
 
   let menuItems = $state<getMenuItemById["menuItem"][]>([]);
   let showUpdateModal = $state(false);
@@ -22,7 +30,7 @@
   let showVersionsModal = $state(false);
   let isLoading = $state(false);
   let searchQuery = $state("");
-  let filterType = $state<string>("all");
+  let filterType = $state<Array<string>>([]);
   let filterAvailable = $state<string>("all");
 
   onMount(async () => {
@@ -42,8 +50,8 @@
         filters.search = searchQuery;
       }
 
-      if (filterType !== "all") {
-        filters.itemType = filterType;
+      if (filterType.length > 0) {
+        filters.type = filterType as any;
       }
 
       if (filterAvailable !== "all") {
@@ -60,10 +68,17 @@
     isLoading = false;
   }
 
-
-
+  // Re-run when filters change
   $effect(() => {
-    loadMenuItems();
+    // Read the dependencies
+    searchQuery;
+    filterType;
+    filterAvailable;
+    
+    // Only run after initial mount
+    if (_globalStore.user) {
+      loadMenuItems();
+    }
   });
 
   const filteredMenuItems = $derived(menuItems);
@@ -95,6 +110,44 @@
                   class="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
                 />
               </div>
+            </div>
+            
+            <div class="w-full sm:w-48">
+              <span class="block text-sm font-medium text-gray-700 mb-2">
+                Filter by Types
+              </span>
+              <div class="space-y-1">
+                {#each typeEnum.enumValues as type}
+                  <label class="flex items-center">
+                    <input
+                      type="checkbox"
+                      checked={filterType.includes(type)}
+                      onchange={(e) => {
+                        if (e.currentTarget.checked) {
+                          filterType = [...filterType, type];
+                        } else {
+                          filterType = filterType.filter(t => t !== type);
+                        }
+                      }}
+                      class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                    />
+                    <span class="ml-2 text-xs text-gray-700">{type}</span>
+                  </label>
+                {/each}
+              </div>
+            </div>
+
+            <div class="w-full sm:w-48">
+              <Select bind:value={filterAvailable}>
+                <SelectTrigger>
+                  <SelectValue placeholder="Filter by availability" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectItem value="all">All Items</SelectItem>
+                  <SelectItem value="available">Available</SelectItem>
+                  <SelectItem value="unavailable">Unavailable</SelectItem>
+                </SelectContent>
+              </Select>
             </div>
           </div>
         </div>

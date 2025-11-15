@@ -250,8 +250,26 @@ export const trpc = {
   getMenuItemById: {
     query: wrapMutation(baseClient.getMenuItemById.query),
   },
-  getMenuItemVersions: {
-    query: wrapMutation(baseClient.getMenuItemVersions.query),
+  createItemPrice: {
+    mutate: wrapMutation(baseClient.createItemPrice.mutate),
   },
+  deleteItemPrice: {
+    mutate: wrapMutation(baseClient.deleteItemPrice.mutate),
+  },
+  listItemPricesByMenuItem: {
+    query: wrapMutation(baseClient.listItemPricesByMenuItem.query),
+  },
+  createMenuItemSubMenuItem: {
+    mutate: wrapMutation(baseClient.createMenuItemSubMenuItem.mutate),
+  },
+  deleteMenuItemSubMenuItem: {
+    mutate: wrapMutation(baseClient.deleteMenuItemSubMenuItem.mutate),
+  },
+  listMenuItemSubMenuItems: {
+    query: wrapMutation(baseClient.listMenuItemSubMenuItems.query),
+  },
+  updateMenuItemSubMenuItem: {
+    mutate: wrapMutation(baseClient.updateMenuItemSubMenuItem.mutate),
+  },  
 };
 

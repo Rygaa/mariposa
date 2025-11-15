@@ -48,16 +48,18 @@ export const unitEnum = pgEnum("Unit", ["gramme", "Kg", "portion", "liter", "mil
 
 export const eatingTableTypeEnum = pgEnum("E_EatingTableType", ["TAKEAWAY", "EMPLOYEES", "WAST", "GIFT"]);
 
-export const itemTypeEnum = pgEnum("E_ItemType", ["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"]);
+export const typeEnum = pgEnum("E_Type", ["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"]);
 
 export const eatingTableMenuItemStatusEnum = pgEnum("E_EatingTableMenuItemStatus", [
-  "PENDING",
-  "STARTED",
-  "DONE",
-  "PRINTED",
-  "PAID",
+  "INITIALIZED",
   "CONFIRMED",
+  "WAITING_TO_BE_PRINTED",
+  "PRINTED",
+  "SERVED",
+  "PAID",
 ]);
+
+export const priceTypeEnum = pgEnum("E_PriceType", ["selling", "buying"]);
 
 // ==== TABLES ====
 
@@ -114,7 +116,7 @@ export const categories = pgTable("Category", {
 export const menuItems = pgTable("MenuItem", {
   id: varchar("id").primaryKey(),
   name: text("name").notNull(),
-  itemType: itemTypeEnum("itemType").default("MENU_ITEM").notNull(),
+  type: jsonb("type").default('["MENU_ITEM"]').$type<Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">>().notNull(),
   
   // Common fields
   createdAt: timestamp("createdAt").defaultNow().notNull(),
@@ -142,7 +144,6 @@ export const menuItems = pgTable("MenuItem", {
   stockQuantity: real("stockQuantity").default(0),
   inHouseStockQuantity: real("inHouseStockQuantity"),
   inShopStockQuantity: real("inShopStockQuantity"),
-  sellingPrice: real("sellingPrice"), // For raw materials that can be sold directly
   stockConversionRatio: real("stockConversionRatio").default(1),
 });
 
@@ -151,7 +152,7 @@ export const orders = pgTable("Order", {
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
   eatingTableId: varchar("eatingTableId").notNull(),
-  status: eatingTableMenuItemStatusEnum("status").default("PENDING").notNull(),
+  status: eatingTableMenuItemStatusEnum("status").default("INITIALIZED").notNull(),
 });
 
 export const menuItemOrders = pgTable("MenuItemOrder", {
@@ -162,16 +163,9 @@ export const menuItemOrders = pgTable("MenuItemOrder", {
   menuItemId: varchar("menuItemId").notNull(),
   quantity: integer("quantity").default(1).notNull(),
   price: real("price").notNull(),
-  status: eatingTableMenuItemStatusEnum("status").default("PENDING").notNull(),
+  status: eatingTableMenuItemStatusEnum("status").default("INITIALIZED").notNull(),
 });
 
-export const menuItemIngredients = pgTable("MenuItemIngredient", {
-  id: varchar("id").primaryKey(),
-  createdAt: timestamp("createdAt").defaultNow().notNull(),
-  parentMenuItemId: varchar("parentMenuItemId").notNull(), // The finished product
-  ingredientMenuItemId: varchar("ingredientMenuItemId").notNull(), // The raw material/ingredient
-  quantity: real("quantity").notNull(), // Quantity of ingredient needed
-});
 
 export const itemPrices = pgTable("ItemPrice", {
   id: varchar("id").primaryKey(),
@@ -179,9 +173,9 @@ export const itemPrices = pgTable("ItemPrice", {
   unitValue: real("unitValue"),
   multiplier: real("multiplier").default(1),
   description: text("description"),
+  priceType: priceTypeEnum("priceType").notNull(), // "selling" or "buying"
   createdAt: timestamp("createdAt").defaultNow().notNull(),
-  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
-  menuItemId: varchar("menuItemId"), // Now references menuItems instead of expenses
+  menuItemId: varchar("menuItemId").notNull(), // References menuItems
 });
 
 export const menuItemSubMenuItems = pgTable(
@@ -218,25 +212,11 @@ export const menuItemRelations = relations(menuItems, ({ one, many }) => ({
   category: one(categories, { fields: [menuItems.categoryId], references: [categories.id] }),
   creator: one(users, { fields: [menuItems.createdById], references: [users.id] }),
   enterprise: one(enterprises, { fields: [menuItems.enterpriseId], references: [enterprises.id] }),
-  ingredients: many(menuItemIngredients, { relationName: "parentItem" }),
-  usedInItems: many(menuItemIngredients, { relationName: "ingredientItem" }),
-  priceHistory: many(itemPrices),
+  sellingPrices: many(itemPrices, { relationName: "sellingPrices" }),
+  buyingPrices: many(itemPrices, { relationName: "buyingPrices" }),
   subMenuItems: many(menuItemSubMenuItems, { relationName: "parentMenuItem" }),
   usedAsSubMenuItem: many(menuItemSubMenuItems, { relationName: "subMenuItem" }),
   orders: many(menuItemOrders),
-}));
-
-export const menuItemIngredientsRelations = relations(menuItemIngredients, ({ one }) => ({
-  parentItem: one(menuItems, {
-    fields: [menuItemIngredients.parentMenuItemId],
-    references: [menuItems.id],
-    relationName: "parentItem",
-  }),
-  ingredient: one(menuItems, {
-    fields: [menuItemIngredients.ingredientMenuItemId],
-    references: [menuItems.id],
-    relationName: "ingredientItem",
-  }),
 }));
 
 export const menuItemSubMenuItemsRelations = relations(menuItemSubMenuItems, ({ one }) => ({
@@ -284,11 +264,17 @@ export type NewEatingTables = typeof eatingTables.$inferInsert;
 // types menuItems (unified items table)
 export type MenuItems = typeof menuItems.$inferSelect;
 export type NewMenuItems = typeof menuItems.$inferInsert;
-// types menuItemIngredients
-export type MenuItemIngredients = typeof menuItemIngredients.$inferSelect;
-export type NewMenuItemIngredients = typeof menuItemIngredients.$inferInsert;
+// types menuItemSubMenuItems
+export type MenuItemSubMenuItems = typeof menuItemSubMenuItems.$inferSelect;
+export type NewMenuItemSubMenuItems = typeof menuItemSubMenuItems.$inferInsert;
 // types itemPrices
 export type ItemPrices = typeof itemPrices.$inferSelect;
 export type NewItemPrices = typeof itemPrices.$inferInsert;
 export type Categories = typeof categories.$inferSelect;
 export type NewCategories = typeof categories.$inferInsert;
+// types orders
+export type Orders = typeof orders.$inferSelect;
+export type NewOrders = typeof orders.$inferInsert;
+// types menuItemOrders
+export type MenuItemOrders = typeof menuItemOrders.$inferSelect;
+export type NewMenuItemOrders = typeof menuItemOrders.$inferInsert;

@@ -10,7 +10,7 @@ export const create = protectedProcedureGlobalTransaction
   .input(
     z.object({
       name: z.string(),
-      itemType: z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"]).default("MENU_ITEM"),
+      type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).default(["MENU_ITEM"]),
       price: z.number().optional(),
       image: z.string().optional(),
       description: z.string().optional(),
@@ -21,13 +21,16 @@ export const create = protectedProcedureGlobalTransaction
       unit: z.enum(["gramme", "Kg", "portion", "liter", "milliliter"]).optional(),
       averagePrice: z.number().optional(),
       stockQuantity: z.number().default(0).optional(),
-      sellingPrice: z.number().optional(),
       stockConversionRatio: z.number().default(1).optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
     const createdMenuItem = await _ServiceMenuItems.create(
-      input as any,
+      {
+        ...input,
+        // Only MENU_ITEM type can have a category
+        categoryId: input.type.includes("MENU_ITEM") ? input.categoryId : undefined,
+      } as any,
       ctx.globalTx
     );
 
@@ -43,7 +46,7 @@ export const update = protectedProcedureGlobalTransaction
     z.object({
       id: z.string().uuid("Invalid menu item ID"),
       name: z.string().optional(),
-      itemType: z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"]).optional(),
+      type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
       price: z.number().optional(),
       image: z.string().optional(),
       description: z.string().optional(),
@@ -54,13 +57,16 @@ export const update = protectedProcedureGlobalTransaction
       unit: z.enum(["gramme", "Kg", "portion", "liter", "milliliter"]).optional(),
       averagePrice: z.number().optional(),
       stockQuantity: z.number().optional(),
-      sellingPrice: z.number().optional(),
       stockConversionRatio: z.number().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
     const updatedMenuItem = await _ServiceMenuItems.update(
-      input as any,
+      {
+        ...input,
+        // Only MENU_ITEM type can have a category
+        categoryId: input.type && !input.type.includes("MENU_ITEM") ? null : input.categoryId,
+      } as any,
       ctx.globalTx
     );
 
@@ -93,11 +99,12 @@ export const list = protectedProcedure
     z
       .object({
         search: z.string().optional(),
-        itemType: z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"]).optional(),
+        type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
         categoryId: z.string().uuid().optional(),
         isAvailable: z.boolean().optional(),
         limit: z.number().int().positive().max(500).default(100).optional(),
         offset: z.number().int().nonnegative().default(0).optional(),
+        excludeIds: z.array(z.string().uuid()).default([]).optional(),
       })
       .optional()
   )

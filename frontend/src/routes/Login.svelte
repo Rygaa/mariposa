@@ -1,12 +1,20 @@
 <script lang="ts">
   import Button from "../lib/components/Button.svelte";
   import Input from "../lib/components/Input.svelte";
-  import { navigate } from "svelte-routing";
+  import { Link, navigate } from "svelte-routing";
   import { sendWebSocketMessage, trpc } from "../lib/trpc";
   import { _globalStore } from "../store/globalStore.svelte";
 
-  let email = $state(localStorage.getItem("rememberMe") === "true" ? localStorage.getItem("email") || "" : "");
-  let password = $state(localStorage.getItem("rememberMe") === "true" ? localStorage.getItem("password") || "" : "");
+  let email = $state(
+    localStorage.getItem("rememberMe") === "true"
+      ? localStorage.getItem("email") || ""
+      : ""
+  );
+  let password = $state(
+    localStorage.getItem("rememberMe") === "true"
+      ? localStorage.getItem("password") || ""
+      : ""
+  );
   let rememberMe = $state(localStorage.getItem("rememberMe") === "true");
 
   let emailError = $state("");
@@ -22,9 +30,9 @@
     passwordError = "";
 
     if (rememberMe) {
-     localStorage.setItem("email", email);
-     localStorage.setItem("rememberMe", "true");
-     localStorage.setItem("password", password); 
+      localStorage.setItem("email", email);
+      localStorage.setItem("rememberMe", "true");
+      localStorage.setItem("password", password);
     }
 
     const result = await trpc.login.mutate({
@@ -36,7 +44,7 @@
       _globalStore.setAuthToken(result.authToken);
       _globalStore.user = result.user;
       _globalStore.loading.auth.done = true;
-      
+
       navigate("/profile", { replace: true });
     } else {
       generalError = result.message ?? "Login failed";
@@ -53,8 +61,12 @@
     <div class="bg-white rounded-lg shadow-xl overflow-hidden">
       <div class="px-6 py-8 sm:px-8 sm:py-10">
         <div class="mb-8">
-          <h1 class="text-3xl font-bold text-gray-900 text-center mb-2">Welcome Back</h1>
-          <p class="text-sm text-gray-600 text-center">Sign in to your account</p>
+          <h1 class="text-3xl font-bold text-gray-900 text-center mb-2">
+            Welcome Back
+          </h1>
+          <p class="text-sm text-gray-600 text-center">
+            Sign in to your account
+          </p>
         </div>
 
         <div class="space-y-6">
@@ -90,7 +102,10 @@
                 bind:checked={rememberMe}
                 class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded cursor-pointer"
               />
-              <label for="remember-me" class="ml-2 block text-sm text-gray-700 cursor-pointer">
+              <label
+                for="remember-me"
+                class="ml-2 block text-sm text-gray-700 cursor-pointer"
+              >
                 Remember me
               </label>
             </div>
@@ -113,9 +128,14 @@
         <div class="mt-6 text-center">
           <p class="text-sm text-gray-600">
             Don't have an account?
-            <a href="/signup" class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors">
-              Sign up
-            </a>
+
+            <Link to="/signup">
+              <span
+                class="font-medium text-indigo-600 hover:text-indigo-500 transition-colors"
+              >
+                Sign up
+              </span>
+            </Link>
           </p>
         </div>
       </div>

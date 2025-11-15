@@ -10,7 +10,7 @@
   } = $props();
 </script>
 
-<div class="h-full w-full p-4 {className}" data-shadcn="page">
+<div class="h-full w-full p-4 flex {className}" data-shadcn="page">
   {#if children}
     {@render children()}
   {/if}

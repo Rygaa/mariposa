@@ -12,6 +12,7 @@
   import { trpc, sendWebSocketMessage, wsMessage } from "./lib/trpc";
   import { isInProtectedRoutes } from "./utils/routes";
   import Categories from "./routes/Categories/Categories.svelte";
+  import NodesDemo from "./routes/NodesDemo.svelte";
 
   $effect(() => {
     if (wsMessage) {
@@ -35,7 +36,7 @@
 
   onMount(async () => {
     const authToken = _globalStore.getAuthToken();
-
+    console.log(`authToken ${authToken}`)
     if (authToken) {
       const result = await trpc.auth.mutate();
       if (result.success) {
@@ -56,6 +57,7 @@
       }
     } else {
       if (isInProtectedRoutes()) {
+        console.log('here')
         navigate("/login", { replace: true });
       }
     }
@@ -87,6 +89,7 @@
       section: "main",
     },
     { name: "Users", path: "/users", icon: "👥", section: "main" },
+    { name: "Nodes Demo", path: "/nodes-demo", icon: "🔗", section: "main" },
     ...(_globalStore.user?.role?.includes("ADMIN")
       ? [
           {
@@ -183,13 +186,16 @@
         <Route path="/users">
           <Users />
         </Route>
+        <Route path="/nodes-demo">
+          <NodesDemo />
+        </Route>
       {/if}
 
       <Route path="/">
         {#if _globalStore.user}
           {navigate("/eating-tables", { replace: true })}
         {:else}
-          {navigate("/login", { replace: true })}
+          {navigate("/signup", { replace: true })}
         {/if}
       </Route>
 

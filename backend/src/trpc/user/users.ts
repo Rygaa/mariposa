@@ -14,7 +14,7 @@ export const signup = publicProcedureGlobalTransaction
   .mutation(async ({ ctx, input }) => {
     const { email, password } = input;
 
-    const doesUserExist = await _ServiceUsers.findById(email, ctx.globalTx);
+    const doesUserExist = await _ServiceUsers.findByEmail(email, ctx.globalTx);
 
     if (doesUserExist) {
       throw new TRPCError({
