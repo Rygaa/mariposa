@@ -25,21 +25,47 @@
   import { typeEnum } from "../../../../backend/src/db/schema";
 
   let menuItems = $state<getMenuItemById["menuItem"][]>([]);
+  let categories = $state<any[]>([]);
   let showUpdateModal = $state(false);
   let showDeleteModal = $state(false);
   let showVersionsModal = $state(false);
   let isLoading = $state(false);
   let searchQuery = $state("");
   let filterType = $state<Array<string>>([]);
+  let filterCategoryId = $state<string>("");
   let filterAvailable = $state<string>("all");
+  let hasLoadedUserPreferences = $state(false);
+  let lastSavedFilterType = $state<string>("");
 
   onMount(async () => {
     if (!_globalStore.user) {
       navigate("/login", { replace: true });
       return;
     }
-    await loadMenuItems();
+    
+    // Load user preferences from meta
+    const userMeta = _globalStore.user.meta as Record<string, any>;
+    if (userMeta?.menu_items_filter_by_type) {
+      filterType = userMeta.menu_items_filter_by_type;
+      lastSavedFilterType = JSON.stringify(userMeta.menu_items_filter_by_type);
+    } else {
+      lastSavedFilterType = JSON.stringify([]);
+    }
+    
+    hasLoadedUserPreferences = true;
+    await Promise.all([loadMenuItems(), loadCategories()]);
   });
+
+  async function loadCategories() {
+    try {
+      const result = await trpc.listCategories.query({ limit: 500 });
+      if (result.success) {
+        categories = result.categories;
+      }
+    } catch (error) {
+      console.error("Error loading categories:", error);
+    }
+  }
 
   async function loadMenuItems() {
     isLoading = true;
@@ -52,6 +78,10 @@
 
       if (filterType.length > 0) {
         filters.type = filterType as any;
+      }
+
+      if (filterCategoryId) {
+        filters.categoryId = filterCategoryId;
       }
 
       if (filterAvailable !== "all") {
@@ -73,11 +103,49 @@
     // Read the dependencies
     searchQuery;
     filterType;
+    filterCategoryId;
     filterAvailable;
     
-    // Only run after initial mount
-    if (_globalStore.user) {
+    // Only run after initial mount and preferences are loaded
+    if (_globalStore.user && hasLoadedUserPreferences) {
       loadMenuItems();
+    }
+  });
+
+  // Save filterType to user meta when it changes
+  $effect(() => {
+    if (hasLoadedUserPreferences && _globalStore.user) {
+      const currentTypesStr = JSON.stringify(filterType);
+      
+      // Only save if the value has actually changed
+      if (currentTypesStr !== lastSavedFilterType) {
+        // Debounce the save operation
+        const timeoutId = setTimeout(async () => {
+          try {
+            await trpc.updateUserMeta.mutate({
+              metaKey: "menu_items_filter_by_type",
+              metaValue: filterType,
+            });
+            
+            lastSavedFilterType = currentTypesStr;
+            
+            // Update local user meta
+            if (_globalStore.user) {
+              _globalStore.user = {
+                ..._globalStore.user,
+                meta: {
+                  ...(_globalStore.user.meta as Record<string, any> || {}),
+                  menu_items_filter_by_type: filterType,
+                },
+              };
+            }
+          } catch (error) {
+            console.error("Error saving filter preferences:", error);
+          }
+        }, 500);
+        
+        return () => clearTimeout(timeoutId);
+      }
     }
   });
 
@@ -90,7 +158,7 @@
       <CardTitle>Menu Items</CardTitle>
       <CreateMenuItemModal onMenuItemCreated={loadMenuItems} />
     </CardHeader>
-    <CardContent class="px-4 flex flex-col">
+    <CardContent class="p-4 flex flex-col">
       <div class="mb-6">
         <div
           class="flex flex-col lg:flex-row gap-4 items-start lg:items-center justify-between"
@@ -113,29 +181,33 @@
             </div>
             
             <div class="w-full sm:w-48">
-              <span class="block text-sm font-medium text-gray-700 mb-2">
-                Filter by Types
-              </span>
-              <div class="space-y-1">
-                {#each typeEnum.enumValues as type}
-                  <label class="flex items-center">
-                    <input
-                      type="checkbox"
-                      checked={filterType.includes(type)}
-                      onchange={(e) => {
-                        if (e.currentTarget.checked) {
-                          filterType = [...filterType, type];
-                        } else {
-                          filterType = filterType.filter(t => t !== type);
-                        }
-                      }}
-                      class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
-                    />
-                    <span class="ml-2 text-xs text-gray-700">{type}</span>
-                  </label>
-                {/each}
-              </div>
+              <Select bind:value={filterType} multiple>
+                <SelectTrigger>
+                  <SelectValue placeholder="Filter by types" />
+                </SelectTrigger>
+                <SelectContent>
+                  {#each typeEnum.enumValues as type}
+                    <SelectItem value={type}>{type}</SelectItem>
+                  {/each}
+                </SelectContent>
+              </Select>
             </div>
+
+            {#if filterType.includes("MENU_ITEM")}
+              <div class="w-full sm:w-48">
+                <Select bind:value={filterCategoryId}>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Filter by category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="">All Categories</SelectItem>
+                    {#each categories as category}
+                      <SelectItem value={category.id}>{category.name}</SelectItem>
+                    {/each}
+                  </SelectContent>
+                </Select>
+              </div>
+            {/if}
 
             <div class="w-full sm:w-48">
               <Select bind:value={filterAvailable}>

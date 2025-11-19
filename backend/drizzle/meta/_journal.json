@@ -15,6 +15,27 @@
       "when": 1763218193647,
       "tag": "0001_previous_dazzler",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1763234403848,
+      "tag": "0002_rare_ironclad",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1763246512113,
+      "tag": "0003_round_diamondback",
+      "breakpoints": true
+    },
+    {
+      "idx": 4,
+      "version": "7",
+      "when": 1763253796262,
+      "tag": "0004_far_gabe_jones",
+      "breakpoints": true
     }
   ]
 }

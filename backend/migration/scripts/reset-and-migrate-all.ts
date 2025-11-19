@@ -101,11 +101,14 @@ async function runAllMigrations() {
     await resetDatabase();
 
     // Step 2: Run migration scripts in order
+    await runMigrationScript("migrate-menu-items.ts", "Menu Items Migration (MENU_ITEM)");
+    await runMigrationScript("migrate-images-to-gamma.ts", "Upload Images to Gamma Files");
+    await runMigrationScript("migrate-menu-item-images.ts", "Menu Item Images Migration");
+    await runMigrationScript("migrate-eating-tables.ts", "Eating Tables Migration");
+    await runMigrationScript("migrate-recipes.ts", "Recipes Migration (RECIPE)");
     await runMigrationScript("migrate-expenses.ts", "Expenses Migration (RAW_MATERIAL)");
     await runMigrationScript("migrate-supplements.ts", "Supplements Migration (SUPPLEMENT)");
-    await runMigrationScript("migrate-menu-item-options.ts", "Menu Item Options Migration (MENU_ITEM_OPTION)");
-    await runMigrationScript("migrate-recipes.ts", "Recipes Migration (RECIPE)");
-    await runMigrationScript("migrate-menu-items.ts", "Menu Items Migration (MENU_ITEM)");
+    await runMigrationScript("migrate-menu-lists.ts", "Menu Lists Migration");
 
     console.log("\n" + "=".repeat(60));
     console.log("    ✓ ALL MIGRATIONS COMPLETED SUCCESSFULLY");

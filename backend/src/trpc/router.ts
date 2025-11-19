@@ -1,9 +1,23 @@
 import { router, ping, giveMeRandomNumber, heartbeat } from "../index";
 import { getAllUsers, createUser, updateUser, deleteUser } from "./admin/users";
-import { auth, login, signup, updateMyPassword } from "./user/users";
+import { auth, login, signup, updateMyPassword, updateUserMeta } from "./user/users";
 import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById } from "./user/eatingTables";
 import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById } from "./user/categories";
-import { create as createMenuItem, update as updateMenuItem, deleteMenuItem, list as listMenuItems, listAll as listAllMenuItems, getById as getMenuItemById } from "./user/menuItems";
+import { 
+  create as createMenuItem, 
+  update as updateMenuItem, 
+  deleteMenuItem, 
+  list as listMenuItems, 
+  listAll as listAllMenuItems, 
+  getById as getMenuItemById,
+  uploadMenuItemImage,
+  deleteMenuItemImage,
+  updateMenuItemImage,
+  getMenuItemImageMetadata,
+  generateMenuItemImageUrl,
+  getMenuItemImageViewUrl,
+  listMenuItemImages
+} from "./user/menuItems";
 import { create as createItemPrice, deleteItemPrice, listByMenuItem as listItemPricesByMenuItem } from "./user/itemPrices";
 import { 
   createMenuItemSubMenuItem,
@@ -15,12 +29,16 @@ import {
   create as createOrder, 
   update as updateOrder, 
   deleteOrder, 
-  list as listOrders, 
+  list as listOrders,
+  listWithRelations as listOrdersWithRelations,
   getById as getOrderById,
   getByIdWithRelations as getOrderByIdWithRelations,
   printOrder,
   printReceiptOfEatingTable,
-  printReceiptOfOrder
+  printReceiptOfOrder,
+  getRevenueStats,
+  getMenuItemSales,
+  getRawMaterialConsumption
 } from "./user/orders";
 import {
   create as createMenuItemOrder,
@@ -43,6 +61,7 @@ export const appRouter = router({
   updateUser,
   deleteUser,
   updateMyPassword,
+  updateUserMeta,
   createEatingTable,
   updateEatingTable,
   deleteEatingTable,
@@ -70,17 +89,28 @@ export const appRouter = router({
   updateOrder,
   deleteOrder,
   listOrders,
+  listOrdersWithRelations,
   getOrderById,
   getOrderByIdWithRelations,
   printOrder,
   printReceiptOfEatingTable,
   printReceiptOfOrder,
+  getRevenueStats,
+  getMenuItemSales,
+  getRawMaterialConsumption,
   createMenuItemOrder,
   updateMenuItemOrder,
   deleteMenuItemOrder,
   listMenuItemOrders,
   getMenuItemOrderById,
   updateMenuItemOrderQuantity,
+  uploadMenuItemImage,
+  deleteMenuItemImage,
+  updateMenuItemImage,
+  getMenuItemImageMetadata,
+  generateMenuItemImageUrl,
+  getMenuItemImageViewUrl,
+  listMenuItemImages,
 });
 
 export type AppRouter = typeof appRouter;

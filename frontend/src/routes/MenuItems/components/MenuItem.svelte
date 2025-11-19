@@ -15,12 +15,16 @@
   import ViewBuyingPricesModal from "./ViewBuyingPricesModal.svelte";
   import ViewSellingPricesModal from "./ViewSellingPricesModal.svelte";
   import MenuItemLinkerModal from "./MenuItemLinkerModal.svelte";
+  import { trpc } from "../../../lib/trpc";
+  import { onMount } from "svelte";
 
   let {
     menuItem,
   }: {
     menuItem: getMenuItemById["menuItem"];
   } = $props();
+
+  let imageUrl = $state<string | null>(null);
 
   let isDropdownOpen = $state(false);
   let isUpdateMenuItemModalOpen = $state(false);
@@ -95,15 +99,60 @@
     // Placeholder - this should trigger a refresh in parent component
     // You may need to pass this as a prop or use a store
   }
+
+  async function loadImageUrl() {
+    if (menuItem.type?.includes("MENU_ITEM")) {
+      try {
+        const result = await trpc.listMenuItemImages.query({
+          menuItemId: menuItem.id,
+        });
+        
+        if (result.success && result.images.length > 0) {
+          const mainImage = result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) || result.images[0];
+        console.log(mainImage)
+          
+          const urlResult = await trpc.getMenuItemImageViewUrl.query({
+            fileId: mainImage.fileId,
+          });
+          
+          if (urlResult.success) {
+            imageUrl = urlResult.url;
+          }
+        } else {
+          // No images found, use placeholder
+          imageUrl = "/placeholder-image.jpg";
+        }
+      } catch (error) {
+        // On error, use placeholder
+        imageUrl = "/placeholder-image.jpg";
+      }
+    }
+  }
+
+  onMount(() => {
+    loadImageUrl();
+  });
 </script>
+
 
 <ClickableDiv
   customOnClick={handleEdit}
   class="bg-white border {menuItem.isAvailable
     ? 'border-gray-200'
-    : 'border-gray-100 opacity-60'} rounded-lg p-4 hover:shadow-md transition-all relative cursor-pointer"
+    : 'border-gray-100 opacity-60'} rounded-lg p-2 hover:shadow-md transition-all relative cursor-pointer flex gap-4"
 >
-  <div class="flex items-start justify-between">
+  <div class="w-1/3 flex-shrink-0">
+    <img
+      src={imageUrl || "/placeholder-image.jpg"}
+      alt={menuItem.name}
+      class="w-full h-full object-contain rounded-md"
+      onerror={(e) => {
+        (e.currentTarget as HTMLImageElement).src = '/placeholder-image.jpg';
+      }}
+    />
+  </div>
+  
+  <div class="flex-1 min-w-0 flex items-start justify-between">
     <div class="flex-1 min-w-0">
       <h3 class="font-semibold text-gray-900 truncate mb-2">
         {menuItem.name}
@@ -208,12 +257,14 @@
   </div>
 </ClickableDiv>
 
-<UpdateMenuItemModal
-  bind:isOpen={isUpdateMenuItemModalOpen}
-  {menuItem}
-  onMenuItemUpdated={loadMenuItems}
-  onClose={() => (isUpdateMenuItemModalOpen = false)}
-/>
+{#if isUpdateMenuItemModalOpen}
+  <UpdateMenuItemModal
+    bind:isOpen={isUpdateMenuItemModalOpen}
+    {menuItem}
+    onMenuItemUpdated={loadMenuItems}
+    onClose={() => (isUpdateMenuItemModalOpen = false)}
+  />
+{/if}
 
 <DeleteMenuItemModal
   bind:isOpen={isDeleteMenuItemModalOpen}

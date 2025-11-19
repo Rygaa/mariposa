@@ -165,3 +165,27 @@ export const updateMyPassword = protectedProcedureGlobalTransaction
       message: "Password updated successfully",
     };
   });
+
+export const updateUserMeta = protectedProcedureGlobalTransaction
+  .input(
+    z.object({
+      metaKey: z.string(),
+      metaValue: z.any(),
+    })
+  )
+  .mutation(async ({ ctx, input }) => {
+    const { metaKey, metaValue } = input;
+
+    const updatedUser = await _ServiceUsers.updateMeta(
+      ctx.user.id,
+      metaKey,
+      metaValue,
+      ctx.globalTx
+    );
+
+    return {
+      success: true,
+      message: "User meta updated successfully",
+      meta: updatedUser.meta,
+    };
+  });

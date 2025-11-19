@@ -14,13 +14,13 @@ export let wsMessage: string = "";
 
 // HTTP URL for API calls
 const getBaseUrl = () => {
-  return import.meta.env.VITE_API_URL || 'http://localhost:6100';
+  return import.meta.env.VITE_API_URL || "http://localhost:6100";
 };
 
 // WebSocket URL
 const getWsUrl = () => {
-  const base = import.meta.env.VITE_API_URL || 'http://localhost:6100';
-  return base.replace(/^http/, 'ws') + '/ws';
+  const base = import.meta.env.VITE_API_URL || "http://localhost:6100";
+  return base.replace(/^http/, "ws") + "/ws";
 };
 
 // configure TRPCClient to use HTTP only
@@ -39,7 +39,7 @@ const baseClient = createTRPCClient<AppRouter>({
 // Heartbeat functions
 function startHeartbeat() {
   if (heartbeatInterval) return;
-  
+
   console.log("💓 Starting heartbeat");
   heartbeatInterval = window.setInterval(async () => {
     try {
@@ -62,7 +62,7 @@ function stopHeartbeat() {
 }
 
 // Start heartbeat on load
-if (typeof window !== 'undefined') {
+if (typeof window !== "undefined") {
   startHeartbeat();
   // Auto-connect WebSocket on page load
   connectWebSocket();
@@ -77,24 +77,23 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
 
   const wsUrl = getWsUrl();
   console.log(`🔌 Connecting to WebSocket: ${wsUrl}`);
-  
+
   ws = new WebSocket(wsUrl);
-  
+
   ws.onopen = () => {
     console.log("✅ WebSocket connected");
-      _globalStore.loading.websocket.loading = false;
-      _globalStore.loading.websocket.done = true;
-
+    _globalStore.loading.websocket.loading = false;
+    _globalStore.loading.websocket.done = true;
   };
-  
+
   ws.onmessage = (event) => {
     console.log("📩 WebSocket message received:", event.data);
     const data = JSON.parse(event.data);
-    
+
     if (data.type === "AUTH") {
       wsMessage = event.data;
     }
-    
+
     if (data.type === "DISCONNECT") {
       console.log("🚫 Disconnect message received:", data.reason);
       ws?.close();
@@ -104,20 +103,20 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
       _globalStore.user = null;
       window.location.href = "/login";
     }
-    
+
     if (onMessage) {
       onMessage(event.data);
     }
   };
-  
+
   ws.onerror = (error) => {
     console.error("❌ WebSocket error:", error);
   };
-  
+
   ws.onclose = () => {
     console.log("🔌 WebSocket disconnected");
     ws = null;
-    
+
     // Retry connection after 3 seconds if not done
     if (!_globalStore.loading.websocket.done) {
       console.log("🔄 Retrying connection in 3 seconds...");
@@ -273,7 +272,7 @@ export const trpc = {
   },
   updateMenuItemSubMenuItem: {
     mutate: wrapMutation(baseClient.updateMenuItemSubMenuItem.mutate),
-  },  
+  },
   updateOrder: {
     mutate: wrapMutation(baseClient.updateOrder.mutate),
   },
@@ -319,5 +318,40 @@ export const trpc = {
   updateMenuItemOrderQuantity: {
     mutate: wrapMutation(baseClient.updateMenuItemOrderQuantity.mutate),
   },
+  deleteMenuItemImage: {
+    mutate: wrapMutation(baseClient.deleteMenuItemImage.mutate),
+  },
+  uploadMenuItemImage: {
+    mutate: wrapMutation(baseClient.uploadMenuItemImage.mutate),
+  },
+  updateMenuItemImage: {
+    mutate: wrapMutation(baseClient.updateMenuItemImage.mutate),
+  },
+  getMenuItemImageMetadata: {
+    query: wrapMutation(baseClient.getMenuItemImageMetadata.query),
+  },
+  generateMenuItemImageUrl: {
+    query: wrapMutation(baseClient.generateMenuItemImageUrl.query),
+  },
+  getMenuItemImageViewUrl: {
+    query: wrapMutation(baseClient.getMenuItemImageViewUrl.query),
+  },
+  listMenuItemImages: {
+    query: wrapMutation(baseClient.listMenuItemImages.query),
+  },
+  updateUserMeta: {
+    mutate: wrapMutation(baseClient.updateUserMeta.mutate),
+  },
+  getRevenueStats: {
+    query: wrapMutation(baseClient.getRevenueStats.query),
+  },
+  getMenuItemSales: {
+    query: wrapMutation(baseClient.getMenuItemSales.query),
+  },
+  getRawMaterialConsumption: {
+    query: wrapMutation(baseClient.getRawMaterialConsumption.query),
+  },
+  listOrdersWithRelations: {
+    query: wrapMutation(baseClient.listOrdersWithRelations.query),
+  },
 };
-

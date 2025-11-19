@@ -92,6 +92,7 @@ export const users = pgTable("User", {
   preferredTimeFormat: text("preferredTimeFormat").default("24H").notNull(),
   preferredTimezone: text("preferredTimezone").default("Africa/Algiers").notNull(),
   webPushSubscriptionContainer: jsonb("webPushSubscriptionContainer").$type<string[]>(),
+  meta: jsonb("meta").$type<Record<string, any>>(),
 });
 
 export const eatingTables = pgTable("EatingTable", {
@@ -128,7 +129,7 @@ export const menuItems = pgTable("MenuItem", {
   
   // Menu item specific fields
   price: real("price"), // Selling price for menu items
-  image: text("image"),
+  image: jsonb("image").$type<string[]>(),
   description: text("description"),
   isAvailable: boolean("isAvailable").default(true),
   categoryId: varchar("categoryId"), // null for raw materials
@@ -167,6 +168,14 @@ export const menuItemOrders = pgTable("MenuItemOrder", {
   status: eatingTableMenuItemStatusEnum("status").default("INITIALIZED").notNull(),
 });
 
+export const menuItemImages = pgTable("MenuItemImage", {
+  id: varchar("id").primaryKey(),
+  menuItemId: varchar("menuItemId").notNull(),
+  fileId: varchar("fileId").notNull(),
+  shouldBeUsedInMenuItemsPage: boolean("shouldBeUsedInMenuItemsPage").default(false).notNull(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+});
 
 export const itemPrices = pgTable("ItemPrice", {
   id: varchar("id").primaryKey(),
@@ -218,6 +227,11 @@ export const menuItemRelations = relations(menuItems, ({ one, many }) => ({
   subMenuItems: many(menuItemSubMenuItems, { relationName: "parentMenuItem" }),
   usedAsSubMenuItem: many(menuItemSubMenuItems, { relationName: "subMenuItem" }),
   orders: many(menuItemOrders),
+  images: many(menuItemImages),
+}));
+
+export const menuItemImageRelations = relations(menuItemImages, ({ one }) => ({
+  menuItem: one(menuItems, { fields: [menuItemImages.menuItemId], references: [menuItems.id] }),
 }));
 
 export const menuItemSubMenuItemsRelations = relations(menuItemSubMenuItems, ({ one }) => ({
@@ -279,3 +293,6 @@ export type NewOrders = typeof orders.$inferInsert;
 // types menuItemOrders
 export type MenuItemOrders = typeof menuItemOrders.$inferSelect;
 export type NewMenuItemOrders = typeof menuItemOrders.$inferInsert;
+// types menuItemImages
+export type MenuItemImages = typeof menuItemImages.$inferSelect;
+export type NewMenuItemImages = typeof menuItemImages.$inferInsert;

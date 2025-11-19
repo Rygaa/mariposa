@@ -201,6 +201,8 @@
         placeholder="0.00"
       />
 
+      <!-- Note: Images can be added after creating the menu item via the edit dialog -->
+
       <div>
         <label for="description" class="block text-sm font-medium text-gray-700 mb-2">
           Description

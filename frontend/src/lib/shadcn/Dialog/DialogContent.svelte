@@ -67,9 +67,12 @@
     aria-modal="true"
     onclick={handleBackdropClick}
   >
+    <!-- svelte-ignore a11y_click_events_have_key_events -->
+    <!-- svelte-ignore a11y_no_static_element_interactions -->
     <div
       transition:fade={{ duration: 200 }}
-      class="fixed inset-0 bg-black bg-opacity-50 transition-opacity cursor-default"
+      class="fixed inset-0 bg-black/30 backdrop-blur-sm transition-opacity cursor-pointer"
+      onclick={handleBackdropClick}
     ></div>
 
     <div

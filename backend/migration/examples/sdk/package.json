@@ -1,0 +1,33 @@
+{
+  "name": "@oasis-path/gamma-sdk",
+  "version": "1.0.5",
+  "description": "TypeScript SDK for Gamma Files API",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "publishConfig": { "access": "public" },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "prepublishOnly": "pnpm run build"
+  },
+  "keywords": [
+    "gamma",
+    "files",
+    "sdk",
+    "api-client",
+    "file-management",
+    "typescript"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "form-data": "^4.0.0"
+  },
+  "files": [
+    "dist"
+  ]
+}

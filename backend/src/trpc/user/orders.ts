@@ -102,6 +102,29 @@ export const list = protectedProcedure
     };
   });
 
+export const listWithRelations = protectedProcedure
+  .input(
+    z
+      .object({
+        eatingTableId: z.string().uuid().optional(),
+        status: z.enum(statusEnumValues).optional(),
+        limit: z.number().int().positive().max(500).default(100).optional(),
+        offset: z.number().int().nonnegative().default(0).optional(),
+      })
+      .optional()
+  )
+  .query(async ({ ctx, input }) => {
+    const filters = input || {};
+
+    const orders = await _ServiceOrders.listWithRelations(filters);
+
+    return {
+      success: true,
+      orders,
+      count: orders.length,
+    };
+  });
+
 export const getById = protectedProcedure
   .input(
     z.object({
@@ -172,5 +195,180 @@ export const printReceiptOfOrder = protectedProcedure
     return {
       success: result.success,
       message: result.message,
+    };
+  });
+
+export const getRevenueStats = protectedProcedure
+  .input(
+    z.object({
+      period: z.enum(["today", "yesterday", "lastWeek", "custom"]).optional(),
+      from: z.string().optional(),
+      to: z.string().optional(),
+    })
+  )
+  .query(async ({ ctx, input }) => {
+    const { period, from, to } = input;
+
+    // Algeria timezone
+    const algeriaTimezone = "Africa/Algiers";
+    const now = new Date();
+    
+    let startDate: Date;
+    let endDate: Date;
+    let periodLabel: string;
+
+    // Convert to Algeria time and set boundaries
+    const getAlgeriaDate = (date: Date) => {
+      return new Date(date.toLocaleString("en-US", { timeZone: algeriaTimezone }));
+    };
+
+    const algeriaNow = getAlgeriaDate(now);
+
+    if (period === "custom" && from && to) {
+      startDate = new Date(from);
+      endDate = new Date(to);
+      periodLabel = `${startDate.toLocaleDateString()} - ${endDate.toLocaleDateString()}`;
+    } else if (period === "today") {
+      startDate = new Date(algeriaNow);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setHours(23, 59, 59, 999);
+      periodLabel = "Today";
+    } else if (period === "yesterday") {
+      startDate = new Date(algeriaNow);
+      startDate.setDate(startDate.getDate() - 1);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setDate(endDate.getDate() - 1);
+      endDate.setHours(23, 59, 59, 999);
+      periodLabel = "Yesterday";
+    } else {
+      // lastWeek - from 7 days ago to now
+      startDate = new Date(algeriaNow);
+      startDate.setDate(startDate.getDate() - 7);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setHours(23, 59, 59, 999);
+      periodLabel = "Last 7 Days";
+    }
+
+    const stats = await _ServiceOrders.getRevenueStats(startDate, endDate);
+
+    return {
+      success: true,
+      data: {
+        ...stats,
+        period: periodLabel,
+      },
+    };
+  });
+
+export const getMenuItemSales = protectedProcedure
+  .input(
+    z.object({
+      period: z.enum(["today", "yesterday", "lastWeek", "custom"]).optional(),
+      from: z.string().optional(),
+      to: z.string().optional(),
+    })
+  )
+  .query(async ({ ctx, input }) => {
+    const { period, from, to } = input;
+
+    // Algeria timezone
+    const algeriaTimezone = "Africa/Algiers";
+    const now = new Date();
+    
+    let startDate: Date;
+    let endDate: Date;
+
+    const getAlgeriaDate = (date: Date) => {
+      return new Date(date.toLocaleString("en-US", { timeZone: algeriaTimezone }));
+    };
+
+    const algeriaNow = getAlgeriaDate(now);
+
+    if (period === "custom" && from && to) {
+      startDate = new Date(from);
+      endDate = new Date(to);
+    } else if (period === "today") {
+      startDate = new Date(algeriaNow);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setHours(23, 59, 59, 999);
+    } else if (period === "yesterday") {
+      startDate = new Date(algeriaNow);
+      startDate.setDate(startDate.getDate() - 1);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setDate(endDate.getDate() - 1);
+      endDate.setHours(23, 59, 59, 999);
+    } else {
+      startDate = new Date(algeriaNow);
+      startDate.setDate(startDate.getDate() - 7);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setHours(23, 59, 59, 999);
+    }
+
+    const sales = await _ServiceOrders.getMenuItemSales(startDate, endDate);
+
+    return {
+      success: true,
+      data: sales,
+    };
+  });
+
+export const getRawMaterialConsumption = protectedProcedure
+  .input(
+    z.object({
+      period: z.enum(["today", "yesterday", "lastWeek", "custom"]).optional(),
+      from: z.string().optional(),
+      to: z.string().optional(),
+    })
+  )
+  .query(async ({ ctx, input }) => {
+    const { period, from, to } = input;
+
+    // Algeria timezone
+    const algeriaTimezone = "Africa/Algiers";
+    const now = new Date();
+    
+    let startDate: Date;
+    let endDate: Date;
+
+    const getAlgeriaDate = (date: Date) => {
+      return new Date(date.toLocaleString("en-US", { timeZone: algeriaTimezone }));
+    };
+
+    const algeriaNow = getAlgeriaDate(now);
+
+    if (period === "custom" && from && to) {
+      startDate = new Date(from);
+      endDate = new Date(to);
+    } else if (period === "today") {
+      startDate = new Date(algeriaNow);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setHours(23, 59, 59, 999);
+    } else if (period === "yesterday") {
+      startDate = new Date(algeriaNow);
+      startDate.setDate(startDate.getDate() - 1);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setDate(endDate.getDate() - 1);
+      endDate.setHours(23, 59, 59, 999);
+    } else {
+      startDate = new Date(algeriaNow);
+      startDate.setDate(startDate.getDate() - 7);
+      startDate.setHours(0, 0, 0, 0);
+      endDate = new Date(algeriaNow);
+      endDate.setHours(23, 59, 59, 999);
+    }
+
+    const consumption = await _ServiceOrders.getRawMaterialConsumption(startDate, endDate);
+
+    return {
+      success: true,
+      data: consumption,
     };
   });

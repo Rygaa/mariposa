@@ -20,6 +20,7 @@
   import { typeEnum } from "../../../../../backend/src/db/schema";
   import { onMount } from "svelte";
   import type { listCategories } from "../../../../../backend/src/router.types";
+  import ImageUpload from "./ImageUpload.svelte";
 
   let {
     isOpen = $bindable(false),
@@ -268,9 +269,9 @@
         </span>
         <div class="grid grid-cols-2 gap-4">
           <div>
-            <label class="block text-xs font-medium text-gray-500 mb-1">
+            <span class="block text-xs font-medium text-gray-500 mb-1">
               Selling Price
-            </label>
+            </span>
             <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
               {#if loadingPrices}
                 <span class="text-gray-400">Loading...</span>
@@ -282,9 +283,9 @@
             </div>
           </div>
           <div>
-            <label class="block text-xs font-medium text-gray-500 mb-1">
+            <span class="block text-xs font-medium text-gray-500 mb-1">
               Buying Price
-            </label>
+            </span>
             <div class="px-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm text-gray-700">
               {#if loadingPrices}
                 <span class="text-gray-400">Loading...</span>
@@ -297,6 +298,8 @@
           </div>
         </div>
       </div>
+
+      <ImageUpload menuItemId={menuItem.id} maxImages={5} disabled={isSubmitting} />
 
       <div>
         <label

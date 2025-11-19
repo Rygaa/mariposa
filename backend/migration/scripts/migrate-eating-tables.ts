@@ -72,6 +72,11 @@ async function migrateEatingTables() {
   const db = drizzle(pool, { schema });
 
   try {
+    // Delete all existing eating tables first
+    console.log("🗑️  Deleting all existing eating tables...");
+    await pool.query('DELETE FROM "EatingTable"');
+    console.log("✓ Existing eating tables deleted\n");
+
     let tablesSuccess = 0;
     let tablesSkipped = 0;
     let tablesErrors = 0;

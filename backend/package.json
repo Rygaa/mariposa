@@ -16,13 +16,14 @@
         "db:generate": "drizzle-kit generate",
         "db:migrate": "drizzle-kit migrate",
         "db:push": "drizzle-kit push",
-        "db:studio": "drizzle-kit studio"
+        "db:studio": "drizzle-kit studio",
+        "migrate:images": "ts-node src/scripts/migrate-images-to-gamma.ts"
     },
     "dependencies": {
         "@chargily/chargily-pay": "^2.1.0",
         "@fastify/cors": "^11.1.0",
         "@fastify/websocket": "^11.2.0",
-        "@oasis-path/gamma-sdk": "^1.0.5",
+        "@oasis-path/gamma-sdk": "^1.0.6",
         "@trpc/server": "^11.7.0",
         "@types/bcryptjs": "^2.4.6",
         "@types/jsonwebtoken": "^9.0.10",

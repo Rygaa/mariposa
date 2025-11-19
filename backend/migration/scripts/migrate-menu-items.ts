@@ -105,7 +105,7 @@ async function migrateMenuItems() {
           createdAt: item.createdAt ? new Date(item.createdAt) : new Date(),
           updatedAt: item.updatedAt ? new Date(item.updatedAt) : new Date(),
           description: item.description ?? null,
-          isAvailable: item.isAvailable !== undefined ? item.isAvailable : !(item.isDeleted ?? false),
+          isAvailable: item.isDeleted ? false : (item.isAvailable ?? true),
           categoryId: null,
           price: item.price ?? null,
           image: item.image ?? null,

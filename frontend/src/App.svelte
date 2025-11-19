@@ -7,14 +7,16 @@
   import Users from "./routes/Admin/Users.svelte";
   import EatingTables from "./routes/EatingTables/EatingTables.svelte";
   import MenuItems from "./routes/MenuItems/MenuItems.svelte";
-  import Sidebar from "./lib/components/Sidebar.svelte";
+  import AppLayout from "./lib/components/AppLayout.svelte";
   import { _globalStore } from "./store/globalStore.svelte";
   import { trpc, sendWebSocketMessage, wsMessage } from "./lib/trpc";
-  import { isInProtectedRoutes } from "./utils/routes";
   import Categories from "./routes/Categories/Categories.svelte";
   import NodesDemo from "./routes/NodesDemo.svelte";
   import ClientOrders from "./routes/ClientOrders/ClientOrders.svelte";
+  import ClientOrdersV2 from "./routes/ClientOrders_version2/ClientOrders.svelte";
   import Orders from "./routes/Orders/ClientOrders.svelte";
+  import Stats from "./routes/Stats/Stats.svelte";
+  import Carts from "./routes/Carts/Carts.svelte";
 
   $effect(() => {
     if (wsMessage) {
@@ -38,7 +40,6 @@
 
   onMount(async () => {
     const authToken = _globalStore.getAuthToken();
-    console.log(`authToken ${authToken}`)
     if (authToken) {
       const result = await trpc.auth.mutate();
       if (result.success) {
@@ -46,21 +47,9 @@
         _globalStore.user = result.user;
         _globalStore.loading.websocket.loading = true;
         _globalStore.loading.auth.done = true;
-
-        if (!isInProtectedRoutes()) {
-          navigate("/eating-tables", { replace: true });
-        }
       } else {
         _globalStore.setAuthToken(null);
         _globalStore.user = null;
-        if (isInProtectedRoutes()) {
-          navigate("/login", { replace: true });
-        }
-      }
-    } else {
-      if (isInProtectedRoutes()) {
-        console.log('here')
-        navigate("/login", { replace: true });
       }
     }
 
@@ -91,7 +80,11 @@
       section: "main",
     },
     { name: "Orders", path: "/orders", icon: "📋", section: "main" },
-    { name: "Client Orders", path: "/client-orders", icon: "🛒", section: "main" },
+    { name: "Carts", path: "/carts", icon: "🛒", section: "main" },
+    { name: "Stats", path: "/stats", icon: "📊", section: "main" },
+    { name: "Client Orders", path: "/client-orders", icon: "🛍️", section: "main" },
+    { name: "Client Orders V2", path: "/client-orders-v2", icon: "📱", section: "main" },
+    { name: "Client Orders V3 (Tablet)", path: "/client-orders-v3", icon: "📱", section: "main" },
     { name: "Users", path: "/users", icon: "👥", section: "main" },
     { name: "Nodes Demo", path: "/nodes-demo", icon: "🔗", section: "main" },
     ...(_globalStore.user?.role?.includes("ADMIN")
@@ -112,14 +105,6 @@
     _globalStore.user = null;
     navigate("/login");
   }
-
-  // Check if current route needs sidebar - using $effect to track location changes
-  let currentLocation = $state("");
-
-  $effect(() => {
-    currentLocation =
-      typeof window !== "undefined" ? window.location.pathname : "";
-  });
 </script>
 
 {#if _globalStore.isAuthenticating || _globalStore.loading.websocket.loading}
@@ -162,16 +147,12 @@
 
   <div class="flex h-full w-full bg-gray-50 overflow-x-hidden">
     <Router>
-      {#if _globalStore.user && isInProtectedRoutes()}
-        <Sidebar
-          title="Mariposa"
-          bind:isOpen={isSidebarOpen}
-          {navigationItems}
-          onLogout={handleLogout}
-        />
-      {/if}
-
-      {#if _globalStore.user}
+      <AppLayout
+        {navigationItems}
+        bind:isSidebarOpen
+        onLogout={handleLogout}
+      >
+        {#if _globalStore.user}
         <Route path="/">
           <EatingTables />
         </Route>
@@ -190,8 +171,17 @@
         <Route path="/orders">
           <Orders />
         </Route>
+        <Route path="/carts">
+          <Carts />
+        </Route>
+        <Route path="/stats">
+          <Stats />
+        </Route>
         <Route path="/client-orders">
           <ClientOrders />
+        </Route>
+        <Route path="/client-orders-v2">
+          <ClientOrdersV2 />
         </Route>
         <Route path="/users">
           <Users />
@@ -209,8 +199,9 @@
         {/if}
       </Route>
 
-      <Route path="/signup"><Signup /></Route>
-      <Route path="/login"><Login /></Route>
+        <Route path="/signup"><Signup /></Route>
+        <Route path="/login"><Login /></Route>
+      </AppLayout>
     </Router>
   </div>
 {/if}

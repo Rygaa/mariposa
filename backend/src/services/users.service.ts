@@ -109,6 +109,30 @@ async function deleteUser(userId: string, tx: DbTransactionOrDB = db): Promise<v
   await tx.delete(SchemaDrizzle.users).where(eq(SchemaDrizzle.users.id, userId));
 }
 
+async function updateMeta(
+  userId: string,
+  metaKey: string,
+  metaValue: any,
+  tx: DbTransactionOrDB = db
+): Promise<SchemaDrizzle.User> {
+  const user = await getById(userId, tx);
+  
+  const currentMeta = (user.meta as Record<string, any>) || {};
+  const updatedMeta = {
+    ...currentMeta,
+    [metaKey]: metaValue,
+  };
+
+  const updatedUser = await tx
+    .update(SchemaDrizzle.users)
+    .set({ meta: updatedMeta })
+    .where(eq(SchemaDrizzle.users.id, userId))
+    .returning()
+    .then((res) => res[0]);
+
+  return updatedUser;
+}
+
 const _ServiceUsers = {
   findById,
   getByEmail,
@@ -119,6 +143,7 @@ const _ServiceUsers = {
   findByEmail,
   getAll,
   deleteUser,
+  updateMeta,
 };
 
 export default _ServiceUsers;

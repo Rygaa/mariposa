@@ -40,17 +40,37 @@ async function resetDatabase() {
   const db = drizzle(pool, { schema });
 
   try {
+    console.log("🗑️  Deleting all menuItemOrders...");
+    const result1 = await pool.query('DELETE FROM "MenuItemOrder"');
+    console.log(`✓ Deleted ${result1.rowCount} menu item orders\n`);
+
+    console.log("🗑️  Deleting all orders...");
+    const result2 = await pool.query('DELETE FROM "Order"');
+    console.log(`✓ Deleted ${result2.rowCount} orders\n`);
+
+    console.log("🗑️  Deleting all eating tables...");
+    const result3 = await pool.query('DELETE FROM "EatingTable"');
+    console.log(`✓ Deleted ${result3.rowCount} eating tables\n`);
+
+    console.log("🗑️  Deleting all menuItemImages...");
+    const result4 = await pool.query('DELETE FROM "MenuItemImage"');
+    console.log(`✓ Deleted ${result4.rowCount} menu item images\n`);
+
     console.log("🗑️  Deleting all menuItemSubMenuItems relationships...");
-    const result1 = await pool.query('DELETE FROM "MenuItemSubMenuItem"');
-    console.log(`✓ Deleted ${result1.rowCount} relationships\n`);
+    const result5 = await pool.query('DELETE FROM "MenuItemSubMenuItem"');
+    console.log(`✓ Deleted ${result5.rowCount} relationships\n`);
 
     console.log("🗑️  Deleting all itemPrices...");
-    const result2 = await pool.query('DELETE FROM "ItemPrice"');
-    console.log(`✓ Deleted ${result2.rowCount} item prices\n`);
+    const result6 = await pool.query('DELETE FROM "ItemPrice"');
+    console.log(`✓ Deleted ${result6.rowCount} item prices\n`);
 
     console.log("🗑️  Deleting all menuItems...");
-    const result3 = await pool.query('DELETE FROM "MenuItem"');
-    console.log(`✓ Deleted ${result3.rowCount} menu items\n`);
+    const result7 = await pool.query('DELETE FROM "MenuItem"');
+    console.log(`✓ Deleted ${result7.rowCount} menu items\n`);
+
+    console.log("🗑️  Deleting all categories...");
+    const result8 = await pool.query('DELETE FROM "Category"');
+    console.log(`✓ Deleted ${result8.rowCount} categories\n`);
 
     console.log("=".repeat(60));
     console.log("    ✓ DATABASE RESET COMPLETE");

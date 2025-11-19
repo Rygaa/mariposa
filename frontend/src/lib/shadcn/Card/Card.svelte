@@ -1,6 +1,7 @@
 <script lang="ts">
   import type { Snippet } from "svelte";
   import AvailableHeightContainer from "../../components/AvailableHeightContainer.svelte";
+  import { setContext } from 'svelte';
 
   let {
     children,
@@ -11,6 +12,8 @@
     class?: string;
     useAvailableHeight?: boolean;
   } = $props();
+
+  setContext('shadcn_card_useAvailableHeight', useAvailableHeight);
 </script>
 
 {#if useAvailableHeight}

@@ -1,6 +1,8 @@
 <script lang="ts">
   import Icon from "../../../lib/components/Icon.svelte";
   import SupplementsModal from "./SupplementsModal.svelte";
+  import { trpc } from "../../../lib/trpc";
+  import { onMount } from "svelte";
 
   let {
     menuItem,
@@ -17,6 +19,8 @@
   } = $props();
 
   let isSupplementModalOpen = $state(false);
+  let imageUrl = $state<string | null>(null);
+  let loadingImage = $state(true);
 
   // Get supplements from subMenuItems that are of type SUPPLEMENT
   const hasSupplements = $derived(
@@ -37,16 +41,56 @@
       isSupplementModalOpen = true;
     }
   }
+
+  async function loadImageUrl() {
+    if (!menuItem.id) {
+      loadingImage = false;
+      return;
+    }
+
+    try {
+      const result = await trpc.listMenuItemImages.query({
+        menuItemId: menuItem.id,
+      });
+
+      if (result.success && result.images.length > 0) {
+        const mainImage = result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) || result.images[0];
+
+        const urlResult = await trpc.getMenuItemImageViewUrl.query({
+          fileId: mainImage.fileId,
+        });
+
+        if (urlResult.success) {
+          imageUrl = urlResult.url;
+        }
+      }
+    } catch (error) {
+      console.error("Failed to load image:", error);
+    } finally {
+      loadingImage = false;
+    }
+  }
+
+  onMount(() => {
+    loadImageUrl();
+  });
 </script>
 
 <div
   class="relative flex mx-4 mb-4 rounded-xl h-[175px] sm:h-[200px] shadow-md bg-white border border-gray-200 py-2 px-2"
 >
-  {#if menuItem.image}
+  {#if loadingImage}
+    <div class="box-border rounded-xl bg-gray-200 z-10 w-[120px] sm:w-[180px] flex items-center justify-center">
+      <span class="text-xs text-gray-400">Loading...</span>
+    </div>
+  {:else if imageUrl}
     <img
-      src={`${import.meta.env.VITE_API_URL || ""}/storage/files/${menuItem.image}`}
+      src={imageUrl}
       alt={menuItem.name}
       class="box-border rounded-xl bg-gray-200 z-10 w-[120px] sm:w-[180px] object-cover"
+      onerror={(e) => {
+        (e.currentTarget as HTMLImageElement).style.display = 'none';
+      }}
     />
   {/if}
 

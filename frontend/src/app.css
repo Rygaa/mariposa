@@ -10,8 +10,8 @@ body,
 }
 
 
-svg [fill],
+/* svg [fill],
 svg g[fill],
 svg path[fill] {
   fill: currentColor !important;
-}
+} */
