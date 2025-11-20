@@ -23,6 +23,7 @@
     "node_modules",
     "dist",
     "prisma",
-    "src/oldRestful/**/*"
+    "src/oldRestful/**/*",
+    "../migration/scripts"
   ]
 }
