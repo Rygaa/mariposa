@@ -274,25 +274,6 @@
             Lock
           </Button>
         {/if}
-        
-        <Dropdown bind:open={isDropdownOpen} align="end">
-          {#snippet trigger()}
-            <Button
-              variant="ghost"
-              iconName="more_vert"
-              iconOnly={true}
-              tooltip="Actions"
-            />
-          {/snippet}
-
-          <DropdownItem onclick={handleViewDetails} iconName="visibility">
-            View Details
-          </DropdownItem>
-          <DropdownSeparator />
-          <DropdownItem onclick={handleMarkAsPaid} iconName="check_circle">
-            Mark as Paid
-          </DropdownItem>
-        </Dropdown>
       </div>
     </div>
   </CardHeader>
