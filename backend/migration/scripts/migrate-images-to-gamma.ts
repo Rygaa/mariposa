@@ -5,10 +5,10 @@ import * as path from 'path';
 dotenv.config({ path: path.resolve(__dirname, '../../.env') });
 
 import fs from 'fs';
-import { db } from '../src/db';
-import { menuItems } from '../src/db/schema';
+import { db } from '../../src/db';
+import { menuItems } from '../../src/db/schema';
 import { eq } from 'drizzle-orm';
-import { uploadFile } from '../src/utils/fileUpload';
+import { uploadFile } from '../../src/utils/fileUpload';
 
 /**
  * Migration script to upload local menu item images to Gamma Files
