@@ -273,23 +273,11 @@ function getAllowedOrigins() {
 }
 
 async function setupMiddleware(): Promise<void> {
-app.options("*", (req, reply) => {
-  reply
-    .header("Access-Control-Allow-Origin", req.headers.origin || "")
-    .header("Access-Control-Allow-Methods", "GET, POST, OPTIONS")
-    .header("Access-Control-Allow-Headers", "Content-Type, Authorization")
-    .header("Access-Control-Allow-Credentials", "true")
-    .code(200)
-    .send();
-});
-
- await app.register(cors, {
+  await app.register(cors, {
     origin: getAllowedOrigins(),
     credentials: true,
     methods: ["GET", "POST", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
-    preflightContinue: false,
-    optionsSuccessStatus: 200,
   });
 }
 
