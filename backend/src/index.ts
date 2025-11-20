@@ -266,11 +266,8 @@ export type { AppRouter } from "./trpc/router";
 function getAllowedOrigins() {
   return [
     "http://localhost:5173", 
-    "https://residanat.work", 
-    "https://www.residanat.work", 
-    "https://test.residanat.work", 
-    "https://gamma.oasispath.ca", 
-    "https://www.test.residanat.work/login", 
+    "https://mariposa.food",
+    "https://www.mariposa.food",
     "127.0.0.1:5173"
   ];
 }
