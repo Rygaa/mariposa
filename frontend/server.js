@@ -12,23 +12,27 @@ const app = express();
 const PORT = process.env.PORT || 6000;
 
 /* -------------------------------------------------------------
-   STATIC ASSETS (JS, CSS, IMAGES)
-   Cache assets but NEVER cache index.html
----------------------------------------------------------------- */
+   GLOBAL NO-CACHE FOR ALL REQUESTS
+   This ensures the browser NEVER caches anything.
+------------------------------------------------------------- */
+app.use((req, res, next) => {
+  res.setHeader("Cache-Control", "no-store, no-cache, must-revalidate, max-age=0");
+  res.setHeader("Pragma", "no-cache");
+  res.setHeader("Expires", "0");
+  next();
+});
+
+/* -------------------------------------------------------------
+   SERVE STATIC FILES (dist/)
+   Still uses no-cache headers applied above.
+------------------------------------------------------------- */
 app.use(
   express.static(path.join(__dirname, "dist"), {
-    maxAge: "7d", // cache static assets for 7 days
-    etag: true,
-    lastModified: true,
-
+    etag: false,
+    lastModified: false,
+    maxAge: 0,
     setHeaders: (res, filePath) => {
-      // NEVER cache HTML files
-      if (filePath.endsWith(".html")) {
-        res.setHeader("Cache-Control", "no-store");
-        return;
-      }
-
-      // Proper MIME types for images
+      // Force correct MIME types
       if (filePath.endsWith(".jpg") || filePath.endsWith(".jpeg")) {
         res.setHeader("Content-Type", "image/jpeg");
       } else if (filePath.endsWith(".png")) {
@@ -36,16 +40,16 @@ app.use(
       } else if (filePath.endsWith(".svg")) {
         res.setHeader("Content-Type", "image/svg+xml");
       }
-    },
+    }
   })
 );
 
 /* -------------------------------------------------------------
    SPA ROUTING:
-   Always return index.html for routes that do not map to files
----------------------------------------------------------------- */
+   Always return index.html for non-file routes
+   Also fully no-cache due to global middleware.
+------------------------------------------------------------- */
 app.get("*", (req, res, next) => {
-  // Skip asset requests
   if (
     req.path.match(
       /\.(jpg|jpeg|png|gif|svg|ico|js|css|json|woff|woff2|ttf|eot|map)$/
@@ -54,15 +58,12 @@ app.get("*", (req, res, next) => {
     return next();
   }
 
-  // No caching for HTML
-  res.setHeader("Cache-Control", "no-store");
-
   res.sendFile(path.join(__dirname, "dist", "index.html"));
 });
 
 /* -------------------------------------------------------------
    START SERVER
----------------------------------------------------------------- */
+------------------------------------------------------------- */
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`🚀 Frontend server running on port ${PORT}`);
   console.log(`📍 Server accessible at http://0.0.0.0:${PORT}`);

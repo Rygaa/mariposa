@@ -274,10 +274,12 @@ function getAllowedOrigins() {
 
 async function setupMiddleware(): Promise<void> {
   await app.register(cors, {
-    origin: getAllowedOrigins(),
+    origin: (origin: string | undefined, cb: (err: Error | null, allow: boolean) => void) => {
+      if (!origin) return cb(null, true);
+      if (allowedOrigins.includes(origin)) return cb(null, true);
+      return cb(new Error("Not allowed by CORS"), false);
+    },
     credentials: true,
-    methods: ["GET", "POST", "OPTIONS"],
-    allowedHeaders: ["Content-Type", "Authorization"],
   });
 }
 
