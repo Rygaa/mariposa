@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-11-15T07:22:02.083Z",
+  "exportDate": "2025-11-25T00:37:03.177Z",
   "totalExpenses": 79,
   "expenses": [
     {
@@ -448,6 +448,71 @@
       "menuItemExpenses": []
     },
     {
+      "id": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
+      "name": "Morjene Ferrero Noir",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 1.184,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -11375,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-25T01:42:43.762Z",
+      "updatedAt": "2025-07-25T01:42:43.762Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 600,
+      "prices": [
+        {
+          "id": "c1bb65d0-3779-4d5c-a4f0-fa24da4b692c",
+          "priceValue": 710,
+          "unitValue": 600,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-31T13:06:06.027Z",
+          "updatedAt": "2025-08-31T13:06:06.027Z",
+          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "c218768c-9128-4e13-88f6-dfec6c56ff20",
+          "createdAt": "2025-08-11T06:57:19.273Z",
+          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
+          "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+          "quantity": 100,
+          "menuItem": {
+            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+            "name": "Crêpe Morjene Ferrero Spaghetti",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "72411d09-a2e3-42a4-a9ad-6cecd01ac62b",
+          "createdAt": "2025-08-11T06:56:39.645Z",
+          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
+          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+          "quantity": 75,
+          "menuItem": {
+            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+            "name": "Crêpe Foure Banane",
+            "price": 700,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
       "id": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
       "name": "Morjene Noir",
       "tag": [],
@@ -455,7 +520,7 @@
       "averagePrice": 0.823,
       "stockQuantity": 1200,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -81560,
+      "inShopStockQuantity": -91385,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-07-25T01:42:12.379Z",
       "updatedAt": "2025-07-25T01:42:12.379Z",
@@ -492,20 +557,6 @@
             "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
             "name": "Crêpe Morjene",
             "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "567bbf46-1a24-41b2-83f5-a6d583858ca9",
-          "createdAt": "2025-08-11T06:56:23.198Z",
-          "expenseId": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 75,
-          "menuItem": {
-            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-            "name": "Crêpe Rouler Banane",
-            "price": 750,
             "isDeleted": false,
             "isAvailable": true
           }
@@ -641,988 +692,6 @@
       "menuItemExpenses": []
     },
     {
-      "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
-      "name": "Ayris",
-      "tag": [],
-      "unit": "milliliter",
-      "averagePrice": 0.017,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:13:00.329Z",
-      "updatedAt": "2025-07-16T21:13:00.329Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "c5b1cc21-517c-457c-b705-3b108e9effb7",
-          "priceValue": 90,
-          "unitValue": 6000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-28T19:35:10.753Z",
-          "updatedAt": "2025-07-28T19:35:10.753Z",
-          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364"
-        },
-        {
-          "id": "da653d16-f4c6-41b5-bac1-0003aa318c84",
-          "priceValue": 150,
-          "unitValue": 8000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-28T19:35:10.753Z",
-          "updatedAt": "2025-07-28T19:35:10.753Z",
-          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "9a76e48d-108c-4f79-a8b5-c4fd6ae37930",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 50,
-          "menuItem": {
-            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-            "name": "Creme au citron",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "d53da1dd-b614-4421-97a1-3db43cd3ae07",
-          "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
-          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 50,
-          "menuItem": {
-            "id": "6677905d-f056-4156-84b9-c4152edbac96",
-            "name": "Cheesecake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "5b785c95-9124-4a6c-8953-63cfb5c336d2",
-          "createdAt": "2025-08-10T22:30:24.497Z",
-          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
-          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 850,
-          "menuItem": {
-            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
-            "name": "Gaufres",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
-      "name": "Mayzena",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.2,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-26T03:32:25.820Z",
-      "updatedAt": "2025-07-26T03:32:25.820Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "beb101c3-da64-4037-b6c3-1955c3e6dfc8",
-          "priceValue": 200,
-          "unitValue": 1000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-28T19:41:05.435Z",
-          "updatedAt": "2025-07-28T19:41:05.435Z",
-          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "d09c3ef0-281d-4894-bc21-75d088afc762",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 22,
-          "menuItem": {
-            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-            "name": "Creme au citron",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "b1d8c80a-76bf-4d92-b913-ce3e96121363",
-          "createdAt": "2025-08-10T22:30:24.500Z",
-          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
-          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 100,
-          "menuItem": {
-            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
-            "name": "Gaufres",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "541cc7e7-b267-41de-ba85-290cbfd0f079",
-      "name": "Kiwi",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 313.254,
-      "stockQuantity": 21,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -42,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-04T17:30:37.413Z",
-      "updatedAt": "2025-07-04T17:30:37.413Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "dbd9a92c-1e4f-4f0e-981a-d4ca11901da7",
-          "priceValue": 2600,
-          "unitValue": 8.3,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-11T10:31:42.735Z",
-          "updatedAt": "2025-08-11T10:31:42.735Z",
-          "expenseId": "541cc7e7-b267-41de-ba85-290cbfd0f079"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "f012e3c5-5bfc-4d8f-af9c-8c8b4410e662",
-          "createdAt": "2025-10-15T05:02:58.878Z",
-          "expenseId": "541cc7e7-b267-41de-ba85-290cbfd0f079",
-          "menuItemId": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
-          "quantity": 0.5,
-          "menuItem": {
-            "id": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
-            "name": "Jus Pressé Cocktail",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "ca83324b-eea1-497f-8771-5b2b71fd3c1f",
-      "name": "Regim Soumame",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.5,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-23T17:07:30.034Z",
-      "updatedAt": "2025-06-23T17:07:30.034Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "7ee0a62b-9a1b-41f1-be8e-b9485d8eec9c",
-          "priceValue": 45,
-          "unitValue": 90,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:06:44.212Z",
-          "updatedAt": "2025-07-24T03:06:44.212Z",
-          "expenseId": "ca83324b-eea1-497f-8771-5b2b71fd3c1f"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "22e98292-92d4-49e2-b8e4-b78064c629cd",
-          "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "ca83324b-eea1-497f-8771-5b2b71fd3c1f",
-          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 2,
-          "menuItem": {
-            "id": "6677905d-f056-4156-84b9-c4152edbac96",
-            "name": "Cheesecake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "53226733-2dde-4cea-9545-1eb278da5f73",
-      "name": "Fromage Napoli",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.625,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:22:49.934Z",
-      "updatedAt": "2025-07-16T21:22:49.934Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "328dc3d1-0868-4b5e-85db-0f1c92c5b60c",
-          "priceValue": 125,
-          "unitValue": 200,
-          "multiplier": 1,
-          "description": "Skali",
-          "createdAt": "2025-07-24T03:21:32.666Z",
-          "updatedAt": "2025-07-24T03:21:32.666Z",
-          "expenseId": "53226733-2dde-4cea-9545-1eb278da5f73"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "ca67474c-0bad-495f-bde5-4ce5343156d1",
-      "name": "Banane",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.55,
-      "stockQuantity": -3450,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -44700,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-04T17:31:02.129Z",
-      "updatedAt": "2025-07-04T17:31:02.129Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "a1d16d84-3c0a-43af-9a81-a5af6fd8d352",
-          "priceValue": 550,
-          "unitValue": 1000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:17:46.311Z",
-          "updatedAt": "2025-07-24T03:17:46.311Z",
-          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "98346c4f-5c61-4384-ae3e-90295cef1fe5",
-          "createdAt": "2025-08-11T07:06:30.618Z",
-          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
-          "menuItemId": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
-          "quantity": 150,
-          "menuItem": {
-            "id": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
-            "name": "Jus Pressé Banane",
-            "price": 350,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "1d17c355-db21-499e-8898-172b92030267",
-          "createdAt": "2025-08-11T06:56:23.196Z",
-          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 150,
-          "menuItem": {
-            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-            "name": "Crêpe Rouler Banane",
-            "price": 750,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "9b6283f6-b54a-4203-9bb2-2bfae7ac7a7c",
-          "createdAt": "2025-08-11T06:56:39.644Z",
-          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
-          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-          "quantity": 150,
-          "menuItem": {
-            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-            "name": "Crêpe Foure Banane",
-            "price": 700,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "29c909b7-f634-42e8-a5b7-75065cb8a1ed",
-          "createdAt": "2025-10-15T05:02:58.876Z",
-          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
-          "menuItemId": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
-          "quantity": 75,
-          "menuItem": {
-            "id": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
-            "name": "Jus Pressé Cocktail",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "498da440-633e-4a13-b59f-105d6ea92404",
-      "name": "Tamlait",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.75,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:20:13.097Z",
-      "updatedAt": "2025-07-16T21:20:13.097Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "c9be8d04-c7ea-4f90-89ad-8e0114bf8ba5",
-          "priceValue": 750,
-          "unitValue": 1000,
-          "multiplier": 1,
-          "description": "Aladin",
-          "createdAt": "2025-07-24T03:21:06.722Z",
-          "updatedAt": "2025-07-24T03:21:06.722Z",
-          "expenseId": "498da440-633e-4a13-b59f-105d6ea92404"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "b61b521b-c7f7-4df5-8ff1-039f50eb02ea",
-      "name": "Caps Mani",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 38.5,
-      "stockQuantity": 159,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -16,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:12:38.143Z",
-      "updatedAt": "2025-07-16T21:12:38.143Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 10,
-      "prices": [
-        {
-          "id": "c0c0a95c-b01d-4424-a623-018712220dcb",
-          "priceValue": 385,
-          "unitValue": 10,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-13T12:44:01.290Z",
-          "updatedAt": "2025-08-13T12:44:01.290Z",
-          "expenseId": "b61b521b-c7f7-4df5-8ff1-039f50eb02ea"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-      "name": "Oreo Maxon XL ghitri",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.902,
-      "stockQuantity": -795,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -7435,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-28T09:00:44.040Z",
-      "updatedAt": "2025-06-28T09:00:44.040Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "1b3398b6-bace-4cf0-aec3-d114f3af33af",
-          "priceValue": 3075,
-          "unitValue": 76,
-          "multiplier": 30,
-          "description": "",
-          "createdAt": "2025-07-26T04:35:44.244Z",
-          "updatedAt": "2025-07-26T04:35:44.244Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5"
-        },
-        {
-          "id": "12f36066-cfa0-433b-8451-1efea5a13410",
-          "priceValue": 220,
-          "unitValue": 485,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-26T04:35:44.244Z",
-          "updatedAt": "2025-07-26T04:35:44.244Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "334be9d4-677f-4317-a738-80b24f07d1cc",
-          "createdAt": "2025-08-11T06:57:09.692Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
-          "quantity": 5,
-          "menuItem": {
-            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
-            "name": "Crêpe Morjene Bueno Spaghetti",
-            "price": 550,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "b31b76e9-b07e-41fe-b512-2858a58ce5b3",
-          "createdAt": "2025-08-11T06:57:19.275Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
-          "quantity": 5,
-          "menuItem": {
-            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
-            "name": "Crêpe Morjene Ferrero Spaghetti",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "46e4e1d7-40a2-4c72-8f98-1b40049c8f1f",
-          "createdAt": "2025-08-11T06:57:35.853Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
-          "quantity": 5,
-          "menuItem": {
-            "id": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
-            "name": "Crêpe Nutella Spaghetti",
-            "price": 700,
-            "isDeleted": false,
-            "isAvailable": false
-          }
-        },
-        {
-          "id": "acb986e6-405a-47b5-b64d-1718691e46d2",
-          "createdAt": "2025-08-11T06:55:59.405Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
-          "quantity": 5,
-          "menuItem": {
-            "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
-            "name": "Crêpe Morjene",
-            "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "f9b3f8e4-0517-457c-96d2-3af62855cdcb",
-          "createdAt": "2025-08-11T06:56:06.614Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "quantity": 5,
-          "menuItem": {
-            "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-            "name": "Crêpe Morjene Bueno",
-            "price": 350,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "359ecb74-aa87-4d38-a971-52689c5e9f8b",
-          "createdAt": "2025-08-11T06:56:23.199Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 5,
-          "menuItem": {
-            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-            "name": "Crêpe Rouler Banane",
-            "price": 750,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "81d13eea-1790-4496-9ad8-b9ce4a8e1327",
-          "createdAt": "2025-08-11T06:56:39.646Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-          "quantity": 5,
-          "menuItem": {
-            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-            "name": "Crêpe Foure Banane",
-            "price": 700,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "0b26ec22-395c-41c9-8586-dddafd514503",
-          "createdAt": "2025-08-11T06:57:01.707Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
-          "quantity": 5,
-          "menuItem": {
-            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
-            "name": "Crêpe Morjene Spaghetti",
-            "price": 500,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-      "name": "Sokor",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.1,
-      "stockQuantity": -39300,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -513860,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-25T22:12:49.457Z",
-      "updatedAt": "2025-07-25T22:12:49.457Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "f1f52f6f-6390-4386-bf58-c4f7e568aafa",
-          "priceValue": 100,
-          "unitValue": 1000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-01T02:01:29.670Z",
-          "updatedAt": "2025-08-01T02:01:29.670Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "415f3057-efaa-4d56-8410-373e303e1d65",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 75,
-          "menuItem": {
-            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-            "name": "Creme au citron",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "a9cbbe39-7306-41f3-89a6-20056490af9a",
-          "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 15,
-          "menuItem": {
-            "id": "6677905d-f056-4156-84b9-c4152edbac96",
-            "name": "Cheesecake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "89961d4b-cbb7-4a3f-984e-e55b517d0050",
-          "createdAt": "2025-08-11T21:04:35.880Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-          "quantity": 50,
-          "menuItem": {
-            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-            "name": "R_Mojito",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "0d3ea35a-0020-4e1d-a72f-0395819921b0",
-          "createdAt": "2025-08-11T07:06:30.619Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
-          "quantity": 50,
-          "menuItem": {
-            "id": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
-            "name": "Jus Pressé Banane",
-            "price": 350,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "b5253498-804f-4600-946e-3bdf805d6dac",
-          "createdAt": "2025-08-10T20:31:59.518Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 200,
-          "menuItem": {
-            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-            "name": "Crepe Basic",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "49ed1ed7-1dd0-48ab-8e40-8d0bd9642ddb",
-          "createdAt": "2025-08-10T22:09:05.819Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
-          "quantity": 250,
-          "menuItem": {
-            "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
-            "name": "Gaufre Belgium ",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "61b4eb56-67fb-4e0f-9bbd-f3f6b7ef77e0",
-          "createdAt": "2025-08-10T22:30:24.498Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 500,
-          "menuItem": {
-            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
-            "name": "Gaufres",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "42f67a4b-1070-4975-9f93-61d14c463524",
-          "createdAt": "2025-08-11T20:45:53.077Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
-          "quantity": 80,
-          "menuItem": {
-            "id": "2525543e-8314-46ec-b906-8e0861578a91",
-            "name": "Crêpe Croustillante",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
-      "name": "Morjene Ferrero Noir",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 1.184,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -11050,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-25T01:42:43.762Z",
-      "updatedAt": "2025-07-25T01:42:43.762Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 600,
-      "prices": [
-        {
-          "id": "c1bb65d0-3779-4d5c-a4f0-fa24da4b692c",
-          "priceValue": 710,
-          "unitValue": 600,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-31T13:06:06.027Z",
-          "updatedAt": "2025-08-31T13:06:06.027Z",
-          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "c218768c-9128-4e13-88f6-dfec6c56ff20",
-          "createdAt": "2025-08-11T06:57:19.273Z",
-          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
-          "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
-          "quantity": 100,
-          "menuItem": {
-            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
-            "name": "Crêpe Morjene Ferrero Spaghetti",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "4d38e9cc-70d4-44ae-ad14-cea1d6259f08",
-          "createdAt": "2025-08-11T06:56:23.198Z",
-          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 75,
-          "menuItem": {
-            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-            "name": "Crêpe Rouler Banane",
-            "price": 750,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "72411d09-a2e3-42a4-a9ad-6cecd01ac62b",
-          "createdAt": "2025-08-11T06:56:39.645Z",
-          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
-          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-          "quantity": 75,
-          "menuItem": {
-            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-            "name": "Crêpe Foure Banane",
-            "price": 700,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "b25ebe82-a2d7-4468-b0ea-0c773676b580",
-      "name": "Peche",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.2,
-      "stockQuantity": -800,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -14900,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-26T03:33:55.731Z",
-      "updatedAt": "2025-07-26T03:33:55.731Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "caec3404-9b8b-41fd-bc2f-d85baccfc81e",
-          "priceValue": 200,
-          "unitValue": 1000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-10T04:50:20.865Z",
-          "updatedAt": "2025-08-10T04:50:20.865Z",
-          "expenseId": "b25ebe82-a2d7-4468-b0ea-0c773676b580"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "05938a80-338d-49d5-8163-31524929b5a8",
-          "createdAt": "2025-10-15T05:02:58.877Z",
-          "expenseId": "b25ebe82-a2d7-4468-b0ea-0c773676b580",
-          "menuItemId": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
-          "quantity": 100,
-          "menuItem": {
-            "id": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
-            "name": "Jus Pressé Cocktail",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "90b7becc-21bb-4c4d-bcb4-90a9dbfa46d4",
-      "name": "Kabir Gingmbre",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 160,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:12:07.721Z",
-      "updatedAt": "2025-07-16T21:12:07.721Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "1bbd5aa2-3431-4496-b7ac-264afe5796b4",
-          "priceValue": 160,
-          "unitValue": 1,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:18:48.264Z",
-          "updatedAt": "2025-07-24T03:18:48.264Z",
-          "expenseId": "90b7becc-21bb-4c4d-bcb4-90a9dbfa46d4"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f",
-      "name": "Biscuit Tinger",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 110,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-23T17:04:58.461Z",
-      "updatedAt": "2025-06-23T17:04:58.461Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "95c45f77-246e-4ad0-8594-e4bbbd4797c6",
-          "priceValue": 110,
-          "unitValue": 1,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:06:26.957Z",
-          "updatedAt": "2025-07-24T03:06:26.957Z",
-          "expenseId": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "c6b87188-d988-40ba-89c0-e984d6182955",
-          "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f",
-          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 0.5,
-          "menuItem": {
-            "id": "6677905d-f056-4156-84b9-c4152edbac96",
-            "name": "Cheesecake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
       "id": "524c72fe-89dd-42a8-94cf-4b64b4424aff",
       "name": "Farine",
       "tag": [],
@@ -1630,7 +699,7 @@
       "averagePrice": 0.06,
       "stockQuantity": 13000,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -2418800,
+      "inShopStockQuantity": -2631800,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-07-25T22:11:02.718Z",
       "updatedAt": "2025-07-25T22:11:02.718Z",
@@ -1744,30 +813,40 @@
       ]
     },
     {
-      "id": "b1c02362-da7c-4e51-a339-df2fef8ac057",
-      "name": "Soumame Nature",
+      "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+      "name": "Ayris",
       "tag": [],
-      "unit": "portion",
-      "averagePrice": 25,
+      "unit": "milliliter",
+      "averagePrice": 0.017,
       "stockQuantity": 0,
       "inHouseStockQuantity": 0,
       "inShopStockQuantity": 0,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-23T17:08:29.670Z",
-      "updatedAt": "2025-06-23T17:08:29.670Z",
+      "createdAt": "2025-07-16T21:13:00.329Z",
+      "updatedAt": "2025-07-16T21:13:00.329Z",
       "isDeleted": false,
       "enterpriseId": null,
       "stockConversionRatio": 1,
       "prices": [
         {
-          "id": "70485b88-f670-4173-b9fe-c3cf2a1d5bdf",
-          "priceValue": 25,
-          "unitValue": 1,
+          "id": "c5b1cc21-517c-457c-b705-3b108e9effb7",
+          "priceValue": 90,
+          "unitValue": 6000,
           "multiplier": 1,
           "description": "",
-          "createdAt": "2025-07-24T03:07:27.870Z",
-          "updatedAt": "2025-07-24T03:07:27.870Z",
-          "expenseId": "b1c02362-da7c-4e51-a339-df2fef8ac057"
+          "createdAt": "2025-07-28T19:35:10.753Z",
+          "updatedAt": "2025-07-28T19:35:10.753Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364"
+        },
+        {
+          "id": "da653d16-f4c6-41b5-bac1-0003aa318c84",
+          "priceValue": 150,
+          "unitValue": 8000,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-28T19:35:10.753Z",
+          "updatedAt": "2025-07-28T19:35:10.753Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364"
         }
       ],
       "expensesTag": [],
@@ -1779,9 +858,153 @@
       "Enterprise": null,
       "menuItemExpenses": [
         {
-          "id": "942b70df-2e4f-447e-b116-ccd35fae791c",
+          "id": "d53da1dd-b614-4421-97a1-3db43cd3ae07",
           "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "b1c02362-da7c-4e51-a339-df2fef8ac057",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 50,
+          "menuItem": {
+            "id": "6677905d-f056-4156-84b9-c4152edbac96",
+            "name": "Cheesecake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "2ff18e50-77a3-4b87-a429-80da26358736",
+          "createdAt": "2025-11-15T04:20:15.756Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 50,
+          "menuItem": {
+            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+            "name": "Creme au citron",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "5b785c95-9124-4a6c-8953-63cfb5c336d2",
+          "createdAt": "2025-08-10T22:30:24.497Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 850,
+          "menuItem": {
+            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
+            "name": "Gaufres",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+      "name": "Mayzena",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.2,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-26T03:32:25.820Z",
+      "updatedAt": "2025-07-26T03:32:25.820Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "beb101c3-da64-4037-b6c3-1955c3e6dfc8",
+          "priceValue": 200,
+          "unitValue": 1000,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-28T19:41:05.435Z",
+          "updatedAt": "2025-07-28T19:41:05.435Z",
+          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "3947704e-d1cc-415a-8547-798f2f84851c",
+          "createdAt": "2025-11-15T04:20:15.754Z",
+          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 22,
+          "menuItem": {
+            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+            "name": "Creme au citron",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "b1d8c80a-76bf-4d92-b913-ce3e96121363",
+          "createdAt": "2025-08-10T22:30:24.500Z",
+          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 100,
+          "menuItem": {
+            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
+            "name": "Gaufres",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "ca83324b-eea1-497f-8771-5b2b71fd3c1f",
+      "name": "Regim Soumame",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.5,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-23T17:07:30.034Z",
+      "updatedAt": "2025-06-23T17:07:30.034Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "7ee0a62b-9a1b-41f1-be8e-b9485d8eec9c",
+          "priceValue": 45,
+          "unitValue": 90,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:06:44.212Z",
+          "updatedAt": "2025-07-24T03:06:44.212Z",
+          "expenseId": "ca83324b-eea1-497f-8771-5b2b71fd3c1f"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "22e98292-92d4-49e2-b8e4-b78064c629cd",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "ca83324b-eea1-497f-8771-5b2b71fd3c1f",
           "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
           "quantity": 2,
           "menuItem": {
@@ -1795,6 +1018,114 @@
       ]
     },
     {
+      "id": "53226733-2dde-4cea-9545-1eb278da5f73",
+      "name": "Fromage Napoli",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.625,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-16T21:22:49.934Z",
+      "updatedAt": "2025-07-16T21:22:49.934Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "328dc3d1-0868-4b5e-85db-0f1c92c5b60c",
+          "priceValue": 125,
+          "unitValue": 200,
+          "multiplier": 1,
+          "description": "Skali",
+          "createdAt": "2025-07-24T03:21:32.666Z",
+          "updatedAt": "2025-07-24T03:21:32.666Z",
+          "expenseId": "53226733-2dde-4cea-9545-1eb278da5f73"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "498da440-633e-4a13-b59f-105d6ea92404",
+      "name": "Tamlait",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.75,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-16T21:20:13.097Z",
+      "updatedAt": "2025-07-16T21:20:13.097Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "c9be8d04-c7ea-4f90-89ad-8e0114bf8ba5",
+          "priceValue": 750,
+          "unitValue": 1000,
+          "multiplier": 1,
+          "description": "Aladin",
+          "createdAt": "2025-07-24T03:21:06.722Z",
+          "updatedAt": "2025-07-24T03:21:06.722Z",
+          "expenseId": "498da440-633e-4a13-b59f-105d6ea92404"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "b61b521b-c7f7-4df5-8ff1-039f50eb02ea",
+      "name": "Caps Mani",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 38.5,
+      "stockQuantity": 159,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -16,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-16T21:12:38.143Z",
+      "updatedAt": "2025-07-16T21:12:38.143Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 10,
+      "prices": [
+        {
+          "id": "c0c0a95c-b01d-4424-a623-018712220dcb",
+          "priceValue": 385,
+          "unitValue": 10,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-13T12:44:01.290Z",
+          "updatedAt": "2025-08-13T12:44:01.290Z",
+          "expenseId": "b61b521b-c7f7-4df5-8ff1-039f50eb02ea"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
       "id": "5e569a1d-3c0a-4283-a2a4-3fe4c2f5e0eb",
       "name": "Hlib",
       "tag": [],
@@ -1802,7 +1133,7 @@
       "averagePrice": 0.12,
       "stockQuantity": 5000,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -3591550,
+      "inShopStockQuantity": -3914625,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-07-25T22:11:51.840Z",
       "updatedAt": "2025-07-25T22:11:51.840Z",
@@ -1986,6 +1317,605 @@
       ]
     },
     {
+      "id": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+      "name": "Oreo Maxon XL ghitri",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.902,
+      "stockQuantity": -795,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -7965,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-28T09:00:44.040Z",
+      "updatedAt": "2025-06-28T09:00:44.040Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "1b3398b6-bace-4cf0-aec3-d114f3af33af",
+          "priceValue": 3075,
+          "unitValue": 76,
+          "multiplier": 30,
+          "description": "",
+          "createdAt": "2025-07-26T04:35:44.244Z",
+          "updatedAt": "2025-07-26T04:35:44.244Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5"
+        },
+        {
+          "id": "12f36066-cfa0-433b-8451-1efea5a13410",
+          "priceValue": 220,
+          "unitValue": 485,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-26T04:35:44.244Z",
+          "updatedAt": "2025-07-26T04:35:44.244Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "334be9d4-677f-4317-a738-80b24f07d1cc",
+          "createdAt": "2025-08-11T06:57:09.692Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+          "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+          "quantity": 5,
+          "menuItem": {
+            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+            "name": "Crêpe Morjene Bueno Spaghetti",
+            "price": 550,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "b31b76e9-b07e-41fe-b512-2858a58ce5b3",
+          "createdAt": "2025-08-11T06:57:19.275Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+          "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+          "quantity": 5,
+          "menuItem": {
+            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+            "name": "Crêpe Morjene Ferrero Spaghetti",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "46e4e1d7-40a2-4c72-8f98-1b40049c8f1f",
+          "createdAt": "2025-08-11T06:57:35.853Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+          "menuItemId": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
+          "quantity": 5,
+          "menuItem": {
+            "id": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
+            "name": "Crêpe Nutella Spaghetti",
+            "price": 700,
+            "isDeleted": false,
+            "isAvailable": false
+          }
+        },
+        {
+          "id": "acb986e6-405a-47b5-b64d-1718691e46d2",
+          "createdAt": "2025-08-11T06:55:59.405Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+          "menuItemId": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+          "quantity": 5,
+          "menuItem": {
+            "id": "dec7ec88-d2de-4d4c-b9b7-18cce34dc867",
+            "name": "Crêpe Morjene",
+            "price": 300,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "81d13eea-1790-4496-9ad8-b9ce4a8e1327",
+          "createdAt": "2025-08-11T06:56:39.646Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+          "quantity": 5,
+          "menuItem": {
+            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+            "name": "Crêpe Foure Banane",
+            "price": 700,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "0b26ec22-395c-41c9-8586-dddafd514503",
+          "createdAt": "2025-08-11T06:57:01.707Z",
+          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
+          "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+          "quantity": 5,
+          "menuItem": {
+            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+            "name": "Crêpe Morjene Spaghetti",
+            "price": 500,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "ca67474c-0bad-495f-bde5-4ce5343156d1",
+      "name": "Banane",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.55,
+      "stockQuantity": -3450,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -49050,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-04T17:31:02.129Z",
+      "updatedAt": "2025-07-04T17:31:02.129Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "a1d16d84-3c0a-43af-9a81-a5af6fd8d352",
+          "priceValue": 550,
+          "unitValue": 1000,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:17:46.311Z",
+          "updatedAt": "2025-07-24T03:17:46.311Z",
+          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "98346c4f-5c61-4384-ae3e-90295cef1fe5",
+          "createdAt": "2025-08-11T07:06:30.618Z",
+          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
+          "menuItemId": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
+          "quantity": 150,
+          "menuItem": {
+            "id": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
+            "name": "Jus Pressé Banane",
+            "price": 350,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "9b6283f6-b54a-4203-9bb2-2bfae7ac7a7c",
+          "createdAt": "2025-08-11T06:56:39.644Z",
+          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
+          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+          "quantity": 150,
+          "menuItem": {
+            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+            "name": "Crêpe Foure Banane",
+            "price": 700,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "29c909b7-f634-42e8-a5b7-75065cb8a1ed",
+          "createdAt": "2025-10-15T05:02:58.876Z",
+          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
+          "menuItemId": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
+          "quantity": 75,
+          "menuItem": {
+            "id": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
+            "name": "Jus Pressé Cocktail",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "b25ebe82-a2d7-4468-b0ea-0c773676b580",
+      "name": "Peche",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.2,
+      "stockQuantity": -800,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -16300,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-26T03:33:55.731Z",
+      "updatedAt": "2025-07-26T03:33:55.731Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "caec3404-9b8b-41fd-bc2f-d85baccfc81e",
+          "priceValue": 200,
+          "unitValue": 1000,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-10T04:50:20.865Z",
+          "updatedAt": "2025-08-10T04:50:20.865Z",
+          "expenseId": "b25ebe82-a2d7-4468-b0ea-0c773676b580"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "05938a80-338d-49d5-8163-31524929b5a8",
+          "createdAt": "2025-10-15T05:02:58.877Z",
+          "expenseId": "b25ebe82-a2d7-4468-b0ea-0c773676b580",
+          "menuItemId": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
+          "quantity": 100,
+          "menuItem": {
+            "id": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
+            "name": "Jus Pressé Cocktail",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "90b7becc-21bb-4c4d-bcb4-90a9dbfa46d4",
+      "name": "Kabir Gingmbre",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 160,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-16T21:12:07.721Z",
+      "updatedAt": "2025-07-16T21:12:07.721Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "1bbd5aa2-3431-4496-b7ac-264afe5796b4",
+          "priceValue": 160,
+          "unitValue": 1,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:18:48.264Z",
+          "updatedAt": "2025-07-24T03:18:48.264Z",
+          "expenseId": "90b7becc-21bb-4c4d-bcb4-90a9dbfa46d4"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f",
+      "name": "Biscuit Tinger",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 110,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-23T17:04:58.461Z",
+      "updatedAt": "2025-06-23T17:04:58.461Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "95c45f77-246e-4ad0-8594-e4bbbd4797c6",
+          "priceValue": 110,
+          "unitValue": 1,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:06:26.957Z",
+          "updatedAt": "2025-07-24T03:06:26.957Z",
+          "expenseId": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "c6b87188-d988-40ba-89c0-e984d6182955",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "8daf59fd-12a5-42f4-a1b4-45202ab4bf6f",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 0.5,
+          "menuItem": {
+            "id": "6677905d-f056-4156-84b9-c4152edbac96",
+            "name": "Cheesecake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+      "name": "Sokor",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.1,
+      "stockQuantity": -39300,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -559160,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-25T22:12:49.457Z",
+      "updatedAt": "2025-07-25T22:12:49.457Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "f1f52f6f-6390-4386-bf58-c4f7e568aafa",
+          "priceValue": 100,
+          "unitValue": 1000,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-01T02:01:29.670Z",
+          "updatedAt": "2025-08-01T02:01:29.670Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "a9cbbe39-7306-41f3-89a6-20056490af9a",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 15,
+          "menuItem": {
+            "id": "6677905d-f056-4156-84b9-c4152edbac96",
+            "name": "Cheesecake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "89961d4b-cbb7-4a3f-984e-e55b517d0050",
+          "createdAt": "2025-08-11T21:04:35.880Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 50,
+          "menuItem": {
+            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+            "name": "R_Mojito",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "0d3ea35a-0020-4e1d-a72f-0395819921b0",
+          "createdAt": "2025-08-11T07:06:30.619Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
+          "quantity": 50,
+          "menuItem": {
+            "id": "3d9d876a-9605-4593-a661-0e72db6d5eb8",
+            "name": "Jus Pressé Banane",
+            "price": 350,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "d478e4fa-0c8c-46ee-b307-00f1c69d7295",
+          "createdAt": "2025-11-15T04:20:15.754Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 75,
+          "menuItem": {
+            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+            "name": "Creme au citron",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "b5253498-804f-4600-946e-3bdf805d6dac",
+          "createdAt": "2025-08-10T20:31:59.518Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 200,
+          "menuItem": {
+            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+            "name": "Crepe Basic",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "49ed1ed7-1dd0-48ab-8e40-8d0bd9642ddb",
+          "createdAt": "2025-08-10T22:09:05.819Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 250,
+          "menuItem": {
+            "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+            "name": "Gaufre Belgium ",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "61b4eb56-67fb-4e0f-9bbd-f3f6b7ef77e0",
+          "createdAt": "2025-08-10T22:30:24.498Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 500,
+          "menuItem": {
+            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
+            "name": "Gaufres",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "42f67a4b-1070-4975-9f93-61d14c463524",
+          "createdAt": "2025-08-11T20:45:53.077Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 80,
+          "menuItem": {
+            "id": "2525543e-8314-46ec-b906-8e0861578a91",
+            "name": "Crêpe Croustillante",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "b1c02362-da7c-4e51-a339-df2fef8ac057",
+      "name": "Soumame Nature",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 25,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-23T17:08:29.670Z",
+      "updatedAt": "2025-06-23T17:08:29.670Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "70485b88-f670-4173-b9fe-c3cf2a1d5bdf",
+          "priceValue": 25,
+          "unitValue": 1,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:07:27.870Z",
+          "updatedAt": "2025-07-24T03:07:27.870Z",
+          "expenseId": "b1c02362-da7c-4e51-a339-df2fef8ac057"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "942b70df-2e4f-447e-b116-ccd35fae791c",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "b1c02362-da7c-4e51-a339-df2fef8ac057",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 2,
+          "menuItem": {
+            "id": "6677905d-f056-4156-84b9-c4152edbac96",
+            "name": "Cheesecake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "541cc7e7-b267-41de-ba85-290cbfd0f079",
+      "name": "Kiwi",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 313.254,
+      "stockQuantity": 21,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -49,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-04T17:30:37.413Z",
+      "updatedAt": "2025-07-04T17:30:37.413Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "dbd9a92c-1e4f-4f0e-981a-d4ca11901da7",
+          "priceValue": 2600,
+          "unitValue": 8.3,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-11T10:31:42.735Z",
+          "updatedAt": "2025-08-11T10:31:42.735Z",
+          "expenseId": "541cc7e7-b267-41de-ba85-290cbfd0f079"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "f012e3c5-5bfc-4d8f-af9c-8c8b4410e662",
+          "createdAt": "2025-10-15T05:02:58.878Z",
+          "expenseId": "541cc7e7-b267-41de-ba85-290cbfd0f079",
+          "menuItemId": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
+          "quantity": 0.5,
+          "menuItem": {
+            "id": "c77137ca-eb73-4d6a-a8b1-32818b76ef32",
+            "name": "Jus Pressé Cocktail",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
       "id": "c1c12f17-32b9-47c8-ace4-f9a78a37a8b4",
       "name": "Nutella",
       "tag": [],
@@ -2043,6 +1973,606 @@
       ]
     },
     {
+      "id": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+      "name": "Citron Liquid",
+      "tag": [],
+      "unit": "milliliter",
+      "averagePrice": 0.667,
+      "stockQuantity": -5100,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -76200,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-26T03:33:02.784Z",
+      "updatedAt": "2025-07-26T03:33:02.784Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "24605884-2b99-4ba4-979c-503e567b9482",
+          "priceValue": 200,
+          "unitValue": 300,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-28T19:38:16.219Z",
+          "updatedAt": "2025-07-28T19:38:16.219Z",
+          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "91965b0b-5237-45c1-87e3-f9b7efcd122b",
+          "createdAt": "2025-08-11T21:04:35.879Z",
+          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 150,
+          "menuItem": {
+            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+            "name": "R_Mojito",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "11ef5955-d535-4ceb-b4ec-58d4f237487c",
+          "createdAt": "2025-11-15T04:20:15.755Z",
+          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 150,
+          "menuItem": {
+            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+            "name": "Creme au citron",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "6faf698b-b7dc-4033-a49a-05153911fda8",
+      "name": "Snickers",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 170,
+      "stockQuantity": 7,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-03T02:29:10.523Z",
+      "updatedAt": "2025-08-03T02:29:10.523Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "270267b8-73a1-4ce0-a0f8-51a116f8e0d8",
+          "priceValue": 1700,
+          "unitValue": 10,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-13T13:25:46.031Z",
+          "updatedAt": "2025-08-13T13:25:46.031Z",
+          "expenseId": "6faf698b-b7dc-4033-a49a-05153911fda8"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+      "name": "Plateau Oeuf",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 15,
+      "stockQuantity": 7,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -27875,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-14T18:57:37.361Z",
+      "updatedAt": "2025-07-14T18:57:37.361Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "c0916312-798f-4795-b73b-22dc6c235cbf",
+          "priceValue": 450,
+          "unitValue": 30,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-16T11:58:28.289Z",
+          "updatedAt": "2025-08-16T11:58:28.289Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "ae3d9d58-50f6-441e-9e16-d936468d68dc",
+          "createdAt": "2025-11-15T04:20:15.752Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 2,
+          "menuItem": {
+            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+            "name": "Creme au citron",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "79d838a8-fecd-4682-a9f4-7d7c16383569",
+          "createdAt": "2025-08-10T20:31:59.515Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 10,
+          "menuItem": {
+            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+            "name": "Crepe Basic",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "bcc034cc-5d10-4c5f-a7bf-e497333178a0",
+          "createdAt": "2025-08-10T22:09:05.818Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+          "quantity": 12,
+          "menuItem": {
+            "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
+            "name": "Gaufre Belgium ",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "0231623c-ceb0-47ad-9ea2-c61d769d456f",
+          "createdAt": "2025-08-10T22:30:24.499Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 12,
+          "menuItem": {
+            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
+            "name": "Gaufres",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "6d982822-b91d-4556-97c5-2db0b42320cf",
+          "createdAt": "2025-08-10T22:30:45.757Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 6,
+          "menuItem": {
+            "id": "1bd947bc-4735-4731-95ae-4e4023461972",
+            "name": "Pancakes",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "248fe342-50d5-408b-a371-a6edaee85c6f",
+          "createdAt": "2025-08-11T20:45:53.076Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
+          "quantity": 5,
+          "menuItem": {
+            "id": "2525543e-8314-46ec-b906-8e0861578a91",
+            "name": "Crêpe Croustillante",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "463a2115-64bd-4b19-bd77-86e90db95a28",
+      "name": "ELA Creme Liquide 30%",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 210,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-23T17:07:53.206Z",
+      "updatedAt": "2025-06-23T17:07:53.206Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "2e2c952b-1435-42ef-9476-dc4385f42317",
+          "priceValue": 210,
+          "unitValue": 1,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:07:04.876Z",
+          "updatedAt": "2025-07-24T03:07:04.876Z",
+          "expenseId": "463a2115-64bd-4b19-bd77-86e90db95a28"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "026dacd2-a17f-4bb3-8a98-9456d701e2c4",
+      "name": "annanas",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-13T10:40:03.433Z",
+      "updatedAt": "2025-08-13T10:40:03.433Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "208d5c53-48e0-4486-bf1e-113329198ee9",
+      "name": "hamoud canette",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 50,
+      "stockQuantity": 37,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -153,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-13T10:59:11.990Z",
+      "updatedAt": "2025-08-13T10:59:11.990Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "8122637e-b9a4-4522-90cd-2ce7a7261b3d",
+          "priceValue": 300,
+          "unitValue": 6,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-16T11:56:20.949Z",
+          "updatedAt": "2025-08-16T11:56:20.949Z",
+          "expenseId": "208d5c53-48e0-4486-bf1e-113329198ee9"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "8e1d0f7a-10f2-4589-b6c2-ac174978b339",
+          "createdAt": "2025-08-16T09:53:44.154Z",
+          "expenseId": "208d5c53-48e0-4486-bf1e-113329198ee9",
+          "menuItemId": "47b670b3-6c62-441b-aedc-015321418e39",
+          "quantity": 1,
+          "menuItem": {
+            "id": "47b670b3-6c62-441b-aedc-015321418e39",
+            "name": "Hamoud",
+            "price": 100,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "88ecfde0-e7d8-4b5b-9ab4-7156800f4f7f",
+      "name": "Chocolat Evasion",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 2.4,
+      "stockQuantity": 1,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-03T02:30:03.305Z",
+      "updatedAt": "2025-08-03T02:30:03.305Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "adaf6785-0a43-42d3-b16f-0471f92f758e",
+          "priceValue": 240,
+          "unitValue": 100,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-13T13:27:05.368Z",
+          "updatedAt": "2025-08-13T13:27:05.368Z",
+          "expenseId": "88ecfde0-e7d8-4b5b-9ab4-7156800f4f7f"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "d4640ec3-206e-4df4-ba20-28bb73b2b196",
+      "name": "Kabir Citron",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 200,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-16T21:10:53.425Z",
+      "updatedAt": "2025-07-16T21:10:53.425Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "5155eb18-1661-4644-8bbb-8522dba73045",
+          "priceValue": 200,
+          "unitValue": 1,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:18:34.928Z",
+          "updatedAt": "2025-07-24T03:18:34.928Z",
+          "expenseId": "d4640ec3-206e-4df4-ba20-28bb73b2b196"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "a6973e90-c99c-44b0-b058-35b6d6b4be04",
+      "name": "Snack Lion",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 150,
+      "stockQuantity": 1,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-03T02:29:32.582Z",
+      "updatedAt": "2025-08-03T02:29:32.582Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "7c9fa141-707c-49bd-a995-3e5b8590bad2",
+          "priceValue": 750,
+          "unitValue": 5,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-13T13:25:14.609Z",
+          "updatedAt": "2025-08-13T13:25:14.609Z",
+          "expenseId": "a6973e90-c99c-44b0-b058-35b6d6b4be04"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "34afca01-4ee0-4503-b7d1-81f9834bc170",
+      "name": "Cigar",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0,
+      "stockQuantity": 4,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -435,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-26T03:32:55.575Z",
+      "updatedAt": "2025-07-26T03:32:55.575Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "04602db4-9c05-4132-8c28-217a5917d1fc",
+          "createdAt": "2025-08-13T10:38:44.813Z",
+          "expenseId": "34afca01-4ee0-4503-b7d1-81f9834bc170",
+          "menuItemId": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
+          "quantity": 2,
+          "menuItem": {
+            "id": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
+            "name": "3 Boules de Crème Glacée",
+            "price": 300,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "133473a0-b702-4f62-adf4-5651354bdcb7",
+          "createdAt": "2025-08-14T14:36:04.434Z",
+          "expenseId": "34afca01-4ee0-4503-b7d1-81f9834bc170",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "quantity": 1,
+          "menuItem": {
+            "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+            "name": "Milkshake Oreo",
+            "price": 400,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "499c0cd7-4b60-4bed-bdb2-005a015091a2",
+      "name": "Kitkat",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 175,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-03T02:29:22.411Z",
+      "updatedAt": "2025-08-03T02:29:22.411Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "8cb66e58-98d1-4b01-92eb-66ebf65bbb61",
+          "priceValue": 1750,
+          "unitValue": 10,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-03T02:32:15.562Z",
+          "updatedAt": "2025-08-03T02:32:15.562Z",
+          "expenseId": "499c0cd7-4b60-4bed-bdb2-005a015091a2"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+      "name": "Glace Eau",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -16990,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-26T03:32:47.621Z",
+      "updatedAt": "2025-07-26T03:32:47.621Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "d9490439-cb85-49db-9891-df1d046361e8",
+          "createdAt": "2025-08-11T07:03:19.592Z",
+          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+          "menuItemId": "a6d1d1b6-72b5-464a-9115-c4689852fb18",
+          "quantity": 10,
+          "menuItem": {
+            "id": "a6d1d1b6-72b5-464a-9115-c4689852fb18",
+            "name": "Iced Coffee",
+            "price": 250,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "b3c4b40a-c574-48d4-83e0-4770a7c7b0ad",
+          "createdAt": "2025-08-11T21:04:35.882Z",
+          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 10,
+          "menuItem": {
+            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+            "name": "R_Mojito",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "e49f8f97-0614-4d8f-89e0-f3e5ae91d57d",
+          "createdAt": "2025-08-11T09:43:32.968Z",
+          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 10,
+          "menuItem": {
+            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+            "name": "Milkshake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
       "id": "255661c6-11b3-4ee6-8c03-a01e66ec345a",
       "name": "Sokor Stick",
       "tag": [],
@@ -2050,7 +2580,7 @@
       "averagePrice": 1.35,
       "stockQuantity": -100,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -1638,
+      "inShopStockQuantity": -1856,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-08-11T21:00:09.561Z",
       "updatedAt": "2025-08-11T21:00:09.561Z",
@@ -2143,713 +2673,6 @@
             "id": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
             "name": "Lait au chocolat Marshmallow",
             "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "6faf698b-b7dc-4033-a49a-05153911fda8",
-      "name": "Snickers",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 170,
-      "stockQuantity": 7,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-03T02:29:10.523Z",
-      "updatedAt": "2025-08-03T02:29:10.523Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "270267b8-73a1-4ce0-a0f8-51a116f8e0d8",
-          "priceValue": 1700,
-          "unitValue": 10,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-13T13:25:46.031Z",
-          "updatedAt": "2025-08-13T13:25:46.031Z",
-          "expenseId": "6faf698b-b7dc-4033-a49a-05153911fda8"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "34afca01-4ee0-4503-b7d1-81f9834bc170",
-      "name": "Cigar",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0,
-      "stockQuantity": 4,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -401,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-26T03:32:55.575Z",
-      "updatedAt": "2025-07-26T03:32:55.575Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "04602db4-9c05-4132-8c28-217a5917d1fc",
-          "createdAt": "2025-08-13T10:38:44.813Z",
-          "expenseId": "34afca01-4ee0-4503-b7d1-81f9834bc170",
-          "menuItemId": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
-          "quantity": 2,
-          "menuItem": {
-            "id": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
-            "name": "3 Boules de Crème Glacée",
-            "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "133473a0-b702-4f62-adf4-5651354bdcb7",
-          "createdAt": "2025-08-14T14:36:04.434Z",
-          "expenseId": "34afca01-4ee0-4503-b7d1-81f9834bc170",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "quantity": 1,
-          "menuItem": {
-            "id": "54e42116-92c9-46bf-8b27-770f8be74823",
-            "name": "Milkshake Oreo",
-            "price": 400,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "463a2115-64bd-4b19-bd77-86e90db95a28",
-      "name": "ELA Creme Liquide 30%",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 210,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-23T17:07:53.206Z",
-      "updatedAt": "2025-06-23T17:07:53.206Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "2e2c952b-1435-42ef-9476-dc4385f42317",
-          "priceValue": 210,
-          "unitValue": 1,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:07:04.876Z",
-          "updatedAt": "2025-07-24T03:07:04.876Z",
-          "expenseId": "463a2115-64bd-4b19-bd77-86e90db95a28"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "026dacd2-a17f-4bb3-8a98-9456d701e2c4",
-      "name": "annanas",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-13T10:40:03.433Z",
-      "updatedAt": "2025-08-13T10:40:03.433Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "d9f41343-48ff-40db-bc56-0abc3300b144",
-      "name": "Crème Glacée Gini",
-      "tag": [],
-      "unit": "liter",
-      "averagePrice": 250,
-      "stockQuantity": -21.29999999999999,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -245.999999999999,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-17T03:21:19.030Z",
-      "updatedAt": "2025-07-17T03:21:19.030Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "cee67fd5-3b88-4fa2-8d08-96d1d19253cd",
-          "priceValue": 1500,
-          "unitValue": 6,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:21:46.659Z",
-          "updatedAt": "2025-07-24T03:21:46.659Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "c051d3b1-42d6-4883-ba9a-f05b78a4ab4b",
-          "createdAt": "2025-08-11T06:57:09.691Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
-          "quantity": 0.1,
-          "menuItem": {
-            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
-            "name": "Crêpe Morjene Bueno Spaghetti",
-            "price": 550,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "89994e7a-f16a-4c72-b487-a1d99ead5b87",
-          "createdAt": "2025-08-11T06:57:19.274Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
-          "quantity": 0.1,
-          "menuItem": {
-            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
-            "name": "Crêpe Morjene Ferrero Spaghetti",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "df6e7009-3132-4e3e-81df-0bae9323761d",
-          "createdAt": "2025-08-11T06:57:35.852Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
-          "quantity": 0.1,
-          "menuItem": {
-            "id": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
-            "name": "Crêpe Nutella Spaghetti",
-            "price": 700,
-            "isDeleted": false,
-            "isAvailable": false
-          }
-        },
-        {
-          "id": "26282e6e-11d9-4977-8517-0d9c94a75255",
-          "createdAt": "2025-08-13T11:47:32.002Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "4db5c024-215d-4cd1-84c0-d29b8c0fe17a",
-          "quantity": 0.4,
-          "menuItem": {
-            "id": "4db5c024-215d-4cd1-84c0-d29b8c0fe17a",
-            "name": "Crème Glacée Energie ",
-            "price": 600,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "1da6aa45-486c-4765-bcb0-1de4d2735ac0",
-          "createdAt": "2025-08-11T09:43:32.969Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-          "quantity": 0.2,
-          "menuItem": {
-            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-            "name": "Milkshake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "0794315e-f461-4b2a-a885-0bfa7480af1a",
-          "createdAt": "2025-08-11T06:57:01.706Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
-          "quantity": 0.1,
-          "menuItem": {
-            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
-            "name": "Crêpe Morjene Spaghetti",
-            "price": 500,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "f5c4dbbb-626d-4297-8a71-7169c930c797",
-          "createdAt": "2025-08-13T10:38:44.810Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
-          "quantity": 0.3,
-          "menuItem": {
-            "id": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
-            "name": "3 Boules de Crème Glacée",
-            "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "84761efd-53be-421c-a88e-7be1085e8ad5",
-          "createdAt": "2025-08-13T10:39:01.038Z",
-          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
-          "menuItemId": "0c5353bb-0d22-4906-8682-dfdc07e2bbe8",
-          "quantity": 0.3,
-          "menuItem": {
-            "id": "0c5353bb-0d22-4906-8682-dfdc07e2bbe8",
-            "name": "Crème glacée Choco-Bon",
-            "price": 550,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "88ecfde0-e7d8-4b5b-9ab4-7156800f4f7f",
-      "name": "Chocolat Evasion",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 2.4,
-      "stockQuantity": 1,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-03T02:30:03.305Z",
-      "updatedAt": "2025-08-03T02:30:03.305Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "adaf6785-0a43-42d3-b16f-0471f92f758e",
-          "priceValue": 240,
-          "unitValue": 100,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-13T13:27:05.368Z",
-          "updatedAt": "2025-08-13T13:27:05.368Z",
-          "expenseId": "88ecfde0-e7d8-4b5b-9ab4-7156800f4f7f"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
-      "name": "Creme Chantilly",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.9,
-      "stockQuantity": 2500,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -22950,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-23T17:08:16.372Z",
-      "updatedAt": "2025-06-23T17:08:16.372Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "1f92e50c-4849-48c7-9fcf-39bf44b69680",
-          "priceValue": 90,
-          "unitValue": 100,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-16T11:52:36.482Z",
-          "updatedAt": "2025-08-16T11:52:36.482Z",
-          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "3c52ac17-5595-482c-883a-5455b3bd7afa",
-          "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
-          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 100,
-          "menuItem": {
-            "id": "6677905d-f056-4156-84b9-c4152edbac96",
-            "name": "Cheesecake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "d3b27a32-e6b2-4f3a-bc97-5418fefeffde",
-          "createdAt": "2025-08-11T09:43:32.970Z",
-          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
-          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-          "quantity": 25,
-          "menuItem": {
-            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-            "name": "Milkshake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "55e58ee2-af8f-487b-b60c-bdbf57fc0243",
-          "createdAt": "2025-08-10T22:30:24.506Z",
-          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
-          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 150,
-          "menuItem": {
-            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
-            "name": "Gaufres",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "d4640ec3-206e-4df4-ba20-28bb73b2b196",
-      "name": "Kabir Citron",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 200,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:10:53.425Z",
-      "updatedAt": "2025-07-16T21:10:53.425Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "5155eb18-1661-4644-8bbb-8522dba73045",
-          "priceValue": 200,
-          "unitValue": 1,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:18:34.928Z",
-          "updatedAt": "2025-07-24T03:18:34.928Z",
-          "expenseId": "d4640ec3-206e-4df4-ba20-28bb73b2b196"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "a6973e90-c99c-44b0-b058-35b6d6b4be04",
-      "name": "Snack Lion",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 150,
-      "stockQuantity": 1,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-03T02:29:32.582Z",
-      "updatedAt": "2025-08-03T02:29:32.582Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "7c9fa141-707c-49bd-a995-3e5b8590bad2",
-          "priceValue": 750,
-          "unitValue": 5,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-13T13:25:14.609Z",
-          "updatedAt": "2025-08-13T13:25:14.609Z",
-          "expenseId": "a6973e90-c99c-44b0-b058-35b6d6b4be04"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "208d5c53-48e0-4486-bf1e-113329198ee9",
-      "name": "hamoud canette",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 50,
-      "stockQuantity": 37,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -137,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-13T10:59:11.990Z",
-      "updatedAt": "2025-08-13T10:59:11.990Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "8122637e-b9a4-4522-90cd-2ce7a7261b3d",
-          "priceValue": 300,
-          "unitValue": 6,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-16T11:56:20.949Z",
-          "updatedAt": "2025-08-16T11:56:20.949Z",
-          "expenseId": "208d5c53-48e0-4486-bf1e-113329198ee9"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "8e1d0f7a-10f2-4589-b6c2-ac174978b339",
-          "createdAt": "2025-08-16T09:53:44.154Z",
-          "expenseId": "208d5c53-48e0-4486-bf1e-113329198ee9",
-          "menuItemId": "47b670b3-6c62-441b-aedc-015321418e39",
-          "quantity": 1,
-          "menuItem": {
-            "id": "47b670b3-6c62-441b-aedc-015321418e39",
-            "name": "Hamoud",
-            "price": 100,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "499c0cd7-4b60-4bed-bdb2-005a015091a2",
-      "name": "Kitkat",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 175,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-03T02:29:22.411Z",
-      "updatedAt": "2025-08-03T02:29:22.411Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "8cb66e58-98d1-4b01-92eb-66ebf65bbb61",
-          "priceValue": 1750,
-          "unitValue": 10,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-03T02:32:15.562Z",
-          "updatedAt": "2025-08-03T02:32:15.562Z",
-          "expenseId": "499c0cd7-4b60-4bed-bdb2-005a015091a2"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
-      "name": "Citron Liquid",
-      "tag": [],
-      "unit": "milliliter",
-      "averagePrice": 0.667,
-      "stockQuantity": -5100,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -73050,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-26T03:33:02.784Z",
-      "updatedAt": "2025-07-26T03:33:02.784Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "24605884-2b99-4ba4-979c-503e567b9482",
-          "priceValue": 200,
-          "unitValue": 300,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-28T19:38:16.219Z",
-          "updatedAt": "2025-07-28T19:38:16.219Z",
-          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "0b4f3e90-5bf0-4b35-9f99-12c56c03b085",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 150,
-          "menuItem": {
-            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-            "name": "Creme au citron",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "91965b0b-5237-45c1-87e3-f9b7efcd122b",
-          "createdAt": "2025-08-11T21:04:35.879Z",
-          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
-          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-          "quantity": 150,
-          "menuItem": {
-            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-            "name": "R_Mojito",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "17429d15-7873-4fd0-9c9e-6db3101097f1",
-      "name": "Glace Eau",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -16000,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-26T03:32:47.621Z",
-      "updatedAt": "2025-07-26T03:32:47.621Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "d9490439-cb85-49db-9891-df1d046361e8",
-          "createdAt": "2025-08-11T07:03:19.592Z",
-          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
-          "menuItemId": "a6d1d1b6-72b5-464a-9115-c4689852fb18",
-          "quantity": 10,
-          "menuItem": {
-            "id": "a6d1d1b6-72b5-464a-9115-c4689852fb18",
-            "name": "Iced Coffee",
-            "price": 250,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "b3c4b40a-c574-48d4-83e0-4770a7c7b0ad",
-          "createdAt": "2025-08-11T21:04:35.882Z",
-          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
-          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-          "quantity": 10,
-          "menuItem": {
-            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-            "name": "R_Mojito",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "e49f8f97-0614-4d8f-89e0-f3e5ae91d57d",
-          "createdAt": "2025-08-11T09:43:32.968Z",
-          "expenseId": "17429d15-7873-4fd0-9c9e-6db3101097f1",
-          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-          "quantity": 10,
-          "menuItem": {
-            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-            "name": "Milkshake",
-            "price": 1,
             "isDeleted": false,
             "isAvailable": true
           }
@@ -3001,57 +2824,6 @@
       "menuItemExpenses": []
     },
     {
-      "id": "cb18633e-30c1-48d4-a6d2-d39d7179f7c2",
-      "name": "Hamoud Jaune",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 35,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -15,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-22T01:15:40.668Z",
-      "updatedAt": "2025-06-22T01:15:40.668Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "6c8cac19-ff81-4703-ab7b-fdb11d67b2ed",
-          "priceValue": 840,
-          "unitValue": 24,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:05:22.124Z",
-          "updatedAt": "2025-07-24T03:05:22.124Z",
-          "expenseId": "cb18633e-30c1-48d4-a6d2-d39d7179f7c2"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "975badfd-1331-4e45-99c8-ee5b9c72d1aa",
-          "createdAt": "2025-08-11T21:05:21.090Z",
-          "expenseId": "cb18633e-30c1-48d4-a6d2-d39d7179f7c2",
-          "menuItemId": "798f90f0-7591-43da-aca4-e6b9e8d7dd28",
-          "quantity": 1,
-          "menuItem": {
-            "id": "798f90f0-7591-43da-aca4-e6b9e8d7dd28",
-            "name": "Mojito Soda",
-            "price": 500,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
       "id": "2ac8d38f-c9b4-498f-934f-ccc9e47b8fd1",
       "name": "schweps canette",
       "tag": [],
@@ -3059,7 +2831,7 @@
       "averagePrice": 72.917,
       "stockQuantity": 0,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -110,
+      "inShopStockQuantity": -120,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-08-13T10:40:07.973Z",
       "updatedAt": "2025-08-13T10:40:07.973Z",
@@ -3128,6 +2900,71 @@
       "menuItemExpenses": []
     },
     {
+      "id": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a",
+      "name": "Nesquik",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 4.5,
+      "stockQuantity": 190,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -2440,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-11T20:56:01.294Z",
+      "updatedAt": "2025-08-11T20:56:01.294Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "add430dc-bdd5-4336-ae9b-4cfe24222893",
+          "priceValue": 1800,
+          "unitValue": 400,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-13T13:04:37.745Z",
+          "updatedAt": "2025-08-13T13:04:37.745Z",
+          "expenseId": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "83667145-2fab-4433-acdb-6a8a4082e341",
+          "createdAt": "2025-08-31T13:32:21.807Z",
+          "expenseId": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a",
+          "menuItemId": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+          "quantity": 10,
+          "menuItem": {
+            "id": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+            "name": "Lait au Chocolat",
+            "price": 200,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "8b84fc94-cf53-4cfe-afa5-7320e3e33bf1",
+          "createdAt": "2025-08-11T21:01:24.896Z",
+          "expenseId": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a",
+          "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+          "quantity": 10,
+          "menuItem": {
+            "id": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+            "name": "Lait au chocolat Marshmallow",
+            "price": 300,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
       "id": "adac2814-9b88-4f7a-a578-52dcf1fdee7c",
       "name": "L'OR",
       "tag": [],
@@ -3179,30 +3016,30 @@
       ]
     },
     {
-      "id": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a",
-      "name": "Nesquik",
+      "id": "cb18633e-30c1-48d4-a6d2-d39d7179f7c2",
+      "name": "Hamoud Jaune",
       "tag": [],
-      "unit": "gramme",
-      "averagePrice": 4.5,
-      "stockQuantity": 190,
+      "unit": "portion",
+      "averagePrice": 35,
+      "stockQuantity": 0,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -2030,
+      "inShopStockQuantity": -16,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-11T20:56:01.294Z",
-      "updatedAt": "2025-08-11T20:56:01.294Z",
+      "createdAt": "2025-06-22T01:15:40.668Z",
+      "updatedAt": "2025-06-22T01:15:40.668Z",
       "isDeleted": false,
       "enterpriseId": null,
       "stockConversionRatio": 1,
       "prices": [
         {
-          "id": "add430dc-bdd5-4336-ae9b-4cfe24222893",
-          "priceValue": 1800,
-          "unitValue": 400,
+          "id": "6c8cac19-ff81-4703-ab7b-fdb11d67b2ed",
+          "priceValue": 840,
+          "unitValue": 24,
           "multiplier": 1,
           "description": "",
-          "createdAt": "2025-08-13T13:04:37.745Z",
-          "updatedAt": "2025-08-13T13:04:37.745Z",
-          "expenseId": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a"
+          "createdAt": "2025-07-24T03:05:22.124Z",
+          "updatedAt": "2025-07-24T03:05:22.124Z",
+          "expenseId": "cb18633e-30c1-48d4-a6d2-d39d7179f7c2"
         }
       ],
       "expensesTag": [],
@@ -3214,29 +3051,15 @@
       "Enterprise": null,
       "menuItemExpenses": [
         {
-          "id": "83667145-2fab-4433-acdb-6a8a4082e341",
-          "createdAt": "2025-08-31T13:32:21.807Z",
-          "expenseId": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a",
-          "menuItemId": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
-          "quantity": 10,
+          "id": "975badfd-1331-4e45-99c8-ee5b9c72d1aa",
+          "createdAt": "2025-08-11T21:05:21.090Z",
+          "expenseId": "cb18633e-30c1-48d4-a6d2-d39d7179f7c2",
+          "menuItemId": "798f90f0-7591-43da-aca4-e6b9e8d7dd28",
+          "quantity": 1,
           "menuItem": {
-            "id": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
-            "name": "Lait au Chocolat",
-            "price": 200,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "8b84fc94-cf53-4cfe-afa5-7320e3e33bf1",
-          "createdAt": "2025-08-11T21:01:24.896Z",
-          "expenseId": "c55f30a3-6b1b-43a1-8e7b-f362fe2fcc6a",
-          "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
-          "quantity": 10,
-          "menuItem": {
-            "id": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
-            "name": "Lait au chocolat Marshmallow",
-            "price": 300,
+            "id": "798f90f0-7591-43da-aca4-e6b9e8d7dd28",
+            "name": "Mojito Soda",
+            "price": 500,
             "isDeleted": false,
             "isAvailable": true
           }
@@ -3405,152 +3228,6 @@
       "menuItemExpenses": []
     },
     {
-      "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-      "name": "Plateau Oeuf",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 15,
-      "stockQuantity": 7,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -25617,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-14T18:57:37.361Z",
-      "updatedAt": "2025-07-14T18:57:37.361Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "c0916312-798f-4795-b73b-22dc6c235cbf",
-          "priceValue": 450,
-          "unitValue": 30,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-16T11:58:28.289Z",
-          "updatedAt": "2025-08-16T11:58:28.289Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "a6520ddb-0af5-4c1b-9e98-ada9c02f10e7",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 2,
-          "menuItem": {
-            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-            "name": "Creme au citron",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "79d838a8-fecd-4682-a9f4-7d7c16383569",
-          "createdAt": "2025-08-10T20:31:59.515Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 10,
-          "menuItem": {
-            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-            "name": "Crepe Basic",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "bcc034cc-5d10-4c5f-a7bf-e497333178a0",
-          "createdAt": "2025-08-10T22:09:05.818Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
-          "quantity": 12,
-          "menuItem": {
-            "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
-            "name": "Gaufre Belgium ",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "0231623c-ceb0-47ad-9ea2-c61d769d456f",
-          "createdAt": "2025-08-10T22:30:24.499Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 12,
-          "menuItem": {
-            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
-            "name": "Gaufres",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "6d982822-b91d-4556-97c5-2db0b42320cf",
-          "createdAt": "2025-08-10T22:30:45.757Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
-          "quantity": 6,
-          "menuItem": {
-            "id": "1bd947bc-4735-4731-95ae-4e4023461972",
-            "name": "Pancakes",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "248fe342-50d5-408b-a371-a6edaee85c6f",
-          "createdAt": "2025-08-11T20:45:53.076Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "2525543e-8314-46ec-b906-8e0861578a91",
-          "quantity": 5,
-          "menuItem": {
-            "id": "2525543e-8314-46ec-b906-8e0861578a91",
-            "name": "Crêpe Croustillante",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "9f3d5b4d-9689-4a6b-8c1c-fb8cc93f45a1",
-      "name": "gout jus glace",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0,
-      "stockQuantity": 0,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": 0,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-08-13T10:39:48.432Z",
-      "updatedAt": "2025-08-13T10:39:48.432Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": []
-    },
-    {
       "id": "b7837809-4240-4cfa-9918-ebcc08ec70d6",
       "name": "Maxon Biscuit Oreo Small",
       "tag": [],
@@ -3558,7 +3235,7 @@
       "averagePrice": 5.782,
       "stockQuantity": 424,
       "inHouseStockQuantity": 192,
-      "inShopStockQuantity": -1298,
+      "inShopStockQuantity": -1466,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-06-23T17:00:42.886Z",
       "updatedAt": "2025-06-23T17:00:42.886Z",
@@ -3605,6 +3282,180 @@
             "id": "54e42116-92c9-46bf-8b27-770f8be74823",
             "name": "Milkshake Oreo",
             "price": 400,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "9f3d5b4d-9689-4a6b-8c1c-fb8cc93f45a1",
+      "name": "gout jus glace",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0,
+      "stockQuantity": 0,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": 0,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-08-13T10:39:48.432Z",
+      "updatedAt": "2025-08-13T10:39:48.432Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "d9f41343-48ff-40db-bc56-0abc3300b144",
+      "name": "Crème Glacée Gini",
+      "tag": [],
+      "unit": "liter",
+      "averagePrice": 250,
+      "stockQuantity": -21.29999999999999,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -261.8999999999988,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-17T03:21:19.030Z",
+      "updatedAt": "2025-07-17T03:21:19.030Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "cee67fd5-3b88-4fa2-8d08-96d1d19253cd",
+          "priceValue": 1500,
+          "unitValue": 6,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-24T03:21:46.659Z",
+          "updatedAt": "2025-07-24T03:21:46.659Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "c051d3b1-42d6-4883-ba9a-f05b78a4ab4b",
+          "createdAt": "2025-08-11T06:57:09.691Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+          "quantity": 0.1,
+          "menuItem": {
+            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+            "name": "Crêpe Morjene Bueno Spaghetti",
+            "price": 550,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "89994e7a-f16a-4c72-b487-a1d99ead5b87",
+          "createdAt": "2025-08-11T06:57:19.274Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "f5050790-88a8-4bb3-97a5-688e77421552",
+          "quantity": 0.1,
+          "menuItem": {
+            "id": "f5050790-88a8-4bb3-97a5-688e77421552",
+            "name": "Crêpe Morjene Ferrero Spaghetti",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "df6e7009-3132-4e3e-81df-0bae9323761d",
+          "createdAt": "2025-08-11T06:57:35.852Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
+          "quantity": 0.1,
+          "menuItem": {
+            "id": "df501eb5-52ac-4aab-9d4f-1d08668ae176",
+            "name": "Crêpe Nutella Spaghetti",
+            "price": 700,
+            "isDeleted": false,
+            "isAvailable": false
+          }
+        },
+        {
+          "id": "26282e6e-11d9-4977-8517-0d9c94a75255",
+          "createdAt": "2025-08-13T11:47:32.002Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "4db5c024-215d-4cd1-84c0-d29b8c0fe17a",
+          "quantity": 0.4,
+          "menuItem": {
+            "id": "4db5c024-215d-4cd1-84c0-d29b8c0fe17a",
+            "name": "Crème Glacée Energie ",
+            "price": 600,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "1da6aa45-486c-4765-bcb0-1de4d2735ac0",
+          "createdAt": "2025-08-11T09:43:32.969Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 0.2,
+          "menuItem": {
+            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+            "name": "Milkshake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "0794315e-f461-4b2a-a885-0bfa7480af1a",
+          "createdAt": "2025-08-11T06:57:01.706Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+          "quantity": 0.1,
+          "menuItem": {
+            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+            "name": "Crêpe Morjene Spaghetti",
+            "price": 500,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "f5c4dbbb-626d-4297-8a71-7169c930c797",
+          "createdAt": "2025-08-13T10:38:44.810Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
+          "quantity": 0.3,
+          "menuItem": {
+            "id": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
+            "name": "3 Boules de Crème Glacée",
+            "price": 300,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "84761efd-53be-421c-a88e-7be1085e8ad5",
+          "createdAt": "2025-08-13T10:39:01.038Z",
+          "expenseId": "d9f41343-48ff-40db-bc56-0abc3300b144",
+          "menuItemId": "0c5353bb-0d22-4906-8682-dfdc07e2bbe8",
+          "quantity": 0.3,
+          "menuItem": {
+            "id": "0c5353bb-0d22-4906-8682-dfdc07e2bbe8",
+            "name": "Crème glacée Choco-Bon",
+            "price": 550,
             "isDeleted": false,
             "isAvailable": true
           }
@@ -3738,30 +3589,30 @@
       "menuItemExpenses": []
     },
     {
-      "id": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
-      "name": "Khamara",
+      "id": "044da160-93a6-42a7-b53e-f5da0d19efb1",
+      "name": "Cafe Aroma",
       "tag": [],
       "unit": "gramme",
-      "averagePrice": 0.8,
-      "stockQuantity": -3550,
+      "averagePrice": 1,
+      "stockQuantity": -270,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -40100,
+      "inShopStockQuantity": -4320,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-26T03:32:40.223Z",
-      "updatedAt": "2025-07-26T03:32:40.223Z",
+      "createdAt": "2025-07-16T21:14:33.157Z",
+      "updatedAt": "2025-07-16T21:14:33.157Z",
       "isDeleted": false,
       "enterpriseId": null,
       "stockConversionRatio": 1,
       "prices": [
         {
-          "id": "40e9519f-d964-48d1-9b14-2a5ce48b0519",
-          "priceValue": 8,
-          "unitValue": 10,
+          "id": "e20d677a-6232-4ceb-9981-7a65394e19c9",
+          "priceValue": 250,
+          "unitValue": 250,
           "multiplier": 1,
           "description": "",
-          "createdAt": "2025-07-28T19:42:32.812Z",
-          "updatedAt": "2025-07-28T19:42:32.812Z",
-          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb"
+          "createdAt": "2025-07-24T03:19:51.906Z",
+          "updatedAt": "2025-07-24T03:19:51.906Z",
+          "expenseId": "044da160-93a6-42a7-b53e-f5da0d19efb1"
         }
       ],
       "expensesTag": [],
@@ -3773,11 +3624,388 @@
       "Enterprise": null,
       "menuItemExpenses": [
         {
-          "id": "729f926b-1cf5-473f-a112-a076ec174ac3",
-          "createdAt": "2025-08-10T04:28:44.389Z",
-          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "id": "2df7a86d-424d-40d0-8f6a-b2e936573a2c",
+          "createdAt": "2025-08-11T21:01:59.775Z",
+          "expenseId": "044da160-93a6-42a7-b53e-f5da0d19efb1",
+          "menuItemId": "98cf59e2-5093-4152-905a-21294548139d",
+          "quantity": 10,
+          "menuItem": {
+            "id": "98cf59e2-5093-4152-905a-21294548139d",
+            "name": "Cafe au Lait",
+            "price": 200,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41",
+      "name": "Menthe",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 0.5,
+      "stockQuantity": -170,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -2540,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-22T01:16:24.662Z",
+      "updatedAt": "2025-06-22T01:16:24.662Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "736253cc-72e0-4f12-a9f6-ebbd622d5abb",
+          "priceValue": 50,
+          "unitValue": 100,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-07-26T03:33:39.187Z",
+          "updatedAt": "2025-07-26T03:33:39.187Z",
+          "expenseId": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "bc3cb873-3e6d-41eb-86f8-c0d8386f87d0",
+          "createdAt": "2025-08-11T21:04:35.881Z",
+          "expenseId": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41",
+          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+          "quantity": 5,
+          "menuItem": {
+            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
+            "name": "R_Mojito",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+      "name": "Morjene Bueno",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.913,
+      "stockQuantity": 12000,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -60120,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-25T01:41:59.319Z",
+      "updatedAt": "2025-07-25T01:41:59.319Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "6a0aa238-e667-40e1-8c9b-fcb6f3cd8c96",
+          "priceValue": 10950,
+          "unitValue": 12000,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-31T14:00:02.655Z",
+          "updatedAt": "2025-08-31T14:00:02.655Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "0c2a2b39-8e7c-421f-b855-a0ce2019f197",
+          "createdAt": "2025-08-11T06:57:09.690Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+          "quantity": 100,
+          "menuItem": {
+            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
+            "name": "Crêpe Morjene Bueno Spaghetti",
+            "price": 550,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "2d66c5c3-e44d-432d-8fc1-a597c42df102",
+          "createdAt": "2025-08-11T06:56:39.645Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+          "quantity": 75,
+          "menuItem": {
+            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
+            "name": "Crêpe Foure Banane",
+            "price": 700,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "702a5f18-916b-4d0d-b975-fd1fff758032",
+          "createdAt": "2025-08-11T06:57:01.705Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
+          "quantity": 100,
+          "menuItem": {
+            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
+            "name": "Crêpe Morjene Spaghetti",
+            "price": 500,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "c3c4fc95-0fd0-4a1e-8c30-c6e84b5c4012",
+          "createdAt": "2025-08-11T20:47:50.640Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+          "quantity": 10,
+          "menuItem": {
+            "id": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
+            "name": "Crêpe Croustillante Morjene",
+            "price": 300,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "99806f9f-7a74-4e60-b69e-48483d67e23c",
+          "createdAt": "2025-08-11T20:48:30.939Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "0625e445-8449-44b8-b020-ca865043f897",
+          "quantity": 45,
+          "menuItem": {
+            "id": "0625e445-8449-44b8-b020-ca865043f897",
+            "name": "Crêpe Croustillante Morjene Bueno",
+            "price": 350,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "329b5284-34b2-4847-aa12-5d7effe01db2",
+          "createdAt": "2025-08-14T14:36:25.154Z",
+          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
+          "menuItemId": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+          "quantity": 100,
+          "menuItem": {
+            "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
+            "name": "Milkshake Morjene Bueno",
+            "price": 400,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
+      "name": "Tooping",
+      "tag": [],
+      "unit": "portion",
+      "averagePrice": 220,
+      "stockQuantity": -0.4700000000000001,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -3.689999999999977,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-07-16T21:16:27.535Z",
+      "updatedAt": "2025-07-16T21:16:27.535Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "47af7f7b-546f-4f02-9885-6915bfe95582",
+          "priceValue": 220,
+          "unitValue": 1,
+          "multiplier": 1,
+          "description": "Etablissement Boudaiffa",
+          "createdAt": "2025-07-24T03:20:24.338Z",
+          "updatedAt": "2025-07-24T03:20:24.338Z",
+          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "4e57ed3e-d334-4bff-a78c-91afb7906711",
+          "createdAt": "2025-08-13T10:38:44.812Z",
+          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
+          "menuItemId": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
+          "quantity": 0.01,
+          "menuItem": {
+            "id": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
+            "name": "3 Boules de Crème Glacée",
+            "price": 300,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "40d601c8-fb29-448f-84b0-16227af8d82a",
+          "createdAt": "2025-08-14T14:36:04.435Z",
+          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "quantity": 0.01,
+          "menuItem": {
+            "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+            "name": "Milkshake Oreo",
+            "price": 400,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+      "name": "Creme Chantilly",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.9,
+      "stockQuantity": 2500,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -24650,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-23T17:08:16.372Z",
+      "updatedAt": "2025-06-23T17:08:16.372Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "1f92e50c-4849-48c7-9fcf-39bf44b69680",
+          "priceValue": 90,
+          "unitValue": 100,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-16T11:52:36.482Z",
+          "updatedAt": "2025-08-16T11:52:36.482Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "3c52ac17-5595-482c-883a-5455b3bd7afa",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 100,
+          "menuItem": {
+            "id": "6677905d-f056-4156-84b9-c4152edbac96",
+            "name": "Cheesecake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "d3b27a32-e6b2-4f3a-bc97-5418fefeffde",
+          "createdAt": "2025-08-11T09:43:32.970Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+          "menuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 25,
+          "menuItem": {
+            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+            "name": "Milkshake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "55e58ee2-af8f-487b-b60c-bdbf57fc0243",
+          "createdAt": "2025-08-10T22:30:24.506Z",
+          "expenseId": "b670a5bb-04e4-40a0-aea4-886e2c0d769d",
+          "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
+          "quantity": 150,
+          "menuItem": {
+            "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
+            "name": "Gaufres",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        }
+      ]
+    },
+    {
+      "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+      "name": "Margarine Many",
+      "tag": [],
+      "unit": "gramme",
+      "averagePrice": 0.345,
+      "stockQuantity": -3600,
+      "inHouseStockQuantity": 0,
+      "inShopStockQuantity": -415200,
+      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+      "createdAt": "2025-06-23T17:04:28.941Z",
+      "updatedAt": "2025-06-23T17:04:28.941Z",
+      "isDeleted": false,
+      "enterpriseId": null,
+      "stockConversionRatio": 1,
+      "prices": [
+        {
+          "id": "254a9476-e510-4285-8267-1d4747f4d432",
+          "priceValue": 180,
+          "unitValue": 500,
+          "multiplier": 1,
+          "description": "",
+          "createdAt": "2025-08-13T13:23:11.128Z",
+          "updatedAt": "2025-08-13T13:23:11.128Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269"
+        },
+        {
+          "id": "643e1524-7589-4a55-a245-00d1b17aacf5",
+          "priceValue": 3960,
+          "unitValue": 500,
+          "multiplier": 24,
+          "description": "",
+          "createdAt": "2025-08-13T13:23:11.128Z",
+          "updatedAt": "2025-08-13T13:23:11.128Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269"
+        }
+      ],
+      "expensesTag": [],
+      "createdBy": {
+        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
+        "email": "rygaa@pm.me",
+        "name": ""
+      },
+      "Enterprise": null,
+      "menuItemExpenses": [
+        {
+          "id": "990f749c-ac15-4f47-9835-2851b86a40f3",
+          "createdAt": "2025-08-10T04:28:44.387Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
           "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
-          "quantity": 1,
+          "quantity": 250,
           "menuItem": {
             "id": "1d33be58-94d8-47f0-aaab-e44c241453f6",
             "name": "Pate Tarte Citron",
@@ -3787,11 +4015,53 @@
           }
         },
         {
-          "id": "ecdee720-580d-4664-af61-6dc4eb52a5b5",
-          "createdAt": "2025-08-10T22:09:05.821Z",
-          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "id": "f59eb1b8-8996-47a9-8efa-718cc6e32762",
+          "createdAt": "2025-08-10T04:35:52.873Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
+          "quantity": 60,
+          "menuItem": {
+            "id": "6677905d-f056-4156-84b9-c4152edbac96",
+            "name": "Cheesecake",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "71aa9ab7-6500-4b10-b5e6-c37eb2227261",
+          "createdAt": "2025-11-15T04:20:15.749Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 20,
+          "menuItem": {
+            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+            "name": "Creme au citron",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "b4ba64ff-43e2-41a5-9521-91719880c095",
+          "createdAt": "2025-08-10T20:31:59.519Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 100,
+          "menuItem": {
+            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+            "name": "Crepe Basic",
+            "price": 1,
+            "isDeleted": false,
+            "isAvailable": true
+          }
+        },
+        {
+          "id": "a875150b-5801-49e6-88a8-86ddc2c0a89d",
+          "createdAt": "2025-08-10T22:09:05.817Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
           "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
-          "quantity": 50,
+          "quantity": 400,
           "menuItem": {
             "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
             "name": "Gaufre Belgium ",
@@ -3801,28 +4071,14 @@
           }
         },
         {
-          "id": "10d70c94-89b4-4274-b2a4-b9a4b8d66c27",
-          "createdAt": "2025-08-10T22:30:24.507Z",
-          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "id": "c8c94d24-29e0-4191-833e-5b3891564b48",
+          "createdAt": "2025-08-10T22:30:24.500Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
           "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 50,
+          "quantity": 100,
           "menuItem": {
             "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
             "name": "Gaufres",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "e0c3b474-ecc8-43db-a456-90c398806624",
-          "createdAt": "2025-08-10T22:30:45.759Z",
-          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
-          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
-          "quantity": 50,
-          "menuItem": {
-            "id": "1bd947bc-4735-4731-95ae-4e4023461972",
-            "name": "Pancakes",
             "price": 1,
             "isDeleted": false,
             "isAvailable": true
@@ -3838,7 +4094,7 @@
       "averagePrice": 0.7,
       "stockQuantity": -15075,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -193675,
+      "inShopStockQuantity": -210400,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
       "createdAt": "2025-07-25T22:13:30.846Z",
       "updatedAt": "2025-07-25T22:13:30.846Z",
@@ -3952,40 +4208,30 @@
       ]
     },
     {
-      "id": "d01051e4-ec88-47dd-8ace-61312e186269",
-      "name": "Margarine Many",
+      "id": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+      "name": "Khamara",
       "tag": [],
       "unit": "gramme",
-      "averagePrice": 0.345,
-      "stockQuantity": -3600,
+      "averagePrice": 0.8,
+      "stockQuantity": -3550,
       "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -378700,
+      "inShopStockQuantity": -43800,
       "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-23T17:04:28.941Z",
-      "updatedAt": "2025-06-23T17:04:28.941Z",
+      "createdAt": "2025-07-26T03:32:40.223Z",
+      "updatedAt": "2025-07-26T03:32:40.223Z",
       "isDeleted": false,
       "enterpriseId": null,
       "stockConversionRatio": 1,
       "prices": [
         {
-          "id": "254a9476-e510-4285-8267-1d4747f4d432",
-          "priceValue": 180,
-          "unitValue": 500,
+          "id": "40e9519f-d964-48d1-9b14-2a5ce48b0519",
+          "priceValue": 8,
+          "unitValue": 10,
           "multiplier": 1,
           "description": "",
-          "createdAt": "2025-08-13T13:23:11.128Z",
-          "updatedAt": "2025-08-13T13:23:11.128Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269"
-        },
-        {
-          "id": "643e1524-7589-4a55-a245-00d1b17aacf5",
-          "priceValue": 3960,
-          "unitValue": 500,
-          "multiplier": 24,
-          "description": "",
-          "createdAt": "2025-08-13T13:23:11.128Z",
-          "updatedAt": "2025-08-13T13:23:11.128Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269"
+          "createdAt": "2025-07-28T19:42:32.812Z",
+          "updatedAt": "2025-07-28T19:42:32.812Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb"
         }
       ],
       "expensesTag": [],
@@ -3997,11 +4243,11 @@
       "Enterprise": null,
       "menuItemExpenses": [
         {
-          "id": "990f749c-ac15-4f47-9835-2851b86a40f3",
-          "createdAt": "2025-08-10T04:28:44.387Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "id": "729f926b-1cf5-473f-a112-a076ec174ac3",
+          "createdAt": "2025-08-10T04:28:44.389Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
           "menuItemId": "1d33be58-94d8-47f0-aaab-e44c241453f6",
-          "quantity": 250,
+          "quantity": 1,
           "menuItem": {
             "id": "1d33be58-94d8-47f0-aaab-e44c241453f6",
             "name": "Pate Tarte Citron",
@@ -4011,53 +4257,11 @@
           }
         },
         {
-          "id": "aaad1c13-3cc3-439b-b8a6-7e75432e655c",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 20,
-          "menuItem": {
-            "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-            "name": "Creme au citron",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "f59eb1b8-8996-47a9-8efa-718cc6e32762",
-          "createdAt": "2025-08-10T04:35:52.873Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
-          "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 60,
-          "menuItem": {
-            "id": "6677905d-f056-4156-84b9-c4152edbac96",
-            "name": "Cheesecake",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "b4ba64ff-43e2-41a5-9521-91719880c095",
-          "createdAt": "2025-08-10T20:31:59.519Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
-          "menuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 100,
-          "menuItem": {
-            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-            "name": "Crepe Basic",
-            "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "a875150b-5801-49e6-88a8-86ddc2c0a89d",
-          "createdAt": "2025-08-10T22:09:05.817Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "id": "ecdee720-580d-4664-af61-6dc4eb52a5b5",
+          "createdAt": "2025-08-10T22:09:05.821Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
           "menuItemId": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
-          "quantity": 400,
+          "quantity": 50,
           "menuItem": {
             "id": "254b80f0-9c3f-4b72-b781-674f7ad94e15",
             "name": "Gaufre Belgium ",
@@ -4067,11 +4271,11 @@
           }
         },
         {
-          "id": "c8c94d24-29e0-4191-833e-5b3891564b48",
-          "createdAt": "2025-08-10T22:30:24.500Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "id": "10d70c94-89b4-4274-b2a4-b9a4b8d66c27",
+          "createdAt": "2025-08-10T22:30:24.507Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
           "menuItemId": "91fe4316-e352-4d42-b3a0-4e24de046997",
-          "quantity": 100,
+          "quantity": 50,
           "menuItem": {
             "id": "91fe4316-e352-4d42-b3a0-4e24de046997",
             "name": "Gaufres",
@@ -4079,319 +4283,17 @@
             "isDeleted": false,
             "isAvailable": true
           }
-        }
-      ]
-    },
-    {
-      "id": "044da160-93a6-42a7-b53e-f5da0d19efb1",
-      "name": "Cafe Aroma",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 1,
-      "stockQuantity": -270,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -3880,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:14:33.157Z",
-      "updatedAt": "2025-07-16T21:14:33.157Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
+        },
         {
-          "id": "e20d677a-6232-4ceb-9981-7a65394e19c9",
-          "priceValue": 250,
-          "unitValue": 250,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-24T03:19:51.906Z",
-          "updatedAt": "2025-07-24T03:19:51.906Z",
-          "expenseId": "044da160-93a6-42a7-b53e-f5da0d19efb1"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "2df7a86d-424d-40d0-8f6a-b2e936573a2c",
-          "createdAt": "2025-08-11T21:01:59.775Z",
-          "expenseId": "044da160-93a6-42a7-b53e-f5da0d19efb1",
-          "menuItemId": "98cf59e2-5093-4152-905a-21294548139d",
-          "quantity": 10,
+          "id": "e0c3b474-ecc8-43db-a456-90c398806624",
+          "createdAt": "2025-08-10T22:30:45.759Z",
+          "expenseId": "e2803b0a-fb7c-4f66-bac1-503985fd2beb",
+          "menuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 50,
           "menuItem": {
-            "id": "98cf59e2-5093-4152-905a-21294548139d",
-            "name": "Cafe au Lait",
-            "price": 200,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41",
-      "name": "Menthe",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 0.5,
-      "stockQuantity": -170,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -2435,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-06-22T01:16:24.662Z",
-      "updatedAt": "2025-06-22T01:16:24.662Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "736253cc-72e0-4f12-a9f6-ebbd622d5abb",
-          "priceValue": 50,
-          "unitValue": 100,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-07-26T03:33:39.187Z",
-          "updatedAt": "2025-07-26T03:33:39.187Z",
-          "expenseId": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "bc3cb873-3e6d-41eb-86f8-c0d8386f87d0",
-          "createdAt": "2025-08-11T21:04:35.881Z",
-          "expenseId": "5cce0f7c-a1e4-41f1-a6b5-22f5aa92fb41",
-          "menuItemId": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-          "quantity": 5,
-          "menuItem": {
-            "id": "acd95ac3-d4b7-4c94-81cd-cfd72b0e733f",
-            "name": "R_Mojito",
+            "id": "1bd947bc-4735-4731-95ae-4e4023461972",
+            "name": "Pancakes",
             "price": 1,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
-      "name": "Tooping",
-      "tag": [],
-      "unit": "portion",
-      "averagePrice": 220,
-      "stockQuantity": -0.4700000000000001,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -3.37999999999998,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-16T21:16:27.535Z",
-      "updatedAt": "2025-07-16T21:16:27.535Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "47af7f7b-546f-4f02-9885-6915bfe95582",
-          "priceValue": 220,
-          "unitValue": 1,
-          "multiplier": 1,
-          "description": "Etablissement Boudaiffa",
-          "createdAt": "2025-07-24T03:20:24.338Z",
-          "updatedAt": "2025-07-24T03:20:24.338Z",
-          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "4e57ed3e-d334-4bff-a78c-91afb7906711",
-          "createdAt": "2025-08-13T10:38:44.812Z",
-          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
-          "menuItemId": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
-          "quantity": 0.01,
-          "menuItem": {
-            "id": "c4dc92da-e88e-4d4c-9afe-d40528a2323e",
-            "name": "3 Boules de Crème Glacée",
-            "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "40d601c8-fb29-448f-84b0-16227af8d82a",
-          "createdAt": "2025-08-14T14:36:04.435Z",
-          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "quantity": 0.01,
-          "menuItem": {
-            "id": "54e42116-92c9-46bf-8b27-770f8be74823",
-            "name": "Milkshake Oreo",
-            "price": 400,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        }
-      ]
-    },
-    {
-      "id": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-      "name": "Morjene Bueno",
-      "tag": [],
-      "unit": "gramme",
-      "averagePrice": 0.913,
-      "stockQuantity": 12000,
-      "inHouseStockQuantity": 0,
-      "inShopStockQuantity": -56495,
-      "createdById": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-      "createdAt": "2025-07-25T01:41:59.319Z",
-      "updatedAt": "2025-07-25T01:41:59.319Z",
-      "isDeleted": false,
-      "enterpriseId": null,
-      "stockConversionRatio": 1,
-      "prices": [
-        {
-          "id": "6a0aa238-e667-40e1-8c9b-fcb6f3cd8c96",
-          "priceValue": 10950,
-          "unitValue": 12000,
-          "multiplier": 1,
-          "description": "",
-          "createdAt": "2025-08-31T14:00:02.655Z",
-          "updatedAt": "2025-08-31T14:00:02.655Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2"
-        }
-      ],
-      "expensesTag": [],
-      "createdBy": {
-        "id": "4e0b3f30-6dd2-406b-b215-0d3b8ea14e72",
-        "email": "rygaa@pm.me",
-        "name": ""
-      },
-      "Enterprise": null,
-      "menuItemExpenses": [
-        {
-          "id": "0c2a2b39-8e7c-421f-b855-a0ce2019f197",
-          "createdAt": "2025-08-11T06:57:09.690Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "04ca63dc-139a-478d-b40d-913d01e62a2c",
-          "quantity": 100,
-          "menuItem": {
-            "id": "04ca63dc-139a-478d-b40d-913d01e62a2c",
-            "name": "Crêpe Morjene Bueno Spaghetti",
-            "price": 550,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "10a50ec7-1d57-4e67-9ce2-7e5d0c027b5a",
-          "createdAt": "2025-08-11T06:56:06.613Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "quantity": 100,
-          "menuItem": {
-            "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-            "name": "Crêpe Morjene Bueno",
-            "price": 350,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "14fe2892-a251-485c-bb5f-125f1582ca4d",
-          "createdAt": "2025-08-11T06:56:23.197Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 75,
-          "menuItem": {
-            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-            "name": "Crêpe Rouler Banane",
-            "price": 750,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "2d66c5c3-e44d-432d-8fc1-a597c42df102",
-          "createdAt": "2025-08-11T06:56:39.645Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-          "quantity": 75,
-          "menuItem": {
-            "id": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
-            "name": "Crêpe Foure Banane",
-            "price": 700,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "702a5f18-916b-4d0d-b975-fd1fff758032",
-          "createdAt": "2025-08-11T06:57:01.705Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "382e38df-27b7-487b-930a-f8bfadffb079",
-          "quantity": 100,
-          "menuItem": {
-            "id": "382e38df-27b7-487b-930a-f8bfadffb079",
-            "name": "Crêpe Morjene Spaghetti",
-            "price": 500,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "c3c4fc95-0fd0-4a1e-8c30-c6e84b5c4012",
-          "createdAt": "2025-08-11T20:47:50.640Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
-          "quantity": 10,
-          "menuItem": {
-            "id": "679fbf07-3c0b-4607-bc1b-762c0895f5db",
-            "name": "Crêpe Croustillante Morjene",
-            "price": 300,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "99806f9f-7a74-4e60-b69e-48483d67e23c",
-          "createdAt": "2025-08-11T20:48:30.939Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "0625e445-8449-44b8-b020-ca865043f897",
-          "quantity": 45,
-          "menuItem": {
-            "id": "0625e445-8449-44b8-b020-ca865043f897",
-            "name": "Crêpe Croustillante Morjene Bueno",
-            "price": 350,
-            "isDeleted": false,
-            "isAvailable": true
-          }
-        },
-        {
-          "id": "329b5284-34b2-4847-aa12-5d7effe01db2",
-          "createdAt": "2025-08-14T14:36:25.154Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
-          "quantity": 100,
-          "menuItem": {
-            "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
-            "name": "Milkshake Morjene Bueno",
-            "price": 400,
             "isDeleted": false,
             "isAvailable": true
           }

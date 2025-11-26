@@ -14,6 +14,7 @@
   import NodesDemo from "./routes/NodesDemo.svelte";
   import ClientOrders from "./routes/ClientOrders/ClientOrders.svelte";
   import ClientOrdersV2 from "./routes/ClientOrders_version2/ClientOrders.svelte";
+  import ClientOrdersV3 from "./routes/ClientOrders_version3/ClientOrders.svelte";
   import Orders from "./routes/Orders/ClientOrders.svelte";
   import Stats from "./routes/Stats/Stats.svelte";
   import Carts from "./routes/Carts/Carts.svelte";
@@ -182,6 +183,9 @@
         </Route>
         <Route path="/client-orders-v2">
           <ClientOrdersV2 />
+        </Route>
+                <Route path="/client-orders-v3">
+          <ClientOrdersV3 />
         </Route>
         <Route path="/users">
           <Users />

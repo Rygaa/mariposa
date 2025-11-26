@@ -10,6 +10,7 @@
     size = "md" as "xs" | "sm" | "md" | "lg" | "xl",
     disabled = false,
     loading = false,
+    isLoading = false,
     fullWidth = false,
     rounded = "md" as "none" | "sm" | "md" | "lg" | "full",
     type = "button" as "button" | "submit" | "reset",
@@ -38,6 +39,7 @@
     size?: "xs" | "sm" | "md" | "lg" | "xl";
     disabled?: boolean;
     loading?: boolean;
+    isLoading?: boolean;
     fullWidth?: boolean;
     rounded?: "none" | "sm" | "md" | "lg" | "full";
     type?: "button" | "submit" | "reset";
@@ -62,12 +64,15 @@
     children?: Snippet;
   } = $props();
 
+  // Computed loading state
+  const isLoadingState = $derived(loading || isLoading);
+
   // Handle click with ripple effect
   let ripples = $state<Array<{ x: number; y: number; size: number; id: number }>>([]);
   let nextRippleId = $state(0);
 
   function handleClick(e: MouseEvent) {
-    if (disabled || loading) return;
+    if (disabled || isLoadingState) return;
 
     onclick?.(e);
 
@@ -144,7 +149,7 @@
       sizeClasses[size],
       roundedClasses[rounded],
       fullWidth ? "w-full" : "",
-      loading ? "cursor-wait" : "",
+      isLoadingState ? "cursor-wait" : "",
       "overflow-hidden",
     ]
       .filter(Boolean)
@@ -170,10 +175,10 @@
       {target}
       {rel}
       class="{buttonClasses} select-none [-webkit-tap-highlight-color:transparent]"
-      class:pointer-events-none={loading}
+      class:pointer-events-none={isLoadingState}
       onclick={handleClick}
     >
-      {#if loading}
+      {#if isLoadingState}
         <span class="absolute inset-0 flex items-center justify-center">
           <svg
             class="animate-spin {spinnerSizes[size]}"
@@ -191,7 +196,7 @@
         </span>
       {/if}
 
-      <span class:opacity-0={loading} class="inline-flex items-center gap-2 transition-opacity duration-200">
+      <span class:opacity-0={isLoadingState} class="inline-flex items-center gap-2 transition-opacity duration-200">
         {#if iconName && isIconLeft}
           <Icon iconName={iconName} size={iconSizes[size]} class={iconColorClasses[variant]} />
         {/if}
@@ -229,7 +234,7 @@
       {type}
       {disabled}
       class="{buttonClasses} select-none [-webkit-tap-highlight-color:transparent] cursor-pointer"
-      class:pointer-events-none={loading}
+      class:pointer-events-none={isLoadingState}
       onclick={handleClick}
       {onmouseenter}
       {onmouseleave}
@@ -240,7 +245,7 @@
       {onkeydown}
       {onkeyup}
     >
-      {#if loading}
+      {#if isLoadingState}
         <span class="absolute inset-0 flex items-center justify-center">
           <svg
             class="animate-spin {spinnerSizes[size]}"
@@ -258,7 +263,7 @@
         </span>
       {/if}
 
-      <span class:opacity-0={loading} class="inline-flex items-center gap-2 transition-opacity duration-200">
+      <span class:opacity-0={isLoadingState} class="inline-flex items-center gap-2 transition-opacity duration-200">
         {#if iconName && isIconLeft}
           <Icon iconName={iconName} size={iconSizes[size]} class={iconColorClasses[variant]} />
         {/if}

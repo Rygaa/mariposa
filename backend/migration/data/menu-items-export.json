@@ -1,6 +1,6 @@
 {
-  "exportDate": "2025-11-15T06:19:10.823Z",
-  "totalItems": 109,
+  "exportDate": "2025-11-25T00:37:05.297Z",
+  "totalItems": 112,
   "menuItems": [
     {
       "id": "2e51ac57-9ab6-4f34-836d-cfcd42aa1c69",
@@ -168,13 +168,105 @@
       "menuItemExpenses": []
     },
     {
+      "id": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+      "name": "Milkshake Caramel",
+      "price": 400,
+      "image": null,
+      "description": "A rich milkshake topped with caramel sauce.",
+      "createdAt": "2025-06-11T21:00:14.198Z",
+      "updatedAt": "2025-11-13T00:50:51.662Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 78.5,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": true,
+      "parentMenuItemContainer": [
+        {
+          "id": "6ffa1b16-a70a-497e-85b5-d3fc577e2cfd",
+          "parentMenuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:10.304Z",
+          "subMenuItem": {
+            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+            "name": "Milkshake",
+            "price": 1,
+            "image": null,
+            "description": null,
+            "createdAt": "2025-08-10T04:25:43.025Z",
+            "updatedAt": "2025-08-11T09:43:32.976Z",
+            "isDeleted": false,
+            "isAvailable": true,
+            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+            "producedQuantityPerRecipe": null,
+            "recipeId": null,
+            "cost": 78.5,
+            "isRecipe": false,
+            "shouldAppearInScreenshot": true,
+            "doesExpensesAndRecipesNeedUpdate": false
+          }
+        }
+      ],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
+        "isUnlisted": false,
+        "iconname": null,
+        "index": null
+      },
+      "supplements": [
+        {
+          "id": "7ab5c781-f5c3-4eae-bb7f-b571ab3bcd4f",
+          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+          "createdAt": "2025-10-20T10:48:42.250Z"
+        },
+        {
+          "id": "68946dd9-c2ee-4159-abc3-9065211df2ab",
+          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+          "createdAt": "2025-10-20T10:49:19.003Z"
+        },
+        {
+          "id": "62fd8093-8ca7-469b-9531-d59e89aae6b8",
+          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+          "createdAt": "2025-10-20T10:51:08.630Z"
+        }
+      ],
+      "menuItemMenuItemOption": [
+        {
+          "id": "be47de17-445a-4d09-a9cd-e25d002f8f48",
+          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "optionId": "107df35d-1d73-490f-b89e-85d92e05ab3b",
+          "createdAt": "2025-08-11T09:56:13.769Z"
+        },
+        {
+          "id": "5563d9d5-a2c6-4539-96e9-658f1167d2fe",
+          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
+          "optionId": "edd4f8ff-db81-4e5a-afe0-b68c506ee551",
+          "createdAt": "2025-08-14T14:36:10.309Z"
+        }
+      ],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
       "id": "c38dda0d-a551-4ee1-9592-c72281851417",
       "name": "Pancakes Bueno",
       "price": 450,
       "image": "/uploads/menuItems/menuItem-1752778972228-565415705-bueno.jpg",
       "description": "A delightful pancake filled with a rich and creamy filling.",
       "createdAt": "2025-06-11T21:00:14.190Z",
-      "updatedAt": "2025-11-05T13:57:32.714Z",
+      "updatedAt": "2025-11-16T13:45:51.353Z",
       "isDeleted": false,
       "isAvailable": true,
       "menuListId": "2ada87e6-04ff-4699-88be-40584505fb81",
@@ -186,12 +278,12 @@
       "doesExpensesAndRecipesNeedUpdate": false,
       "parentMenuItemContainer": [
         {
-          "id": "156f907f-62bd-4f98-bf02-a808b2596a2f",
+          "id": "09aed9f7-b27a-4514-8a4e-77aef61a4767",
           "parentMenuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:32.708Z",
+          "createdAt": "2025-11-16T13:45:51.334Z",
           "subMenuItem": {
             "id": "1bd947bc-4735-4731-95ae-4e4023461972",
             "name": "Pancakes",
@@ -277,7 +369,7 @@
       "image": "/uploads/menuItems/menuItem-1752778927008-805667982-caramel.jpg",
       "description": "A fluffy pancake topped with rich caramel.",
       "createdAt": "2025-06-11T21:00:14.166Z",
-      "updatedAt": "2025-11-05T13:57:34.624Z",
+      "updatedAt": "2025-11-16T13:45:50.588Z",
       "isDeleted": false,
       "isAvailable": true,
       "menuListId": "2ada87e6-04ff-4699-88be-40584505fb81",
@@ -289,12 +381,12 @@
       "doesExpensesAndRecipesNeedUpdate": true,
       "parentMenuItemContainer": [
         {
-          "id": "c709e2ad-3620-4a7a-abc0-f84994be7dd1",
+          "id": "b8b5fb8d-722a-4e9a-b1e1-3bfafc5d0cdc",
           "parentMenuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:34.619Z",
+          "createdAt": "2025-11-16T13:45:50.580Z",
           "subMenuItem": {
             "id": "1bd947bc-4735-4731-95ae-4e4023461972",
             "name": "Pancakes",
@@ -607,7 +699,26 @@
         "iconname": "peanut-butter",
         "index": 3
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "fc4e9ca8-0b8c-46ce-a9d8-09d5ee8b2883",
+          "menuItemId": "68192a61-0cf4-40e1-8492-3531aa55504c",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-25T00:04:46.842Z"
+        },
+        {
+          "id": "4e1b2a24-c948-4899-8349-da30c4880a7b",
+          "menuItemId": "68192a61-0cf4-40e1-8492-3531aa55504c",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-25T00:05:16.560Z"
+        },
+        {
+          "id": "efd0cfc3-2c08-4ccb-8f93-4a81f67d1bbb",
+          "menuItemId": "68192a61-0cf4-40e1-8492-3531aa55504c",
+          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+          "createdAt": "2025-11-25T00:05:29.713Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
@@ -667,100 +778,27 @@
         "iconname": "peanut-butter",
         "index": 3
       },
-      "supplements": [],
-      "menuItemMenuItemOption": [],
-      "recipe": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-      "name": "Milkshake Caramel",
-      "price": 400,
-      "image": null,
-      "description": "A rich milkshake topped with caramel sauce.",
-      "createdAt": "2025-06-11T21:00:14.198Z",
-      "updatedAt": "2025-08-14T14:36:10.310Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-      "producedQuantityPerRecipe": null,
-      "recipeId": null,
-      "cost": 78.5,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": true,
-      "parentMenuItemContainer": [
-        {
-          "id": "6ffa1b16-a70a-497e-85b5-d3fc577e2cfd",
-          "parentMenuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 1,
-          "createdAt": "2025-08-14T14:36:10.304Z",
-          "subMenuItem": {
-            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-            "name": "Milkshake",
-            "price": 1,
-            "image": null,
-            "description": null,
-            "createdAt": "2025-08-10T04:25:43.025Z",
-            "updatedAt": "2025-08-11T09:43:32.976Z",
-            "isDeleted": false,
-            "isAvailable": true,
-            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
-            "producedQuantityPerRecipe": null,
-            "recipeId": null,
-            "cost": 78.5,
-            "isRecipe": false,
-            "shouldAppearInScreenshot": true,
-            "doesExpensesAndRecipesNeedUpdate": false
-          }
-        }
-      ],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
-        "isUnlisted": false,
-        "iconname": "smoothie",
-        "index": null
-      },
       "supplements": [
         {
-          "id": "7ab5c781-f5c3-4eae-bb7f-b571ab3bcd4f",
-          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-          "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
-          "createdAt": "2025-10-20T10:48:42.250Z"
+          "id": "56ff777a-9f84-40a2-b9af-f098045c950b",
+          "menuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-25T00:04:46.844Z"
         },
         {
-          "id": "68946dd9-c2ee-4159-abc3-9065211df2ab",
-          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-          "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
-          "createdAt": "2025-10-20T10:49:19.003Z"
+          "id": "79d3d46e-a6aa-4a16-baab-1b20e6750bb7",
+          "menuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-25T00:05:16.562Z"
         },
         {
-          "id": "62fd8093-8ca7-469b-9531-d59e89aae6b8",
-          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.630Z"
+          "id": "2641b027-a855-4be1-a50e-2fa0fb10b0d8",
+          "menuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+          "createdAt": "2025-11-25T00:05:29.714Z"
         }
       ],
-      "menuItemMenuItemOption": [
-        {
-          "id": "be47de17-445a-4d09-a9cd-e25d002f8f48",
-          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-          "optionId": "107df35d-1d73-490f-b89e-85d92e05ab3b",
-          "createdAt": "2025-08-11T09:56:13.769Z"
-        },
-        {
-          "id": "5563d9d5-a2c6-4539-96e9-658f1167d2fe",
-          "menuItemId": "1c70d3ac-fb50-48e7-a65d-d340bd135861",
-          "optionId": "edd4f8ff-db81-4e5a-afe0-b68c506ee551",
-          "createdAt": "2025-08-14T14:36:10.309Z"
-        }
-      ],
+      "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
     },
@@ -771,10 +809,10 @@
       "image": "/uploads/menuItems/menuItem-1751130883244-605562595-508590071_704544015651614_5280942734491036370_n.jpg",
       "description": "A delicious milkshake made with ripe bananas.",
       "createdAt": "2025-06-11T21:00:14.202Z",
-      "updatedAt": "2025-09-01T13:56:41.304Z",
+      "updatedAt": "2025-11-13T00:50:55.165Z",
       "isDeleted": false,
       "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
       "cost": 78.5,
@@ -811,12 +849,12 @@
       ],
       "subMenuItemContainer": [],
       "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
         "isUnlisted": false,
-        "iconname": "smoothie",
+        "iconname": null,
         "index": null
       },
       "supplements": [
@@ -932,7 +970,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "bc1bf089-6945-483b-8887-b8e7f49de512",
+          "menuItemId": "98cf59e2-5093-4152-905a-21294548139d",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.965Z"
+        },
+        {
+          "id": "f4e476a4-fad3-48ad-83e1-f9a9a1a65bb9",
+          "menuItemId": "98cf59e2-5093-4152-905a-21294548139d",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.239Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": [
@@ -987,7 +1038,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "689e176b-411a-4935-aa85-2e8df86f28cb",
+          "menuItemId": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.969Z"
+        },
+        {
+          "id": "7c9a2067-c11d-4d6b-96d6-b07a915ae7f6",
+          "menuItemId": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.241Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": [
@@ -1016,14 +1080,14 @@
     },
     {
       "id": "12239c11-be60-4e40-9d42-05f13212f15b",
-      "name": "Cheesecake",
+      "name": "Cheescake",
       "price": 350,
       "image": null,
       "description": "A delightful pastry with a crispy texture.",
       "createdAt": "2025-06-12T14:49:45.176Z",
-      "updatedAt": "2025-11-05T15:06:58.382Z",
+      "updatedAt": "2025-11-23T13:07:42.631Z",
       "isDeleted": false,
-      "isAvailable": false,
+      "isAvailable": true,
       "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
@@ -1201,7 +1265,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "95333ff7-9fc2-4988-93ce-5a0a279364b9",
+          "menuItemId": "6f349d9c-caeb-4955-b397-9dbebc6f93b3",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.970Z"
+        },
+        {
+          "id": "c5a15343-cac7-47eb-bca7-938b63143608",
+          "menuItemId": "6f349d9c-caeb-4955-b397-9dbebc6f93b3",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.243Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
@@ -1772,116 +1849,16 @@
       "menuItemExpenses": []
     },
     {
-      "id": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-      "name": "Milkshake Morjene",
-      "price": 400,
-      "image": "/uploads/menuItems/menuItem-1752768628848-232512235-IMG_1389.jpg",
-      "description": null,
-      "createdAt": "2025-06-21T21:16:14.613Z",
-      "updatedAt": "2025-08-14T14:36:20.586Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-      "producedQuantityPerRecipe": null,
-      "recipeId": null,
-      "cost": 160.8,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [
-        {
-          "id": "381288c0-4499-4b74-8f76-8005704d943d",
-          "parentMenuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 1,
-          "createdAt": "2025-08-14T14:36:20.577Z",
-          "subMenuItem": {
-            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-            "name": "Milkshake",
-            "price": 1,
-            "image": null,
-            "description": null,
-            "createdAt": "2025-08-10T04:25:43.025Z",
-            "updatedAt": "2025-08-11T09:43:32.976Z",
-            "isDeleted": false,
-            "isAvailable": true,
-            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
-            "producedQuantityPerRecipe": null,
-            "recipeId": null,
-            "cost": 78.5,
-            "isRecipe": false,
-            "shouldAppearInScreenshot": true,
-            "doesExpensesAndRecipesNeedUpdate": false
-          }
-        }
-      ],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
-        "isUnlisted": false,
-        "iconname": "smoothie",
-        "index": null
-      },
-      "supplements": [
-        {
-          "id": "248e6e09-cc52-4d31-badf-6b8d3c552919",
-          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
-          "createdAt": "2025-10-20T10:48:42.254Z"
-        },
-        {
-          "id": "0032481c-a542-4e71-828c-9d342cc1245f",
-          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
-          "createdAt": "2025-10-20T10:49:19.006Z"
-        },
-        {
-          "id": "3aac3089-14af-4020-a98f-e12538f6acde",
-          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.634Z"
-        }
-      ],
-      "menuItemMenuItemOption": [
-        {
-          "id": "5c8c1323-f57c-4266-af63-189b94a79de2",
-          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "optionId": "107df35d-1d73-490f-b89e-85d92e05ab3b",
-          "createdAt": "2025-08-11T09:56:27.091Z"
-        },
-        {
-          "id": "098fad78-5bac-4614-aff4-0ec9e5239183",
-          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "optionId": "edd4f8ff-db81-4e5a-afe0-b68c506ee551",
-          "createdAt": "2025-08-14T14:36:20.585Z"
-        }
-      ],
-      "recipe": null,
-      "menuItemExpenses": [
-        {
-          "id": "554987f3-38fd-49ec-a4d0-af34a118427c",
-          "createdAt": "2025-08-14T14:36:20.578Z",
-          "expenseId": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
-          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
-          "quantity": 100
-        }
-      ]
-    },
-    {
       "id": "257aa065-e59e-4e1b-bcd1-00b8fcefc929",
       "name": "Milkshake Morjene Bueno",
       "price": 400,
       "image": "/uploads/menuItems/menuItem-1752768634825-789535530-IMG_1397.jpg",
       "description": null,
       "createdAt": "2025-06-21T21:17:22.976Z",
-      "updatedAt": "2025-08-14T14:36:25.161Z",
+      "updatedAt": "2025-11-13T00:51:07.763Z",
       "isDeleted": false,
       "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
       "cost": 169.8,
@@ -1918,12 +1895,12 @@
       ],
       "subMenuItemContainer": [],
       "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
         "isUnlisted": false,
-        "iconname": "smoothie",
+        "iconname": null,
         "index": null
       },
       "supplements": [
@@ -2040,7 +2017,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "77b6fd28-e818-45de-b89a-25fe7475eb3e",
+          "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.971Z"
+        },
+        {
+          "id": "0108430d-e709-41f7-8211-83fb3959f12e",
+          "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.244Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": [
@@ -2064,6 +2054,106 @@
           "expenseId": "255661c6-11b3-4ee6-8c03-a01e66ec345a",
           "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
           "quantity": 2
+        }
+      ]
+    },
+    {
+      "id": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+      "name": "Milkshake Morjene",
+      "price": 400,
+      "image": "/uploads/menuItems/menuItem-1752768628848-232512235-IMG_1389.jpg",
+      "description": null,
+      "createdAt": "2025-06-21T21:16:14.613Z",
+      "updatedAt": "2025-11-13T00:51:02.422Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 160.8,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [
+        {
+          "id": "381288c0-4499-4b74-8f76-8005704d943d",
+          "parentMenuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:20.577Z",
+          "subMenuItem": {
+            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+            "name": "Milkshake",
+            "price": 1,
+            "image": null,
+            "description": null,
+            "createdAt": "2025-08-10T04:25:43.025Z",
+            "updatedAt": "2025-08-11T09:43:32.976Z",
+            "isDeleted": false,
+            "isAvailable": true,
+            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+            "producedQuantityPerRecipe": null,
+            "recipeId": null,
+            "cost": 78.5,
+            "isRecipe": false,
+            "shouldAppearInScreenshot": true,
+            "doesExpensesAndRecipesNeedUpdate": false
+          }
+        }
+      ],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
+        "isUnlisted": false,
+        "iconname": null,
+        "index": null
+      },
+      "supplements": [
+        {
+          "id": "248e6e09-cc52-4d31-badf-6b8d3c552919",
+          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+          "createdAt": "2025-10-20T10:48:42.254Z"
+        },
+        {
+          "id": "0032481c-a542-4e71-828c-9d342cc1245f",
+          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+          "createdAt": "2025-10-20T10:49:19.006Z"
+        },
+        {
+          "id": "3aac3089-14af-4020-a98f-e12538f6acde",
+          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+          "createdAt": "2025-10-20T10:51:08.634Z"
+        }
+      ],
+      "menuItemMenuItemOption": [
+        {
+          "id": "5c8c1323-f57c-4266-af63-189b94a79de2",
+          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "optionId": "107df35d-1d73-490f-b89e-85d92e05ab3b",
+          "createdAt": "2025-08-11T09:56:27.091Z"
+        },
+        {
+          "id": "098fad78-5bac-4614-aff4-0ec9e5239183",
+          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "optionId": "edd4f8ff-db81-4e5a-afe0-b68c506ee551",
+          "createdAt": "2025-08-14T14:36:20.585Z"
+        }
+      ],
+      "recipe": null,
+      "menuItemExpenses": [
+        {
+          "id": "554987f3-38fd-49ec-a4d0-af34a118427c",
+          "createdAt": "2025-08-14T14:36:20.578Z",
+          "expenseId": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
+          "menuItemId": "c56ba00a-76e8-4f22-8da7-945e7f8cf6e0",
+          "quantity": 100
         }
       ]
     },
@@ -2150,7 +2240,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "645251de-3d95-47c5-9570-543420fd7757",
+          "menuItemId": "eec4cbe0-acd1-4b55-a0a2-a4947dffbe9c",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.973Z"
+        },
+        {
+          "id": "70d5eea9-1d9a-48db-9683-3b678ce182a5",
+          "menuItemId": "eec4cbe0-acd1-4b55-a0a2-a4947dffbe9c",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.245Z"
+        }
+      ],
       "menuItemMenuItemOption": [
         {
           "id": "fc129fd3-f72c-4085-859a-d62b618e8322",
@@ -2196,7 +2299,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "4cce7e64-9d1d-444d-bb94-90398ab4a92d",
+          "menuItemId": "8ade97bb-21d7-49da-b1fc-aef34176852d",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.974Z"
+        },
+        {
+          "id": "36e8e2e9-54c2-4194-b5ff-c0cf20b75281",
+          "menuItemId": "8ade97bb-21d7-49da-b1fc-aef34176852d",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.247Z"
+        }
+      ],
       "menuItemMenuItemOption": [
         {
           "id": "69b56c83-2384-4897-963a-10638e0cc31d",
@@ -2257,7 +2373,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "5f029d9d-7ddc-4ffc-8706-947030db6250",
+          "menuItemId": "b434cbc8-a58d-4785-b840-3e7c4c905998",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.975Z"
+        },
+        {
+          "id": "efea10ba-73a2-4217-a4fc-9f1d32f49249",
+          "menuItemId": "b434cbc8-a58d-4785-b840-3e7c4c905998",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.248Z"
+        }
+      ],
       "menuItemMenuItemOption": [
         {
           "id": "c489bdbb-91c5-4c3b-9feb-b75e31b24c9d",
@@ -2579,7 +2708,7 @@
       "image": "/uploads/menuItems/menuItem-1752778979125-320948682-morjene.jpg",
       "description": null,
       "createdAt": "2025-07-09T19:59:24.426Z",
-      "updatedAt": "2025-11-05T13:57:35.209Z",
+      "updatedAt": "2025-11-16T13:45:53.437Z",
       "isDeleted": false,
       "isAvailable": true,
       "menuListId": "2ada87e6-04ff-4699-88be-40584505fb81",
@@ -2591,12 +2720,12 @@
       "doesExpensesAndRecipesNeedUpdate": false,
       "parentMenuItemContainer": [
         {
-          "id": "d143aa17-8d15-4590-a3be-085cdc53015d",
+          "id": "4d41d821-d90a-476b-b583-d278ed896a32",
           "parentMenuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:35.203Z",
+          "createdAt": "2025-11-16T13:45:53.430Z",
           "subMenuItem": {
             "id": "1bd947bc-4735-4731-95ae-4e4023461972",
             "name": "Pancakes",
@@ -3046,7 +3175,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "a4f334d6-9d3b-4791-9693-8402debc4be7",
+          "menuItemId": "5b28333f-5193-44b9-9ab0-cbe6558c7a3e",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.976Z"
+        },
+        {
+          "id": "785186fd-9361-4601-a2a5-067a3a6a2e86",
+          "menuItemId": "5b28333f-5193-44b9-9ab0-cbe6558c7a3e",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.249Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": [
@@ -3534,141 +3676,23 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "1494ed88-4110-42b3-a90e-41940079f331",
+          "menuItemId": "b4e37f6c-c030-4ea1-9721-20f80f5fdfe4",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.977Z"
+        },
+        {
+          "id": "0530722c-67ca-4a26-ba3b-c4c2b0b1595a",
+          "menuItemId": "b4e37f6c-c030-4ea1-9721-20f80f5fdfe4",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.250Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
-    },
-    {
-      "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-      "name": "Crêpe Morjene Bueno",
-      "price": 350,
-      "image": "/uploads/menuItems/menuItem-1750600904303-11458229-C57EADB6-1310-45CC-AE9C-E5E436FA17BA.jpeg",
-      "description": "A delightful crepe with a rich and creamy filling.",
-      "createdAt": "2025-06-11T21:00:14.139Z",
-      "updatedAt": "2025-08-11T06:56:06.627Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
-      "producedQuantityPerRecipe": 25,
-      "recipeId": null,
-      "cost": 113.29,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [
-        {
-          "id": "cbfffe74-2919-4a14-8b65-f56a51f8c329",
-          "parentMenuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 25,
-          "createdAt": "2025-08-11T06:56:06.612Z",
-          "subMenuItem": {
-            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-            "name": "Crepe Basic",
-            "price": 1,
-            "image": null,
-            "description": null,
-            "createdAt": "2025-08-10T04:36:57.176Z",
-            "updatedAt": "2025-08-10T20:31:59.524Z",
-            "isDeleted": false,
-            "isAvailable": true,
-            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
-            "producedQuantityPerRecipe": null,
-            "recipeId": null,
-            "cost": 437,
-            "isRecipe": false,
-            "shouldAppearInScreenshot": true,
-            "doesExpensesAndRecipesNeedUpdate": false
-          }
-        }
-      ],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
-        "name": "Crepes",
-        "createdAt": "2025-06-11T21:00:14.123Z",
-        "updatedAt": "2025-10-07T14:54:13.391Z",
-        "isUnlisted": false,
-        "iconname": "crepe",
-        "index": 2
-      },
-      "supplements": [
-        {
-          "id": "9cd1e05c-a3b4-4643-a21e-f901e12a5d24",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
-          "createdAt": "2025-10-20T10:45:33.867Z"
-        },
-        {
-          "id": "8b3189ba-e832-4880-a3a5-e0f2a6a7ff27",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
-          "createdAt": "2025-10-20T10:43:34.520Z"
-        },
-        {
-          "id": "2e68fd61-b85c-49b4-b517-4f6cb99702bd",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
-          "createdAt": "2025-10-20T10:45:59.619Z"
-        },
-        {
-          "id": "90216fdf-6a4f-4d15-b976-f8f3603aee3a",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.609Z"
-        },
-        {
-          "id": "075348fe-3bdf-4de1-9b2b-7b61d1786e83",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
-          "createdAt": "2025-10-20T10:51:38.552Z"
-        },
-        {
-          "id": "ff919056-6839-4d6d-a960-a588a83ffbbb",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
-          "createdAt": "2025-11-06T15:08:38.312Z"
-        },
-        {
-          "id": "bce881b6-7516-4bea-aca9-665d6be07ca8",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
-          "createdAt": "2025-11-06T15:21:40.422Z"
-        }
-      ],
-      "menuItemMenuItemOption": [
-        {
-          "id": "0153e259-4a32-4dbd-a110-76a1570cd468",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "optionId": "4f19c354-b88b-499d-8f66-86adf222999e",
-          "createdAt": "2025-07-26T04:33:07.222Z"
-        },
-        {
-          "id": "1be00357-e504-4afa-928e-bf63242fc2f6",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "optionId": "cd48edff-7cc9-4c6b-b631-139d6382d99d",
-          "createdAt": "2025-07-26T04:33:07.223Z"
-        }
-      ],
-      "recipe": null,
-      "menuItemExpenses": [
-        {
-          "id": "10a50ec7-1d57-4e67-9ce2-7e5d0c027b5a",
-          "createdAt": "2025-08-11T06:56:06.613Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "quantity": 100
-        },
-        {
-          "id": "f9b3f8e4-0517-457c-96d2-3af62855cdcb",
-          "createdAt": "2025-08-11T06:56:06.614Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "quantity": 5
-        }
-      ]
     },
     {
       "id": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
@@ -3725,149 +3749,29 @@
         "iconname": "peanut-butter",
         "index": 3
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "325192ac-ec21-4e80-b0aa-1def87a638af",
+          "menuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-25T00:04:46.845Z"
+        },
+        {
+          "id": "cf6b0210-7a12-4941-a3f3-1571e9dd3a41",
+          "menuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-25T00:05:16.563Z"
+        },
+        {
+          "id": "64ca02e1-1268-4e96-a833-1aa25e806704",
+          "menuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+          "createdAt": "2025-11-25T00:05:29.716Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
-    },
-    {
-      "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-      "name": "Crêpe Rouler Banane",
-      "price": 750,
-      "image": "/uploads/menuItems/menuItem-1751132111310-968096371-freepik__retouch__61723.jpeg",
-      "description": null,
-      "createdAt": "2025-06-17T22:03:57.175Z",
-      "updatedAt": "2025-08-11T06:56:23.205Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
-      "producedQuantityPerRecipe": 19,
-      "recipeId": null,
-      "cost": 323.49,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [
-        {
-          "id": "ea2aab25-fcab-42d1-accb-55a443e063a6",
-          "parentMenuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 25,
-          "createdAt": "2025-08-11T06:56:23.195Z",
-          "subMenuItem": {
-            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-            "name": "Crepe Basic",
-            "price": 1,
-            "image": null,
-            "description": null,
-            "createdAt": "2025-08-10T04:36:57.176Z",
-            "updatedAt": "2025-08-10T20:31:59.524Z",
-            "isDeleted": false,
-            "isAvailable": true,
-            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
-            "producedQuantityPerRecipe": null,
-            "recipeId": null,
-            "cost": 437,
-            "isRecipe": false,
-            "shouldAppearInScreenshot": true,
-            "doesExpensesAndRecipesNeedUpdate": false
-          }
-        }
-      ],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
-        "name": "Crepes",
-        "createdAt": "2025-06-11T21:00:14.123Z",
-        "updatedAt": "2025-10-07T14:54:13.391Z",
-        "isUnlisted": false,
-        "iconname": "crepe",
-        "index": 2
-      },
-      "supplements": [
-        {
-          "id": "c822eaad-0bfd-4594-ad44-bc1ad3632bcc",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
-          "createdAt": "2025-10-20T10:45:33.869Z"
-        },
-        {
-          "id": "a096ef35-af9b-4ff1-a044-88e5d73e60d1",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
-          "createdAt": "2025-10-20T10:43:34.521Z"
-        },
-        {
-          "id": "2ffb7961-ed68-46f9-ab25-2dc3116f2bc7",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
-          "createdAt": "2025-10-20T10:45:59.621Z"
-        },
-        {
-          "id": "e09ff43b-76f1-41cc-abbf-5e44a0d8e8c6",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.610Z"
-        },
-        {
-          "id": "150edc09-42e7-487a-8e45-ca2858e93870",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
-          "createdAt": "2025-10-20T10:51:38.557Z"
-        },
-        {
-          "id": "a2ed7c08-c380-402f-a916-9bc7f3b136e0",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
-          "createdAt": "2025-11-06T15:08:38.324Z"
-        },
-        {
-          "id": "c728e52b-17ef-4936-994a-fdc146bb72e9",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
-          "createdAt": "2025-11-06T15:21:40.430Z"
-        }
-      ],
-      "menuItemMenuItemOption": [],
-      "recipe": null,
-      "menuItemExpenses": [
-        {
-          "id": "1d17c355-db21-499e-8898-172b92030267",
-          "createdAt": "2025-08-11T06:56:23.196Z",
-          "expenseId": "ca67474c-0bad-495f-bde5-4ce5343156d1",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 150
-        },
-        {
-          "id": "14fe2892-a251-485c-bb5f-125f1582ca4d",
-          "createdAt": "2025-08-11T06:56:23.197Z",
-          "expenseId": "8bef2d26-3bf4-4f6b-b6c0-de0acc307cd2",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 75
-        },
-        {
-          "id": "567bbf46-1a24-41b2-83f5-a6d583858ca9",
-          "createdAt": "2025-08-11T06:56:23.198Z",
-          "expenseId": "e67cbce3-3281-4ec1-858e-c5282cfcebb7",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 75
-        },
-        {
-          "id": "4d38e9cc-70d4-44ae-ad14-cea1d6259f08",
-          "createdAt": "2025-08-11T06:56:23.198Z",
-          "expenseId": "b70eb4d0-54d2-46b9-beff-bf48f20df806",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 75
-        },
-        {
-          "id": "359ecb74-aa87-4d38-a971-52689c5e9f8b",
-          "createdAt": "2025-08-11T06:56:23.199Z",
-          "expenseId": "2dbc2399-034e-4b17-b41e-7829bc34cce5",
-          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "quantity": 5
-        }
-      ]
     },
     {
       "id": "046658e8-de68-468f-b92c-c9504160ec31",
@@ -3982,6 +3886,58 @@
           "createdAt": "2025-07-26T04:33:18.924Z"
         }
       ],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+      "name": "Milkshake Fraise",
+      "price": 600,
+      "image": null,
+      "description": "A refreshing milkshake made with fresh strawberries.",
+      "createdAt": "2025-06-11T21:00:14.182Z",
+      "updatedAt": "2025-11-13T00:51:36.282Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 0,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
+        "isUnlisted": false,
+        "iconname": null,
+        "index": null
+      },
+      "supplements": [
+        {
+          "id": "29b80275-2d0c-4e16-91f6-c49084aa4551",
+          "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+          "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
+          "createdAt": "2025-10-20T10:50:01.356Z"
+        },
+        {
+          "id": "2fad70cc-a039-422b-ab81-04dc9f88a9e4",
+          "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+          "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
+          "createdAt": "2025-10-20T10:50:10.323Z"
+        },
+        {
+          "id": "45b3e4b0-74b5-4778-b6be-d7c61baa7995",
+          "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+          "createdAt": "2025-10-20T10:51:08.637Z"
+        }
+      ],
+      "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
     },
@@ -4209,51 +4165,102 @@
       "menuItemExpenses": []
     },
     {
-      "id": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
-      "name": "Milkshake Fraise",
-      "price": 600,
-      "image": null,
-      "description": "A refreshing milkshake made with fresh strawberries.",
-      "createdAt": "2025-06-11T21:00:14.182Z",
-      "updatedAt": "2025-10-02T13:52:21.162Z",
+      "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+      "name": "Crêpe Rouler Banane",
+      "price": 750,
+      "image": "/uploads/menuItems/menuItem-1751132111310-968096371-freepik__retouch__61723.jpeg",
+      "description": null,
+      "createdAt": "2025-06-17T22:03:57.175Z",
+      "updatedAt": "2025-11-19T09:44:12.167Z",
       "isDeleted": false,
       "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-      "producedQuantityPerRecipe": null,
+      "menuListId": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
+      "producedQuantityPerRecipe": 19,
       "recipeId": null,
-      "cost": 0,
+      "cost": 17.48,
       "isRecipe": false,
       "shouldAppearInScreenshot": true,
       "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [],
+      "parentMenuItemContainer": [
+        {
+          "id": "846a01bc-c60d-4b11-90ce-eb843d0ebb34",
+          "parentMenuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-11-19T09:44:12.160Z",
+          "subMenuItem": {
+            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+            "name": "Crepe Basic",
+            "price": 1,
+            "image": null,
+            "description": null,
+            "createdAt": "2025-08-10T04:36:57.176Z",
+            "updatedAt": "2025-08-10T20:31:59.524Z",
+            "isDeleted": false,
+            "isAvailable": true,
+            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+            "producedQuantityPerRecipe": null,
+            "recipeId": null,
+            "cost": 437,
+            "isRecipe": false,
+            "shouldAppearInScreenshot": true,
+            "doesExpensesAndRecipesNeedUpdate": false
+          }
+        }
+      ],
       "subMenuItemContainer": [],
       "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
+        "id": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
+        "name": "Crepes",
+        "createdAt": "2025-06-11T21:00:14.123Z",
+        "updatedAt": "2025-10-07T14:54:13.391Z",
         "isUnlisted": false,
-        "iconname": "smoothie",
-        "index": null
+        "iconname": "crepe",
+        "index": 2
       },
       "supplements": [
         {
-          "id": "29b80275-2d0c-4e16-91f6-c49084aa4551",
-          "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
-          "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
-          "createdAt": "2025-10-20T10:50:01.356Z"
+          "id": "c822eaad-0bfd-4594-ad44-bc1ad3632bcc",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+          "createdAt": "2025-10-20T10:45:33.869Z"
         },
         {
-          "id": "2fad70cc-a039-422b-ab81-04dc9f88a9e4",
-          "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
-          "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
-          "createdAt": "2025-10-20T10:50:10.323Z"
+          "id": "a096ef35-af9b-4ff1-a044-88e5d73e60d1",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+          "createdAt": "2025-10-20T10:43:34.521Z"
         },
         {
-          "id": "45b3e4b0-74b5-4778-b6be-d7c61baa7995",
-          "menuItemId": "cc9c009e-7cea-45c8-8ee1-4fed23d7e420",
+          "id": "2ffb7961-ed68-46f9-ab25-2dc3116f2bc7",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+          "createdAt": "2025-10-20T10:45:59.621Z"
+        },
+        {
+          "id": "e09ff43b-76f1-41cc-abbf-5e44a0d8e8c6",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
           "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.637Z"
+          "createdAt": "2025-10-20T10:51:08.610Z"
+        },
+        {
+          "id": "150edc09-42e7-487a-8e45-ca2858e93870",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+          "createdAt": "2025-10-20T10:51:38.557Z"
+        },
+        {
+          "id": "a2ed7c08-c380-402f-a916-9bc7f3b136e0",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-06T15:08:38.324Z"
+        },
+        {
+          "id": "c728e52b-17ef-4936-994a-fdc146bb72e9",
+          "menuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-06T15:21:40.430Z"
         }
       ],
       "menuItemMenuItemOption": [],
@@ -4315,7 +4322,26 @@
         "iconname": "peanut-butter",
         "index": 3
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "2ad14354-2023-4adc-9993-88ee8f0d4621",
+          "menuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-25T00:04:46.846Z"
+        },
+        {
+          "id": "20945fe0-82a3-4b56-8313-da94dd7d3068",
+          "menuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-25T00:05:16.564Z"
+        },
+        {
+          "id": "a6c5be27-113f-4350-816b-44fdcf281127",
+          "menuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+          "createdAt": "2025-11-25T00:05:29.718Z"
+        }
+      ],
       "menuItemMenuItemOption": [
         {
           "id": "67577fa5-74bb-4989-8995-1a96b9fa3cd9",
@@ -4459,39 +4485,6 @@
       "menuItemExpenses": []
     },
     {
-      "id": "8c607d9a-a471-4814-bf22-22d69778422e",
-      "name": "Brownies",
-      "price": 200,
-      "image": null,
-      "description": "Rich and fudgy brownies for chocolate lovers.",
-      "createdAt": "2025-06-12T14:49:45.201Z",
-      "updatedAt": "2025-10-19T11:36:56.163Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
-      "producedQuantityPerRecipe": null,
-      "recipeId": null,
-      "cost": 0,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
-        "name": "Gateaux",
-        "createdAt": "2025-06-12T14:49:45.129Z",
-        "updatedAt": "2025-10-05T02:01:28.817Z",
-        "isUnlisted": false,
-        "iconname": "cake",
-        "index": null
-      },
-      "supplements": [],
-      "menuItemMenuItemOption": [],
-      "recipe": null,
-      "menuItemExpenses": []
-    },
-    {
       "id": "13c51ef3-2a0f-4fdb-9bdd-6ca2956dc707",
       "name": "Jus Pressé raisin menthe",
       "price": 400,
@@ -4517,6 +4510,155 @@
         "updatedAt": "2025-10-05T02:01:40.945Z",
         "isUnlisted": false,
         "iconname": "smoothie",
+        "index": null
+      },
+      "supplements": [],
+      "menuItemMenuItemOption": [],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+      "name": "Crêpe Morjene Bueno",
+      "price": 350,
+      "image": "/uploads/menuItems/menuItem-1750600904303-11458229-C57EADB6-1310-45CC-AE9C-E5E436FA17BA.jpeg",
+      "description": "A delightful crepe with a rich and creamy filling.",
+      "createdAt": "2025-06-11T21:00:14.139Z",
+      "updatedAt": "2025-11-19T09:44:11.033Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
+      "producedQuantityPerRecipe": 25,
+      "recipeId": null,
+      "cost": 17.48,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [
+        {
+          "id": "dc847dbb-cf76-4983-8152-4e4267613b81",
+          "parentMenuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-11-19T09:44:11.020Z",
+          "subMenuItem": {
+            "id": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+            "name": "Crepe Basic",
+            "price": 1,
+            "image": null,
+            "description": null,
+            "createdAt": "2025-08-10T04:36:57.176Z",
+            "updatedAt": "2025-08-10T20:31:59.524Z",
+            "isDeleted": false,
+            "isAvailable": true,
+            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+            "producedQuantityPerRecipe": null,
+            "recipeId": null,
+            "cost": 437,
+            "isRecipe": false,
+            "shouldAppearInScreenshot": true,
+            "doesExpensesAndRecipesNeedUpdate": false
+          }
+        }
+      ],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "b266ba75-b687-413e-ac4c-44ea2dbedd14",
+        "name": "Crepes",
+        "createdAt": "2025-06-11T21:00:14.123Z",
+        "updatedAt": "2025-10-07T14:54:13.391Z",
+        "isUnlisted": false,
+        "iconname": "crepe",
+        "index": 2
+      },
+      "supplements": [
+        {
+          "id": "9cd1e05c-a3b4-4643-a21e-f901e12a5d24",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "1fce3d5a-1758-4745-94c1-99bb2dd96b51",
+          "createdAt": "2025-10-20T10:45:33.867Z"
+        },
+        {
+          "id": "8b3189ba-e832-4880-a3a5-e0f2a6a7ff27",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
+          "createdAt": "2025-10-20T10:43:34.520Z"
+        },
+        {
+          "id": "2e68fd61-b85c-49b4-b517-4f6cb99702bd",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "95929c1d-3cc8-444f-84fa-d0564bc03312",
+          "createdAt": "2025-10-20T10:45:59.619Z"
+        },
+        {
+          "id": "90216fdf-6a4f-4d15-b976-f8f3603aee3a",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
+          "createdAt": "2025-10-20T10:51:08.609Z"
+        },
+        {
+          "id": "075348fe-3bdf-4de1-9b2b-7b61d1786e83",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+          "createdAt": "2025-10-20T10:51:38.552Z"
+        },
+        {
+          "id": "ff919056-6839-4d6d-a960-a588a83ffbbb",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-06T15:08:38.312Z"
+        },
+        {
+          "id": "bce881b6-7516-4bea-aca9-665d6be07ca8",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-06T15:21:40.422Z"
+        }
+      ],
+      "menuItemMenuItemOption": [
+        {
+          "id": "0153e259-4a32-4dbd-a110-76a1570cd468",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "optionId": "4f19c354-b88b-499d-8f66-86adf222999e",
+          "createdAt": "2025-07-26T04:33:07.222Z"
+        },
+        {
+          "id": "1be00357-e504-4afa-928e-bf63242fc2f6",
+          "menuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "optionId": "cd48edff-7cc9-4c6b-b631-139d6382d99d",
+          "createdAt": "2025-07-26T04:33:07.223Z"
+        }
+      ],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "8c607d9a-a471-4814-bf22-22d69778422e",
+      "name": "Brownies",
+      "price": 200,
+      "image": null,
+      "description": "Rich and fudgy brownies for chocolate lovers.",
+      "createdAt": "2025-06-12T14:49:45.201Z",
+      "updatedAt": "2025-11-18T15:41:20.129Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 0,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+        "name": "Gateaux",
+        "createdAt": "2025-06-12T14:49:45.129Z",
+        "updatedAt": "2025-10-05T02:01:28.817Z",
+        "isUnlisted": false,
+        "iconname": "cake",
         "index": null
       },
       "supplements": [],
@@ -4552,7 +4694,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "8c904255-1fc2-459d-9f18-35b497f3c507",
+          "menuItemId": "60bb874c-9271-495e-86b5-729946077b6a",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.978Z"
+        },
+        {
+          "id": "0778800e-8389-496a-bd28-0582b87f736c",
+          "menuItemId": "60bb874c-9271-495e-86b5-729946077b6a",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.251Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
@@ -5065,39 +5220,6 @@
       "menuItemExpenses": []
     },
     {
-      "id": "f6b51f48-1a58-4f4f-bb80-44907aa5abb0",
-      "name": "tartelette",
-      "price": 300,
-      "image": null,
-      "description": null,
-      "createdAt": "2025-08-31T16:19:09.895Z",
-      "updatedAt": "2025-11-05T16:14:49.966Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
-      "producedQuantityPerRecipe": null,
-      "recipeId": null,
-      "cost": 0,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
-        "name": "Gateaux",
-        "createdAt": "2025-06-12T14:49:45.129Z",
-        "updatedAt": "2025-10-05T02:01:28.817Z",
-        "isUnlisted": false,
-        "iconname": "cake",
-        "index": null
-      },
-      "supplements": [],
-      "menuItemMenuItemOption": [],
-      "recipe": null,
-      "menuItemExpenses": []
-    },
-    {
       "id": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
       "name": "Nescafé Caramel",
       "price": 250,
@@ -5125,124 +5247,75 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "81f7790e-590e-4715-a229-5cb7687c38d0",
+          "menuItemId": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.979Z"
+        },
+        {
+          "id": "a5c8c2d8-8957-4765-9338-a3f8a8d27724",
+          "menuItemId": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.253Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
     },
     {
-      "id": "54e42116-92c9-46bf-8b27-770f8be74823",
-      "name": "Milkshake Oreo",
-      "price": 400,
-      "image": "/uploads/menuItems/menuItem-1752768444643-226665392-IMG_1407.jpg",
-      "description": "A creamy milkshake blended with Oreo cookies.",
-      "createdAt": "2025-06-11T21:00:14.190Z",
-      "updatedAt": "2025-08-14T14:36:04.446Z",
+      "id": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+      "name": "Milkshake Pistache",
+      "price": 700,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-09-02T16:33:36.928Z",
+      "updatedAt": "2025-11-13T00:51:23.224Z",
       "isDeleted": false,
       "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
-      "cost": 115.39,
+      "cost": 0,
       "isRecipe": false,
       "shouldAppearInScreenshot": true,
       "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [
-        {
-          "id": "d51f292d-79c8-4e0c-ac43-cc3ecf386228",
-          "parentMenuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 1,
-          "createdAt": "2025-08-14T14:36:04.431Z",
-          "subMenuItem": {
-            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
-            "name": "Milkshake",
-            "price": 1,
-            "image": null,
-            "description": null,
-            "createdAt": "2025-08-10T04:25:43.025Z",
-            "updatedAt": "2025-08-11T09:43:32.976Z",
-            "isDeleted": false,
-            "isAvailable": true,
-            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
-            "producedQuantityPerRecipe": null,
-            "recipeId": null,
-            "cost": 78.5,
-            "isRecipe": false,
-            "shouldAppearInScreenshot": true,
-            "doesExpensesAndRecipesNeedUpdate": false
-          }
-        }
-      ],
+      "parentMenuItemContainer": [],
       "subMenuItemContainer": [],
       "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
         "isUnlisted": false,
-        "iconname": "smoothie",
+        "iconname": null,
         "index": null
       },
       "supplements": [
         {
-          "id": "d2f4e329-4cd0-4ea3-8e83-6a05a35ad3dd",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "id": "9c141b0f-1770-48f0-8509-794bc212dc71",
+          "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
           "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
-          "createdAt": "2025-10-20T10:48:42.256Z"
+          "createdAt": "2025-10-20T10:48:42.258Z"
         },
         {
-          "id": "e4c76d5d-a23c-4fd0-a986-8d463dff3d1f",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "id": "50f4a73d-5bfa-448b-8cbd-e2a94368b666",
+          "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
           "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
-          "createdAt": "2025-10-20T10:49:19.009Z"
+          "createdAt": "2025-10-20T10:49:46.701Z"
         },
         {
-          "id": "a8eb6798-5758-4cbb-a2b2-e7b1427dd06e",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "id": "28f529dd-1c37-4e46-abd5-7d69820f4616",
+          "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
           "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.639Z"
+          "createdAt": "2025-10-20T10:51:08.640Z"
         }
       ],
-      "menuItemMenuItemOption": [
-        {
-          "id": "a9594113-7af5-4d6e-8f8e-67a3240fb141",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "optionId": "107df35d-1d73-490f-b89e-85d92e05ab3b",
-          "createdAt": "2025-08-11T09:56:06.789Z"
-        },
-        {
-          "id": "15a868ce-14ba-44d4-9f7b-df3ae43462a6",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "optionId": "edd4f8ff-db81-4e5a-afe0-b68c506ee551",
-          "createdAt": "2025-08-14T14:36:04.445Z"
-        }
-      ],
+      "menuItemMenuItemOption": [],
       "recipe": null,
-      "menuItemExpenses": [
-        {
-          "id": "548197d5-12fd-4f46-b2e4-a7518b357987",
-          "createdAt": "2025-08-14T14:36:04.433Z",
-          "expenseId": "b7837809-4240-4cfa-9918-ebcc08ec70d6",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "quantity": 6
-        },
-        {
-          "id": "133473a0-b702-4f62-adf4-5651354bdcb7",
-          "createdAt": "2025-08-14T14:36:04.434Z",
-          "expenseId": "34afca01-4ee0-4503-b7d1-81f9834bc170",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "quantity": 1
-        },
-        {
-          "id": "40d601c8-fb29-448f-84b0-16227af8d82a",
-          "createdAt": "2025-08-14T14:36:04.435Z",
-          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
-          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
-          "quantity": 0.01
-        }
-      ]
+      "menuItemExpenses": []
     },
     {
       "id": "c48abd50-4d22-41a8-bc58-4e559f30945b",
@@ -5317,13 +5390,13 @@
       "image": "/uploads/menuItems/menuItem-1759848174012-985481597-content_lg.jpg",
       "description": null,
       "createdAt": "2025-10-07T14:42:54.135Z",
-      "updatedAt": "2025-10-07T14:58:56.581Z",
+      "updatedAt": "2025-11-20T12:31:25.292Z",
       "isDeleted": false,
-      "isAvailable": true,
+      "isAvailable": false,
       "menuListId": "84ebc59e-1455-4fcd-89fd-3970ab49879f",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
-      "cost": null,
+      "cost": 0,
       "isRecipe": false,
       "shouldAppearInScreenshot": true,
       "doesExpensesAndRecipesNeedUpdate": false,
@@ -5337,39 +5410,6 @@
         "isUnlisted": false,
         "iconname": "sandwich",
         "index": 1
-      },
-      "supplements": [],
-      "menuItemMenuItemOption": [],
-      "recipe": null,
-      "menuItemExpenses": []
-    },
-    {
-      "id": "68b91b46-00d0-40ee-bf9c-dd9dd901583b",
-      "name": "Gâteau Traditionnel",
-      "price": 150,
-      "image": null,
-      "description": null,
-      "createdAt": "2025-10-06T15:19:18.799Z",
-      "updatedAt": "2025-10-15T16:48:29.572Z",
-      "isDeleted": false,
-      "isAvailable": false,
-      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
-      "producedQuantityPerRecipe": null,
-      "recipeId": null,
-      "cost": 0,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [],
-      "subMenuItemContainer": [],
-      "menuList": {
-        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
-        "name": "Gateaux",
-        "createdAt": "2025-06-12T14:49:45.129Z",
-        "updatedAt": "2025-10-05T02:01:28.817Z",
-        "isUnlisted": false,
-        "iconname": "cake",
-        "index": null
       },
       "supplements": [],
       "menuItemMenuItemOption": [],
@@ -5404,7 +5444,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "f9586166-a08e-4bb5-9f54-4c2487b023e3",
+          "menuItemId": "d3fb3d84-0841-45e5-a66f-41530f57b040",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.980Z"
+        },
+        {
+          "id": "f4aeb5d9-7bbc-4d99-8e6a-227767a8715d",
+          "menuItemId": "d3fb3d84-0841-45e5-a66f-41530f57b040",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.254Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
@@ -5546,56 +5599,118 @@
       "menuItemExpenses": []
     },
     {
-      "id": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
-      "name": "Milkshake Pistache",
-      "price": 700,
-      "image": null,
-      "description": null,
-      "createdAt": "2025-09-02T16:33:36.928Z",
-      "updatedAt": "2025-10-05T02:05:24.889Z",
+      "id": "54e42116-92c9-46bf-8b27-770f8be74823",
+      "name": "Milkshake Oreo",
+      "price": 400,
+      "image": "/uploads/menuItems/menuItem-1752768444643-226665392-IMG_1407.jpg",
+      "description": "A creamy milkshake blended with Oreo cookies.",
+      "createdAt": "2025-06-11T21:00:14.190Z",
+      "updatedAt": "2025-11-13T00:50:46.341Z",
       "isDeleted": false,
       "isAvailable": true,
-      "menuListId": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
+      "menuListId": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
-      "cost": 0,
+      "cost": 115.39,
       "isRecipe": false,
       "shouldAppearInScreenshot": true,
       "doesExpensesAndRecipesNeedUpdate": false,
-      "parentMenuItemContainer": [],
+      "parentMenuItemContainer": [
+        {
+          "id": "d51f292d-79c8-4e0c-ac43-cc3ecf386228",
+          "parentMenuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "subMenuItemId": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 1,
+          "createdAt": "2025-08-14T14:36:04.431Z",
+          "subMenuItem": {
+            "id": "85da051a-4ec6-418f-b99c-eeda09e8b3fe",
+            "name": "Milkshake",
+            "price": 1,
+            "image": null,
+            "description": null,
+            "createdAt": "2025-08-10T04:25:43.025Z",
+            "updatedAt": "2025-08-11T09:43:32.976Z",
+            "isDeleted": false,
+            "isAvailable": true,
+            "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+            "producedQuantityPerRecipe": null,
+            "recipeId": null,
+            "cost": 78.5,
+            "isRecipe": false,
+            "shouldAppearInScreenshot": true,
+            "doesExpensesAndRecipesNeedUpdate": false
+          }
+        }
+      ],
       "subMenuItemContainer": [],
       "menuList": {
-        "id": "d5ab60f8-99a7-47a6-b945-28671efd8fc4",
-        "name": "Boissons Fraiches",
-        "createdAt": "2025-06-11T21:00:14.168Z",
-        "updatedAt": "2025-10-05T02:01:40.945Z",
+        "id": "7ecb5773-3de2-4f2d-8261-9336eaa9db9d",
+        "name": "Milkshakes",
+        "createdAt": "2025-11-13T00:50:37.240Z",
+        "updatedAt": "2025-11-13T00:50:37.240Z",
         "isUnlisted": false,
-        "iconname": "smoothie",
+        "iconname": null,
         "index": null
       },
       "supplements": [
         {
-          "id": "9c141b0f-1770-48f0-8509-794bc212dc71",
-          "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+          "id": "d2f4e329-4cd0-4ea3-8e83-6a05a35ad3dd",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
           "supplementId": "c23ff1bc-4b74-475b-a691-f6fb5b024815",
-          "createdAt": "2025-10-20T10:48:42.258Z"
+          "createdAt": "2025-10-20T10:48:42.256Z"
         },
         {
-          "id": "50f4a73d-5bfa-448b-8cbd-e2a94368b666",
-          "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+          "id": "e4c76d5d-a23c-4fd0-a986-8d463dff3d1f",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
           "supplementId": "7434ab7c-df2a-4973-ad9a-e51a57933125",
-          "createdAt": "2025-10-20T10:49:46.701Z"
+          "createdAt": "2025-10-20T10:49:19.009Z"
         },
         {
-          "id": "28f529dd-1c37-4e46-abd5-7d69820f4616",
-          "menuItemId": "2d8b0a64-3a82-415a-bc33-9b53a1c5abf1",
+          "id": "a8eb6798-5758-4cbb-a2b2-e7b1427dd06e",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
           "supplementId": "a6958263-98f8-4b45-90bd-f041c22fffed",
-          "createdAt": "2025-10-20T10:51:08.640Z"
+          "createdAt": "2025-10-20T10:51:08.639Z"
         }
       ],
-      "menuItemMenuItemOption": [],
+      "menuItemMenuItemOption": [
+        {
+          "id": "a9594113-7af5-4d6e-8f8e-67a3240fb141",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "optionId": "107df35d-1d73-490f-b89e-85d92e05ab3b",
+          "createdAt": "2025-08-11T09:56:06.789Z"
+        },
+        {
+          "id": "15a868ce-14ba-44d4-9f7b-df3ae43462a6",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "optionId": "edd4f8ff-db81-4e5a-afe0-b68c506ee551",
+          "createdAt": "2025-08-14T14:36:04.445Z"
+        }
+      ],
       "recipe": null,
-      "menuItemExpenses": []
+      "menuItemExpenses": [
+        {
+          "id": "548197d5-12fd-4f46-b2e4-a7518b357987",
+          "createdAt": "2025-08-14T14:36:04.433Z",
+          "expenseId": "b7837809-4240-4cfa-9918-ebcc08ec70d6",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "quantity": 6
+        },
+        {
+          "id": "133473a0-b702-4f62-adf4-5651354bdcb7",
+          "createdAt": "2025-08-14T14:36:04.434Z",
+          "expenseId": "34afca01-4ee0-4503-b7d1-81f9834bc170",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "quantity": 1
+        },
+        {
+          "id": "40d601c8-fb29-448f-84b0-16227af8d82a",
+          "createdAt": "2025-08-14T14:36:04.435Z",
+          "expenseId": "a6c07d6e-0e21-4b9d-a50c-90a582f437c2",
+          "menuItemId": "54e42116-92c9-46bf-8b27-770f8be74823",
+          "quantity": 0.01
+        }
+      ]
     },
     {
       "id": "cf6add01-085f-47d0-81c1-453272325d79",
@@ -5625,7 +5740,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "b7f80e93-33f9-4392-8d5d-8df7c6ccf15e",
+          "menuItemId": "cf6add01-085f-47d0-81c1-453272325d79",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.982Z"
+        },
+        {
+          "id": "e98b0d54-c207-4264-b851-424ff85a9e55",
+          "menuItemId": "cf6add01-085f-47d0-81c1-453272325d79",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.255Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
@@ -5685,7 +5813,20 @@
         "iconname": "peanut-butter",
         "index": 3
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "d8de8082-e7d0-4c44-963c-f9a591fd1214",
+          "menuItemId": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+          "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+          "createdAt": "2025-11-25T00:04:46.848Z"
+        },
+        {
+          "id": "7d138ef0-63b1-487f-a965-d80b819c3196",
+          "menuItemId": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+          "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+          "createdAt": "2025-11-25T00:05:16.565Z"
+        }
+      ],
       "menuItemMenuItemOption": [
         {
           "id": "3129eaa5-ce46-4797-9e8e-bb9e76f78d0e",
@@ -5731,7 +5872,20 @@
         "iconname": "coffee-cup",
         "index": null
       },
-      "supplements": [],
+      "supplements": [
+        {
+          "id": "ec3c0e10-71e9-4d5f-9cce-9e461351eb8a",
+          "menuItemId": "a176e4b8-e1d4-4d51-a6ce-e0dd52b35b07",
+          "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+          "createdAt": "2025-11-13T00:11:07.983Z"
+        },
+        {
+          "id": "ec62108c-2430-43d5-9701-e084252fcdea",
+          "menuItemId": "a176e4b8-e1d4-4d51-a6ce-e0dd52b35b07",
+          "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+          "createdAt": "2025-11-13T00:11:37.256Z"
+        }
+      ],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []
@@ -5743,13 +5897,13 @@
       "image": null,
       "description": null,
       "createdAt": "2025-10-16T08:23:02.820Z",
-      "updatedAt": "2025-10-16T08:23:10.545Z",
+      "updatedAt": "2025-11-20T12:31:30.016Z",
       "isDeleted": false,
-      "isAvailable": true,
+      "isAvailable": false,
       "menuListId": "84ebc59e-1455-4fcd-89fd-3970ab49879f",
       "producedQuantityPerRecipe": null,
       "recipeId": null,
-      "cost": null,
+      "cost": 0,
       "isRecipe": false,
       "shouldAppearInScreenshot": true,
       "doesExpensesAndRecipesNeedUpdate": false,
@@ -5809,7 +5963,7 @@
       "image": null,
       "description": null,
       "createdAt": "2025-10-27T15:19:18.774Z",
-      "updatedAt": "2025-11-05T13:57:36.010Z",
+      "updatedAt": "2025-11-16T13:45:52.511Z",
       "isDeleted": false,
       "isAvailable": true,
       "menuListId": "2ada87e6-04ff-4699-88be-40584505fb81",
@@ -5888,7 +6042,7 @@
       "image": "/uploads/menuItems/menuItem-1752778951074-285514251-miel.jpg",
       "description": "A sweet pancake drizzled with honey.",
       "createdAt": "2025-06-11T21:00:14.184Z",
-      "updatedAt": "2025-11-05T13:57:33.490Z",
+      "updatedAt": "2025-11-16T13:45:50.082Z",
       "isDeleted": false,
       "isAvailable": true,
       "menuListId": "2ada87e6-04ff-4699-88be-40584505fb81",
@@ -5900,12 +6054,12 @@
       "doesExpensesAndRecipesNeedUpdate": true,
       "parentMenuItemContainer": [
         {
-          "id": "77273206-e9a2-4c80-8405-9125a42a9dc2",
+          "id": "3f7f904e-14d6-4a32-92c5-e4f1b9836678",
           "parentMenuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:33.481Z",
+          "createdAt": "2025-11-16T13:45:50.073Z",
           "subMenuItem": {
             "id": "1bd947bc-4735-4731-95ae-4e4023461972",
             "name": "Pancakes",
@@ -6026,6 +6180,197 @@
           "createdAt": "2025-11-06T15:21:40.438Z"
         }
       ],
+      "menuItemMenuItemOption": [],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "73bf7902-b412-41d4-a6af-be37e4a5ff7e",
+      "name": "Pancakes Confiture",
+      "price": 400,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-11-13T00:53:24.889Z",
+      "updatedAt": "2025-11-16T13:45:51.944Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "2ada87e6-04ff-4699-88be-40584505fb81",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 0,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "2ada87e6-04ff-4699-88be-40584505fb81",
+        "name": "Pancakes",
+        "createdAt": "2025-06-11T21:00:14.161Z",
+        "updatedAt": "2025-10-05T02:01:07.470Z",
+        "isUnlisted": false,
+        "iconname": "pancakes",
+        "index": null
+      },
+      "supplements": [],
+      "menuItemMenuItemOption": [
+        {
+          "id": "74aeb595-6a7b-4314-b675-9334c42c291e",
+          "menuItemId": "73bf7902-b412-41d4-a6af-be37e4a5ff7e",
+          "optionId": "99170ec9-5e2d-45dc-af88-c7fd97e66be7",
+          "createdAt": "2025-11-13T00:56:12.330Z"
+        },
+        {
+          "id": "b6dd552a-d48c-46d4-b281-836cbef36293",
+          "menuItemId": "73bf7902-b412-41d4-a6af-be37e4a5ff7e",
+          "optionId": "00807ddc-34a3-42c0-ba30-a48bc10697fb",
+          "createdAt": "2025-11-13T00:56:12.331Z"
+        }
+      ],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "cb43a967-20ab-4e59-baac-934418fdece2",
+      "name": "Gaufre Confiture",
+      "price": 400,
+      "image": "/uploads/menuItems/menuItem-1763351193386-93724979-cropped.jpeg",
+      "description": null,
+      "createdAt": "2025-11-13T00:53:12.999Z",
+      "updatedAt": "2025-11-17T03:46:33.398Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "7c35d3dd-d023-484a-9310-f9998af6a496",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 0,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "7c35d3dd-d023-484a-9310-f9998af6a496",
+        "name": "Gauffres",
+        "createdAt": "2025-06-11T21:00:14.147Z",
+        "updatedAt": "2025-10-05T02:01:11.614Z",
+        "isUnlisted": false,
+        "iconname": "waffers",
+        "index": null
+      },
+      "supplements": [],
+      "menuItemMenuItemOption": [
+        {
+          "id": "4cd51b89-8838-43c4-b795-c752d1f6df86",
+          "menuItemId": "cb43a967-20ab-4e59-baac-934418fdece2",
+          "optionId": "99170ec9-5e2d-45dc-af88-c7fd97e66be7",
+          "createdAt": "2025-11-13T00:56:05.156Z"
+        },
+        {
+          "id": "9b60810a-9460-4942-84d6-84e0a7a14bb8",
+          "menuItemId": "cb43a967-20ab-4e59-baac-934418fdece2",
+          "optionId": "00807ddc-34a3-42c0-ba30-a48bc10697fb",
+          "createdAt": "2025-11-13T00:56:05.159Z"
+        }
+      ],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "bc2c45c8-e547-4718-975e-bb7da8d0ad1f",
+      "name": "Mini Crêpe Pistache",
+      "price": 200,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-11-17T00:09:34.886Z",
+      "updatedAt": "2025-11-18T19:50:39.156Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": null,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+        "name": "Gateaux",
+        "createdAt": "2025-06-12T14:49:45.129Z",
+        "updatedAt": "2025-10-05T02:01:28.817Z",
+        "isUnlisted": false,
+        "iconname": "cake",
+        "index": null
+      },
+      "supplements": [],
+      "menuItemMenuItemOption": [],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "fd6d99ef-1332-49d0-b9ca-4e0dcf2501a7",
+      "name": "Mini Crêpe Ferrero",
+      "price": 100,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-11-17T00:09:49.693Z",
+      "updatedAt": "2025-11-18T19:50:44.075Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": null,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+        "name": "Gateaux",
+        "createdAt": "2025-06-12T14:49:45.129Z",
+        "updatedAt": "2025-10-05T02:01:28.817Z",
+        "isUnlisted": false,
+        "iconname": "cake",
+        "index": null
+      },
+      "supplements": [],
+      "menuItemMenuItemOption": [],
+      "recipe": null,
+      "menuItemExpenses": []
+    },
+    {
+      "id": "055906e1-7d86-43a7-a7a7-d469ddc3b84e",
+      "name": "Tiramisu",
+      "price": 150,
+      "image": null,
+      "description": null,
+      "createdAt": "2025-11-18T19:51:08.220Z",
+      "updatedAt": "2025-11-20T11:07:15.881Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 0,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "parentMenuItemContainer": [],
+      "subMenuItemContainer": [],
+      "menuList": {
+        "id": "baa3b162-1c9b-4fe8-a701-5f97d3bd0ad7",
+        "name": "Gateaux",
+        "createdAt": "2025-06-12T14:49:45.129Z",
+        "updatedAt": "2025-10-05T02:01:28.817Z",
+        "isUnlisted": false,
+        "iconname": "cake",
+        "index": null
+      },
+      "supplements": [],
       "menuItemMenuItemOption": [],
       "recipe": null,
       "menuItemExpenses": []

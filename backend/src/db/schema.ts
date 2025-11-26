@@ -118,6 +118,7 @@ export const categories = pgTable("Category", {
 export const menuItems = pgTable("MenuItem", {
   id: varchar("id").primaryKey(),
   name: text("name").notNull(),
+  subName: text("subName"),
   type: jsonb("type").default('["MENU_ITEM"]').$type<Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">>().notNull(),
   
   // Common fields
@@ -147,6 +148,8 @@ export const menuItems = pgTable("MenuItem", {
   inHouseStockQuantity: real("inHouseStockQuantity"),
   inShopStockQuantity: real("inShopStockQuantity"),
   stockConversionRatio: real("stockConversionRatio").default(1),
+  designVersion: integer("designVersion"),
+  imageSourceMenuItemId: varchar("imageSourceMenuItemId"), // Reference to another menu item to use its images
 });
 
 export const orders = pgTable("Order", {
@@ -228,6 +231,12 @@ export const menuItemRelations = relations(menuItems, ({ one, many }) => ({
   usedAsSubMenuItem: many(menuItemSubMenuItems, { relationName: "subMenuItem" }),
   orders: many(menuItemOrders),
   images: many(menuItemImages),
+  imageSourceMenuItem: one(menuItems, { 
+    fields: [menuItems.imageSourceMenuItemId], 
+    references: [menuItems.id],
+    relationName: "imageSource"
+  }),
+  itemsUsingThisAsImageSource: many(menuItems, { relationName: "imageSource" }),
 }));
 
 export const menuItemImageRelations = relations(menuItemImages, ({ one }) => ({

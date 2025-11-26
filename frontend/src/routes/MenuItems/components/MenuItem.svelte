@@ -106,15 +106,17 @@
         const result = await trpc.listMenuItemImages.query({
           menuItemId: menuItem.id,
         });
-        
+
         if (result.success && result.images.length > 0) {
-          const mainImage = result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) || result.images[0];
-        console.log(mainImage)
-          
+          const mainImage =
+            result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) ||
+            result.images[0];
+          console.log(mainImage);
+
           const urlResult = await trpc.getMenuItemImageViewUrl.query({
             fileId: mainImage.fileId,
           });
-          
+
           if (urlResult.success) {
             imageUrl = urlResult.url;
           }
@@ -134,7 +136,6 @@
   });
 </script>
 
-
 <ClickableDiv
   customOnClick={handleEdit}
   class="bg-white border {menuItem.isAvailable
@@ -147,16 +148,19 @@
       alt={menuItem.name}
       class="w-full h-full object-contain rounded-md"
       onerror={(e) => {
-        (e.currentTarget as HTMLImageElement).src = '/placeholder-image.jpg';
+        (e.currentTarget as HTMLImageElement).src = "/placeholder-image.jpg";
       }}
     />
   </div>
-  
+
   <div class="flex-1 min-w-0 flex items-start justify-between">
     <div class="flex-1 min-w-0">
-      <h3 class="font-semibold text-gray-900 truncate mb-2">
+      <h3 class="font-semibold text-gray-900 truncate">
         {menuItem.name}
       </h3>
+      <h4 class="font-semibold text-gray-900 truncate mb-2 text-xs">
+        {menuItem.subName}
+      </h4>
       <div class="space-y-1 text-sm">
         <div class="flex items-center gap-1">
           <span class="text-gray-600">Status:</span>
@@ -168,7 +172,9 @@
         </div>
         <div class="flex items-center gap-1">
           <span class="text-gray-600">Type:</span>
-          <span class="font-medium text-gray-900">{menuItem.type?.join(', ')}</span>
+          <span class="font-medium text-gray-900"
+            >{menuItem.type?.join(", ")}</span
+          >
         </div>
         {#if menuItem.price}
           <div class="flex items-center gap-1">
@@ -213,40 +219,36 @@
           <span class="ml-2">View Buying Prices</span>
         </DropdownItem>
         <DropdownSeparator />
-        <DropdownItem 
-          onclick={handleLinkMenuItems}
-        >
+        <DropdownItem onclick={handleLinkMenuItems}>
           <Icon iconName="link" size="4" class="fill-gray-600" />
           <span class="ml-2">Link Menu Items</span>
         </DropdownItem>
-        <DropdownItem 
-          onclick={handleLinkRecipe}
-        >
+        <DropdownItem onclick={handleLinkRecipe}>
           <Icon iconName="link" size="4" class="fill-gray-600" />
           <span class="ml-2">Link Recipe</span>
         </DropdownItem>
-        <DropdownItem 
+        <DropdownItem
           onclick={handleLinkRawMaterial}
           isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
         >
           <Icon iconName="link" size="4" class="fill-gray-600" />
           <span class="ml-2">Link Raw Material</span>
         </DropdownItem>
-        <DropdownItem 
+        <DropdownItem
           onclick={handleLinkSupplement}
           isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
         >
           <Icon iconName="link" size="4" class="fill-gray-600" />
           <span class="ml-2">Link Supplement</span>
         </DropdownItem>
-        <DropdownItem 
+        <DropdownItem
           onclick={handleLinkMenuItemOptionType}
           isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
         >
           <Icon iconName="link" size="4" class="fill-gray-600" />
           <span class="ml-2">Link Menu Item Option</span>
         </DropdownItem>
-   
+
         <DropdownSeparator />
         <DropdownItem onclick={handleDelete} class="text-red-600">
           <Icon iconName="trash" size="4" class="fill-red-600" />
@@ -335,5 +337,3 @@
   filterByType="MENU_ITEM_OPTION"
   onLinkCreated={loadMenuItems}
 />
-
-

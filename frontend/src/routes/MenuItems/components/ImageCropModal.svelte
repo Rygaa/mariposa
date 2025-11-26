@@ -314,8 +314,11 @@
     croppedCanvas.width = cropWidth * (img.width / imgWidth);
     croppedCanvas.height = cropHeight * (img.height / imgHeight);
     
-    const croppedCtx = croppedCanvas.getContext("2d");
+    const croppedCtx = croppedCanvas.getContext("2d", { alpha: true });
     if (!croppedCtx) return;
+    
+    // Clear canvas to ensure transparency is preserved
+    croppedCtx.clearRect(0, 0, croppedCanvas.width, croppedCanvas.height);
     
     croppedCtx.drawImage(
       img,
@@ -329,8 +332,8 @@
       croppedCanvas.height
     );
     
-    // Convert to base64
-    const croppedDataUrl = croppedCanvas.toDataURL("image/jpeg", 0.9);
+    // Convert to PNG to preserve transparency
+    const croppedDataUrl = croppedCanvas.toDataURL("image/png");
     onSave(croppedDataUrl);
     isOpen = false;
   }

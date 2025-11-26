@@ -35,6 +35,9 @@
   let cropImageName = $state("");
   let cropImageIndex = $state<number | null>(null);
 
+  let isInherited = $state(false);
+  let sourceMenuItemId = $state<string | null>(null);
+
   async function loadImages() {
     try {
       const result = await trpc.listMenuItemImages.query({ menuItemId });
@@ -42,10 +45,14 @@
 
       if (result.success) {
         images = result.images;
+        isInherited = result.isInherited || false;
+        sourceMenuItemId = result.sourceMenuItemId || null;
       }
     } catch (err) {
       console.error("Failed to load images:", err);
       images = [];
+      isInherited = false;
+      sourceMenuItemId = null;
     }
   }
 
@@ -132,15 +139,30 @@
 
   async function toggleShouldBeUsedInMenuItemsPage(index: number) {
     const image = images[index];
+    const previousState = image.shouldBeUsedInMenuItemsPage;
+    
+    // Optimistically update the state
+    images = images.map((img, idx) => {
+      if (idx === index) {
+        return { ...img, shouldBeUsedInMenuItemsPage: !img.shouldBeUsedInMenuItemsPage };
+      }
+      return img;
+    });
     
     try {
       await trpc.updateMenuItemImage.mutate({
         id: image.id,
-        shouldBeUsedInMenuItemsPage: !image.shouldBeUsedInMenuItemsPage,
+        shouldBeUsedInMenuItemsPage: !previousState,
       });
-      await loadImages();
     } catch (err) {
       console.error("Failed to update image:", err);
+      // Revert on error
+      images = images.map((img, idx) => {
+        if (idx === index) {
+          return { ...img, shouldBeUsedInMenuItemsPage: previousState };
+        }
+        return img;
+      });
     }
   }
 
@@ -233,15 +255,21 @@
 </script>
 
 <div class="space-y-3">
+  {#if isInherited}
+    <div class="bg-blue-50 border border-blue-200 text-blue-700 px-3 py-2 rounded text-sm">
+      <p>These images are inherited from another menu item.</p>
+    </div>
+  {/if}
+  
   <div class="flex items-center justify-between">
     <span class="block text-sm font-medium text-gray-700">
-      Images ({images.length}/{maxImages})
+      Images ({images.length}/{maxImages}) {isInherited ? '(Inherited)' : ''}
     </span>
     <Button
       variant="outline"
       size="sm"
       onclick={() => fileInput?.click()}
-      disabled={disabled || uploading || images.length >= maxImages}
+      disabled={disabled || uploading || images.length >= maxImages || isInherited}
       loading={uploading}
     >
       {uploading ? "Uploading..." : "Add Images"}
@@ -280,44 +308,46 @@
               </div>
             {/if}
             <!-- Action buttons overlay -->
-            <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-              <button
-                type="button"
-                onclick={() => toggleShouldBeUsedInMenuItemsPage(index)}
-                disabled={disabled || uploading}
-                aria-label="Toggle main image"
-                class="bg-green-500 text-white rounded-full p-2 hover:bg-green-600 transition-colors disabled:opacity-50"
-                title={image.shouldBeUsedInMenuItemsPage ? "Unset as main" : "Set as main"}
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                onclick={() => handleCropImage(index)}
-                disabled={disabled || uploading}
-                aria-label="Crop image"
-                class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition-colors disabled:opacity-50"
-                title="Crop/Edit"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                </svg>
-              </button>
-              <button
-                type="button"
-                onclick={() => removeImage(index)}
-                disabled={disabled}
-                aria-label="Remove image"
-                class="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors disabled:opacity-50"
-                title="Remove"
-              >
-                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                </svg>
-              </button>
-            </div>
+            {#if !isInherited}
+              <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                <button
+                  type="button"
+                  onclick={() => toggleShouldBeUsedInMenuItemsPage(index)}
+                  disabled={disabled || uploading}
+                  aria-label="Toggle main image"
+                  class="bg-green-500 text-white rounded-full p-2 hover:bg-green-600 transition-colors disabled:opacity-50"
+                  title={image.shouldBeUsedInMenuItemsPage ? "Unset as main" : "Set as main"}
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onclick={() => handleCropImage(index)}
+                  disabled={disabled || uploading}
+                  aria-label="Crop image"
+                  class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition-colors disabled:opacity-50"
+                  title="Crop/Edit"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  onclick={() => removeImage(index)}
+                  disabled={disabled}
+                  aria-label="Remove image"
+                  class="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors disabled:opacity-50"
+                  title="Remove"
+                >
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+            {/if}
           {:else if imageUrls[image.fileId] === ""}
             <div class="w-full h-24 bg-gray-100 rounded border border-gray-200 flex items-center justify-center">
               <span class="text-xs text-gray-400">Image unavailable</span>

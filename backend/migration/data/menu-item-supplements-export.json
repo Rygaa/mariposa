@@ -1,6 +1,6 @@
 {
-  "exportDate": "2025-11-14T14:35:01.598Z",
-  "totalRelationships": 157,
+  "exportDate": "2025-11-25T00:37:04.243Z",
+  "totalRelationships": 199,
   "menuItemSupplements": [
     {
       "id": "e8737b40-942a-4a94-af20-41dd3d0ecd99",
@@ -340,7 +340,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -376,7 +376,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -394,7 +394,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -412,7 +412,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -430,7 +430,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -448,7 +448,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -466,7 +466,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -484,7 +484,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -502,7 +502,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -520,7 +520,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -538,7 +538,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -556,7 +556,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -574,7 +574,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -592,7 +592,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -610,7 +610,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -628,7 +628,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -646,7 +646,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -664,7 +664,7 @@
       "supplement": {
         "id": "cb8a424c-3d70-40d5-98f6-6cd0c5fc6900",
         "name": "2 Barre Milka",
-        "price": 150,
+        "price": 200,
         "isDeleted": false
       }
     },
@@ -1096,7 +1096,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -1114,7 +1114,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -1132,7 +1132,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -1150,7 +1150,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -1168,7 +1168,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -1186,7 +1186,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -1222,7 +1222,7 @@
       "supplement": {
         "id": "7434ab7c-df2a-4973-ad9a-e51a57933125",
         "name": "4 Barre Milka",
-        "price": 300,
+        "price": 400,
         "isDeleted": false
       }
     },
@@ -2825,6 +2825,762 @@
         "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
         "name": "Noix",
         "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "bc1bf089-6945-483b-8887-b8e7f49de512",
+      "menuItemId": "98cf59e2-5093-4152-905a-21294548139d",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.965Z",
+      "menuItem": {
+        "id": "98cf59e2-5093-4152-905a-21294548139d",
+        "name": "Cafe au Lait",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "689e176b-411a-4935-aa85-2e8df86f28cb",
+      "menuItemId": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.969Z",
+      "menuItem": {
+        "id": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+        "name": "Lait au Chocolat",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "95333ff7-9fc2-4988-93ce-5a0a279364b9",
+      "menuItemId": "6f349d9c-caeb-4955-b397-9dbebc6f93b3",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.970Z",
+      "menuItem": {
+        "id": "6f349d9c-caeb-4955-b397-9dbebc6f93b3",
+        "name": "The Lipton",
+        "price": 100,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "77b6fd28-e818-45de-b89a-25fe7475eb3e",
+      "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.971Z",
+      "menuItem": {
+        "id": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+        "name": "Lait au chocolat Marshmallow",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "645251de-3d95-47c5-9570-543420fd7757",
+      "menuItemId": "eec4cbe0-acd1-4b55-a0a2-a4947dffbe9c",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.973Z",
+      "menuItem": {
+        "id": "eec4cbe0-acd1-4b55-a0a2-a4947dffbe9c",
+        "name": "Café Capsule",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "4cce7e64-9d1d-444d-bb94-90398ab4a92d",
+      "menuItemId": "8ade97bb-21d7-49da-b1fc-aef34176852d",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.974Z",
+      "menuItem": {
+        "id": "8ade97bb-21d7-49da-b1fc-aef34176852d",
+        "name": "Café L'OR",
+        "price": 250,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "5f029d9d-7ddc-4ffc-8706-947030db6250",
+      "menuItemId": "b434cbc8-a58d-4785-b840-3e7c4c905998",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.975Z",
+      "menuItem": {
+        "id": "b434cbc8-a58d-4785-b840-3e7c4c905998",
+        "name": "Café Maison",
+        "price": 100,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a4f334d6-9d3b-4791-9693-8402debc4be7",
+      "menuItemId": "5b28333f-5193-44b9-9ab0-cbe6558c7a3e",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.976Z",
+      "menuItem": {
+        "id": "5b28333f-5193-44b9-9ab0-cbe6558c7a3e",
+        "name": "Cappuccino",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "1494ed88-4110-42b3-a90e-41940079f331",
+      "menuItemId": "b4e37f6c-c030-4ea1-9721-20f80f5fdfe4",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.977Z",
+      "menuItem": {
+        "id": "b4e37f6c-c030-4ea1-9721-20f80f5fdfe4",
+        "name": "Nescafé au lait",
+        "price": 250,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "8c904255-1fc2-459d-9f18-35b497f3c507",
+      "menuItemId": "60bb874c-9271-495e-86b5-729946077b6a",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.978Z",
+      "menuItem": {
+        "id": "60bb874c-9271-495e-86b5-729946077b6a",
+        "name": "Chocolat Chaud",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "81f7790e-590e-4715-a229-5cb7687c38d0",
+      "menuItemId": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.979Z",
+      "menuItem": {
+        "id": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
+        "name": "Nescafé Caramel",
+        "price": 250,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f9586166-a08e-4bb5-9f54-4c2487b023e3",
+      "menuItemId": "d3fb3d84-0841-45e5-a66f-41530f57b040",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.980Z",
+      "menuItem": {
+        "id": "d3fb3d84-0841-45e5-a66f-41530f57b040",
+        "name": "Tisane Kabire Gingembre Au Miel",
+        "price": 150,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "b7f80e93-33f9-4392-8d5d-8df7c6ccf15e",
+      "menuItemId": "cf6add01-085f-47d0-81c1-453272325d79",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.982Z",
+      "menuItem": {
+        "id": "cf6add01-085f-47d0-81c1-453272325d79",
+        "name": "Thé maison avec mente",
+        "price": 100,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ec3c0e10-71e9-4d5f-9cce-9e461351eb8a",
+      "menuItemId": "a176e4b8-e1d4-4d51-a6ce-e0dd52b35b07",
+      "supplementId": "d065d304-73e8-4037-acc2-35dc99014a3c",
+      "createdAt": "2025-11-13T00:11:07.983Z",
+      "menuItem": {
+        "id": "a176e4b8-e1d4-4d51-a6ce-e0dd52b35b07",
+        "name": "Iced Tea",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "d065d304-73e8-4037-acc2-35dc99014a3c",
+        "name": "Confiture Nature Fraise",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f4e476a4-fad3-48ad-83e1-f9a9a1a65bb9",
+      "menuItemId": "98cf59e2-5093-4152-905a-21294548139d",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.239Z",
+      "menuItem": {
+        "id": "98cf59e2-5093-4152-905a-21294548139d",
+        "name": "Cafe au Lait",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7c9a2067-c11d-4d6b-96d6-b07a915ae7f6",
+      "menuItemId": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.241Z",
+      "menuItem": {
+        "id": "e821b595-d7dc-4321-bd45-9d205d0c5a11",
+        "name": "Lait au Chocolat",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "c5a15343-cac7-47eb-bca7-938b63143608",
+      "menuItemId": "6f349d9c-caeb-4955-b397-9dbebc6f93b3",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.243Z",
+      "menuItem": {
+        "id": "6f349d9c-caeb-4955-b397-9dbebc6f93b3",
+        "name": "The Lipton",
+        "price": 100,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0108430d-e709-41f7-8211-83fb3959f12e",
+      "menuItemId": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.244Z",
+      "menuItem": {
+        "id": "02e7f91d-658f-4e67-ac63-97e23bb3b3c4",
+        "name": "Lait au chocolat Marshmallow",
+        "price": 300,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "70d5eea9-1d9a-48db-9683-3b678ce182a5",
+      "menuItemId": "eec4cbe0-acd1-4b55-a0a2-a4947dffbe9c",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.245Z",
+      "menuItem": {
+        "id": "eec4cbe0-acd1-4b55-a0a2-a4947dffbe9c",
+        "name": "Café Capsule",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "36e8e2e9-54c2-4194-b5ff-c0cf20b75281",
+      "menuItemId": "8ade97bb-21d7-49da-b1fc-aef34176852d",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.247Z",
+      "menuItem": {
+        "id": "8ade97bb-21d7-49da-b1fc-aef34176852d",
+        "name": "Café L'OR",
+        "price": 250,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "efea10ba-73a2-4217-a4fc-9f1d32f49249",
+      "menuItemId": "b434cbc8-a58d-4785-b840-3e7c4c905998",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.248Z",
+      "menuItem": {
+        "id": "b434cbc8-a58d-4785-b840-3e7c4c905998",
+        "name": "Café Maison",
+        "price": 100,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "785186fd-9361-4601-a2a5-067a3a6a2e86",
+      "menuItemId": "5b28333f-5193-44b9-9ab0-cbe6558c7a3e",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.249Z",
+      "menuItem": {
+        "id": "5b28333f-5193-44b9-9ab0-cbe6558c7a3e",
+        "name": "Cappuccino",
+        "price": 350,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0530722c-67ca-4a26-ba3b-c4c2b0b1595a",
+      "menuItemId": "b4e37f6c-c030-4ea1-9721-20f80f5fdfe4",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.250Z",
+      "menuItem": {
+        "id": "b4e37f6c-c030-4ea1-9721-20f80f5fdfe4",
+        "name": "Nescafé au lait",
+        "price": 250,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "0778800e-8389-496a-bd28-0582b87f736c",
+      "menuItemId": "60bb874c-9271-495e-86b5-729946077b6a",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.251Z",
+      "menuItem": {
+        "id": "60bb874c-9271-495e-86b5-729946077b6a",
+        "name": "Chocolat Chaud",
+        "price": 400,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a5c8c2d8-8957-4765-9338-a3f8a8d27724",
+      "menuItemId": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.253Z",
+      "menuItem": {
+        "id": "c66b4fd6-cb54-41b0-83fc-044b6a548e42",
+        "name": "Nescafé Caramel",
+        "price": 250,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "f4aeb5d9-7bbc-4d99-8e6a-227767a8715d",
+      "menuItemId": "d3fb3d84-0841-45e5-a66f-41530f57b040",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.254Z",
+      "menuItem": {
+        "id": "d3fb3d84-0841-45e5-a66f-41530f57b040",
+        "name": "Tisane Kabire Gingembre Au Miel",
+        "price": 150,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "e98b0d54-c207-4264-b851-424ff85a9e55",
+      "menuItemId": "cf6add01-085f-47d0-81c1-453272325d79",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.255Z",
+      "menuItem": {
+        "id": "cf6add01-085f-47d0-81c1-453272325d79",
+        "name": "Thé maison avec mente",
+        "price": 100,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "ec62108c-2430-43d5-9701-e084252fcdea",
+      "menuItemId": "a176e4b8-e1d4-4d51-a6ce-e0dd52b35b07",
+      "supplementId": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+      "createdAt": "2025-11-13T00:11:37.256Z",
+      "menuItem": {
+        "id": "a176e4b8-e1d4-4d51-a6ce-e0dd52b35b07",
+        "name": "Iced Tea",
+        "price": 200,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "2d732622-b2a7-4067-956e-25fe5f25b56f",
+        "name": "Confiture Nature Abricot",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "fc4e9ca8-0b8c-46ce-a9d8-09d5ee8b2883",
+      "menuItemId": "68192a61-0cf4-40e1-8492-3531aa55504c",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-25T00:04:46.842Z",
+      "menuItem": {
+        "id": "68192a61-0cf4-40e1-8492-3531aa55504c",
+        "name": "Churros Nutella",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "56ff777a-9f84-40a2-b9af-f098045c950b",
+      "menuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-25T00:04:46.844Z",
+      "menuItem": {
+        "id": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+        "name": "Gaufre Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "325192ac-ec21-4e80-b0aa-1def87a638af",
+      "menuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-25T00:04:46.845Z",
+      "menuItem": {
+        "id": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+        "name": "Pancakes Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2ad14354-2023-4adc-9993-88ee8f0d4621",
+      "menuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-25T00:04:46.846Z",
+      "menuItem": {
+        "id": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+        "name": "Crêpe Nutella",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "d8de8082-e7d0-4c44-963c-f9a591fd1214",
+      "menuItemId": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+      "supplementId": "58ba845e-350a-4681-9e8f-648150a85eb8",
+      "createdAt": "2025-11-25T00:04:46.848Z",
+      "menuItem": {
+        "id": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+        "name": "Milkshake Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "58ba845e-350a-4681-9e8f-648150a85eb8",
+        "name": "Noix",
+        "price": 100,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "4e1b2a24-c948-4899-8349-da30c4880a7b",
+      "menuItemId": "68192a61-0cf4-40e1-8492-3531aa55504c",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-25T00:05:16.560Z",
+      "menuItem": {
+        "id": "68192a61-0cf4-40e1-8492-3531aa55504c",
+        "name": "Churros Nutella",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "79d3d46e-a6aa-4a16-baab-1b20e6750bb7",
+      "menuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-25T00:05:16.562Z",
+      "menuItem": {
+        "id": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+        "name": "Gaufre Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "cf6b0210-7a12-4941-a3f3-1571e9dd3a41",
+      "menuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-25T00:05:16.563Z",
+      "menuItem": {
+        "id": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+        "name": "Pancakes Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "20945fe0-82a3-4b56-8313-da94dd7d3068",
+      "menuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-25T00:05:16.564Z",
+      "menuItem": {
+        "id": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+        "name": "Crêpe Nutella",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "7d138ef0-63b1-487f-a965-d80b819c3196",
+      "menuItemId": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+      "supplementId": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+      "createdAt": "2025-11-25T00:05:16.565Z",
+      "menuItem": {
+        "id": "7d46eb96-8cc6-4a41-a6d1-9db2370ce989",
+        "name": "Milkshake Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "476fdd70-9aa7-4178-8eeb-eb5fadfd542c",
+        "name": "Crème pistache",
+        "price": 200,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "efd0cfc3-2c08-4ccb-8f93-4a81f67d1bbb",
+      "menuItemId": "68192a61-0cf4-40e1-8492-3531aa55504c",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-11-25T00:05:29.713Z",
+      "menuItem": {
+        "id": "68192a61-0cf4-40e1-8492-3531aa55504c",
+        "name": "Churros Nutella",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "2641b027-a855-4be1-a50e-2fa0fb10b0d8",
+      "menuItemId": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-11-25T00:05:29.714Z",
+      "menuItem": {
+        "id": "6721ca3c-6118-476d-9cfe-3a0982d8c4b1",
+        "name": "Gaufre Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "64ca02e1-1268-4e96-a833-1aa25e806704",
+      "menuItemId": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-11-25T00:05:29.716Z",
+      "menuItem": {
+        "id": "c1ecacd4-f760-41d9-9a08-fa33820a3a6c",
+        "name": "Pancakes Nutella",
+        "price": 750,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
+        "isDeleted": false
+      }
+    },
+    {
+      "id": "a6c5be27-113f-4350-816b-44fdcf281127",
+      "menuItemId": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+      "supplementId": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+      "createdAt": "2025-11-25T00:05:29.718Z",
+      "menuItem": {
+        "id": "4dcba09d-950f-44a8-8381-15c6f5177b0a",
+        "name": "Crêpe Nutella",
+        "price": 700,
+        "isAvailable": true
+      },
+      "supplement": {
+        "id": "1bb91c20-e1dc-4576-a1a4-aa1d5f1b2c9d",
+        "name": "Banane",
+        "price": 150,
         "isDeleted": false
       }
     }

@@ -35,7 +35,7 @@
   let filterCategoryId = $state<string>("");
   let filterAvailable = $state<string>("all");
   let hasLoadedUserPreferences = $state(false);
-  let lastSavedFilterType = $state<string>("");
+  let lastSavedFilters = $state<string>("");
 
   onMount(async () => {
     if (!_globalStore.user) {
@@ -45,11 +45,17 @@
     
     // Load user preferences from meta
     const userMeta = _globalStore.user.meta as Record<string, any>;
-    if (userMeta?.menu_items_filter_by_type) {
-      filterType = userMeta.menu_items_filter_by_type;
-      lastSavedFilterType = JSON.stringify(userMeta.menu_items_filter_by_type);
+    const savedFilters = userMeta?.menu_items_filters;
+    
+    if (savedFilters) {
+      if (savedFilters.type) filterType = savedFilters.type;
+      if (savedFilters.categoryId) filterCategoryId = savedFilters.categoryId;
+      if (savedFilters.available) filterAvailable = savedFilters.available;
+      if (savedFilters.search) searchQuery = savedFilters.search;
+      
+      lastSavedFilters = JSON.stringify(savedFilters);
     } else {
-      lastSavedFilterType = JSON.stringify([]);
+      lastSavedFilters = JSON.stringify({});
     }
     
     hasLoadedUserPreferences = true;
@@ -112,22 +118,28 @@
     }
   });
 
-  // Save filterType to user meta when it changes
+  // Save all filters to user meta when they change
   $effect(() => {
     if (hasLoadedUserPreferences && _globalStore.user) {
-      const currentTypesStr = JSON.stringify(filterType);
+      const currentFilters = {
+        type: filterType,
+        categoryId: filterCategoryId,
+        available: filterAvailable,
+        search: searchQuery,
+      };
+      const currentFiltersStr = JSON.stringify(currentFilters);
       
       // Only save if the value has actually changed
-      if (currentTypesStr !== lastSavedFilterType) {
+      if (currentFiltersStr !== lastSavedFilters) {
         // Debounce the save operation
         const timeoutId = setTimeout(async () => {
           try {
             await trpc.updateUserMeta.mutate({
-              metaKey: "menu_items_filter_by_type",
-              metaValue: filterType,
+              metaKey: "menu_items_filters",
+              metaValue: currentFilters,
             });
             
-            lastSavedFilterType = currentTypesStr;
+            lastSavedFilters = currentFiltersStr;
             
             // Update local user meta
             if (_globalStore.user) {
@@ -135,7 +147,7 @@
                 ..._globalStore.user,
                 meta: {
                   ...(_globalStore.user.meta as Record<string, any> || {}),
-                  menu_items_filter_by_type: filterType,
+                  menu_items_filters: currentFilters,
                 },
               };
             }

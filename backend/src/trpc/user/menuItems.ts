@@ -47,6 +47,7 @@ export const update = protectedProcedureGlobalTransaction
     z.object({
       id: z.string().uuid("Invalid menu item ID"),
       name: z.string().optional(),
+      subName: z.string().optional(),
       type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
       price: z.number().optional(),
       image: z.array(z.string()).optional(),
@@ -59,6 +60,8 @@ export const update = protectedProcedureGlobalTransaction
       averagePrice: z.number().optional(),
       stockQuantity: z.number().optional(),
       stockConversionRatio: z.number().optional(),
+      designVersion: z.number().int().optional(),
+      imageSourceMenuItemId: z.string().uuid().optional().nullable(),
     })
   )
   .mutation(async ({ ctx, input }) => {
@@ -363,11 +366,25 @@ export const listMenuItemImages = protectedProcedure
   )
   .query(async ({ ctx, input }) => {
     try {
-      const images = await _ServiceMenuItemImages.listByMenuItemId(input.menuItemId);
+      // First check if this menu item references another item for images
+      const menuItem = await _ServiceMenuItems.findById(input.menuItemId);
+      
+      if (!menuItem) {
+        throw new TRPCError({
+          code: "NOT_FOUND",
+          message: "Menu item not found",
+        });
+      }
+
+      // If it has an imageSourceMenuItemId, fetch images from that item instead
+      const targetMenuItemId = menuItem.imageSourceMenuItemId || input.menuItemId;
+      const images = await _ServiceMenuItemImages.listByMenuItemId(targetMenuItemId);
 
       return {
         success: true,
         images,
+        isInherited: !!menuItem.imageSourceMenuItemId,
+        sourceMenuItemId: menuItem.imageSourceMenuItemId,
       };
     } catch (error) {
       console.error("Error listing menu item images:", error);

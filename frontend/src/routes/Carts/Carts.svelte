@@ -3,6 +3,7 @@
   import Icon from "../../lib/components/Icon.svelte";
   import TableOrdersModal from "./components/TableOrdersModal.svelte";
   import { _globalStore } from "../../store/globalStore.svelte";
+  import { _cartsStore } from "../../store/carts.svelte";
   import { navigate } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
   import Page from "../../lib/shadcn/Page.svelte";
@@ -12,9 +13,7 @@
     CardHeader,
     CardTitle,
   } from "../../lib/shadcn/Card/index";
-  import Button from "../../lib/components/Button.svelte";
 
-  let orders = $state<any[]>([]);
   let tables = $state<any[]>([]);
   let isLoading = $state(false);
   let searchQuery = $state("");
@@ -33,15 +32,10 @@
     isLoading = true;
     try {
       // Load orders and tables
-      const [ordersResult, tablesResult] = await Promise.all([
-        trpc.listOrdersWithRelations.query({ status: "CONFIRMED" }),
+      const [_, tablesResult] = await Promise.all([
+        _cartsStore.loadOrders(),
         trpc.listEatingTables.query({}),
       ]);
-
-      if (ordersResult.success) {
-        // Filter confirmed orders only
-        orders = ordersResult.orders;
-      }
 
       if (tablesResult.success) {
         tables = tablesResult.eatingTables || [];
@@ -56,10 +50,10 @@
   const tablesWithOrders = $derived(() => {
     return tables
       .map((table) => {
-        const tableOrders = orders.filter(
+        const tableOrders = _cartsStore.orders.filter(
           (order) => order.eatingTableId === table.id
         );
-        console.log(orders);
+        console.log(_cartsStore.orders);
         console.log("Table Orders:", tableOrders);
         const totalAmount = tableOrders.reduce((sum, order) => {
           if (!order.menuItemOrders) return sum;
@@ -110,9 +104,7 @@
     }).format(amount);
   }
 
-  async function handleOrdersUpdated() {
-    await loadData();
-  }
+
 </script>
 
 <Page>
@@ -150,7 +142,7 @@
               <span>tables with confirmed orders</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="font-medium">{orders.length}</span>
+              <span class="font-medium">{_cartsStore.orders.length}</span>
               <span>total confirmed orders</span>
             </div>
           </div>
@@ -238,6 +230,5 @@
   <TableOrdersModal
     bind:isOpen={isTableOrdersModalOpen}
     table={selectedTable}
-    onOrdersUpdated={handleOrdersUpdated}
   />
 {/if}

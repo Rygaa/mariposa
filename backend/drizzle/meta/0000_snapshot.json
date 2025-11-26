@@ -1,5 +1,5 @@
 {
-  "id": "330e04d9-67e2-4012-9303-2ec29eeb0fcd",
+  "id": "2af04aa7-4398-4616-a40a-4aa73ab0fd6a",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -98,6 +98,13 @@
           "primaryKey": false,
           "notNull": true,
           "default": true
+        },
+        "isDefault": {
+          "name": "isDefault",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
         },
         "type": {
           "name": "type",
@@ -272,6 +279,58 @@
       "checkConstraints": {},
       "isRLSEnabled": false
     },
+    "public.MenuItemImage": {
+      "name": "MenuItemImage",
+      "schema": "",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "varchar",
+          "primaryKey": true,
+          "notNull": true
+        },
+        "menuItemId": {
+          "name": "menuItemId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "fileId": {
+          "name": "fileId",
+          "type": "varchar",
+          "primaryKey": false,
+          "notNull": true
+        },
+        "shouldBeUsedInMenuItemsPage": {
+          "name": "shouldBeUsedInMenuItemsPage",
+          "type": "boolean",
+          "primaryKey": false,
+          "notNull": true,
+          "default": false
+        },
+        "createdAt": {
+          "name": "createdAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        },
+        "updatedAt": {
+          "name": "updatedAt",
+          "type": "timestamp",
+          "primaryKey": false,
+          "notNull": true,
+          "default": "now()"
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {},
+      "policies": {},
+      "checkConstraints": {},
+      "isRLSEnabled": false
+    },
     "public.MenuItemOrder": {
       "name": "MenuItemOrder",
       "schema": "",
@@ -427,6 +486,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "subName": {
+          "name": "subName",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "type": {
           "name": "type",
           "type": "jsonb",
@@ -474,7 +539,7 @@
         },
         "image": {
           "name": "image",
-          "type": "text",
+          "type": "jsonb",
           "primaryKey": false,
           "notNull": false
         },
@@ -712,6 +777,12 @@
         },
         "webPushSubscriptionContainer": {
           "name": "webPushSubscriptionContainer",
+          "type": "jsonb",
+          "primaryKey": false,
+          "notNull": false
+        },
+        "meta": {
+          "name": "meta",
           "type": "jsonb",
           "primaryKey": false,
           "notNull": false

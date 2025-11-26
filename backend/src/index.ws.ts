@@ -22,7 +22,7 @@ export async function setupWebSocketServer(app: FastifyInstance, appRouter: any)
         console.log(socketList);
 
         // Disconnect old sockets for the same user
-        enforceSingleDeviceSession(data.user.id);
+        // enforceSingleDeviceSession(data.user.id);
 
         console.log(socketList);
         

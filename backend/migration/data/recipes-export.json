@@ -1,5 +1,5 @@
 {
-  "exportDate": "2025-11-15T04:21:29.752Z",
+  "exportDate": "2025-11-25T00:37:09.401Z",
   "totalRecipes": 12,
   "recipes": [
     {
@@ -120,110 +120,6 @@
           "createdAt": "2025-08-10T04:35:52.873Z",
           "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
           "menuItemId": "6677905d-f056-4156-84b9-c4152edbac96",
-          "quantity": 50,
-          "expense": {
-            "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
-            "name": "Ayris",
-            "unit": "milliliter",
-            "averagePrice": 0.017
-          }
-        }
-      ],
-      "parentMenuItemContainer": [],
-      "subMenuItemContainer": []
-    },
-    {
-      "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-      "name": "Creme au citron",
-      "price": 1,
-      "image": null,
-      "description": "Separate the eggs\nIn a small bowl, crack one whole egg and add one egg yolk. Set aside.\n\nPrepare the dry and wet base\nIn another large bowl, add the cornstarch first.\nThen add the sugar on top.\nPour in the liquid lemon juice over the sugar.\nThen add the water on top.\n\nCombine\nAfter everything is in, pour in the egg mixture and whisk until smooth.\n\nCook the mixture\nPour the mixture into a saucepan.\nSet the heat to high (maximum).\nStir constantly with a whisk.\nOnce the mixture thickens and starts to bubble slightly, remove it immediately from the heat.\n\nAdd butter\nAdd a small piece of regular (not melted) butter to the hot mixture.\nStir until it melts completely and the cream is smooth.\n\nCool the lemon cream\nTransfer the lemon cream to a clean bowl.\nCover it directly on contact with plastic wrap (so it touches the surface of the cream).\nLet it cool at room temperature for 30 minutes, then refrigerate until cold.\n\nWhip the Chantilly cream\nIn a cold bowl, add 100g of cold heavy cream.\nBeat with a mixer on high speed until it becomes very fluffy and forms stiff peaks.\n\nAdd lemon flavor (optional)\nAdd a small amount of lemon concentrate.\nMix again just enough to fully incorporate the flavor — don’t overwhip.\nDivide the whipped cream into 3 equal parts.\nGently fold in each part, one at a time, using a spatula.\nMix carefully to avoid adding air.\nStop once the texture is smooth, airy, and mousse-like.\n\nFinal steps — store or pipe\n\nTo use it right away, transfer to a piping bag. Let it sit a few minutes to cool slightly, then start piping.\n\nTo use it later, cover the mousse normally and store in the fridge until needed.",
-      "createdAt": "2025-08-10T04:24:29.975Z",
-      "updatedAt": "2025-08-10T04:29:31.156Z",
-      "isDeleted": false,
-      "isAvailable": true,
-      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
-      "producedQuantityPerRecipe": null,
-      "recipeId": null,
-      "cost": 0,
-      "isRecipe": false,
-      "shouldAppearInScreenshot": true,
-      "doesExpensesAndRecipesNeedUpdate": false,
-      "menuList": {
-        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
-        "name": "Recipes"
-      },
-      "menuItemExpenses": [
-        {
-          "id": "aaad1c13-3cc3-439b-b8a6-7e75432e655c",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 20,
-          "expense": {
-            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
-            "name": "Margarine Many",
-            "unit": "gramme",
-            "averagePrice": 0.345
-          }
-        },
-        {
-          "id": "a6520ddb-0af5-4c1b-9e98-ada9c02f10e7",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 2,
-          "expense": {
-            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
-            "name": "Plateau Oeuf",
-            "unit": "portion",
-            "averagePrice": 15
-          }
-        },
-        {
-          "id": "415f3057-efaa-4d56-8410-373e303e1d65",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 75,
-          "expense": {
-            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
-            "name": "Sokor",
-            "unit": "gramme",
-            "averagePrice": 0.1
-          }
-        },
-        {
-          "id": "d09c3ef0-281d-4894-bc21-75d088afc762",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 22,
-          "expense": {
-            "id": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
-            "name": "Mayzena",
-            "unit": "gramme",
-            "averagePrice": 0.2
-          }
-        },
-        {
-          "id": "0b4f3e90-5bf0-4b35-9f99-12c56c03b085",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
-          "quantity": 150,
-          "expense": {
-            "id": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
-            "name": "Citron Liquid",
-            "unit": "milliliter",
-            "averagePrice": 0.667
-          }
-        },
-        {
-          "id": "9a76e48d-108c-4f79-a8b5-c4fd6ae37930",
-          "createdAt": "2025-08-10T04:30:31.250Z",
-          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
-          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
           "quantity": 50,
           "expense": {
             "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
@@ -528,34 +424,6 @@
           }
         },
         {
-          "id": "cbfffe74-2919-4a14-8b65-f56a51f8c329",
-          "parentMenuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 25,
-          "createdAt": "2025-08-11T06:56:06.612Z",
-          "parentMenuItem": {
-            "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
-            "name": "Crêpe Morjene Bueno",
-            "price": 350,
-            "cost": 113.29
-          }
-        },
-        {
-          "id": "ea2aab25-fcab-42d1-accb-55a443e063a6",
-          "parentMenuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
-          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 25,
-          "createdAt": "2025-08-11T06:56:23.195Z",
-          "parentMenuItem": {
-            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
-            "name": "Crêpe Rouler Banane",
-            "price": 750,
-            "cost": 323.49
-          }
-        },
-        {
           "id": "272f4945-9543-4934-9678-7edd5c635cab",
           "parentMenuItemId": "c61fc5d2-4bc1-4db0-a477-90d753c148ab",
           "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
@@ -623,6 +491,34 @@
             "name": "Crêpe Nutella Spaghetti",
             "price": 700,
             "cost": 291.99
+          }
+        },
+        {
+          "id": "dc847dbb-cf76-4983-8152-4e4267613b81",
+          "parentMenuItemId": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-11-19T09:44:11.020Z",
+          "parentMenuItem": {
+            "id": "a78edae6-7042-4d5f-b0bb-9fd49104dc2f",
+            "name": "Crêpe Morjene Bueno",
+            "price": 350,
+            "cost": 17.48
+          }
+        },
+        {
+          "id": "846a01bc-c60d-4b11-90ce-eb843d0ebb34",
+          "parentMenuItemId": "6481bb8c-10d1-4395-b027-65f944d66920",
+          "subMenuItemId": "8f48a48b-37ef-4dd6-a7eb-ad49671bf362",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 25,
+          "createdAt": "2025-11-19T09:44:12.160Z",
+          "parentMenuItem": {
+            "id": "6481bb8c-10d1-4395-b027-65f944d66920",
+            "name": "Crêpe Rouler Banane",
+            "price": 750,
+            "cost": 17.48
           }
         }
       ]
@@ -1076,26 +972,12 @@
           }
         },
         {
-          "id": "156f907f-62bd-4f98-bf02-a808b2596a2f",
-          "parentMenuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
-          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
-          "quantity": 1,
-          "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:32.708Z",
-          "parentMenuItem": {
-            "id": "c38dda0d-a551-4ee1-9592-c72281851417",
-            "name": "Pancakes Bueno",
-            "price": 450,
-            "cost": 30.31
-          }
-        },
-        {
-          "id": "77273206-e9a2-4c80-8405-9125a42a9dc2",
+          "id": "3f7f904e-14d6-4a32-92c5-e4f1b9836678",
           "parentMenuItemId": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:33.481Z",
+          "createdAt": "2025-11-16T13:45:50.073Z",
           "parentMenuItem": {
             "id": "4a7a6aaa-8865-4066-905f-e9c10e53d9b9",
             "name": "Pancakes Miel Espagnol",
@@ -1104,12 +986,12 @@
           }
         },
         {
-          "id": "c709e2ad-3620-4a7a-abc0-f84994be7dd1",
+          "id": "b8b5fb8d-722a-4e9a-b1e1-3bfafc5d0cdc",
           "parentMenuItemId": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:34.619Z",
+          "createdAt": "2025-11-16T13:45:50.580Z",
           "parentMenuItem": {
             "id": "461e36d9-8b66-48f5-adef-f978c0e7eb03",
             "name": "Pancakes Caramel",
@@ -1118,12 +1000,26 @@
           }
         },
         {
-          "id": "d143aa17-8d15-4590-a3be-085cdc53015d",
+          "id": "09aed9f7-b27a-4514-8a4e-77aef61a4767",
+          "parentMenuItemId": "c38dda0d-a551-4ee1-9592-c72281851417",
+          "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
+          "quantity": 1,
+          "producedMenuItemsQuantity": 8,
+          "createdAt": "2025-11-16T13:45:51.334Z",
+          "parentMenuItem": {
+            "id": "c38dda0d-a551-4ee1-9592-c72281851417",
+            "name": "Pancakes Bueno",
+            "price": 450,
+            "cost": 30.31
+          }
+        },
+        {
+          "id": "4d41d821-d90a-476b-b583-d278ed896a32",
           "parentMenuItemId": "772c0877-d482-4ec1-b12e-181cbadf5d76",
           "subMenuItemId": "1bd947bc-4735-4731-95ae-4e4023461972",
           "quantity": 1,
           "producedMenuItemsQuantity": 8,
-          "createdAt": "2025-11-05T13:57:35.203Z",
+          "createdAt": "2025-11-16T13:45:53.430Z",
           "parentMenuItem": {
             "id": "772c0877-d482-4ec1-b12e-181cbadf5d76",
             "name": "Pancakes Morjene",
@@ -1669,6 +1565,110 @@
           }
         }
       ],
+      "subMenuItemContainer": []
+    },
+    {
+      "id": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+      "name": "Creme au citron",
+      "price": 1,
+      "image": null,
+      "description": "Separate the eggs\nIn a small bowl, crack one whole egg and add one egg yolk. Set aside.\n\nPrepare the dry and wet base\nIn another large bowl, add the cornstarch first.\nThen add the sugar on top.\nPour in the liquid lemon juice over the sugar.\nThen add the water on top.\n\nCombine\nAfter everything is in, pour in the egg mixture and whisk until smooth.\n\nCook the mixture\nPour the mixture into a saucepan.\nSet the heat to high (maximum).\nStir constantly with a whisk.\nOnce the mixture thickens and starts to bubble slightly, remove it immediately from the heat.\n\nAdd butter\nAdd a small piece of regular (not melted) butter to the hot mixture.\nStir until it melts completely and the cream is smooth.\n\nCool the lemon cream\nTransfer the lemon cream to a clean bowl.\nCover it directly on contact with plastic wrap (so it touches the surface of the cream).\nLet it cool at room temperature for 30 minutes, then refrigerate until cold.\n\nWhip the Chantilly cream\nIn a cold bowl, add 100g of cold heavy cream.\nBeat with a mixer on high speed until it becomes very fluffy and forms stiff peaks.\n\nAdd lemon flavor (optional)\nAdd a small amount of lemon concentrate.\nMix again just enough to fully incorporate the flavor — don’t overwhip.\nDivide the whipped cream into 3 equal parts.\nGently fold in each part, one at a time, using a spatula.\nMix carefully to avoid adding air.\nStop once the texture is smooth, airy, and mousse-like.\n\nFinal steps — store or pipe\n\nTo use it right away, transfer to a piping bag. Let it sit a few minutes to cool slightly, then start piping.\n\nTo use it later, cover the mousse normally and store in the fridge until needed.",
+      "createdAt": "2025-08-10T04:24:29.975Z",
+      "updatedAt": "2025-11-15T04:20:15.763Z",
+      "isDeleted": false,
+      "isAvailable": true,
+      "menuListId": "6abe6963-974a-4526-a7c2-76afb5426106",
+      "producedQuantityPerRecipe": null,
+      "recipeId": null,
+      "cost": 149.7,
+      "isRecipe": false,
+      "shouldAppearInScreenshot": true,
+      "doesExpensesAndRecipesNeedUpdate": false,
+      "menuList": {
+        "id": "6abe6963-974a-4526-a7c2-76afb5426106",
+        "name": "Recipes"
+      },
+      "menuItemExpenses": [
+        {
+          "id": "71aa9ab7-6500-4b10-b5e6-c37eb2227261",
+          "createdAt": "2025-11-15T04:20:15.749Z",
+          "expenseId": "d01051e4-ec88-47dd-8ace-61312e186269",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 20,
+          "expense": {
+            "id": "d01051e4-ec88-47dd-8ace-61312e186269",
+            "name": "Margarine Many",
+            "unit": "gramme",
+            "averagePrice": 0.345
+          }
+        },
+        {
+          "id": "ae3d9d58-50f6-441e-9e16-d936468d68dc",
+          "createdAt": "2025-11-15T04:20:15.752Z",
+          "expenseId": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 2,
+          "expense": {
+            "id": "b0373ab4-3833-49ef-8ee2-5fa74efaeecf",
+            "name": "Plateau Oeuf",
+            "unit": "portion",
+            "averagePrice": 15
+          }
+        },
+        {
+          "id": "d478e4fa-0c8c-46ee-b307-00f1c69d7295",
+          "createdAt": "2025-11-15T04:20:15.754Z",
+          "expenseId": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 75,
+          "expense": {
+            "id": "4f1b0c49-1873-4d73-acb7-75dafc325727",
+            "name": "Sokor",
+            "unit": "gramme",
+            "averagePrice": 0.1
+          }
+        },
+        {
+          "id": "3947704e-d1cc-415a-8547-798f2f84851c",
+          "createdAt": "2025-11-15T04:20:15.754Z",
+          "expenseId": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 22,
+          "expense": {
+            "id": "22c9758d-7ba8-4822-9ad1-7e5c763216f4",
+            "name": "Mayzena",
+            "unit": "gramme",
+            "averagePrice": 0.2
+          }
+        },
+        {
+          "id": "11ef5955-d535-4ceb-b4ec-58d4f237487c",
+          "createdAt": "2025-11-15T04:20:15.755Z",
+          "expenseId": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 150,
+          "expense": {
+            "id": "d67c5da6-7d5e-4036-a27c-c4f72108cf98",
+            "name": "Citron Liquid",
+            "unit": "milliliter",
+            "averagePrice": 0.667
+          }
+        },
+        {
+          "id": "2ff18e50-77a3-4b87-a429-80da26358736",
+          "createdAt": "2025-11-15T04:20:15.756Z",
+          "expenseId": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+          "menuItemId": "d1ce66bf-7e1d-48aa-b52d-d17063d51272",
+          "quantity": 50,
+          "expense": {
+            "id": "532f84b4-3428-49c8-9af0-1d23b7f4c364",
+            "name": "Ayris",
+            "unit": "milliliter",
+            "averagePrice": 0.017
+          }
+        }
+      ],
+      "parentMenuItemContainer": [],
       "subMenuItemContainer": []
     }
   ]

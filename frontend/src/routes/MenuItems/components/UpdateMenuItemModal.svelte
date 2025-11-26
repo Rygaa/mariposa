@@ -35,6 +35,7 @@
   } = $props();
 
   let name = $state("");
+  let subName = $state("");
   let type = $state<
     Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">
   >(["MENU_ITEM"]);
@@ -48,9 +49,14 @@
   let latestSellingPrice = $state<number | null>(null);
   let latestBuyingPrice = $state<number | null>(null);
   let loadingPrices = $state(false);
+  let designVersion = $state<number | null>(null);
+  let imageSourceMenuItemId = $state<string | null>(null);
+  let availableMenuItems = $state<Array<{id: string, name: string}>>([]);
+  let loadingMenuItems = $state(false);
 
   onMount(async () => {
     await loadCategories();
+    await loadMenuItems();
   });
 
   async function loadCategories() {
@@ -64,6 +70,28 @@
       console.error("Failed to load categories:", err);
     }
     loadingCategories = false;
+  }
+
+  async function loadMenuItems() {
+    loadingMenuItems = true;
+    try {
+      const result = await trpc.listMenuItems.query({
+        type: ["MENU_ITEM"],
+        isAvailable: true,
+      });
+        console.log(result)
+
+      if (result.success) {
+        availableMenuItems = result.menuItems.map((item: any) => ({
+          id: item.id,
+          name: item.subName ? `${item.name} (${item.subName})` : item.name,
+        }));
+        console.log(availableMenuItems)
+      }
+    } catch (err) {
+      console.error("Failed to load menu items:", err);
+    }
+    loadingMenuItems = false;
   }
 
   async function loadItemPrices(menuItemId: string) {
@@ -120,10 +148,13 @@
       prevMenuItemId = menuItem.id;
       
       name = menuItem.name || "";
+      subName = menuItem.subName || "";
       type = menuItem.type || ["MENU_ITEM"];
       description = menuItem.description || "";
       isAvailable = menuItem.isAvailable ?? true;
       categoryId = menuItem.categoryId || "";
+      designVersion = menuItem.designVersion ?? null;
+      imageSourceMenuItemId = menuItem.imageSourceMenuItemId ?? null;
       
       // Load item prices
       if (menuItem.id) {
@@ -137,6 +168,7 @@
 
   function resetForm() {
     name = "";
+    subName = "";
     type = ["MENU_ITEM"];
     description = "";
     isAvailable = true;
@@ -144,6 +176,8 @@
     error = "";
     latestSellingPrice = null;
     latestBuyingPrice = null;
+    designVersion = null;
+    imageSourceMenuItemId = null;
   }
 
   function handleClose() {
@@ -170,10 +204,13 @@
       const result = await trpc.updateMenuItem.mutate({
         id: menuItem.id,
         name,
+        subName: subName || undefined,
         type,
         description: description || undefined,
         isAvailable,
         categoryId: categoryId || undefined,
+        designVersion: designVersion ?? undefined,
+        imageSourceMenuItemId: imageSourceMenuItemId || null,
       });
 
       if (result.success) {
@@ -218,6 +255,13 @@
         required
       />
 
+      <Input
+        label="Sub Name"
+        type="text"
+        bind:value={subName}
+        placeholder="e.g., Additional name or variant"
+      />
+
       <div>
         <span class="block text-sm font-medium text-gray-700 mb-2">
           Item Types *
@@ -253,6 +297,20 @@
               <SelectValue placeholder="Select category (optional)" />
             </SelectTrigger>
             <SelectContent>
+              <input
+                type="text"
+                placeholder="Search categories..."
+                class="w-full px-3 py-2 mb-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                oninput={(e) => {
+                  const searchTerm = e.currentTarget.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                  const options = e.currentTarget.parentElement?.querySelectorAll('[role="option"]');
+                  options?.forEach((option) => {
+                    const text = (option.textContent?.toLowerCase() || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    option.classList.toggle('hidden', !text.includes(searchTerm));
+                  });
+                }}
+                onclick={(e) => e.stopPropagation()}
+              />
               <SelectItem value="">No Category</SelectItem>
               {#each categories as category}
                 <SelectItem value={category.id}>{category.name}</SelectItem>
@@ -299,7 +357,75 @@
         </div>
       </div>
 
-      <ImageUpload menuItemId={menuItem.id} maxImages={5} disabled={isSubmitting} />
+      <!-- Image Source Selection -->
+      <div class="border-t border-gray-200 pt-4">
+        <div>
+          <span class="block text-sm font-medium text-gray-700 mb-2">
+            Image Source
+          </span>
+          <Select 
+            value={imageSourceMenuItemId || ""}
+            onValueChange={(value) => {
+              const val = Array.isArray(value) ? value[0] : value;
+              imageSourceMenuItemId = val === "" ? null : val;
+            }}
+          >
+            <SelectTrigger>
+              <SelectValue placeholder="Use this item's own images" />
+            </SelectTrigger>
+            <SelectContent>
+              <input
+                type="text"
+                placeholder="Search menu items..."
+                class="w-full px-3 py-2 mb-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500"
+                oninput={(e) => {
+                  const searchTerm = e.currentTarget.value.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                  const options = e.currentTarget.parentElement?.querySelectorAll('[role="option"]');
+                  options?.forEach((option) => {
+                    const text = (option.textContent?.toLowerCase() || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+                    option.classList.toggle('hidden', !text.includes(searchTerm));
+                  });
+                }}
+                onclick={(e) => e.stopPropagation()}
+                onkeydown={(e) => e.stopPropagation()}
+              />
+              <SelectItem value="">Use this item's own images</SelectItem>
+              {#each availableMenuItems.filter(item => item.id !== menuItem?.id) as item}
+                <SelectItem value={item.id}>{item.name}</SelectItem>
+              {/each}
+            </SelectContent>
+          </Select>
+          <p class="text-xs text-gray-500 mt-1">
+            Select another menu item to use its images. Leave empty to use this item's own images.
+          </p>
+        </div>
+      </div>
+
+      {#if !imageSourceMenuItemId}
+        <ImageUpload menuItemId={menuItem.id} maxImages={5} disabled={isSubmitting} />
+      {:else}
+        <div class="bg-blue-50 border border-blue-200 text-blue-700 px-4 py-3 rounded-lg">
+          <p class="text-sm">
+            This item is using images from: <strong>{availableMenuItems.find(i => i.id === imageSourceMenuItemId)?.name || 'Selected item'}</strong>
+          </p>
+          <p class="text-xs mt-1">
+            Clear the image source selection above to manage this item's own images.
+          </p>
+        </div>
+      {/if}
+
+      <div>
+        <label for="designVersion" class="block text-sm font-medium text-gray-700 mb-2">
+          Design Version
+        </label>
+        <input
+          id="designVersion"
+          type="number"
+          bind:value={designVersion}
+          placeholder="e.g., 1, 2, 3..."
+          class="block w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-indigo-500 focus:border-indigo-500"
+        />
+      </div>
 
       <div>
         <label

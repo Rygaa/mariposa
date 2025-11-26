@@ -8,42 +8,24 @@
   import Icon from "../../../lib/components/Icon.svelte";
   import UnpaidOrder from "./UnpaidOrder.svelte";
   import { trpc } from "../../../lib/trpc";
+  import { _cartsStore } from "../../../store/carts.svelte";
 
   interface Props {
     isOpen: boolean;
     table: any;
-    onOrdersUpdated: () => void;
   }
 
-  let { isOpen = $bindable(), table, onOrdersUpdated }: Props = $props();
+  let { isOpen = $bindable(), table }: Props = $props();
 
-  let orders = $state<any[]>([]);
   let isLoading = $state(false);
 
-  $effect(() => {
-    if (isOpen && table) {
-      loadTableOrders();
-    }
-  });
-
-  async function loadTableOrders() {
-    isLoading = true;
-    try {
-      const result = await trpc.listOrdersWithRelations.query({
-        eatingTableId: table.id,
-      });
-      if (result.success) {
-        // Filter confirmed orders for this table
-        orders = result.orders.filter(
-          (order: any) =>
-            order.eatingTableId === table.id && order.status === "CONFIRMED"
-        );
-      }
-    } catch (error) {
-      console.error("Error loading table orders:", error);
-    }
-    isLoading = false;
-  }
+  // Derived state for this table's orders
+  const orders = $derived(
+    _cartsStore.orders.filter(
+      (order: any) =>
+        order.eatingTableId === table.id && order.status === "CONFIRMED"
+    )
+  );
 
   async function handleMarkAllAsPaid() {
     try {
@@ -55,7 +37,8 @@
           })
         )
       );
-      await onOrdersUpdated();
+      // Reload orders from the store
+      await _cartsStore.loadOrders();
       isOpen = false;
     } catch (error) {
       console.error("Error marking orders as paid:", error);
@@ -69,17 +52,44 @@
         status: "PAID",
       });
       if (result.success) {
-        await loadTableOrders();
-        await onOrdersUpdated();
+        // Reload orders from the store
+        await _cartsStore.loadOrders();
       }
     } catch (error) {
       console.error("Error marking order as paid:", error);
     }
   }
 
-  async function handleOrderUpdated() {
-    await loadTableOrders();
-    await onOrdersUpdated();
+  async function handleOrderUpdated(orderId: string) {
+    try {
+      // Fetch only the specific updated order
+      const result = await trpc.getOrderByIdWithRelations.query({
+        id: orderId,
+      });
+      if (result.success && result.order) {
+        // Only keep it if it's still CONFIRMED status
+        if (result.order.status === "CONFIRMED") {
+          // Update the specific order in the global store
+          const index = _cartsStore.orders.findIndex(
+            (order) => order.id === orderId
+          );
+          if (index !== -1) {
+            _cartsStore.orders[index] = result.order;
+            _cartsStore.orders = [..._cartsStore.orders]; // Trigger reactivity
+          }
+        } else {
+          // Order status changed, remove it from the global store
+          _cartsStore.orders = _cartsStore.orders.filter(
+            (order) => order.id !== orderId
+          );
+        }
+        return true;
+      }
+      return false;
+    } catch (error) {
+      console.error("Error updating order:", error);
+      return false;
+    }
   }
 
   function formatCurrency(amount: number): string {
@@ -91,8 +101,8 @@
     }).format(amount);
   }
 
-  const tableTotal = $derived(() => {
-    return orders.reduce((sum, order) => {
+  const tableTotal = $derived(
+    orders.reduce((sum, order) => {
       if (!order.menuItemOrders) return sum;
       return (
         sum +
@@ -101,8 +111,8 @@
           0
         )
       );
-    }, 0);
-  });
+    }, 0)
+  );
 </script>
 
 <Dialog bind:open={isOpen}>
@@ -163,7 +173,7 @@
           {#each orders as order (order.id)}
             <UnpaidOrder
               {order}
-              onOrderUpdated={handleOrderUpdated}
+              onOrderUpdated={() => handleOrderUpdated(order.id)}
               onMarkAsPaid={() => handleMarkAsPaid(order.id)}
             />
           {/each}
@@ -174,7 +184,7 @@
             <span class="text-lg font-semibold text-gray-700">Table Total:</span
             >
             <span class="text-2xl font-bold text-gray-900"
-              >{formatCurrency(tableTotal())}</span
+              >{formatCurrency(tableTotal)}</span
             >
           </div>
         </div>

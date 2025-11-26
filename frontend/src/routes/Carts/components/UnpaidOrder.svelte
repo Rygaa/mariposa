@@ -1,12 +1,6 @@
 <script lang="ts">
   import Button from "../../../lib/components/Button.svelte";
   import Icon from "../../../lib/components/Icon.svelte";
-  import ClickableDiv from "../../../lib/shadcn/ClickableDiv.svelte";
-  import {
-    Dropdown,
-    DropdownItem,
-    DropdownSeparator,
-  } from "../../../lib/shadcn/Dropdown";
   import {
     Card,
     CardContent,
@@ -22,7 +16,7 @@
     onMarkAsPaid,
   }: {
     order: any;
-    onOrderUpdated?: () => void | Promise<void>;
+    onOrderUpdated?: () => Promise<boolean>;
     onMarkAsPaid?: () => void | Promise<void>;
   } = $props();
 
@@ -37,6 +31,51 @@
   let menuItemChanges = $state<
     Map<string, { quantity: number; price: number; toDelete: boolean }>
   >(new Map());
+
+  // Group menu items with their supplements (no merging)
+  const groupedMenuItemOrders = $derived(() => {
+    if (!order.menuItemOrders) return [];
+    
+    // Sort by creation date first
+    const sorted = [...order.menuItemOrders].sort((a: any, b: any) => {
+      const dateA = new Date(a.createdAt).getTime();
+      const dateB = new Date(b.createdAt).getTime();
+      return dateA - dateB;
+    });
+    
+    // Filter out supplements (items with type including "SUPPLEMENT")
+    const mainItems = sorted.filter((mio: any) => {
+      const types = mio.menuItem?.type || [];
+      return !types.includes("SUPPLEMENT");
+    });
+    
+    // For each main item, find its supplements (next items that are supplements)
+    const grouped = mainItems.map((mainItem: any, index: number) => {
+      const mainItemIndex = sorted.findIndex((mio: any) => mio.id === mainItem.id);
+      const supplements: any[] = [];
+      
+      // Look at subsequent items until we hit another non-supplement
+      for (let i = mainItemIndex + 1; i < sorted.length; i++) {
+        const item = sorted[i];
+        const types = item.menuItem?.type || [];
+        
+        if (types.includes("SUPPLEMENT")) {
+          supplements.push(item);
+        } else {
+          break; // Stop when we hit another main item
+        }
+      }
+      
+      return {
+        ...mainItem,
+        supplements,
+      };
+    });
+    
+    return grouped;
+  });
+  
+  const sortedMenuItemOrders = $derived(groupedMenuItemOrders());
 
   function toggleLock() {
     if (!isLocked) {
@@ -60,14 +99,24 @@
   }
 
   function handleCancelEdit() {
+    // Revert all changes by re-initializing from original order data
     menuItemChanges.clear();
+    if (order.menuItemOrders) {
+      order.menuItemOrders.forEach((mio: any) => {
+        menuItemChanges.set(mio.id, {
+          quantity: mio.quantity,
+          price: mio.price,
+          toDelete: false,
+        });
+      });
+    }
+    // Force reactivity
+    menuItemChanges = new Map(menuItemChanges);
     error = "";
     isLocked = true;
   }
 
-  function handleViewDetails() {
-    isViewDetailsModalOpen = true;
-  }
+  
 
   async function handleMarkAsPaid() {
     if (onMarkAsPaid) {
@@ -108,28 +157,6 @@
       });
       // Force reactivity in Svelte 5
       menuItemChanges = new Map(menuItemChanges);
-    }
-  }
-
-  async function handleAddMenuItem(
-    menuItemId: string,
-    quantity: number,
-    price: number
-  ) {
-    try {
-      // Add menu item to order
-      const result = await trpc.createMenuItemOrder.mutate({
-        orderId: order.id,
-        menuItemId,
-        quantity,
-        price,
-      });
-
-      if (result.success && onOrderUpdated) {
-        await onOrderUpdated();
-      }
-    } catch (err: any) {
-      error = err.message || "Failed to add menu item";
     }
   }
 
@@ -266,12 +293,22 @@
 
       <div class="flex items-center gap-2">
         {#if isLocked}
-          <Button size="sm" onclick={toggleLock} variant="outline" iconName="lock">
+          <Button
+            size="sm"
+            onclick={toggleLock}
+            variant="outline"
+            iconName="lock"
+          >
             Unlock
           </Button>
         {:else}
-          <Button size="sm" onclick={toggleLock} variant="outline" iconName="lock_open">
-            Lock
+          <Button
+            size="sm"
+            onclick={handleCancelEdit}
+            variant="outline"
+            iconName="close"
+          >
+            Cancel
           </Button>
         {/if}
       </div>
@@ -296,8 +333,8 @@
       </div>
     </div>
 
-    <!-- Add Item Button -->
-    <div class="mb-4">
+    <!-- Action Buttons -->
+    <div class="flex gap-2 mb-4">
       <Button
         size="sm"
         onclick={() => {
@@ -308,124 +345,146 @@
       >
         Add Item
       </Button>
+      <Button
+        size="sm"
+        onclick={handleSaveEdit}
+        disabled={isLocked || isSubmitting}
+      >
+        {isSubmitting ? "Saving..." : "Save Changes"}
+      </Button>
+      <Button
+        size="sm"
+        onclick={handleMarkAsPaid}
+        disabled={isSubmitting}
+        iconName="check_circle"
+      >
+        Mark as Paid
+      </Button>
     </div>
 
     <!-- Menu Items List -->
-    <div class="space-y-3 mb-4">
-      {#if order.menuItemOrders && order.menuItemOrders.length > 0}
-        {#each order.menuItemOrders as menuItemOrder (menuItemOrder.id)}
-          {@const change = menuItemChanges.get(menuItemOrder.id)}
+    <div class="space-y-2 mb-4">
+      {#if sortedMenuItemOrders && sortedMenuItemOrders.length > 0}
+        {#each sortedMenuItemOrders as menuItemOrder (menuItemOrder.ids ? menuItemOrder.ids.join('-') : menuItemOrder.id)}
+          {@const itemIds = menuItemOrder.ids || [menuItemOrder.id]}
+          {@const change = menuItemChanges.get(itemIds[0])}
           {@const isDeleted = change?.toDelete ?? false}
+          {@const displayQuantity = menuItemOrder.ids ? menuItemOrder.quantity : (change?.quantity ?? menuItemOrder.quantity)}
+          {@const mainItemTotal = (change?.price ?? menuItemOrder.price) * displayQuantity}
+          {@const supplementsTotal = (menuItemOrder.supplements || []).reduce((sum: number, supp: any) => {
+            const suppChange = menuItemChanges.get(supp.id);
+            if (suppChange?.toDelete) return sum;
+            const suppQty = suppChange?.quantity ?? supp.quantity;
+            return sum + (supp.price * suppQty);
+          }, 0)}
 
           <div
-            class="bg-gray-50 border border-gray-200 rounded-lg p-3 {isDeleted
+            class="flex items-center gap-3 py-2 px-3 border-b border-gray-200 {isDeleted
               ? 'opacity-50'
               : ''}"
           >
-            <div class="flex items-start gap-3">
-              {#if menuItemOrder.menuItem?.images && menuItemOrder.menuItem.images.length > 0}
-                <img
-                  src={menuItemOrder.menuItem.images[0].url}
-                  alt={menuItemOrder.menuItem.name}
-                  class="w-12 h-12 rounded-md object-cover"
-                />
-              {:else}
-                <div
-                  class="w-12 h-12 rounded-md bg-gray-200 flex items-center justify-center"
-                >
-                  <Icon iconName="restaurant" class="text-gray-400 text-sm" />
-                </div>
-              {/if}
-
-              <div class="flex-1 min-w-0">
-                <h5
+            <div class="flex-1 min-w-0">
+              <div>
+                <span
                   class="font-medium text-gray-900 text-sm {isDeleted
                     ? 'line-through'
                     : ''}"
                 >
                   {menuItemOrder.menuItem?.name || "Unknown Item"}
-                </h5>
-                
-                <p class="text-sm text-gray-600 mt-1">
-                  {formatCurrency(change?.price ?? menuItemOrder.price)} each
-                </p>
-
-                {#if !isDeleted}
-                  <div class="mt-2 flex items-center gap-2">
-                    <button
-                      onclick={() =>
-                        updateQuantity(
-                          menuItemOrder.id,
-                          (change?.quantity ?? menuItemOrder.quantity) - 1
-                        )}
-                      disabled={isLocked || isSubmitting ||
-                        (change?.quantity ?? menuItemOrder.quantity) <= 1}
-                      class="w-7 h-7 rounded-md border border-gray-300 flex items-center justify-center hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <Icon iconName="remove" class="text-sm" />
-                    </button>
-                    <input
-                      type="number"
-                      min="1"
-                      value={change?.quantity ?? menuItemOrder.quantity}
-                      oninput={(e) => {
-                        const val = parseInt(e.currentTarget.value);
-                        if (val > 0) updateQuantity(menuItemOrder.id, val);
-                      }}
-                      disabled={isLocked || isSubmitting}
-                      class="w-14 px-2 py-1 text-center border border-gray-300 rounded-md disabled:bg-gray-100 disabled:cursor-not-allowed"
-                    />
-                    <button
-                      onclick={() =>
-                        updateQuantity(
-                          menuItemOrder.id,
-                          (change?.quantity ?? menuItemOrder.quantity) + 1
-                        )}
-                      disabled={isLocked || isSubmitting}
-                      class="w-7 h-7 rounded-md border border-gray-300 flex items-center justify-center hover:bg-white disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      <Icon iconName="add" class="text-sm" />
-                    </button>
-                    <span class="text-sm text-gray-600 ml-2">
-                      = {formatCurrency(
-                        (change?.price ?? menuItemOrder.price) *
-                          (change?.quantity ?? menuItemOrder.quantity)
-                      )}
-                    </span>
-                  </div>
-                {/if}
+                </span>
+                <span class="text-xs text-gray-500 ml-2">
+                  {formatCurrency(change?.price ?? menuItemOrder.price)}
+                </span>
               </div>
-
-              <div class="text-right">
-                <div class="flex flex-col gap-1">
-                  <div class="font-semibold text-gray-900 text-sm mb-2">
-                    {formatCurrency(
-                      (change?.price ?? menuItemOrder.price) *
-                        (change?.quantity ?? menuItemOrder.quantity)
-                    )}
-                  </div>
-                  {#if isDeleted}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onclick={() => undoDelete(menuItemOrder.id)}
-                      disabled={isLocked || isSubmitting}
-                      iconName="undo"
-                    >
-                      Undo
-                    </Button>
-                  {:else}
-                    <Button
-                      size="sm"
-                      variant="outline"
-                      onclick={() => markForDeletion(menuItemOrder.id)}
-                      disabled={isLocked || isSubmitting}
-                      iconName="delete"
-                    />
-                  {/if}
+              {#if menuItemOrder.supplements && menuItemOrder.supplements.length > 0}
+                <div class="mt-1 ml-4 text-xs text-gray-500">
+                  {#each menuItemOrder.supplements as supplement}
+                    {@const suppChange = menuItemChanges.get(supplement.id)}
+                    {@const suppQuantity = suppChange?.quantity ?? supplement.quantity}
+                    <div class="{suppChange?.toDelete ? 'line-through opacity-50' : ''}">
+                      + {supplement.menuItem?.name || "Unknown"} × {suppQuantity}
+                      <span class="ml-1">({formatCurrency(supplement.price)})</span>
+                    </div>
+                  {/each}
                 </div>
+              {/if}
+            </div>
+
+            {#if !isDeleted && !menuItemOrder.ids}
+              <div class="flex items-center gap-1">
+                <Button
+                  variant="outline"
+                  iconOnly={true}
+                  iconName="minus"
+                  size="sm"
+                  onclick={() =>
+                    updateQuantity(
+                      menuItemOrder.id,
+                      (change?.quantity ?? menuItemOrder.quantity) - 1
+                    )}
+                  disabled={isLocked ||
+                    isSubmitting ||
+                    (change?.quantity ?? menuItemOrder.quantity) <= 1}
+                />
+                <input
+                  type="number"
+                  min="1"
+                  value={change?.quantity ?? menuItemOrder.quantity}
+                  oninput={(e) => {
+                    const val = parseInt(e.currentTarget.value);
+                    if (val > 0) updateQuantity(menuItemOrder.id, val);
+                  }}
+                  disabled={isLocked || isSubmitting}
+                  class="w-12 px-1 py-1 text-center text-sm border border-gray-300 rounded disabled:bg-gray-100 disabled:cursor-not-allowed"
+                />
+                <Button
+                  variant="outline"
+                  iconOnly={true}
+                  iconName="add"
+                  size="sm"
+                  onclick={() =>
+                    updateQuantity(
+                      menuItemOrder.id,
+                      (change?.quantity ?? menuItemOrder.quantity) + 1
+                    )}
+                  disabled={isLocked || isSubmitting}
+                />
+              </div>
+            {:else if menuItemOrder.ids}
+              <div class="text-sm text-gray-600">
+                × {displayQuantity}
+              </div>
+            {/if}
+
+            <div class="text-right min-w-[80px]">
+              <div class="font-semibold text-gray-900 text-sm">
+                {formatCurrency(mainItemTotal + supplementsTotal)}
               </div>
             </div>
+
+            {#if !menuItemOrder.ids}
+              <div>
+                {#if isDeleted}
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onclick={() => undoDelete(menuItemOrder.id)}
+                    disabled={isLocked || isSubmitting}
+                    iconOnly={true}
+                    iconName="undo"
+                  />
+                {:else}
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    onclick={() => markForDeletion(menuItemOrder.id)}
+                    disabled={isLocked || isSubmitting}
+                    iconOnly={true}
+                    iconName="delete"
+                  />
+                {/if}
+              </div>
+            {/if}
           </div>
         {/each}
       {:else}
@@ -436,31 +495,13 @@
     </div>
 
     <!-- Total -->
-    <div class="pt-3 border-t border-gray-200 mb-4">
+    <div class="pt-3 border-t border-gray-200">
       <div class="flex justify-between items-center">
         <span class="font-semibold text-gray-900">Order Total:</span>
         <span class="font-bold text-lg text-indigo-600">
           {formatCurrency(calculateEditTotal())}
         </span>
       </div>
-    </div>
-
-    <!-- Action Buttons -->
-    <div class="flex gap-2">
-      <Button
-        size="sm"
-        variant="outline"
-        onclick={handleCancelEdit}
-        disabled={isLocked || isSubmitting}
-      >
-        Cancel
-      </Button>
-      <Button size="sm" onclick={handleSaveEdit} disabled={isLocked || isSubmitting}>
-        {isSubmitting ? "Saving..." : "Save Changes"}
-      </Button>
-      <Button size="sm" onclick={handleMarkAsPaid} disabled={isSubmitting} iconName="check_circle">
-        Mark as Paid
-      </Button>
     </div>
   </CardContent>
 </Card>

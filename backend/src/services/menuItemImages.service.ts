@@ -82,7 +82,8 @@ async function listByMenuItemId(
   const images = await tx
     .select()
     .from(SchemaDrizzle.menuItemImages)
-    .where(eq(SchemaDrizzle.menuItemImages.menuItemId, menuItemId));
+    .where(eq(SchemaDrizzle.menuItemImages.menuItemId, menuItemId))
+    .orderBy(SchemaDrizzle.menuItemImages.createdAt);
   
   return images;
 }
