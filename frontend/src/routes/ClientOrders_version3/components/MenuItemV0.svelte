@@ -11,7 +11,7 @@
     onAdd,
     onRemove,
     onAddSupplement,
-    fromColor = "#FFDCB5",
+    fromColor = "#FBFFFF",
     toColor = "#C77DB5",
   }: {
     menuItem: any;
@@ -25,7 +25,7 @@
 
   let isSupplementModalOpen = $state(false);
   let imageUrl = $state<string | null>(null);
-  let loadingImage = $state(true);
+  let imageLoaded = $state(false);
 
   // Get supplements from subMenuItems that are of type SUPPLEMENT
   const hasSupplements = $derived(
@@ -50,7 +50,6 @@
 
   async function loadImageUrl() {
     if (!menuItem.id) {
-      loadingImage = false;
       return;
     }
 
@@ -70,12 +69,16 @@
 
         if (urlResult.success) {
           imageUrl = urlResult.url;
+          // Preload the image
+          const img = new Image();
+          img.onload = () => {
+            imageLoaded = true;
+          };
+          img.src = urlResult.url;
         }
       }
     } catch (error) {
       console.error("Failed to load image:", error);
-    } finally {
-      loadingImage = false;
     }
   }
 
@@ -88,18 +91,18 @@
     return `$${price}`;
   }
 
-  // Use placeholder image as fallback
-  const displayImage = $derived(imageUrl || "/placeholder-image.jpg");
+  // Use placeholder image as fallback or while loading
+  const displayImage = $derived(imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg");
 </script>
 
 <div class="relative w-full h-full">
   <!-- Main Card -->
   <div
-    class="relative rounded-3xl overflow-hidden shadow-lg transition-all duration-300 hover:shadow-2xl h-full flex flex-col"
+    class="relative rounded-3xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-2xl h-full flex flex-col"
     style="background-color: {fromColor};"
   >
     <!-- Header with name and rating -->
-    <div class="p-6 pb-3 border-b-2 border-gray-400 bg-white/30">
+    <div class="p-6 pb-3 border-b-2 border-gray-400 bg-white/75 absolute top-0 left-0 right-0 z-10 backdrop-blur-sm">
       <div class="flex items-start justify-between mb-2">
         <div class="flex flex-col gap-y-2">
           <p class="font-bold text-gray-900 text-2xl pr-4">
@@ -131,19 +134,11 @@
 
     <!-- Image Section - positioned to overlap -->
     <div class="flex-1 relative">
-      {#if loadingImage}
-        <div class="w-full h-full flex items-center justify-center bg-white/90">
-          <div
-            class="animate-spin rounded-full h-10 w-10 border-b-2 border-gray-800"
-          ></div>
-        </div>
-      {:else}
-        <img
-          src={displayImage}
-          alt={menuItem.name}
-          class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
-        />
-      {/if}
+      <img
+        src={displayImage}
+        alt={menuItem.name}
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
+      />
 
       {#if !menuItem.isAvailable}
         <div
