@@ -70,7 +70,7 @@ export async function generateOrderPDF(order: any): Promise<void> {
     const element = groupedMenuItemOrder[i];
     const name = `${element.quantity} ${element.menuItem?.name || 'Unknown Item'}`;
     const supplements = (element.selectedSupplements || [])
-      .map((supp: any) => `${supp.supplement?.name || ''}`)
+      .map((supp: any) => `s: ${supp.supplement?.name || ''}`)
       .filter((s: string) => s)
       .join("\n");
     const menuItemOptions = (element.MenuItemOrderMenuItemOption || [])

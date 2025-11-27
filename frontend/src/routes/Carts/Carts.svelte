@@ -6,7 +6,7 @@
   import { _cartsStore } from "../../store/carts.svelte";
   import { navigate } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
-  import { generateOrderPDF } from "../../utils/printOrder";
+  import { generateReciptPdf } from "../../utils/printReceipt";
   import Page from "../../lib/shadcn/Page.svelte";
   import {
     Card,
@@ -121,18 +121,28 @@
         (order) => order.eatingTableId === tableId && order.status === "CONFIRMED"
       );
       
-      // Print each order
+      if (tableOrders.length === 0) return;
+      
+      // Get table name
+      const table = tables.find(t => t.id === tableId);
+      const tableName = table?.name || `Table ${table?.tableNumber || tableId.slice(0, 8)}`;
+      
+      // Collect all menu item orders from all orders for this table
+      const allMenuItemOrders: any[] = [];
       for (const order of tableOrders) {
         // Fetch full order details with relations
         const result = await trpc.getOrderByIdWithRelations.query({
           id: order.id,
         });
         
-        if (result.success && result.order) {
-          await generateOrderPDF(result.order);
-          // Add small delay between prints
-          await new Promise(resolve => setTimeout(resolve, 500));
+        if (result.success && result.order?.menuItemOrders) {
+          allMenuItemOrders.push(...result.order.menuItemOrders);
         }
+      }
+      
+      // Generate single receipt with all items
+      if (allMenuItemOrders.length > 0) {
+        await generateReciptPdf(allMenuItemOrders, tableName);
       }
     } catch (error) {
       console.error("Error printing receipt:", error);

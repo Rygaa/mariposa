@@ -129,11 +129,10 @@
     <div class="mb-4 mx-4">
       <button 
         onclick={handleConfirm}
-        disabled={selectedSupplements.length === 0}
-        class="w-full py-3 px-4 rounded-lg text-white font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="w-full py-3 px-4 rounded-lg text-white font-semibold transition-all duration-200"
         style="background-image: linear-gradient(to right, {fromColor}, {toColor});"
       >
-        Ajouter ({selectedSupplements.length})
+        {selectedSupplements.length === 0 ? 'Continuer sans supplément' : `Ajouter (${selectedSupplements.length})`}
       </button>
     </div>
   </DialogContent>
