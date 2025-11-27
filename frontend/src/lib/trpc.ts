@@ -91,7 +91,7 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
     _globalStore.loading.websocket.done = true;
   };
 
-  ws.onmessage = (event) => {
+  ws.onmessage = async (event) => {
     console.log("📩 WebSocket message received:", event.data);
     const data = JSON.parse(event.data);
 
@@ -104,7 +104,7 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
       
       // Automatically print the order
       if (data.orderId) {
-        _cartsStore.loadOrders(),
+        await _cartsStore.loadOrders();
 
         // Get order details and generate PDF
         baseClient.getOrderByIdWithRelations.query({ id: data.orderId })
