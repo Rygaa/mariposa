@@ -9,7 +9,7 @@
   import UnpaidOrder from "./UnpaidOrder.svelte";
   import { trpc } from "../../../lib/trpc";
   import { _cartsStore } from "../../../store/carts.svelte";
-  import { generateOrderPDF } from "../../../utils/printOrder";
+  import { generateReciptPdf } from "../../../utils/printReceipt";
 
   interface Props {
     isOpen: boolean;
@@ -123,7 +123,7 @@
       });
       
       if (result.success && result.order) {
-        await generateOrderPDF(result.order);
+        await generateReciptPdf(result.order.menuItemOrders || [], table.name);
       }
     } catch (error) {
       console.error("Error printing order:", error);
@@ -133,18 +133,11 @@
 
   async function handlePrintTableReceipt() {
     try {
-      // Print each order for this table
-      for (const order of orders) {
-        // Fetch full order details with relations
-        const result = await trpc.getOrderByIdWithRelations.query({
-          id: order.id,
-        });
-        
-        if (result.success && result.order) {
-          await generateOrderPDF(result.order);
-          // Add small delay between prints
-          await new Promise(resolve => setTimeout(resolve, 500));
-        }
+      // Collect all menu item orders from all orders for this table
+      const allMenuItemOrders = orders.flatMap(order => order.menuItemOrders || []);
+      
+      if (allMenuItemOrders.length > 0) {
+        await generateReciptPdf(allMenuItemOrders, table.name);
       }
     } catch (error) {
       console.error("Error printing table receipt:", error);
