@@ -1,6 +1,7 @@
 import { createTRPCClient, httpBatchLink, TRPCClientError } from "@trpc/client";
 import type { AppRouter } from "../../../backend/src/trpc/router";
 import { _globalStore } from "../store/globalStore.svelte";
+import { _cartsStore } from "../store/carts.svelte";
 
 export type { AppRouter } from "../../../backend/src/trpc/router";
 
@@ -103,6 +104,8 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
       
       // Automatically print the order
       if (data.orderId) {
+        _cartsStore.loadOrders(),
+
         // Get order details and generate PDF
         baseClient.getOrderByIdWithRelations.query({ id: data.orderId })
           .then(async (result: any) => {
