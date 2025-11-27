@@ -109,6 +109,7 @@ async function runAllMigrations() {
     await runMigrationScript("migrate-expenses.ts", "Expenses Migration (RAW_MATERIAL)");
     await runMigrationScript("migrate-supplements.ts", "Supplements Migration (SUPPLEMENT)");
     await runMigrationScript("migrate-menu-lists.ts", "Menu Lists Migration");
+    await runMigrationScript("migrate-menu-item-options.ts", "Menu Item Options Migration (MENU_ITEM_OPTION)");
 
     console.log("\n" + "=".repeat(60));
     console.log("    ✓ ALL MIGRATIONS COMPLETED SUCCESSFULLY");

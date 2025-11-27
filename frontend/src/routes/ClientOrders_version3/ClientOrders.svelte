@@ -7,6 +7,7 @@
   import SelectTableModal from "./components/SelectTableModal.svelte";
   import CartSidebar from "./components/CartSidebar.svelte";
   import SupplementsModal from "./components/SupplementsModal.svelte";
+  import MenuItemOptionsModal from "./components/MenuItemOptionsModal.svelte";
   import type {
     listEatingTables,
     listCategories,
@@ -37,7 +38,10 @@
   let isCartOpen = $state(false);
   let searchQuery = $state("");
   let isSupplementModalOpen = $state(false);
+  let isOptionsModalOpen = $state(false);
   let currentItemForSupplements = $state<any>(null);
+  let currentItemForOptions = $state<any>(null);
+  let pendingMenuItemOrderId = $state<string | null>(null);
 
   // Get the selected table
   const selectedTable = $derived(
@@ -185,13 +189,62 @@
       const item = menuItems.find((m: any) => m.id === menuItemId);
       if (!item) return;
 
-      await trpc.createMenuItemOrder.mutate({
+      // Check if item has options
+      const hasOptions = item.subMenuItems?.some((subMenuItem: any) =>
+        subMenuItem?.type?.includes("MENU_ITEM_OPTION")
+      );
+
+      if (hasOptions) {
+        // Show options modal first, then create the order
+        currentItemForOptions = item;
+        isOptionsModalOpen = true;
+      } else {
+        // No options, create the order directly
+        await createMenuItemOrderWithOptions(menuItemId, []);
+      }
+    } catch (error) {
+      console.error("Error adding item:", error);
+      alert("Erreur lors de l'ajout de l'article");
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  async function createMenuItemOrderWithOptions(menuItemId: string, selectedOptions: string[]) {
+    if (!currentOrder) return;
+
+    isLoading = true;
+    try {
+      const item = menuItems.find((m: any) => m.id === menuItemId);
+      if (!item) return;
+
+      // Create the main menu item order
+      const response = await trpc.createMenuItemOrder.mutate({
         orderId: currentOrder.id,
         menuItemId,
         quantity: 1,
         price: item.price || 0,
         status: existingOrder ? currentOrder.status : "INITIALIZED",
       });
+
+      // Store the menu item order ID for adding options
+      if (response.success && response.menuItemOrder) {
+        pendingMenuItemOrderId = response.menuItemOrder.id;
+      }
+
+      // Add selected options as separate menu item orders
+      for (const optionId of selectedOptions) {
+        const option = menuItems.find((m: any) => m.id === optionId);
+        if (option) {
+          await trpc.createMenuItemOrder.mutate({
+            orderId: currentOrder.id,
+            menuItemId: optionId,
+            quantity: 1,
+            price: option.price || 0,
+            status: existingOrder ? currentOrder.status : "INITIALIZED",
+          });
+        }
+      }
 
       // Reload order
       await reloadOrder();
@@ -206,8 +259,8 @@
         isSupplementModalOpen = true;
       }
     } catch (error) {
-      console.error("Error adding item:", error);
-      alert("Erreur lors de l'ajout de l'article");
+      console.error("Error creating order:", error);
+      alert("Erreur lors de la création de la commande");
     } finally {
       isLoading = false;
     }
@@ -369,15 +422,21 @@
     onConfirm={confirmOrder}
   />
 
-  {#if currentItemForSupplements}
-    <SupplementsModal
-      bind:open={isSupplementModalOpen}
-      menuItem={currentItemForSupplements}
-      onAddSupplement={(suppId) => handleAddSupplement(currentItemForSupplements.id, suppId)}
-      {fromColor}
-      {toColor}
-    />
-  {/if}
+  <MenuItemOptionsModal
+    bind:open={isOptionsModalOpen}
+    menuItem={currentItemForOptions}
+    onConfirm={(selectedOptions: string[]) => createMenuItemOrderWithOptions(currentItemForOptions?.id, selectedOptions)}
+    {fromColor}
+    {toColor}
+  />
+
+  <SupplementsModal
+    bind:open={isSupplementModalOpen}
+    menuItem={currentItemForSupplements}
+    onAddSupplement={(suppId) => handleAddSupplement(currentItemForSupplements?.id, suppId)}
+    {fromColor}
+    {toColor}
+  />
 
   <AvailableHeightContainer>
     <div

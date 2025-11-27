@@ -13,7 +13,7 @@
   interface Props {
     open?: boolean;
     menuItem?: any;
-    onAddSupplement?: (supplementId: string) => void | Promise<void>;
+    onConfirm?: (selectedOptions: string[]) => void | Promise<void>;
     fromColor?: string;
     toColor?: string;
   }
@@ -21,40 +21,44 @@
   let {
     open = $bindable(false),
     menuItem = null,
-    onAddSupplement,
+    onConfirm,
     fromColor = "#DFA1CD",
     toColor = "#C77DB5",
   }: Props = $props();
 
-  let selectedSupplements = $state<string[]>([]);
+  let selectedOptions = $state<string[]>([]);
 
-  function toggleSupplement(supplementId: string) {
-    if (selectedSupplements.includes(supplementId)) {
-      selectedSupplements = selectedSupplements.filter(
-        (id) => id !== supplementId
+  function toggleOption(optionId: string) {
+    if (selectedOptions.includes(optionId)) {
+      selectedOptions = selectedOptions.filter(
+        (id) => id !== optionId
       );
     } else {
-      selectedSupplements = [...selectedSupplements, supplementId];
+      selectedOptions = [...selectedOptions, optionId];
     }
   }
 
   async function handleConfirm() {
-    for (const supplementId of selectedSupplements) {
-      await onAddSupplement?.(supplementId);
-    }
-    selectedSupplements = [];
+    await onConfirm?.(selectedOptions);
+    selectedOptions = [];
     open = false;
   }
 
   function handleClose() {
-    selectedSupplements = [];
+    selectedOptions = [];
     open = false;
   }
 
-  // Get supplements from subMenuItems that are of type SUPPLEMENT
-  const supplements = $derived(
+  function handleSkip() {
+    selectedOptions = [];
+    onConfirm?.([]);
+    open = false;
+  }
+
+  // Get options from subMenuItems that are of type MENU_ITEM_OPTION
+  const options = $derived(
     menuItem?.subMenuItems
-      ?.filter((subMenuItem: any) => subMenuItem?.type?.includes("SUPPLEMENT"))
+      ?.filter((subMenuItem: any) => subMenuItem?.type?.includes("MENU_ITEM_OPTION"))
       .map((subMenuItem: any) => subMenuItem) || []
   );
 </script>
@@ -66,16 +70,19 @@
         class="text-2xl bg-gradient-to-r bg-clip-text text-transparent font-bold"
         style="background-image: linear-gradient(to right, {fromColor}, {toColor});"
       >
-        Ajouter un supplément pour {menuItem?.name || ''}
+        Options pour {menuItem?.name || ''}
       </div>
+      <DialogDescription class="text-gray-600 mt-2">
+        Sélectionnez les options souhaitées (optionnel)
+      </DialogDescription>
     </DialogHeader>
     <div class="px-4 py-4 max-h-[55vh] overflow-y-auto">
-      {#if supplements.length > 0}
+      {#if options.length > 0}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {#each supplements as supplement (supplement.id)}
-            {@const isSelected = selectedSupplements.includes(supplement.id)}
+          {#each options as option (option.id)}
+            {@const isSelected = selectedOptions.includes(option.id)}
             <button
-              onclick={() => toggleSupplement(supplement.id)}
+              onclick={() => toggleOption(option.id)}
               class="group relative flex items-center gap-4 p-5 border-2 rounded-2xl transition-all duration-300 hover:scale-[1.02] {isSelected
                 ? 'shadow-lg'
                 : 'border-gray-200 bg-white hover:shadow-md'}"
@@ -85,19 +92,19 @@
             >
               <div class="text-left flex-1">
                 <h4 class="font-bold text-gray-900 text-lg mb-1">
-                  {supplement.name}
+                  {option.name}
                 </h4>
-                {#if supplement.description}
+                {#if option.description}
                   <p class="text-sm text-gray-400 mb-2">
-                    {supplement.description}
+                    {option.description}
                   </p>
                 {/if}
-                {#if supplement.price}
+                {#if option.price && option.price > 0}
                   <p
                     class="font-bold bg-gradient-to-r bg-clip-text text-transparent"
                     style="background-image: linear-gradient(to right, {fromColor}, {toColor});"
                   >
-                    +{supplement.price} DZD
+                    +{option.price} DZD
                   </p>
                 {/if}
               </div>
@@ -126,14 +133,20 @@
       {/if}
     </div>
 
-    <div class="mb-4 mx-4">
+    <div class="flex gap-3 mb-4 mx-4">
+      <button 
+        onclick={handleSkip}
+        class="flex-1 py-3 px-4 rounded-lg border-2 font-semibold transition-all duration-200"
+        style="border-color: {fromColor}; color: {fromColor};"
+      >
+        Passer
+      </button>
       <button 
         onclick={handleConfirm}
-        disabled={selectedSupplements.length === 0}
-        class="w-full py-3 px-4 rounded-lg text-white font-semibold transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed"
+        class="flex-1 py-3 px-4 rounded-lg text-white font-semibold transition-all duration-200"
         style="background-image: linear-gradient(to right, {fromColor}, {toColor});"
       >
-        Ajouter ({selectedSupplements.length})
+        Confirmer {selectedOptions.length > 0 ? `(${selectedOptions.length})` : ''}
       </button>
     </div>
   </DialogContent>

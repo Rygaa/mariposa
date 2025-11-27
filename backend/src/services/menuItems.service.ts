@@ -116,7 +116,7 @@ async function list(
             FROM "MenuItemSubMenuItem" link
             INNER JOIN "MenuItem" sub_item ON sub_item.id = link."subMenuItemId"
             WHERE link."parentMenuItemId" = "MenuItem"."id"
-              AND sub_item.type::jsonb ? 'SUPPLEMENT'
+              AND (sub_item.type::jsonb ? 'SUPPLEMENT' OR sub_item.type::jsonb ? 'MENU_ITEM_OPTION')
           ),
           '[]'::json
         )`.as('subMenuItems'),

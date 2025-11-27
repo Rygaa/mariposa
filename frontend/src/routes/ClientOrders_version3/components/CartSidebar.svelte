@@ -26,7 +26,7 @@
     toColor?: string;
   } = $props();
 
-  // Group menu items with their supplements
+  // Group menu items with their supplements and options
   const orderItems = $derived.by(() => {
     const orders = currentOrder?.menuItemOrders || [];
     const grouped: any[] = [];
@@ -42,6 +42,7 @@
       const menuItem = menuItems.find((m: any) => m.id === mio.menuItemId);
       const isMainItem = menuItem?.type?.includes("MENU_ITEM");
       const isSupplement = menuItem?.type?.includes("SUPPLEMENT");
+      const isOption = menuItem?.type?.includes("MENU_ITEM_OPTION");
       
       const orderItem = {
         menuItemOrderId: mio.id,
@@ -57,17 +58,23 @@
         currentGroup = {
           ...orderItem,
           supplements: [],
+          options: [],
         };
         grouped.push(currentGroup);
-      } else if (isSupplement && currentGroup) {
-        // Add supplement to the current group
-        currentGroup.supplements.push(orderItem);
+      } else if ((isSupplement || isOption) && currentGroup) {
+        // Add supplement or option to the current group
+        if (isOption) {
+          currentGroup.options.push(orderItem);
+        } else {
+          currentGroup.supplements.push(orderItem);
+        }
         currentGroup.subtotal += orderItem.subtotal;
       } else {
         // Fallback: treat as standalone item
         grouped.push({
           ...orderItem,
           supplements: [],
+          options: [],
         });
         currentGroup = null;
       }
@@ -133,6 +140,32 @@
                 <p class="text-sm text-gray-600 mb-2">
                   {item.price} DZD × {item.quantity}
                 </p>
+                
+                {#if item.options && item.options.length > 0}
+                  <!-- Options -->
+                  <div class="mt-2 pl-4 border-l-2 border-blue-300 space-y-1">
+                    {#each item.options as option}
+                      <div class="flex items-center justify-between text-sm">
+                        <div class="flex-1">
+                          <span class="text-blue-700">• {option.menuItem?.name}</span>
+                          {#if option.price > 0}
+                            <span class="text-gray-500 ml-2">
+                              ({option.price} DZD × {option.quantity})
+                            </span>
+                          {/if}
+                        </div>
+                        <button
+                          onclick={() => onRemoveItem?.(option.menuItemOrderId)}
+                          disabled={isLoading}
+                          class="ml-2 p-1 rounded-full bg-red-50 hover:bg-red-100 text-red-600 transition-colors disabled:opacity-50"
+                        >
+                          <Icon iconName="trash" class="text-red-600" size="4" />
+                        </button>
+                      </div>
+                    {/each}
+                  </div>
+                {/if}
+                
                 {#if item.supplements && item.supplements.length > 0}
                   <!-- Supplements -->
                   <div class="mt-2 pl-4 border-l-2 border-gray-300 space-y-1">
