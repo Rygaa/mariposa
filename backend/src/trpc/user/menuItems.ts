@@ -62,6 +62,7 @@ export const update = protectedProcedureGlobalTransaction
       stockConversionRatio: z.number().optional(),
       designVersion: z.number().int().optional(),
       imageSourceMenuItemId: z.string().uuid().optional().nullable(),
+      index: z.number().int().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
@@ -425,6 +426,48 @@ export const updateMenuItemImage = protectedProcedureGlobalTransaction
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
         message: "Failed to update menu item image",
+      });
+    }
+  });
+
+/**
+ * Batch update menu items (mainly for reordering)
+ */
+export const batchUpdateMenuItems = protectedProcedureGlobalTransaction
+  .input(
+    z.object({
+      updates: z.array(
+        z.object({
+          id: z.string().uuid(),
+          index: z.number().int(),
+        })
+      ),
+    })
+  )
+  .mutation(async ({ ctx, input }) => {
+    try {
+      // Update all menu items in parallel
+      await Promise.all(
+        input.updates.map((update) =>
+          _ServiceMenuItems.update(
+            {
+              id: update.id,
+              index: update.index,
+            } as any,
+            ctx.globalTx
+          )
+        )
+      );
+
+      return {
+        success: true,
+        message: "Menu items reordered successfully",
+      };
+    } catch (error) {
+      console.error("Error batch updating menu items:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Failed to batch update menu items",
       });
     }
   });

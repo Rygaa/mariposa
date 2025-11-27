@@ -6,6 +6,7 @@
   import MenuItem from "./components/MenuItemV0.svelte";
   import SelectTableModal from "./components/SelectTableModal.svelte";
   import CartSidebar from "./components/CartSidebar.svelte";
+  import SupplementsModal from "./components/SupplementsModal.svelte";
   import type {
     listEatingTables,
     listCategories,
@@ -35,6 +36,8 @@
   let isLoading = $state(false);
   let isCartOpen = $state(false);
   let searchQuery = $state("");
+  let isSupplementModalOpen = $state(false);
+  let currentItemForSupplements = $state<any>(null);
 
   // Get the selected table
   const selectedTable = $derived(
@@ -61,6 +64,14 @@
           item.description?.toLowerCase().includes(query)
       );
     }
+
+    // Sort by index (nulls last), then by name
+    items.sort((a: any, b: any) => {
+      if (a.index === null && b.index === null) return a.name?.localeCompare(b.name) || 0;
+      if (a.index === null) return 1;
+      if (b.index === null) return -1;
+      return a.index - b.index;
+    });
 
     return items;
   });
@@ -184,6 +195,16 @@
 
       // Reload order
       await reloadOrder();
+
+      // Check if item has supplements and open modal if so
+      const hasSupplements = item.subMenuItems?.some((subMenuItem: any) =>
+        subMenuItem?.type?.includes("SUPPLEMENT")
+      );
+
+      if (hasSupplements) {
+        currentItemForSupplements = item;
+        isSupplementModalOpen = true;
+      }
     } catch (error) {
       console.error("Error adding item:", error);
       alert("Erreur lors de l'ajout de l'article");
@@ -358,6 +379,16 @@
     onConfirm={confirmOrder}
   />
 
+  {#if currentItemForSupplements}
+    <SupplementsModal
+      bind:open={isSupplementModalOpen}
+      menuItem={currentItemForSupplements}
+      onAddSupplement={(suppId) => handleAddSupplement(currentItemForSupplements.id, suppId)}
+      {fromColor}
+      {toColor}
+    />
+  {/if}
+
   <AvailableHeightContainer>
     <div
       class="flex flex-col h-full bg-gradient-to-br from-orange-50 via-white to-pink-50"
@@ -394,7 +425,7 @@
               {#if totalItemsInCart > 0}
                 <button
                   onclick={() => (isCartOpen = true)}
-                  class="relative flex gap-x-4 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105"
+                  class="relative flex gap-x-4 text-white px-4 py-3 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-105 animate-heartbeat"
                   style="background-image: linear-gradient(to right, {fromColor}, {toColor});"
                 >
                   Cliquez ici pour modifier
@@ -532,5 +563,32 @@
   :global(*) {
     -ms-overflow-style: none;
     scrollbar-width: none;
+  }
+
+  /* Heartbeat animation */
+  @keyframes heartbeat {
+    0% {
+      transform: scale(1);
+    }
+    14% {
+      transform: scale(1.1);
+    }
+    28% {
+      transform: scale(1);
+    }
+    42% {
+      transform: scale(1.1);
+    }
+    70% {
+      transform: scale(1);
+    }
+  }
+
+  .animate-heartbeat {
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+
+  .animate-heartbeat:hover {
+    animation: none;
   }
 </style>

@@ -16,7 +16,8 @@ import {
   getMenuItemImageMetadata,
   generateMenuItemImageUrl,
   getMenuItemImageViewUrl,
-  listMenuItemImages
+  listMenuItemImages,
+  batchUpdateMenuItems
 } from "./user/menuItems";
 import { create as createItemPrice, deleteItemPrice, listByMenuItem as listItemPricesByMenuItem } from "./user/itemPrices";
 import { 
@@ -111,6 +112,7 @@ export const appRouter = router({
   generateMenuItemImageUrl,
   getMenuItemImageViewUrl,
   listMenuItemImages,
+  batchUpdateMenuItems,
 });
 
 export type AppRouter = typeof appRouter;

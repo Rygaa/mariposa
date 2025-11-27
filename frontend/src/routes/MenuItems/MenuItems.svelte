@@ -36,6 +36,8 @@
   let filterAvailable = $state<string>("all");
   let hasLoadedUserPreferences = $state(false);
   let lastSavedFilters = $state<string>("");
+  let draggedIndex = $state<number | null>(null);
+  let isDragging = $state(false);
 
   onMount(async () => {
     if (!_globalStore.user) {
@@ -162,6 +164,40 @@
   });
 
   const filteredMenuItems = $derived(menuItems);
+
+  // Drag and drop handlers
+  async function handleDrop(targetIndex: number) {
+    if (draggedIndex === null || draggedIndex === targetIndex) {
+      isDragging = false;
+      draggedIndex = null;
+      return;
+    }
+
+    // Swap the items
+    const newItems = [...menuItems];
+    const temp = newItems[draggedIndex];
+    newItems[draggedIndex] = newItems[targetIndex];
+    newItems[targetIndex] = temp;
+
+    // Update the local state immediately for smooth UX
+    menuItems = newItems;
+    isDragging = false;
+    draggedIndex = null;
+
+    // Prepare batch update with new indices
+    const updates = newItems.map((item, index) => ({
+      id: item.id,
+      index: index,
+    }));
+
+    try {
+      await trpc.batchUpdateMenuItems.mutate({ updates });
+    } catch (error) {
+      console.error("Error reordering menu items:", error);
+      // Reload items on error
+      await loadMenuItems();
+    }
+  }
 </script>
 
 <Page>
@@ -241,10 +277,26 @@
         <div
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         >
-          {#each filteredMenuItems as menuItem (menuItem.id)}
-            <MenuItem
-              {menuItem}
-            />
+          {#each filteredMenuItems as menuItem, index (menuItem.id)}
+            <!-- svelte-ignore a11y_no_static_element_interactions -->
+            <div
+              draggable="true"
+              ondragstart={() => {
+                draggedIndex = index;
+                isDragging = true;
+              }}
+              ondragend={() => {
+                draggedIndex = null;
+                isDragging = false;
+              }}
+              ondragover={(e) => {
+                e.preventDefault();
+              }}
+              ondrop={() => handleDrop(index)}
+              class="transition-opacity {isDragging && draggedIndex === index ? 'opacity-50' : 'opacity-100'} cursor-move"
+            >
+              <MenuItem {menuItem} />
+            </div>
           {/each}
         </div>
       </DataDisplayer>

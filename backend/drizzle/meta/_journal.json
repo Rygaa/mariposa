@@ -22,6 +22,13 @@
       "when": 1764123565041,
       "tag": "0002_gray_thunderbird",
       "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "7",
+      "when": 1764126020999,
+      "tag": "0003_furry_sage",
+      "breakpoints": true
     }
   ]
 }

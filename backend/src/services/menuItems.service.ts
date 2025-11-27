@@ -166,6 +166,12 @@ async function list(
     query = query.where(and(...conditions)) as any;
   }
 
+  // Order by index (nulls last), then by name
+  query = query.orderBy(
+    sql`${SchemaDrizzle.menuItems.index} NULLS LAST`,
+    SchemaDrizzle.menuItems.name
+  );
+
   const results = await query.limit(limit).offset(offset);
 
   // If shouldIncludeSupplements, transform the results

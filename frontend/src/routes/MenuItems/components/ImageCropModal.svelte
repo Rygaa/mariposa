@@ -165,6 +165,9 @@
   }
 
   function handleMouseDown(e: MouseEvent) {
+    e.preventDefault();
+    e.stopPropagation();
+    
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
@@ -196,6 +199,9 @@
 
   function handleMouseMove(e: MouseEvent) {
     if (!isDragging && !isResizing) return;
+    
+    e.preventDefault();
+    e.stopPropagation();
     
     const rect = canvas.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -387,11 +393,13 @@
           bind:this={canvas}
           width={700}
           height={500}
-          class="border border-gray-300 rounded cursor-move"
+          class="border border-gray-300 rounded cursor-move select-none"
+          style="-webkit-user-drag: none; user-select: none;"
           onmousedown={handleMouseDown}
           onmousemove={handleMouseMove}
           onmouseup={handleMouseUp}
           onmouseleave={handleMouseUp}
+          ondragstart={(e) => e.preventDefault()}
         ></canvas>
       </div>
 

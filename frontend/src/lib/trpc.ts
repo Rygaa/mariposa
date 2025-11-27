@@ -354,4 +354,7 @@ export const trpc = {
   listOrdersWithRelations: {
     query: wrapMutation(baseClient.listOrdersWithRelations.query),
   },
+  batchUpdateMenuItems: {
+    mutate: wrapMutation(baseClient.batchUpdateMenuItems.mutate),
+  },
 };

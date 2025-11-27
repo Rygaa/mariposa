@@ -127,6 +127,7 @@ export const menuItems = pgTable("MenuItem", {
   deletedAt: timestamp("deletedAt"),
   createdById: varchar("createdById"),
   enterpriseId: varchar("enterpriseId"),
+  index: integer("index"),
   
   // Menu item specific fields
   price: real("price"), // Selling price for menu items
