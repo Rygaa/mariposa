@@ -50,10 +50,18 @@ export async function generateReciptPdf(
 
   let grandTotal = 0;
 
+
   const groupedMenuItemOrder = MenuItemOrderContainer.reduce((acc: any, item: any) => {
+    console.log(item)
+
+    // Get supplements from subMenuItems (filter by type SUPPLEMENT)
+    const supplements = item.menuItem?.subMenuItems?.filter((sub: any) => 
+      sub.subMenuItem?.type?.includes("SUPPLEMENT")
+    ) || [];
+
     // if menuItemIsThesame and all supplements are the same, group them
-    const key = `${item.menuItemId}-${item.selectedSupplements
-      .map((s: any) => s.supplementId)
+    const key = `${item.menuItemId}-${supplements
+      .map((s: any) => s.subMenuItemId)
       .sort()
       .join(",")}`;
 
@@ -65,20 +73,24 @@ export async function generateReciptPdf(
         ...item,
         quantity: 0,
         finalPrice: 0,
+        supplements: supplements,
       });
 
-      acc[acc.length - 1].quantity = 1;
-      acc[acc.length - 1].finalPriceForOneItem =
-        item.menuItem.price +
-        item.selectedSupplements.reduce((sum: number, supp: any) => sum + supp.supplement.price, 0);
-      acc[acc.length - 1].finalPrice =
-        item.menuItem.price +
-        item.selectedSupplements.reduce((sum: number, supp: any) => sum + supp.supplement.price, 0);
+      const supplementsTotal = supplements.reduce(
+        (sum: number, sub: any) => sum + (sub.subMenuItem?.price || 0) * sub.quantity, 
+        0
+      );
+
+      acc[acc.length - 1].quantity = item.quantity;
+      acc[acc.length - 1].finalPriceForOneItem = item.price + supplementsTotal;
+      acc[acc.length - 1].finalPrice = (item.price + supplementsTotal) * item.quantity;
     } else {
-      findElement.quantity += 1;
-      findElement.finalPrice +=
-        item.menuItem.price +
-        item.selectedSupplements.reduce((sum: number, supp: any) => sum + supp.supplement.price, 0);
+      const supplementsTotal = supplements.reduce(
+        (sum: number, sub: any) => sum + (sub.subMenuItem?.price || 0) * sub.quantity, 
+        0
+      );
+      findElement.quantity += item.quantity;
+      findElement.finalPrice += (item.price + supplementsTotal) * item.quantity;
     }
     return acc;
   }, []);
@@ -86,18 +98,23 @@ export async function generateReciptPdf(
   for (let i = 0; i < groupedMenuItemOrder.length; i++) {
     const element = groupedMenuItemOrder[i];
     const name = `${element.quantity} ${element.menuItem.name}`;
-    const supplements = element.selectedSupplements
-      .map((supp: any) => `${supp.supplement.name} ${supp.supplement.price.toFixed(2)}`)
-      .join("\n");
+    const supplements = element.supplements
+      ?.map((sub: any) => {
+        const qty = sub.quantity > 1 ? `${sub.quantity}x ` : '';
+        const price = (sub.subMenuItem?.price || 0) / 100;
+        return `${qty}${sub.subMenuItem?.name} ${price.toFixed(2)}`;
+      })
+      .join("\n") || "";
 
-    const finalPrice = element.finalPrice;
+    const finalPrice = element.finalPrice / 100; // Convert from cents to dollars
     grandTotal += finalPrice;
 
     // Print item name in first column
     doc.text(name, itemStartX, yPos);
     
-    // Print price in second column
-    doc.text(element.finalPriceForOneItem.toFixed(2), priceStartX, yPos);
+    // Print price in second column (per item)
+    const pricePerItem = element.finalPriceForOneItem / 100;
+    doc.text(pricePerItem.toFixed(2), priceStartX, yPos);
     
     // Print total in third column
     doc.text(finalPrice.toFixed(2), totalStartX, yPos);

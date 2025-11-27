@@ -10,6 +10,7 @@
   import { trpc } from "../../../lib/trpc";
   import { _cartsStore } from "../../../store/carts.svelte";
   import { generateReciptPdf } from "../../../utils/printReceipt";
+  import { generateOrderPDF } from "../../../utils/printOrder";
 
   interface Props {
     isOpen: boolean;
@@ -123,7 +124,7 @@
       });
       
       if (result.success && result.order) {
-        await generateReciptPdf(result.order.menuItemOrders || [], table.name);
+        await generateOrderPDF(result.order);
       }
     } catch (error) {
       console.error("Error printing order:", error);
