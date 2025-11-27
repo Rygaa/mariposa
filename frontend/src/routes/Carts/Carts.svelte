@@ -6,6 +6,7 @@
   import { _cartsStore } from "../../store/carts.svelte";
   import { navigate } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
+  import { generateOrderPDF } from "../../utils/printOrder";
   import Page from "../../lib/shadcn/Page.svelte";
   import {
     Card,
@@ -115,11 +116,23 @@
 
   async function handlePrintTableReceipt(tableId: string) {
     try {
-      const result = await trpc.printReceiptOfEatingTable.mutate({
-        eatingTableId: tableId,
-      });
-      if (result.success) {
-        console.log("Receipt printed:", result.message);
+      // Get all orders for this table
+      const tableOrders = _cartsStore.orders.filter(
+        (order) => order.eatingTableId === tableId && order.status === "CONFIRMED"
+      );
+      
+      // Print each order
+      for (const order of tableOrders) {
+        // Fetch full order details with relations
+        const result = await trpc.getOrderByIdWithRelations.query({
+          id: order.id,
+        });
+        
+        if (result.success && result.order) {
+          await generateOrderPDF(result.order);
+          // Add small delay between prints
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
       }
     } catch (error) {
       console.error("Error printing receipt:", error);

@@ -9,6 +9,7 @@
   import UnpaidOrder from "./UnpaidOrder.svelte";
   import { trpc } from "../../../lib/trpc";
   import { _cartsStore } from "../../../store/carts.svelte";
+  import { generateOrderPDF } from "../../../utils/printOrder";
 
   interface Props {
     isOpen: boolean;
@@ -116,9 +117,13 @@
 
   async function handlePrintOrder(orderId: string) {
     try {
-      const result = await trpc.printOrder.mutate({ id: orderId });
-      if (result.success) {
-        console.log("Order printed silently:", result.message);
+      // Fetch full order details with relations
+      const result = await trpc.getOrderByIdWithRelations.query({
+        id: orderId,
+      });
+      
+      if (result.success && result.order) {
+        await generateOrderPDF(result.order);
       }
     } catch (error) {
       console.error("Error printing order:", error);
@@ -128,11 +133,18 @@
 
   async function handlePrintTableReceipt() {
     try {
-      const result = await trpc.printReceiptOfEatingTable.mutate({
-        eatingTableId: table.id,
-      });
-      if (result.success) {
-        console.log("Table receipt printed:", result.message);
+      // Print each order for this table
+      for (const order of orders) {
+        // Fetch full order details with relations
+        const result = await trpc.getOrderByIdWithRelations.query({
+          id: order.id,
+        });
+        
+        if (result.success && result.order) {
+          await generateOrderPDF(result.order);
+          // Add small delay between prints
+          await new Promise(resolve => setTimeout(resolve, 500));
+        }
       }
     } catch (error) {
       console.error("Error printing table receipt:", error);
