@@ -297,7 +297,6 @@
             <img
               src={imageUrls[image.fileId]}
               alt="Menu item {index + 1}"
-              draggable="false"
               class="w-full h-24 object-cover rounded border {image.shouldBeUsedInMenuItemsPage ? 'border-green-500 border-2' : 'border-gray-200'}"
             />
             <!-- Badge for main image -->

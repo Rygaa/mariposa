@@ -281,7 +281,12 @@
             <!-- svelte-ignore a11y_no_static_element_interactions -->
             <div
               draggable="true"
-              ondragstart={() => {
+              ondragstart={(e) => {
+                const target = e.target as HTMLElement;
+                if (target.closest('button, input, textarea, select, [role="dialog"]')) {
+                  e.preventDefault();
+                  return;
+                }
                 draggedIndex = index;
                 isDragging = true;
               }}
