@@ -106,9 +106,61 @@ async function list(
     query = query.where(and(...conditions)) as any;
   }
 
-  const eatingTables = await query.limit(limit).offset(offset);
+  const eatingTables = await query
+    .orderBy(SchemaDrizzle.eatingTables.orderIndex)
+    .limit(limit)
+    .offset(offset);
 
   return eatingTables;
+}
+
+async function reorder(
+  tableId: string,
+  newOrderIndex: number,
+  tx: DbTransactionOrDB = db
+): Promise<SchemaDrizzle.EatingTables[]> {
+  // Get the table being moved
+  const table = await getById(tableId, tx);
+  const oldOrderIndex = table.orderIndex || 0;
+
+  // Get all tables
+  const allTables = await list({}, tx);
+
+  // Update order indices
+  if (newOrderIndex > oldOrderIndex) {
+    // Moving down: shift tables between old and new position up
+    for (const t of allTables) {
+      if (t.id === tableId) continue;
+      const currentIndex = t.orderIndex || 0;
+      if (currentIndex > oldOrderIndex && currentIndex <= newOrderIndex) {
+        await tx
+          .update(SchemaDrizzle.eatingTables)
+          .set({ orderIndex: currentIndex - 1, updatedAt: new Date() })
+          .where(eq(SchemaDrizzle.eatingTables.id, t.id));
+      }
+    }
+  } else if (newOrderIndex < oldOrderIndex) {
+    // Moving up: shift tables between new and old position down
+    for (const t of allTables) {
+      if (t.id === tableId) continue;
+      const currentIndex = t.orderIndex || 0;
+      if (currentIndex >= newOrderIndex && currentIndex < oldOrderIndex) {
+        await tx
+          .update(SchemaDrizzle.eatingTables)
+          .set({ orderIndex: currentIndex + 1, updatedAt: new Date() })
+          .where(eq(SchemaDrizzle.eatingTables.id, t.id));
+      }
+    }
+  }
+
+  // Update the moved table
+  await tx
+    .update(SchemaDrizzle.eatingTables)
+    .set({ orderIndex: newOrderIndex, updatedAt: new Date() })
+    .where(eq(SchemaDrizzle.eatingTables.id, tableId));
+
+  // Return updated list
+  return await list({}, tx);
 }
 
 const _ServiceEatingTables = {
@@ -118,6 +170,7 @@ const _ServiceEatingTables = {
   update,
   deleteEatingTable,
   list,
+  reorder,
 };
 
 export default _ServiceEatingTables;

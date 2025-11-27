@@ -9,6 +9,7 @@
   } from "../../../lib/shadcn/Card/index";
   import AddMenuItemToOrderModal from "./AddMenuItemToOrderModal.svelte";
   import { trpc } from "../../../lib/trpc";
+  import { downloadOrderPDF } from "../../../utils/printOrder";
 
   let {
     order,
@@ -34,7 +35,7 @@
     Map<string, { quantity: number; price: number; toDelete: boolean }>
   >(new Map());
 
-  // Group menu items with their supplements (no merging)
+  // Group menu items with their supplements and options (no merging)
   const groupedMenuItemOrders = $derived(() => {
     if (!order.menuItemOrders) return [];
     
@@ -45,32 +46,27 @@
       return dateA - dateB;
     });
     
-    // Filter out supplements (items with type including "SUPPLEMENT")
-    const mainItems = sorted.filter((mio: any) => {
-      const types = mio.menuItem?.type || [];
-      return !types.includes("SUPPLEMENT");
-    });
+    // Filter out items that have a parent (supplements and options)
+    const mainItems = sorted.filter((mio: any) => !mio.parentMenuItemOrderId);
     
-    // For each main item, find its supplements (next items that are supplements)
-    const grouped = mainItems.map((mainItem: any, index: number) => {
-      const mainItemIndex = sorted.findIndex((mio: any) => mio.id === mainItem.id);
-      const supplements: any[] = [];
+    // For each main item, find its children (supplements and options)
+    const grouped = mainItems.map((mainItem: any) => {
+      const children = sorted.filter(
+        (mio: any) => mio.parentMenuItemOrderId === mainItem.id
+      );
       
-      // Look at subsequent items until we hit another non-supplement
-      for (let i = mainItemIndex + 1; i < sorted.length; i++) {
-        const item = sorted[i];
-        const types = item.menuItem?.type || [];
-        
-        if (types.includes("SUPPLEMENT")) {
-          supplements.push(item);
-        } else {
-          break; // Stop when we hit another main item
-        }
-      }
+      // Separate supplements and options
+      const supplements = children.filter((child: any) =>
+        child.menuItem?.type?.includes("SUPPLEMENT")
+      );
+      const options = children.filter((child: any) =>
+        child.menuItem?.type?.includes("MENU_ITEM_OPTION")
+      );
       
       return {
         ...mainItem,
         supplements,
+        options,
       };
     });
     
@@ -129,6 +125,15 @@
   async function handlePrintOrder() {
     if (onPrintOrder) {
       await onPrintOrder();
+    }
+  }
+
+  async function handlePrintOrderV2() {
+    try {
+      await downloadOrderPDF(order);
+    } catch (error) {
+      console.error("Failed to download PDF:", error);
+      error = "Failed to download PDF";
     }
   }
 
@@ -371,6 +376,15 @@
       </Button>
       <Button
         size="sm"
+        onclick={handlePrintOrderV2}
+        disabled={isSubmitting}
+        iconName="download"
+        variant="secondary"
+      >
+        Print Order (v2)
+      </Button>
+      <Button
+        size="sm"
         onclick={handleMarkAsPaid}
         disabled={isSubmitting}
         iconName="check_circle"
@@ -413,6 +427,15 @@
                   {formatCurrency(change?.price ?? menuItemOrder.price)}
                 </span>
               </div>
+              {#if menuItemOrder.options && menuItemOrder.options.length > 0}
+                <div class="mt-1 ml-4 text-xs text-gray-500">
+                  {#each menuItemOrder.options as option}
+                    <div class="italic underline">
+                      {option.menuItem?.name || "Unknown"}
+                    </div>
+                  {/each}
+                </div>
+              {/if}
               {#if menuItemOrder.supplements && menuItemOrder.supplements.length > 0}
                 <div class="mt-1 ml-4 text-xs text-gray-500">
                   {#each menuItemOrder.supplements as supplement}
@@ -529,11 +552,6 @@
     orderId={order.id}
     onClose={() => {
       isAddMenuItemModalOpen = false;
-    }}
-    onItemAdded={async () => {
-      if (onOrderUpdated) {
-        await onOrderUpdated();
-      }
     }}
   />
 {/if}

@@ -36,6 +36,27 @@
       "when": 1764227349963,
       "tag": "0004_wide_victor_mancha",
       "breakpoints": true
+    },
+    {
+      "idx": 5,
+      "version": "7",
+      "when": 1764251078004,
+      "tag": "0005_lethal_roughhouse",
+      "breakpoints": true
+    },
+    {
+      "idx": 6,
+      "version": "7",
+      "when": 1764252252728,
+      "tag": "0006_lean_alex_power",
+      "breakpoints": true
+    },
+    {
+      "idx": 7,
+      "version": "7",
+      "when": 1764263085617,
+      "tag": "0007_illegal_violations",
+      "breakpoints": true
     }
   ]
 }

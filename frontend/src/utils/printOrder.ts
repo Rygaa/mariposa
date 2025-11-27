@@ -3,7 +3,8 @@ import { jsPDF } from "jspdf";
 
 const mmToPt = (mm: number): number => mm * 2.83465;
 
-export async function generateOrderPDF(order: any): Promise<void> {
+function createOrderPDF(order: any): jsPDF {
+  console.log(order)
   const widthMm = 80;
   const doc = new jsPDF({
     orientation: "portrait",
@@ -36,74 +37,79 @@ export async function generateOrderPDF(order: any): Promise<void> {
 
   const MenuItemOrderContainer = order.menuItemOrders || [];
 
-  const groupedMenuItemOrder = MenuItemOrderContainer.reduce((acc: any, item: any) => {
-    const supplements = item.selectedSupplements || [];
-    const key = `${item.menuItemId}-${supplements
-      .map((s: any) => s.supplementId)
-      .sort()
-      .join(",")}`;
+  // Filter main items (items without parentMenuItemOrderId)
+  const mainItems = MenuItemOrderContainer.filter((item: any) => !item.parentMenuItemOrderId);
 
-    const findElement = acc.find((el: any) => el.shallowKey === key);
+  // Group main items with their children (supplements and options)
+  const itemsWithChildren = mainItems.map((mainItem: any) => {
+    const children = MenuItemOrderContainer.filter(
+      (item: any) => item.parentMenuItemOrderId === mainItem.id
+    );
+    
+    // Separate supplements and options based on type
+    const supplements = children.filter((child: any) => 
+      child.menuItem?.type?.includes("SUPPLEMENT")
+    );
+    const options = children.filter((child: any) => 
+      child.menuItem?.type?.includes("MENU_ITEM_OPTION")
+    );
+    
+    return {
+      ...mainItem,
+      supplements,
+      options,
+    };
+  });
 
-    if (!findElement) {
-      acc.push({
-        shallowKey: key,
-        ...item,
-        quantity: 0,
-        finalPrice: 0,
-      });
-
-      acc[acc.length - 1].quantity = item.quantity || 1;
-      const suppPrice = supplements.reduce((sum: number, supp: any) => sum + (supp.supplement?.price || 0), 0);
-      acc[acc.length - 1].finalPriceForOneItem = item.price + suppPrice;
-      acc[acc.length - 1].finalPrice = (item.price + suppPrice) * item.quantity;
-    } else {
-      const itemQty = item.quantity || 1;
-      findElement.quantity += itemQty;
-      const suppPrice = supplements.reduce((sum: number, supp: any) => sum + (supp.supplement?.price || 0), 0);
-      findElement.finalPrice += (item.price + suppPrice) * itemQty;
-    }
-    return acc;
-  }, []);
-
-  for (let i = 0; i < groupedMenuItemOrder.length; i++) {
-    const element = groupedMenuItemOrder[i];
+  for (let i = 0; i < itemsWithChildren.length; i++) {
+    const element = itemsWithChildren[i];
     const name = `${element.quantity} ${element.menuItem?.name || 'Unknown Item'}`;
-    const supplements = (element.selectedSupplements || [])
-      .map((supp: any) => `s: ${supp.supplement?.name || ''}`)
-      .filter((s: string) => s)
-      .join("\n");
-    const menuItemOptions = (element.MenuItemOrderMenuItemOption || [])
-      .filter((opt: any) => opt.option?.shouldBePrinted)
-      .map((opt: any) => opt.option?.name || '')
-      .filter((s: string) => s)
-      .join(", ");
+    const supplements = element.supplements || [];
+    const options = element.options || [];
 
-    const finalPrice = element.finalPrice;
+    // Calculate item total including supplements
+    const itemTotal = element.price * element.quantity;
+    const supplementsTotal = supplements.reduce(
+      (sum: number, supp: any) => sum + (supp.price || 0) * supp.quantity,
+      0
+    );
+    const finalPrice = itemTotal + supplementsTotal;
     grandTotal += finalPrice;
 
     // Draw item name
     doc.setFont("courier", "bold");
+    doc.setFontSize(13);
     doc.text(name, 5, yPos);
     yPos += 6;
 
-    // Draw supplements
-    if (supplements) {
+    // Draw options with margin and underline effect
+    if (options.length > 0) {
       doc.setFont("courier", "normal");
-      const suppLines = supplements.split("\n");
-      suppLines.forEach((line: string) => {
-        doc.text(line, 8, yPos);
-        yPos += 5;
+      doc.setFontSize(11);
+      options.forEach((opt: any) => {
+        const optName = opt.menuItem?.name || '';
+        if (optName) {
+          const indentedText = `  ${optName}`;
+          doc.text(indentedText, 5, yPos);
+          const textWidth = doc.getTextWidth(indentedText);
+          doc.setLineWidth(0.3);
+          doc.line(5, yPos + 1, 5 + textWidth, yPos + 1);
+          yPos += 5;
+        }
       });
     }
 
-    // Draw options (with underline effect)
-    if (menuItemOptions) {
+    // Draw supplements with margin
+    if (supplements.length > 0) {
       doc.setFont("courier", "normal");
-      doc.text(menuItemOptions, 8, yPos);
-      const textWidth = doc.getTextWidth(menuItemOptions);
-      doc.line(8, yPos + 0.5, 8 + textWidth, yPos + 0.5);
-      yPos += 6;
+      doc.setFontSize(11);
+      supplements.forEach((supp: any) => {
+        const suppName = supp.menuItem?.name || '';
+        if (suppName) {
+          doc.text(`  s: ${suppName}`, 5, yPos);
+          yPos += 5;
+        }
+      });
     }
 
     yPos += 3;
@@ -113,6 +119,12 @@ export async function generateOrderPDF(order: any): Promise<void> {
   doc.line(3, yPos, widthMm - 3, yPos);
   yPos += 5;
 
+  return doc;
+}
+
+export async function generateOrderPDF(order: any): Promise<void> {
+  const doc = createOrderPDF(order);
+  
   // Silent printing using hidden iframe for kiosk mode
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
@@ -146,4 +158,13 @@ export async function generateOrderPDF(order: any): Promise<void> {
   };
   
   iframe.src = url;
+}
+
+export async function downloadOrderPDF(order: any): Promise<void> {
+  const doc = createOrderPDF(order);
+  
+  // Download the PDF
+  const orderId = order.id?.slice(0, 8) || 'order';
+  const timestamp = new Date().toISOString().split('T')[0];
+  doc.save(`order-${orderId}-${timestamp}.pdf`);
 }

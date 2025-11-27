@@ -1,0 +1,1 @@
+ALTER TABLE "EatingTable" ADD COLUMN "orderIndex" integer DEFAULT 0 NOT NULL;

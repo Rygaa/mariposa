@@ -103,6 +103,7 @@ export const eatingTables = pgTable("EatingTable", {
   isActive: boolean("isActive").default(true).notNull(),
   isDefault: boolean("isDefault").default(false).notNull(),
   type: eatingTableTypeEnum("type").default("TAKEAWAY").notNull(),
+  orderIndex: integer("orderIndex").default(0).notNull(),
 });
 
 export const categories = pgTable("Category", {
@@ -169,6 +170,7 @@ export const menuItemOrders = pgTable("MenuItemOrder", {
   menuItemId: varchar("menuItemId").notNull(),
   quantity: integer("quantity").default(1).notNull(),
   price: real("price").notNull(),
+  parentMenuItemOrderId: varchar("parentMenuItemOrderId"), // Links supplements to their parent menu item order
 });
 
 export const menuItemImages = pgTable("MenuItemImage", {
@@ -265,9 +267,15 @@ export const orderRelations = relations(orders, ({ one, many }) => ({
   menuItemOrders: many(menuItemOrders),
 }));
 
-export const menuItemOrderRelations = relations(menuItemOrders, ({ one }) => ({
+export const menuItemOrderRelations = relations(menuItemOrders, ({ one, many }) => ({
   order: one(orders, { fields: [menuItemOrders.orderId], references: [orders.id] }),
   menuItem: one(menuItems, { fields: [menuItemOrders.menuItemId], references: [menuItems.id] }),
+  parentMenuItemOrder: one(menuItemOrders, {
+    fields: [menuItemOrders.parentMenuItemOrderId],
+    references: [menuItemOrders.id],
+    relationName: "parentMenuItemOrder",
+  }),
+  childMenuItemOrders: many(menuItemOrders, { relationName: "parentMenuItemOrder" }),
 }));
 
 export const eatingTableRelations = relations(eatingTables, ({ many }) => ({

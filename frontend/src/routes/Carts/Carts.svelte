@@ -6,7 +6,7 @@
   import { _cartsStore } from "../../store/carts.svelte";
   import { navigate } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
-  import { generateReciptPdf } from "../../utils/printReceipt";
+  import { generateReciptPdf, downloadReceiptPdf } from "../../utils/printReceipt";
   import Page from "../../lib/shadcn/Page.svelte";
   import {
     Card,
@@ -135,6 +135,8 @@
           id: order.id,
         });
         
+
+        console.log(result)
         if (result.success && result.order?.menuItemOrders) {
           allMenuItemOrders.push(...result.order.menuItemOrders);
         }
@@ -147,6 +149,42 @@
     } catch (error) {
       console.error("Error printing receipt:", error);
       alert("Erreur lors de l'impression du reçu");
+    }
+  }
+
+  async function handleDownloadTableReceipt(tableId: string) {
+    try {
+      // Get all orders for this table
+      const tableOrders = _cartsStore.orders.filter(
+        (order) => order.eatingTableId === tableId && order.status === "CONFIRMED"
+      );
+      
+      if (tableOrders.length === 0) return;
+      
+      // Get table name
+      const table = tables.find(t => t.id === tableId);
+      const tableName = table?.name || `Table ${table?.tableNumber || tableId.slice(0, 8)}`;
+      
+      // Collect all menu item orders from all orders for this table
+      const allMenuItemOrders: any[] = [];
+      for (const order of tableOrders) {
+        // Fetch full order details with relations
+        const result = await trpc.getOrderByIdWithRelations.query({
+          id: order.id,
+        });
+        
+        if (result.success && result.order?.menuItemOrders) {
+          allMenuItemOrders.push(...result.order.menuItemOrders);
+        }
+      }
+      
+      // Generate and download receipt
+      if (allMenuItemOrders.length > 0) {
+        downloadReceiptPdf(allMenuItemOrders, tableName);
+      }
+    } catch (error) {
+      console.error("Error downloading receipt:", error);
+      alert("Erreur lors du téléchargement du reçu");
     }
   }
 
@@ -269,7 +307,7 @@
               </button>
 
               {#if table.unpaidOrdersCount > 0}
-                <div class="mt-4 pt-4 border-t border-gray-200">
+                <div class="mt-4 pt-4 border-t border-gray-200 space-y-2">
                   <button
                     onclick={(e) => {
                       e.stopPropagation();
@@ -279,6 +317,16 @@
                   >
                     <Icon iconName="print" />
                     Print Receipt
+                  </button>
+                  <button
+                    onclick={(e) => {
+                      e.stopPropagation();
+                      handleDownloadTableReceipt(table.id);
+                    }}
+                    class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-green-500 hover:bg-green-600 text-white rounded-lg transition-colors text-sm font-medium"
+                  >
+                    <Icon iconName="download" />
+                    Test
                   </button>
                 </div>
               {/if}

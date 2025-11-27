@@ -1,0 +1,1 @@
+-- Migration already applied in 0004, skipping duplicate

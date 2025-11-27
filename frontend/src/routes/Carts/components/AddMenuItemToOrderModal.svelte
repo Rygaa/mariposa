@@ -3,21 +3,20 @@
     Dialog,
     DialogContent,
   } from "../../../lib/shadcn/Dialog/index";
-  import ClientOrders from "../../ClientOrders_version2/ClientOrders.svelte";
+  import ClientOrders from "../../ClientOrders_version3/ClientOrders.svelte";
   import { trpc } from "../../../lib/trpc";
+  import { _cartsStore } from "../../../store/carts.svelte";
 
   interface Props {
     isOpen: boolean;
     orderId: string;
     onClose: () => void;
-    onItemAdded: () => void | Promise<void>;
   }
 
   let {
     isOpen = $bindable(false),
     orderId,
     onClose,
-    onItemAdded,
   }: Props = $props();
 
   let existingOrder = $state<any>(null);
@@ -41,6 +40,35 @@
     }
   }
 
+  async function handleItemAdded() {
+    try {
+      // Fetch the updated order
+      const result = await trpc.getOrderByIdWithRelations.query({
+        id: orderId,
+      });
+      if (result.success && result.order) {
+        // Only keep it if it's still CONFIRMED status
+        if (result.order.status === "CONFIRMED") {
+          // Update the specific order in the global store
+          const index = _cartsStore.orders.findIndex(
+            (order) => order.id === orderId
+          );
+          if (index !== -1) {
+            _cartsStore.orders[index] = result.order;
+            _cartsStore.orders = [..._cartsStore.orders]; // Trigger reactivity
+          }
+        } else {
+          // Order status changed, remove it from the global store
+          _cartsStore.orders = _cartsStore.orders.filter(
+            (order) => order.id !== orderId
+          );
+        }
+      }
+    } catch (error) {
+      console.error("Error updating order:", error);
+    }
+  }
+
   function handleClose() {
     onClose();
   }
@@ -57,7 +85,7 @@
       <ClientOrders 
         existingOrder={existingOrder} 
         onConfirm={async () => {
-          await onItemAdded();
+          await handleItemAdded();
           handleClose();
         }}
       />

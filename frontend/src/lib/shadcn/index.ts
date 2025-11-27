@@ -10,3 +10,6 @@ export { Popover, PopoverTrigger, PopoverContent } from './Popover';
 
 // DateTimePicker
 export { DateTimePicker } from './DateTimePicker';
+
+// Drag
+export { Draggable, DraggableContainer } from './Drag';

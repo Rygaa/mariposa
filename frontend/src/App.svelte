@@ -13,7 +13,6 @@
   import Categories from "./routes/Categories/Categories.svelte";
   import NodesDemo from "./routes/NodesDemo.svelte";
   import ClientOrders from "./routes/ClientOrders/ClientOrders.svelte";
-  import ClientOrdersV2 from "./routes/ClientOrders_version2/ClientOrders.svelte";
   import ClientOrdersV3 from "./routes/ClientOrders_version3/ClientOrders.svelte";
   import Orders from "./routes/Orders/ClientOrders.svelte";
   import Stats from "./routes/Stats/Stats.svelte";
@@ -83,9 +82,24 @@
     { name: "Orders", path: "/orders", icon: "📋", section: "main" },
     { name: "Carts", path: "/carts", icon: "🛒", section: "main" },
     { name: "Stats", path: "/stats", icon: "📊", section: "main" },
-    { name: "Client Orders", path: "/client-orders", icon: "🛍️", section: "main" },
-    { name: "Client Orders V2", path: "/client-orders-v2", icon: "📱", section: "main" },
-    { name: "Client Orders V3 (Tablet)", path: "/client-orders-v3", icon: "📱", section: "main" },
+    {
+      name: "Client Orders",
+      path: "/client-orders",
+      icon: "🛍️",
+      section: "main",
+    },
+    {
+      name: "Client Orders V2",
+      path: "/client-orders-v2",
+      icon: "📱",
+      section: "main",
+    },
+    {
+      name: "Client Orders V3 (Tablet)",
+      path: "/client-orders-v3",
+      icon: "📱",
+      section: "main",
+    },
     { name: "Users", path: "/users", icon: "👥", section: "main" },
     { name: "Nodes Demo", path: "/nodes-demo", icon: "🔗", section: "main" },
     ...(_globalStore.user?.role?.includes("ADMIN")
@@ -148,60 +162,53 @@
 
   <div class="flex h-full w-full bg-gray-50 overflow-x-hidden">
     <Router>
-      <AppLayout
-        {navigationItems}
-        bind:isSidebarOpen
-        onLogout={handleLogout}
-      >
+      <AppLayout {navigationItems} bind:isSidebarOpen onLogout={handleLogout}>
         {#if _globalStore.user}
-        <Route path="/">
-          <EatingTables />
-        </Route>
-        <Route path="/profile">
-          <Profile />
-        </Route>
-        <Route path="/categories">
-          <Categories />
-        </Route>
-        <Route path="/eating-tables">
-          <EatingTables />
-        </Route>
-        <Route path="/menu-items">
-          <MenuItems />
-        </Route>
-        <Route path="/orders">
-          <Orders />
-        </Route>
-        <Route path="/carts">
-          <Carts />
-        </Route>
-        <Route path="/stats">
-          <Stats />
-        </Route>
-        <Route path="/client-orders">
-          <ClientOrders />
-        </Route>
-        <Route path="/client-orders-v2">
-          <ClientOrdersV2 />
-        </Route>
-                <Route path="/client-orders-v3">
-          <ClientOrdersV3 />
-        </Route>
-        <Route path="/users">
-          <Users />
-        </Route>
-        <Route path="/nodes-demo">
-          <NodesDemo />
-        </Route>
-      {/if}
-
-      <Route path="/">
-        {#if _globalStore.user}
-          {navigate("/eating-tables", { replace: true })}
-        {:else}
-          {navigate("/signup", { replace: true })}
+          <Route path="/">
+            <EatingTables />
+          </Route>
+          <Route path="/profile">
+            <Profile />
+          </Route>
+          <Route path="/categories">
+            <Categories />
+          </Route>
+          <Route path="/eating-tables">
+            <EatingTables />
+          </Route>
+          <Route path="/menu-items">
+            <MenuItems />
+          </Route>
+          <Route path="/orders">
+            <Orders />
+          </Route>
+          <Route path="/carts">
+            <Carts />
+          </Route>
+          <Route path="/stats">
+            <Stats />
+          </Route>
+          <Route path="/client-orders">
+            <ClientOrders />
+          </Route>
+          <Route path="/client-orders-v3">
+            <ClientOrdersV3 />
+          </Route>
+          <Route path="/users">
+            <Users />
+          </Route>
+          <Route path="/nodes-demo">
+            <NodesDemo />
+          </Route>
         {/if}
-      </Route>
+
+        <Route path="/">
+          {#if _globalStore.user}
+            {navigate("/eating-tables", { replace: true })}
+          {:else}
+            {navigate("/signup", { replace: true })}
+          {/if}
+        </Route>
 
         <Route path="/signup"><Signup /></Route>
         <Route path="/login"><Login /></Route>

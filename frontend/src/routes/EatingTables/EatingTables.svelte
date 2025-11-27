@@ -14,6 +14,7 @@
     CardHeader,
     CardTitle,
   } from "../../lib/shadcn/Card/index";
+  import { Draggable } from "../../lib/shadcn/Drag";
   import type { getEatingTableById } from "../../../../backend/src/router.types";
 
   let eatingTables = $state<getEatingTableById["eatingTable"][]>([]);
@@ -63,6 +64,56 @@
   });
 
   const filteredTables = $derived(eatingTables);
+
+  function getTableAtPosition(x: number, y: number, excludeId?: string): getEatingTableById["eatingTable"] | null {
+    // Get element at the drop position
+    const elements = document.elementsFromPoint(x, y);
+    
+    // Find the table element
+    for (const el of elements) {
+      const tableEl = el.closest('[data-table-id]');
+      if (tableEl) {
+        const tableId = (tableEl as HTMLElement).dataset.tableId;
+        if (tableId && tableId !== excludeId) {
+          return filteredTables.find(t => t.id === tableId) || null;
+        }
+      }
+    }
+    return null;
+  }
+
+  async function handleTableDragged(draggedTable: getEatingTableById["eatingTable"], event: CustomEvent) {
+    const { draggedTo, draggedFrom } = event.detail;
+    
+    // Find which table was at the start position
+    const fromTable = getTableAtPosition(draggedFrom.x, draggedFrom.y, draggedTable.id);
+    
+    // Find which table is at the drop position
+    const toTable = getTableAtPosition(draggedTo.x, draggedTo.y, draggedTable.id);
+    
+    console.log(`Table "${draggedTable.name}" dragged:`);
+    console.log('  From:', fromTable ? `Table "${fromTable.name}" (ID: ${fromTable.id})` : 'original position');
+    console.log('  To:', toTable ? `Table "${toTable.name}" (ID: ${toTable.id})` : 'empty space');
+    
+    // Swap positions if dropped on another table
+    if (toTable) {
+      console.log(`  -> Swapping "${draggedTable.name}" with "${toTable.name}"`);
+      
+      try {
+        const result = await trpc.reorderEatingTables.mutate({
+          tableId: draggedTable.id,
+          targetTableId: toTable.id,
+        });
+        
+        if (result.success) {
+          console.log('  -> Tables reordered successfully');
+          await loadEatingTables();
+        }
+      } catch (error) {
+        console.error('  -> Error reordering tables:', error);
+      }
+    }
+  }
 </script>
 
 <Page>
@@ -103,10 +154,14 @@
           class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         >
           {#each filteredTables as table (table.id)}
-            <EatingTable
-              {table}
-              onEatingTablesChanged={loadEatingTables}
-            />
+            <div data-table-id={table.id}>
+              <Draggable on:dragged={(e) => handleTableDragged(table, e)}>
+                <EatingTable
+                  {table}
+                  onEatingTablesChanged={loadEatingTables}
+                />
+              </Draggable>
+            </div>
           {/each}
         </div>
       </DataDisplayer>

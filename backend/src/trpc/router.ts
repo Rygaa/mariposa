@@ -1,7 +1,7 @@
 import { router, ping, giveMeRandomNumber, heartbeat } from "../index";
 import { getAllUsers, createUser, updateUser, deleteUser } from "./admin/users";
 import { auth, login, signup, updateMyPassword, updateUserMeta } from "./user/users";
-import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById } from "./user/eatingTables";
+import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById, reorder as reorderEatingTables } from "./user/eatingTables";
 import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById } from "./user/categories";
 import { 
   create as createMenuItem, 
@@ -68,6 +68,7 @@ export const appRouter = router({
   deleteEatingTable,
   listEatingTables,
   getEatingTableById,
+  reorderEatingTables,
   createCategory,
   updateCategory,
   deleteCategory,

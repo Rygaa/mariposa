@@ -224,7 +224,6 @@
         menuItemId,
         quantity: 1,
         price: item.price || 0,
-        status: existingOrder ? currentOrder.status : "INITIALIZED",
       });
 
       // Store the menu item order ID for adding options
@@ -232,7 +231,7 @@
         pendingMenuItemOrderId = response.menuItemOrder.id;
       }
 
-      // Add selected options as separate menu item orders
+      // Add selected options as separate menu item orders, linked to parent
       for (const optionId of selectedOptions) {
         const option = menuItems.find((m: any) => m.id === optionId);
         if (option) {
@@ -241,7 +240,7 @@
             menuItemId: optionId,
             quantity: 1,
             price: option.price || 0,
-            status: existingOrder ? currentOrder.status : "INITIALIZED",
+            ...(pendingMenuItemOrderId && { parentMenuItemOrderId: pendingMenuItemOrderId }),
           });
         }
       }
@@ -309,13 +308,13 @@
       const supplement = menuItems.find((m: any) => m.id === supplementId);
       if (!supplement) return;
 
-      // Add supplement as a new menu item order
+      // Add supplement as a new menu item order, linked to the pending menu item order
       await trpc.createMenuItemOrder.mutate({
         orderId: currentOrder.id,
         menuItemId: supplementId,
         quantity: 1,
         price: supplement.price || 0,
-        status: existingOrder ? currentOrder.status : "INITIALIZED",
+        ...(pendingMenuItemOrderId && { parentMenuItemOrderId: pendingMenuItemOrderId }), // Link supplement to parent item
       });
 
       // Reload order

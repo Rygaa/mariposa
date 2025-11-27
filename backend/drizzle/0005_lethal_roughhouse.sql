@@ -1,0 +1,2 @@
+ALTER TABLE "MenuItemOrder" ADD COLUMN IF NOT EXISTS "parentMenuItemOrderId" varchar;--> statement-breakpoint
+ALTER TABLE "MenuItemOrder" ADD COLUMN IF NOT EXISTS "status" "E_EatingTableMenuItemStatus";

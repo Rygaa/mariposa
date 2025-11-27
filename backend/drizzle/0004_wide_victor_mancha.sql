@@ -1,1 +1,1 @@
-ALTER TABLE "MenuItemOrder" DROP COLUMN "status";
+ALTER TABLE "MenuItemOrder" DROP COLUMN IF EXISTS "status";

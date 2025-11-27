@@ -123,3 +123,37 @@ export const getById = protectedProcedure
       eatingTable,
     };
   });
+
+export const reorder = protectedProcedureGlobalTransaction
+  .input(
+    z.object({
+      tableId: z.string().uuid("Invalid eating table ID"),
+      targetTableId: z.string().uuid("Invalid target eating table ID"),
+    })
+  )
+  .mutation(async ({ ctx, input }) => {
+    const { tableId, targetTableId } = input;
+
+    // Get both tables
+    const table = await _ServiceEatingTables.getById(tableId, ctx.globalTx);
+    const targetTable = await _ServiceEatingTables.getById(targetTableId, ctx.globalTx);
+
+    // Swap order indices
+    const tempOrder = table.orderIndex;
+    await _ServiceEatingTables.update(
+      { id: tableId, orderIndex: targetTable.orderIndex },
+      ctx.globalTx
+    );
+    await _ServiceEatingTables.update(
+      { id: targetTableId, orderIndex: tempOrder },
+      ctx.globalTx
+    );
+
+    const updatedTables = await _ServiceEatingTables.list({}, ctx.globalTx);
+
+    return {
+      success: true,
+      eatingTables: updatedTables,
+      message: "Tables reordered successfully",
+    };
+  });

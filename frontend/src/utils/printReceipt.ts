@@ -3,10 +3,10 @@ import { jsPDF } from "jspdf";
 
 const mmToPt = (mm: number): number => mm * 2.83465;
 
-export async function generateReciptPdf(
+function createReceiptPdf(
   MenuItemOrderContainer: any,
   tableName: string
-): Promise<void> {
+): jsPDF {
   const widthMm = 80;
   const doc = new jsPDF({
     orientation: "portrait",
@@ -51,79 +51,74 @@ export async function generateReciptPdf(
   let grandTotal = 0;
 
 
-  const groupedMenuItemOrder = MenuItemOrderContainer.reduce((acc: any, item: any) => {
-    console.log(item)
-
-    // Get supplements from subMenuItems (filter by type SUPPLEMENT)
-    const supplements = item.menuItem?.subMenuItems?.filter((sub: any) => 
-      sub.subMenuItem?.type?.includes("SUPPLEMENT")
-    ) || [];
-
-    // if menuItemIsThesame and all supplements are the same, group them
-    const key = `${item.menuItemId}-${supplements
-      .map((s: any) => s.subMenuItemId)
-      .sort()
-      .join(",")}`;
-
-    const findElement = acc.find((el: any) => el.shallowKey === key);
-
-    if (!findElement) {
-      acc.push({
-        shallowKey: key,
-        ...item,
-        quantity: 0,
-        finalPrice: 0,
-        supplements: supplements,
-      });
-
-      const supplementsTotal = supplements.reduce(
-        (sum: number, sub: any) => sum + (sub.subMenuItem?.price || 0) * sub.quantity, 
-        0
-      );
-
-      acc[acc.length - 1].quantity = item.quantity;
-      acc[acc.length - 1].finalPriceForOneItem = item.price + supplementsTotal;
-      acc[acc.length - 1].finalPrice = (item.price + supplementsTotal) * item.quantity;
-    } else {
-      const supplementsTotal = supplements.reduce(
-        (sum: number, sub: any) => sum + (sub.subMenuItem?.price || 0) * sub.quantity, 
-        0
-      );
-      findElement.quantity += item.quantity;
-      findElement.finalPrice += (item.price + supplementsTotal) * item.quantity;
+  // Separate main items from supplements and options
+  const mainItems = MenuItemOrderContainer.filter((item: any) => 
+    !item.parentMenuItemOrderId && item.menuItem?.type?.includes("MENU_ITEM")
+  );
+  
+  // Group child items (supplements and options) by their parent
+  const childItemsByParent = MenuItemOrderContainer
+  .filter((item: any) => 
+    item.menuItem?.type?.includes("SUPPLEMENT")
+  )
+  .filter((item: any) => 
+    item.parentMenuItemOrderId
+  ).reduce((acc: any, childItem: any) => {
+    if (!acc[childItem.parentMenuItemOrderId]) {
+      acc[childItem.parentMenuItemOrderId] = [];
     }
+    acc[childItem.parentMenuItemOrderId].push(childItem);
     return acc;
-  }, []);
+  }, {});
+
+  const groupedMenuItemOrder = mainItems.map((item: any) => {
+    // Get all child items (supplements and options) that were actually ordered for this item
+    const childItems = childItemsByParent[item.id] || [];
+    
+    const childItemsTotal = childItems.reduce(
+      (sum: number, child: any) => sum + (child.price || 0) * child.quantity, 
+      0
+    );
+
+    return {
+      ...item,
+      childItems: childItems,
+      finalPriceForOneItem: item.price + childItemsTotal,
+      finalPrice: (item.price + childItemsTotal) * item.quantity,
+    };
+  });
 
   for (let i = 0; i < groupedMenuItemOrder.length; i++) {
     const element = groupedMenuItemOrder[i];
     const name = `${element.quantity} ${element.menuItem.name}`;
-    const supplements = element.supplements
-      ?.map((sub: any) => {
-        const qty = sub.quantity > 1 ? `${sub.quantity}x ` : '';
-        const price = (sub.subMenuItem?.price || 0) / 100;
-        return `${qty}${sub.subMenuItem?.name} ${price.toFixed(2)}`;
+    
+    // Format child items (supplements and options) that were actually ordered for this specific item
+    const childItemsText = element.childItems
+      ?.map((child: any) => {
+        const qty = child.quantity > 1 ? `${child.quantity}x ` : '';
+        const price = (child.price || 0);
+        return `${qty}${child.menuItem?.name} ${price}`;
       })
       .join("\n") || "";
 
-    const finalPrice = element.finalPrice / 100; // Convert from cents to dollars
+    const finalPrice = element.finalPrice; // Convert from cents to dollars
     grandTotal += finalPrice;
 
     // Print item name in first column
     doc.text(name, itemStartX, yPos);
     
     // Print price in second column (per item)
-    const pricePerItem = element.finalPriceForOneItem / 100;
-    doc.text(pricePerItem.toFixed(2), priceStartX, yPos);
+    const pricePerItem = element.finalPriceForOneItem;
+    doc.text(pricePerItem.toString(), priceStartX, yPos);
     
     // Print total in third column
-    doc.text(finalPrice.toFixed(2), totalStartX, yPos);
+    doc.text(finalPrice.toString(), totalStartX, yPos);
     yPos += 4;
 
-    // Print supplements indented
-    if (supplements) {
-      const suppLines = supplements.split("\n");
-      suppLines.forEach((line: string) => {
+    // Print child items (supplements and options) indented
+    if (childItemsText) {
+      const childLines = childItemsText.split("\n");
+      childLines.forEach((line: string) => {
         doc.text(line, itemStartX + 2, yPos);
         yPos += 3.5;
       });
@@ -141,9 +136,18 @@ export async function generateReciptPdf(
   // --- GRAND TOTAL ---
   doc.setFontSize(12);
   doc.setFont("courier", "bold");
-  const totalStr = `TOTAL: $${grandTotal.toFixed(2)}`;
+  const totalStr = `TOTAL: $${grandTotal}`;
   doc.text(totalStr, widthMm - 3, yPos, { align: "right" });
 
+  return doc;
+}
+
+export async function generateReciptPdf(
+  MenuItemOrderContainer: any,
+  tableName: string
+): Promise<void> {
+  const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
+  
   // Silent printing using hidden iframe for kiosk mode
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
@@ -177,4 +181,12 @@ export async function generateReciptPdf(
   };
   
   iframe.src = url;
+}
+
+export function downloadReceiptPdf(
+  MenuItemOrderContainer: any,
+  tableName: string
+): void {
+  const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
+  doc.save(`receipt-${tableName.replace(/\s+/g, '-')}-${Date.now()}.pdf`);
 }

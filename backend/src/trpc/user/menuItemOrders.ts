@@ -18,18 +18,18 @@ export const create = protectedProcedureGlobalTransaction
       menuItemId: z.string().uuid("Invalid menu item ID"),
       quantity: z.number().int().positive().default(1),
       price: z.number(),
-      status: z.enum(statusEnumValues).optional(),
+      parentMenuItemOrderId: z.string().uuid("Invalid parent menu item order ID").optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
-    const { orderId, menuItemId, quantity, price, status } = input;
+    const { orderId, menuItemId, quantity, price, parentMenuItemOrderId } = input;
     const createdMenuItemOrder = await _ServiceMenuItemOrders.create(
       {
         orderId,
         menuItemId,
         quantity,
         price,
-        ...(status !== undefined && { status }),
+        ...(parentMenuItemOrderId !== undefined && { parentMenuItemOrderId }),
       },
       ctx.globalTx
     );
@@ -47,18 +47,16 @@ export const update = protectedProcedureGlobalTransaction
       id: z.string().uuid("Invalid menu item order ID"),
       quantity: z.number().int().positive().optional(),
       price: z.number().optional(),
-      status: z.enum(statusEnumValues).optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
-    const { id, quantity, price, status } = input;
+    const { id, quantity, price } = input;
 
     const updatedMenuItemOrder = await _ServiceMenuItemOrders.update(
       {
         id,
         ...(quantity !== undefined && { quantity }),
         ...(price !== undefined && { price }),
-        ...(status !== undefined && { status }),
       },
       ctx.globalTx
     );

@@ -128,7 +128,6 @@
         menuItemId,
         quantity: 1,
         price: item.price || 0,
-        status: "INITIALIZED",
       });
 
       // Reload order
@@ -190,7 +189,6 @@
         menuItemId: supplementId,
         quantity: 1,
         price: supplement.price || 0,
-        status: "INITIALIZED",
       });
 
       // Reload order
