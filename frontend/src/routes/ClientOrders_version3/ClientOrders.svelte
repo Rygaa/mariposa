@@ -299,18 +299,6 @@
         status: "CONFIRMED",
       });
 
-      // Update all menu item orders to CONFIRMED status
-      const menuItemOrderUpdates = currentOrder.menuItemOrders?.map((mio: any) =>
-        trpc.updateMenuItemOrder.mutate({
-          id: mio.id,
-          status: "CONFIRMED",
-        })
-      ) || [];
-
-      await Promise.all(menuItemOrderUpdates);
-
-      alert("Commande confirmée avec succès!");
-
       // If an existing order was passed, call onConfirm callback to close modal
       if (existingOrder && onConfirm) {
         await onConfirm();
@@ -336,7 +324,7 @@
   let clickCount = $state(0);
   let clickTimeout: ReturnType<typeof setTimeout> | null = null;
 
-  function handleLogoClick() {
+  function handleHeaderClick() {
     // Don't allow table selection if an existing order was passed
     if (existingOrder) return;
 
@@ -359,6 +347,8 @@
 </script>
 
 <div class="flex h-full w-full">
+
+
   <SelectTableModal
     bind:open={isSelectTableModalOpen}
     {eatingTables}
@@ -402,7 +392,7 @@
           <div class="flex justify-between items-center mb-4">
             <!-- svelte-ignore a11y_click_events_have_key_events -->
             <!-- svelte-ignore a11y_no_static_element_interactions -->
-            <div onclick={handleLogoClick} class="cursor-pointer">
+            <div onclick={handleHeaderClick} class="cursor-pointer">
               <div class="flex gap-2 items-center">
                 <Icon iconName="mariposa" size="12" />
                 <h1

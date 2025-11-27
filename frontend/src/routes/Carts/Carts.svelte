@@ -1,5 +1,5 @@
 <script lang="ts">
-  import { onMount } from "svelte";
+  import { onMount, onDestroy } from "svelte";
   import Icon from "../../lib/components/Icon.svelte";
   import TableOrdersModal from "./components/TableOrdersModal.svelte";
   import { _globalStore } from "../../store/globalStore.svelte";
@@ -20,12 +20,23 @@
   let selectedTable = $state<any>(null);
   let isTableOrdersModalOpen = $state(false);
 
+  // Listen for WebSocket order confirmation events
+  const handleOrderConfirmed = (event: any) => {
+    loadData();
+  };
+
   onMount(async () => {
     if (!_globalStore.user) {
       navigate("/login", { replace: true });
       return;
     }
     await loadData();
+
+    window.addEventListener("orderConfirmed", handleOrderConfirmed);
+  });
+
+  onDestroy(() => {
+    window.removeEventListener("orderConfirmed", handleOrderConfirmed);
   });
 
   async function loadData() {
@@ -53,8 +64,6 @@
         const tableOrders = _cartsStore.orders.filter(
           (order) => order.eatingTableId === table.id
         );
-        console.log(_cartsStore.orders);
-        console.log("Table Orders:", tableOrders);
         const totalAmount = tableOrders.reduce((sum, order) => {
           if (!order.menuItemOrders) return sum;
           return (
@@ -102,6 +111,20 @@
       minimumFractionDigits: 0,
       maximumFractionDigits: 2,
     }).format(amount);
+  }
+
+  async function handlePrintTableReceipt(tableId: string) {
+    try {
+      const result = await trpc.printReceiptOfEatingTable.mutate({
+        eatingTableId: tableId,
+      });
+      if (result.success) {
+        console.log("Receipt printed:", result.message);
+      }
+    } catch (error) {
+      console.error("Error printing receipt:", error);
+      alert("Erreur lors de l'impression du reçu");
+    }
   }
 
 
@@ -172,13 +195,10 @@
           class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
         >
           {#each tablesWithOrders() as table (table.id)}
-            <button
-              onclick={() => handleTableClick(table)}
-              class="relative bg-white border-2 rounded-lg p-6 transition-all text-left {table.unpaidOrdersCount >
+            <div class="relative bg-white border-2 rounded-lg p-6 transition-all {table.unpaidOrdersCount >
               0
-                ? 'border-orange-300 hover:border-orange-400 hover:shadow-lg cursor-pointer'
-                : 'border-gray-200 cursor-default opacity-60'}"
-            >
+                ? 'border-orange-300 hover:border-orange-400 hover:shadow-lg'
+                : 'border-gray-200 opacity-60'}">
               {#if table.unpaidOrdersCount > 0}
                 <div
                   class="absolute top-2 right-2 bg-orange-500 text-white text-xs font-bold rounded-full w-6 h-6 flex items-center justify-center"
@@ -186,6 +206,11 @@
                   {table.unpaidOrdersCount}
                 </div>
               {/if}
+
+              <button
+                onclick={() => handleTableClick(table)}
+                class="w-full text-left"
+              >
 
               <div class="flex flex-col items-center justify-center space-y-3">
                 <Icon
@@ -218,7 +243,23 @@
                   {/if}
                 </div>
               </div>
-            </button>
+              </button>
+
+              {#if table.unpaidOrdersCount > 0}
+                <div class="mt-4 pt-4 border-t border-gray-200">
+                  <button
+                    onclick={(e) => {
+                      e.stopPropagation();
+                      handlePrintTableReceipt(table.id);
+                    }}
+                    class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded-lg transition-colors text-sm font-medium"
+                  >
+                    <Icon iconName="print" />
+                    Print Receipt
+                  </button>
+                </div>
+              {/if}
+            </div>
           {/each}
         </div>
       {/if}

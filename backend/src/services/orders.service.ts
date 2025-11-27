@@ -2,6 +2,7 @@ import { eq, and, gte, lte, inArray } from "drizzle-orm";
 import { db, DbTransactionOrDB } from "../db/utils";
 import * as SchemaDrizzle from "../db/schema";
 import { TRPCError } from "@trpc/server";
+import { sendMessageToRole } from "../socketList";
 
 async function findById(
   orderId: string,
@@ -103,6 +104,16 @@ async function update(
     })
     .where(eq(SchemaDrizzle.orders.id, data.id))
     .returning();
+
+  // If status changed to CONFIRMED, send notification to all ADMIN users
+  if (data.status === "CONFIRMED") {
+    console.log("SHOULD PRINT - Order confirmed:", updatedOrder.id);
+    sendMessageToRole("ADMIN", {
+      type: "ORDER_CONFIRMED",
+      orderId: updatedOrder.id,
+      timestamp: Date.now(),
+    });
+  }
 
   return updatedOrder;
 }

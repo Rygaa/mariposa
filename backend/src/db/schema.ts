@@ -169,7 +169,6 @@ export const menuItemOrders = pgTable("MenuItemOrder", {
   menuItemId: varchar("menuItemId").notNull(),
   quantity: integer("quantity").default(1).notNull(),
   price: real("price").notNull(),
-  status: eatingTableMenuItemStatusEnum("status").default("INITIALIZED").notNull(),
 });
 
 export const menuItemImages = pgTable("MenuItemImage", {

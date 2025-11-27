@@ -151,53 +151,26 @@ export function enforceSingleDeviceSession(userId: string): void {
   }
 }
 
-
-  // // Find the user's connection
-  // const userConnection = socketList.find(conn => conn.user?.id === userId);
+// Function to send a message to all users with a specific role
+export function sendMessageToRole(role: string, message: any): void {
+  let sentCount = 0;
   
-  // if (!userConnection || userConnection.sockets.length <= 1) {
-  //   return socketsToDisconnect; // No duplicates to handle
-  // }
+  for (const connection of socketList) {
+    if (!connection.user) continue;
+    
+    // Check if user has the specified role
+    if (connection.user.role && connection.user.role.includes(role)) {
+      // Send to all sockets for this user
+      for (const socketObj of connection.sockets) {
+        try {
+          socketObj.socket.send(JSON.stringify(message));
+          sentCount++;
+        } catch (error) {
+          console.error(`Failed to send message to user ${connection.user.email}:`, error);
+        }
+      }
+    }
+  }
   
-  // // Group sockets by IP + User-Agent fingerprint
-  // const fingerprintMap = new Map<string, typeof userConnection.sockets>();
-  
-  // userConnection.sockets.forEach(socketObj => {
-  //   const fingerprint = `${socketObj.ipAddress}|${socketObj.userAgent}`;
-  //   if (!fingerprintMap.has(fingerprint)) {
-  //     fingerprintMap.set(fingerprint, []);
-  //   }
-  //   fingerprintMap.get(fingerprint)!.push(socketObj);
-  // });
-  
-  // // For each fingerprint, keep only the most recent socket and disconnect the rest
-  // fingerprintMap.forEach((sockets, fingerprint) => {
-  //   if (sockets.length > 1) {
-  //     // Disconnect all but the last (most recent) socket
-  //     const toDisconnect = sockets.slice(0, -1);
-      
-  //     toDisconnect.forEach(socketObj => {
-  //       socketsToDisconnect.push(socketObj.socket);
-        
-  //       try {
-  //         socketObj.socket.send(JSON.stringify({
-  //           type: 'DISCONNECT',
-  //           reason: 'New connection from same device detected',
-  //         }));
-  //         socketObj.socket.close(1008, 'Duplicate connection');
-  //       } catch (error) {
-  //         console.error('Error disconnecting socket:', error);
-  //       }
-        
-  //       // Remove from the sockets array
-  //       const index = userConnection.sockets.indexOf(socketObj);
-  //       if (index > -1) {
-  //         userConnection.sockets.splice(index, 1);
-  //       }
-  //     });
-  //   }
-//   });
-  
-//   console.log(`🗑️ Disconnected ${socketsToDisconnect.length} old socket(s) for user ${userId}`);
-//   return socketsToDisconnect;
-// }
+  console.log(`📤 Sent message to ${sentCount} socket(s) with role ${role}`);
+}

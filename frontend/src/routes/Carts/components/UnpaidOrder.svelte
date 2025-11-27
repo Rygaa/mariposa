@@ -14,10 +14,12 @@
     order,
     onOrderUpdated,
     onMarkAsPaid,
+    onPrintOrder,
   }: {
     order: any;
     onOrderUpdated?: () => Promise<boolean>;
     onMarkAsPaid?: () => void | Promise<void>;
+    onPrintOrder?: () => void | Promise<void>;
   } = $props();
 
   let isDropdownOpen = $state(false);
@@ -121,6 +123,12 @@
   async function handleMarkAsPaid() {
     if (onMarkAsPaid) {
       await onMarkAsPaid();
+    }
+  }
+
+  async function handlePrintOrder() {
+    if (onPrintOrder) {
+      await onPrintOrder();
     }
   }
 
@@ -334,7 +342,7 @@
     </div>
 
     <!-- Action Buttons -->
-    <div class="flex gap-2 mb-4">
+    <div class="flex gap-2 mb-4 flex-wrap">
       <Button
         size="sm"
         onclick={() => {
@@ -351,6 +359,15 @@
         disabled={isLocked || isSubmitting}
       >
         {isSubmitting ? "Saving..." : "Save Changes"}
+      </Button>
+      <Button
+        size="sm"
+        onclick={handlePrintOrder}
+        disabled={isSubmitting}
+        iconName="print"
+        variant="secondary"
+      >
+        Print Order
       </Button>
       <Button
         size="sm"

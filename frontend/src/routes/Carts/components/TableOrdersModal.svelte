@@ -113,6 +113,32 @@
       );
     }, 0)
   );
+
+  async function handlePrintOrder(orderId: string) {
+    try {
+      const result = await trpc.printOrder.mutate({ id: orderId });
+      if (result.success) {
+        console.log("Order printed silently:", result.message);
+      }
+    } catch (error) {
+      console.error("Error printing order:", error);
+      alert("Erreur lors de l'impression de la commande");
+    }
+  }
+
+  async function handlePrintTableReceipt() {
+    try {
+      const result = await trpc.printReceiptOfEatingTable.mutate({
+        eatingTableId: table.id,
+      });
+      if (result.success) {
+        console.log("Table receipt printed:", result.message);
+      }
+    } catch (error) {
+      console.error("Error printing table receipt:", error);
+      alert("Erreur lors de l'impression du reçu de table");
+    }
+  }
 </script>
 
 <Dialog bind:open={isOpen}>
@@ -138,14 +164,24 @@
             </div>
           </div>
           {#if orders.length > 0}
-            <Button
-              onclick={handleMarkAllAsPaid}
-              iconName="check_circle"
-              variant="primary"
-              size="sm"
-            >
-              Mark All Paid
-            </Button>
+            <div class="flex gap-2">
+              <Button
+                onclick={handlePrintTableReceipt}
+                iconName="print"
+                variant="secondary"
+                size="sm"
+              >
+                Print Receipt
+              </Button>
+              <Button
+                onclick={handleMarkAllAsPaid}
+                iconName="check_circle"
+                variant="primary"
+                size="sm"
+              >
+                Mark All Paid
+              </Button>
+            </div>
           {/if}
         </div>
       </DialogTitle>
@@ -175,6 +211,7 @@
               {order}
               onOrderUpdated={() => handleOrderUpdated(order.id)}
               onMarkAsPaid={() => handleMarkAsPaid(order.id)}
+              onPrintOrder={() => handlePrintOrder(order.id)}
             />
           {/each}
         </div>

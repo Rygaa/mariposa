@@ -111,7 +111,6 @@
           const mainImage =
             result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) ||
             result.images[0];
-          console.log(mainImage);
 
           const urlResult = await trpc.getMenuItemImageViewUrl.query({
             fileId: mainImage.fileId,

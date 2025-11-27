@@ -77,7 +77,6 @@ async function deleteMenuItemOrder(
 type ListFilters = {
   orderId?: string;
   menuItemId?: string;
-  status?: string;
   limit?: number;
   offset?: number;
 };
@@ -86,7 +85,7 @@ async function list(
   filters: ListFilters = {},
   tx: DbTransactionOrDB = db
 ): Promise<SchemaDrizzle.MenuItemOrders[]> {
-  const { orderId, menuItemId, status, limit = 100, offset = 0 } = filters;
+  const { orderId, menuItemId, limit = 100, offset = 0 } = filters;
 
   let query = tx.select().from(SchemaDrizzle.menuItemOrders);
 
@@ -98,10 +97,6 @@ async function list(
 
   if (menuItemId) {
     conditions.push(eq(SchemaDrizzle.menuItemOrders.menuItemId, menuItemId));
-  }
-
-  if (status) {
-    conditions.push(eq(SchemaDrizzle.menuItemOrders.status, status as any));
   }
 
   if (conditions.length > 0) {

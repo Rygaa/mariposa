@@ -67,7 +67,6 @@
       const response1 = await trpc.listEatingTables.query();
       const response2 = await trpc.listCategories.query();
       const response3 = await trpc.listAllMenuItems.query({shouldIncludeSupplements: true});
-        console.log(response3)
       eatingTables = response1.eatingTables;
       categories = response2.categories.filter((c: any) => !c.isUnlisted);
       menuItems = response3.menuItems;

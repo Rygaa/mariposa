@@ -104,7 +104,6 @@
       type: [filterByType],
     });
 
-    console.log(result)
 
     if (result.success) {
       availableMenuItems = result.menuItems;

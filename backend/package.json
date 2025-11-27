@@ -17,7 +17,8 @@
         "db:migrate": "drizzle-kit migrate",
         "db:push": "drizzle-kit push",
         "db:studio": "drizzle-kit studio",
-        "migrate:images": "ts-node src/scripts/migrate-images-to-gamma.ts"
+        "migrate:images": "ts-node src/scripts/migrate-images-to-gamma.ts",
+        "script:add-admin-role": "ts-node migration/scripts/add-admin-role-to-all-users.ts"
     },
     "dependencies": {
         "@chargily/chargily-pay": "^2.1.0",

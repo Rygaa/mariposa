@@ -41,7 +41,6 @@
   async function loadImages() {
     try {
       const result = await trpc.listMenuItemImages.query({ menuItemId });
-        console.log(result)
 
       if (result.success) {
         images = result.images;
@@ -168,7 +167,6 @@
 
   async function handleCropSave(croppedImageBase64: string) {
     if (cropImageIndex === null) {
-      console.log("cropImageIndex is null, aborting");
       return;
     }
     

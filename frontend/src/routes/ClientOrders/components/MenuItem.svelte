@@ -29,7 +29,6 @@
 
   async function handleAdd() {
     await onAdd?.();
-    console.log(menuItem)
     // If item has supplements, open modal after adding
     if (hasSupplements) {
       isSupplementModalOpen = true;

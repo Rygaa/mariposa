@@ -12,6 +12,8 @@ let lastHeartbeatTime: number = Date.now();
 let ws: WebSocket | null = null;
 export let wsMessage: string = "";
 
+
+
 // HTTP URL for API calls
 const getBaseUrl = () => {
   return import.meta.env.VITE_API_URL || "http://localhost:6100";
@@ -64,8 +66,10 @@ function stopHeartbeat() {
 // Start heartbeat on load
 if (typeof window !== "undefined") {
   startHeartbeat();
-  // Auto-connect WebSocket on page load
-  connectWebSocket();
+  // Auto-connect WebSocket on page load - but only once
+  if (!ws) {
+    connectWebSocket();
+  }
 }
 
 // WebSocket functions
@@ -92,6 +96,31 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
 
     if (data.type === "AUTH") {
       wsMessage = event.data;
+    }
+
+    if (data.type === "ORDER_CONFIRMED") {
+      console.log("🔔 Order confirmed notification received:", data);
+      
+      // Automatically print the order
+      if (data.orderId) {
+        // Get order details and generate PDF
+        baseClient.getOrderByIdWithRelations.query({ id: data.orderId })
+          .then(async (result: any) => {
+            if (result.success && result.order) {
+              const { generateOrderPDF } = await import("../utils/printOrder");
+              await generateOrderPDF(result.order);
+              console.log("🖨️ Order printed:", data.orderId);
+            } else {
+              console.error("Order fetch failed or no order data:", result);
+            }
+          })
+          .catch((error) => {
+            console.error("❌ Failed to print order:", error);
+          });
+      }
+      
+      // Trigger custom event that the Carts component can listen to
+      window.dispatchEvent(new CustomEvent("orderConfirmed", { detail: data }));
     }
 
     if (data.type === "DISCONNECT") {

@@ -79,14 +79,12 @@
         type: ["MENU_ITEM"],
         isAvailable: true,
       });
-        console.log(result)
 
       if (result.success) {
         availableMenuItems = result.menuItems.map((item: any) => ({
           id: item.id,
           name: item.subName ? `${item.name} (${item.subName})` : item.name,
         }));
-        console.log(availableMenuItems)
       }
     } catch (err) {
       console.error("Failed to load menu items:", err);

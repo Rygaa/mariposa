@@ -42,16 +42,12 @@
   let imgHeight = $state(0);
 
   function loadImage() {
-    console.log("loadImage called", { canvas: !!canvas, imageUrl, ctx: !!ctx });
-    
     if (!canvas || !imageUrl) {
-      console.log("Missing canvas or imageUrl");
       return;
     }
     
     if (!ctx) {
       ctx = canvas.getContext("2d");
-      console.log("Getting context", { ctx: !!ctx });
     }
     
     if (!ctx) {
@@ -64,10 +60,8 @@
     img.crossOrigin = "anonymous";
     
     img.onload = () => {
-      console.log("Image loaded", { width: img?.width, height: img?.height });
       
       if (!canvas || !ctx || !img) {
-        console.log("Missing dependencies after load");
         return;
       }
       
@@ -106,16 +100,13 @@
       cropY = imgY + (imgHeight - cropHeight) / 2;
       
       imageLoaded = true;
-      console.log("Drawing image", { imgX, imgY, imgWidth, imgHeight });
       draw();
     };
     
     img.onerror = (e) => {
       console.error("Failed to load image:", e);
-      console.log("Image URL:", imageUrl);
     };
     
-    console.log("Setting image src:", imageUrl);
     img.src = imageUrl;
   }
 
@@ -351,8 +342,6 @@
 
   // Load image when modal opens or imageUrl changes
   $effect(() => {
-    console.log("Effect triggered", { isOpen, imageUrl, canvas: !!canvas });
-    
     if (isOpen && imageUrl && canvas) {
       // Small delay to ensure canvas is rendered
       setTimeout(() => {
