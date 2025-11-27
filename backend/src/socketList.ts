@@ -160,6 +160,7 @@ export function sendMessageToRole(role: string, message: any): void {
     
     // Check if user has the specified role
     if (connection.user.role && connection.user.role.includes(role)) {
+      console.log(connection.user.email, 'has role', role);
       // Send to all sockets for this user
       for (const socketObj of connection.sockets) {
         try {
