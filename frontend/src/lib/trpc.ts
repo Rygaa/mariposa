@@ -5,10 +5,6 @@ import { _cartsStore } from "../store/carts.svelte";
 
 export type { AppRouter } from "../../../backend/src/trpc/router";
 
-// Heartbeat state
-let heartbeatInterval: number | null = null;
-let lastHeartbeatTime: number = Date.now();
-
 // WebSocket state
 let ws: WebSocket | null = null;
 
@@ -38,35 +34,8 @@ const baseClient = createTRPCClient<AppRouter>({
   ],
 });
 
-// Heartbeat functions
-function startHeartbeat() {
-  if (heartbeatInterval) return;
-
-  console.log("💓 Starting heartbeat");
-  heartbeatInterval = window.setInterval(async () => {
-    try {
-      const response = await baseClient.heartbeat.query();
-      const latency = Date.now() - response.timestamp;
-      lastHeartbeatTime = Date.now();
-      console.log(`💓 Heartbeat OK (latency: ${latency}ms)`);
-    } catch (error) {
-      console.error("💔 Heartbeat failed:", error);
-    }
-  }, 10000);
-}
-
-function stopHeartbeat() {
-  if (heartbeatInterval) {
-    console.log("💔 Stopping heartbeat");
-    window.clearInterval(heartbeatInterval);
-    heartbeatInterval = null;
-  }
-}
-
-// Start heartbeat on load
+// Auto-connect WebSocket on page load - but only once
 if (typeof window !== "undefined") {
-  startHeartbeat();
-  // Auto-connect WebSocket on page load - but only once
   if (!ws) {
     connectWebSocket();
   }
@@ -133,6 +102,7 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
       _globalStore.setAuthToken(null);
       _globalStore.user = null;
       window.location.href = "/login";
+
     }
 
     if (onMessage) {
@@ -147,9 +117,8 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
   ws.onclose = () => {
     console.log("🔌 WebSocket disconnected");
     ws = null;
-
     // Retry connection after 3 seconds if not done
-    if (!_globalStore.loading.websocket.done) {
+    if (!ws) {
       console.log("🔄 Retrying connection in 3 seconds...");
       setTimeout(() => {
         connectWebSocket(onMessage);
@@ -174,14 +143,6 @@ export function disconnectWebSocket() {
     ws.close();
     ws = null;
   }
-}
-
-// Export heartbeat status getter
-export function getConnectionStatus() {
-  return {
-    lastHeartbeat: lastHeartbeatTime,
-    timeSinceLastHeartbeat: Date.now() - lastHeartbeatTime,
-  };
 }
 
 // Wrapper to handle errors and return consistent format
