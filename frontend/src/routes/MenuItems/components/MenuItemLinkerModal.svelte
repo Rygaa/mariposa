@@ -97,9 +97,9 @@
       }));
     }
 
-    // For SUPPLEMENT types, also load reverse relationships (where this item is the child)
-    // This happens when MENU_ITEMs link TO this supplement
-    if (menuItem.type?.includes("SUPPLEMENT") && filterByType === "MENU_ITEM") {
+    // For SUPPLEMENT and MENU_ITEM_OPTION types, also load reverse relationships (where this item is the child)
+    // This happens when MENU_ITEMs link TO this supplement/option
+    if ((menuItem.type?.includes("SUPPLEMENT") || menuItem.type?.includes("MENU_ITEM_OPTION")) && filterByType === "MENU_ITEM") {
       const reverseResult = await trpc.listMenuItemSubMenuItems.query({
         subMenuItemId: menuItem.id,
       });
