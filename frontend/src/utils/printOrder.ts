@@ -63,7 +63,9 @@ function createOrderPDF(order: any): jsPDF {
 
   for (let i = 0; i < itemsWithChildren.length; i++) {
     const element = itemsWithChildren[i];
-    const name = `${element.quantity} ${element.menuItem?.name || 'Unknown Item'}`;
+    const itemName = element.menuItem?.name || 'Unknown Item';
+    const subName = element.menuItem?.subName ? ` (${element.menuItem.subName})` : '';
+    const name = `${element.quantity} ${itemName}${subName}`;
     const supplements = element.supplements || [];
     const options = element.options || [];
 
@@ -88,8 +90,9 @@ function createOrderPDF(order: any): jsPDF {
       doc.setFontSize(11);
       options.forEach((opt: any) => {
         const optName = opt.menuItem?.name || '';
+        const optSubName = opt.menuItem?.subName ? ` (${opt.menuItem.subName})` : '';
         if (optName) {
-          const indentedText = `  ${optName}`;
+          const indentedText = `  ${optName}${optSubName}`;
           doc.text(indentedText, 5, yPos);
           const textWidth = doc.getTextWidth(indentedText);
           doc.setLineWidth(0.3);
@@ -105,8 +108,9 @@ function createOrderPDF(order: any): jsPDF {
       doc.setFontSize(11);
       supplements.forEach((supp: any) => {
         const suppName = supp.menuItem?.name || '';
+        const suppSubName = supp.menuItem?.subName ? ` (${supp.menuItem.subName})` : '';
         if (suppName) {
-          doc.text(`  s: ${suppName}`, 5, yPos);
+          doc.text(`  s: ${suppName}${suppSubName}`, 5, yPos);
           yPos += 5;
         }
       });

@@ -58,9 +58,8 @@
   const componentId = id || `input-${Math.random().toString(36).substr(2, 9)}`;
 
   // Handle input events
-  function handleInput(event: Event) {
-    const target = event.target as HTMLInputElement;
-    value = target.value;
+  function handleInput(event: Event & { currentTarget: HTMLInputElement }) {
+    value = event.currentTarget.value;
     oninput?.(event);
   }
 
@@ -99,7 +98,7 @@
       {maxlength}
       {minlength}
       {pattern}
-      {value}
+      bind:value
       oninput={handleInput}
       {onblur}
       {onfocus}

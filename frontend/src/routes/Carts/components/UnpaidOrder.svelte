@@ -422,6 +422,9 @@
                     : ''}"
                 >
                   {menuItemOrder.menuItem?.name || "Unknown Item"}
+                  {#if menuItemOrder.menuItem?.subName}
+                    <span class="font-normal">({menuItemOrder.menuItem.subName})</span>
+                  {/if}
                 </span>
                 <span class="text-xs text-gray-500 ml-2">
                   {formatCurrency(change?.price ?? menuItemOrder.price)}
@@ -432,6 +435,9 @@
                   {#each menuItemOrder.options as option}
                     <div class="italic underline">
                       {option.menuItem?.name || "Unknown"}
+                      {#if option.menuItem?.subName}
+                        ({option.menuItem.subName})
+                      {/if}
                     </div>
                   {/each}
                 </div>
@@ -442,7 +448,11 @@
                     {@const suppChange = menuItemChanges.get(supplement.id)}
                     {@const suppQuantity = suppChange?.quantity ?? supplement.quantity}
                     <div class="{suppChange?.toDelete ? 'line-through opacity-50' : ''}">
-                      + {supplement.menuItem?.name || "Unknown"} × {suppQuantity}
+                      + {supplement.menuItem?.name || "Unknown"}
+                      {#if supplement.menuItem?.subName}
+                        ({supplement.menuItem.subName})
+                      {/if}
+                      × {suppQuantity}
                       <span class="ml-1">({formatCurrency(supplement.price)})</span>
                     </div>
                   {/each}

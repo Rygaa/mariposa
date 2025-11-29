@@ -90,14 +90,17 @@ function createReceiptPdf(
 
   for (let i = 0; i < groupedMenuItemOrder.length; i++) {
     const element = groupedMenuItemOrder[i];
-    const name = `${element.quantity} ${element.menuItem.name}`;
+    const itemName = element.menuItem.name;
+    const subName = element.menuItem?.subName ? ` (${element.menuItem.subName})` : '';
+    const name = `${element.quantity} ${itemName}${subName}`;
     
     // Format child items (supplements and options) that were actually ordered for this specific item
     const childItemsText = element.childItems
       ?.map((child: any) => {
         const qty = child.quantity > 1 ? `${child.quantity}x ` : '';
         const price = (child.price || 0);
-        return `${qty}${child.menuItem?.name} ${price}`;
+        const childSubName = child.menuItem?.subName ? ` (${child.menuItem.subName})` : '';
+        return `${qty}${child.menuItem?.name}${childSubName} ${price}`;
       })
       .join("\n") || "";
 
