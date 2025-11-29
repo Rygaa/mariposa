@@ -340,7 +340,6 @@ export const getMenuItemImageViewUrl = protectedProcedure
     const { getFileViewUrl } = await import("../../utils/fileUpload");
     
     try {
-      console.log("Getting view URL for fileId:", input.fileId);
       const url = await getFileViewUrl(input.fileId);
 
       return {
