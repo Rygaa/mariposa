@@ -54,10 +54,32 @@
   // Available items and existing links
   let availableMenuItems = $state<getMenuItemById["menuItem"][]>([]);
   let existingLinks = $state<any[]>([]);
+  let searchQuery = $state("");
+  let categories = $state<Array<{ id: string; name: string }>>([]);
+  let selectedCategoryId = $state<string>("all");
 
-  // Computed: Filter items by specified type
+  // Helper function to normalize text for search (removes accents and converts to lowercase)
+  function normalizeText(text: string): string {
+    return text
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "")
+      .toLowerCase();
+  }
+
+  // Computed: Filter items by specified type, search query, and category
   const filteredMenuItems = $derived(
-    availableMenuItems.filter((item) => item.type?.includes(filterByType))
+    availableMenuItems
+      .filter((item) => item.type?.includes(filterByType))
+      .filter((item) => {
+        if (!searchQuery.trim()) return true;
+        const normalizedQuery = normalizeText(searchQuery);
+        const normalizedName = normalizeText(item.name || "");
+        return normalizedName.includes(normalizedQuery);
+      })
+      .filter((item) => {
+        if (selectedCategoryId === "all") return true;
+        return item.categoryId === selectedCategoryId;
+      })
   );
 
   // Computed: Display texts with defaults
@@ -82,6 +104,7 @@
     if (isOpen) {
       loadExistingLinks();
       loadAvailableMenuItems();
+      loadCategories();
     }
   });
 
@@ -122,6 +145,16 @@
 
     if (result.success) {
       availableMenuItems = result.menuItems;
+    }
+  }
+
+  async function loadCategories() {
+    const result = await trpc.listCategories.query({});
+    if (result.success) {
+      categories = result.categories.map((cat: any) => ({
+        id: cat.id,
+        name: cat.name,
+      }));
     }
   }
 
@@ -256,7 +289,40 @@
       <p class="text-sm text-gray-500 mt-1">{modalDescription}</p>
     </DialogHeader>
 
-    <div class="flex-1 overflow-y-auto space-y-2 px-4">
+    <div class="px-4 py-3 border-b space-y-3">
+      <div class="relative">
+        <Input
+          type="text"
+          bind:value={searchQuery}
+          placeholder="Search items..."
+        />
+        {#if searchQuery}
+          <button
+            onclick={() => (searchQuery = "")}
+            class="absolute right-2 top-1/2 -translate-y-1/2 p-1 hover:bg-gray-100 rounded"
+            title="Clear search"
+          >
+            <Icon iconName="close" class="w-4 h-4 text-gray-500" />
+          </button>
+        {/if}
+      </div>
+      
+      <div class="flex items-center gap-2">
+        <label for="category-filter" class="text-sm font-medium text-gray-700 whitespace-nowrap">Category:</label>
+        <select
+          id="category-filter"
+          bind:value={selectedCategoryId}
+          class="flex-1 px-3 py-2 border border-gray-300 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+        >
+          <option value="all">All Categories</option>
+          {#each categories as category}
+            <option value={category.id}>{category.name}</option>
+          {/each}
+        </select>
+      </div>
+    </div>
+
+    <div class="flex-1 overflow-y-auto space-y-2 px-4 py-2">
       {#each filteredMenuItems as item}
         {@const existingLink = existingLinks.find(
           (link) =>
