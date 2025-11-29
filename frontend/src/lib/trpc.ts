@@ -57,6 +57,11 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
     console.log("✅ WebSocket connected");
     _globalStore.loading.websocket.loading = false;
     _globalStore.loading.websocket.done = true;
+    
+    // Automatically send AUTH message if user is logged in
+    if (_globalStore.user) {
+      sendWebSocketMessage({ user: _globalStore.user });
+    }
   };
 
   ws.onmessage = async (event) => {
