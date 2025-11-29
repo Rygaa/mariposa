@@ -162,6 +162,7 @@ export function enforceSingleDeviceSession(userId: string): void {
 // Function to send a message to all users with a specific role
 export function sendMessageToRole(role: string, message: any): void {
   let sentCount = 0;
+  const sentToUserEmails  = [];
   
   for (const connection of socketList) {
     if (!connection.user) continue;
@@ -172,6 +173,7 @@ export function sendMessageToRole(role: string, message: any): void {
       // Send to all sockets for this user
       for (const socketObj of connection.sockets) {
         try {
+          sentToUserEmails.push(connection.user.email);
           socketObj.socket.send(JSON.stringify(message));
           sentCount++;
         } catch (error) {
