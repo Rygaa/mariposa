@@ -8,9 +8,10 @@
     navigationItems: any[];
     isSidebarOpen: boolean;
     onLogout: () => void;
+    children: import('svelte').Snippet;
   }
 
-  let { navigationItems, isSidebarOpen = $bindable(), onLogout }: Props = $props();
+  let { navigationItems, isSidebarOpen = $bindable(), onLogout, children }: Props = $props();
 
   const location = useLocation();
 </script>
@@ -24,4 +25,4 @@
   />
 {/if}
 
-<slot />
+{@render children()}

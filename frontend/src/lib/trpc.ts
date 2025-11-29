@@ -11,7 +11,6 @@ let lastHeartbeatTime: number = Date.now();
 
 // WebSocket state
 let ws: WebSocket | null = null;
-export let wsMessage: string = "";
 
 
 
@@ -96,7 +95,7 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
     const data = JSON.parse(event.data);
 
     if (data.type === "AUTH") {
-      wsMessage = event.data;
+      _globalStore.wsMessage = event.data;
     }
 
     if (data.type === "ORDER_CONFIRMED") {

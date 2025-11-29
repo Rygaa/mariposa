@@ -9,7 +9,7 @@
   import MenuItems from "./routes/MenuItems/MenuItems.svelte";
   import AppLayout from "./lib/components/AppLayout.svelte";
   import { _globalStore } from "./store/globalStore.svelte";
-  import { trpc, sendWebSocketMessage, wsMessage } from "./lib/trpc";
+  import { trpc, sendWebSocketMessage } from "./lib/trpc";
   import Categories from "./routes/Categories/Categories.svelte";
   import NodesDemo from "./routes/NodesDemo.svelte";
   import ClientOrders from "./routes/ClientOrders/ClientOrders.svelte";
@@ -19,8 +19,8 @@
   import Carts from "./routes/Carts/Carts.svelte";
 
   $effect(() => {
-    if (wsMessage) {
-      const data = JSON.parse(wsMessage);
+    if (_globalStore.wsMessage) {
+      const data = JSON.parse(_globalStore.wsMessage);
       if (data.type === "AUTH" && data.message) {
         _globalStore.loading.websocket.loading = false;
         _globalStore.loading.websocket.done = true;
@@ -35,6 +35,16 @@
       _globalStore.loading.auth.done
     ) {
       sendWebSocketMessage({ user: _globalStore.user });
+    }
+  });
+
+  // Redirect to login if not authenticated
+  $effect(() => {
+    if (!_globalStore.isAuthenticating && !_globalStore.user) {
+      const currentPath = window.location.pathname;
+      if (currentPath !== "/login" && currentPath !== "/signup") {
+        navigate("/login", { replace: true });
+      }
     }
   });
 
@@ -163,6 +173,10 @@
   <div class="flex h-full w-full bg-gray-50 overflow-x-hidden">
     <Router>
       <AppLayout {navigationItems} bind:isSidebarOpen onLogout={handleLogout}>
+        {#snippet children()}
+        <Route path="/signup"><Signup /></Route>
+        <Route path="/login"><Login /></Route>
+
         {#if _globalStore.user}
           <Route path="/">
             <EatingTables />
@@ -201,17 +215,7 @@
             <NodesDemo />
           </Route>
         {/if}
-
-        <Route path="/">
-          {#if _globalStore.user}
-            {navigate("/eating-tables", { replace: true })}
-          {:else}
-            {navigate("/signup", { replace: true })}
-          {/if}
-        </Route>
-
-        <Route path="/signup"><Signup /></Route>
-        <Route path="/login"><Login /></Route>
+        {/snippet}
       </AppLayout>
     </Router>
   </div>

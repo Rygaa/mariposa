@@ -5,6 +5,7 @@ class GlobalStore {
   user = $state<any>(null);
   authToken = $state<string | null>(null);
   isAuthenticating = $state(true);
+  wsMessage = $state<string>("");
   loading = $state({
     websocket: {
       loading: false,
