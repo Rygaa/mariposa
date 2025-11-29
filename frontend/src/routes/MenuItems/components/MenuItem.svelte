@@ -136,7 +136,7 @@
 </script>
 
 <ClickableDiv
-  customOnClick={handleEdit}
+  customOnClick={() => {}}
   class="bg-white border {menuItem.isAvailable
     ? 'border-gray-200'
     : 'border-gray-100 opacity-60'} rounded-lg p-2 hover:shadow-md transition-all relative cursor-pointer flex gap-4"
@@ -222,31 +222,39 @@
           <Icon iconName="link" size="4" class="fill-gray-600" />
           <span class="ml-2">Link Menu Items</span>
         </DropdownItem>
-        <DropdownItem onclick={handleLinkRecipe}>
-          <Icon iconName="link" size="4" class="fill-gray-600" />
-          <span class="ml-2">Link Recipe</span>
-        </DropdownItem>
-        <DropdownItem
-          onclick={handleLinkRawMaterial}
-          isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
-        >
-          <Icon iconName="link" size="4" class="fill-gray-600" />
-          <span class="ml-2">Link Raw Material</span>
-        </DropdownItem>
-        <DropdownItem
-          onclick={handleLinkSupplement}
-          isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
-        >
-          <Icon iconName="link" size="4" class="fill-gray-600" />
-          <span class="ml-2">Link Supplement</span>
-        </DropdownItem>
-        <DropdownItem
-          onclick={handleLinkMenuItemOptionType}
-          isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
-        >
-          <Icon iconName="link" size="4" class="fill-gray-600" />
-          <span class="ml-2">Link Menu Item Option</span>
-        </DropdownItem>
+        {#if !menuItem.type?.includes("SUPPLEMENT")}
+          <DropdownItem onclick={handleLinkRecipe}>
+            <Icon iconName="link" size="4" class="fill-gray-600" />
+            <span class="ml-2">Link Recipe</span>
+          </DropdownItem>
+        {/if}
+        {#if !menuItem.type?.includes("SUPPLEMENT")}
+          <DropdownItem
+            onclick={handleLinkRawMaterial}
+            isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
+          >
+            <Icon iconName="link" size="4" class="fill-gray-600" />
+            <span class="ml-2">Link Raw Material</span>
+          </DropdownItem>
+        {/if}
+        {#if !menuItem.type?.includes("MENU_ITEM") && !menuItem.type?.includes("SUPPLEMENT")}
+          <DropdownItem
+            onclick={handleLinkSupplement}
+            isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
+          >
+            <Icon iconName="link" size="4" class="fill-gray-600" />
+            <span class="ml-2">Link Supplement</span>
+          </DropdownItem>
+        {/if}
+        {#if !menuItem.type?.includes("MENU_ITEM") && !menuItem.type?.includes("SUPPLEMENT")}
+          <DropdownItem
+            onclick={handleLinkMenuItemOptionType}
+            isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
+          >
+            <Icon iconName="link" size="4" class="fill-gray-600" />
+            <span class="ml-2">Link Menu Item Option</span>
+          </DropdownItem>
+        {/if}
 
         <DropdownSeparator />
         <DropdownItem onclick={handleDelete} class="text-red-600">

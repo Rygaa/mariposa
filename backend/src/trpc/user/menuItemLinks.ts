@@ -39,15 +39,46 @@ export const deleteMenuItemSubMenuItem = protectedProcedure
   });
 
 export const listMenuItemSubMenuItems = protectedProcedure
-  .input(z.object({ parentMenuItemId: z.string() }))
+  .input(
+    z.object({
+      parentMenuItemId: z.string().optional(),
+      subMenuItemId: z.string().optional(),
+    })
+  )
   .query(async ({ input }) => {
-    const subMenuItems = await _ServiceMenuItemSubMenuItems.listByParentMenuItem(
-      input.parentMenuItemId
+    if (input.parentMenuItemId) {
+      const subMenuItems = await _ServiceMenuItemSubMenuItems.listByParentMenuItem(
+        input.parentMenuItemId
+      );
+
+      return {
+        success: true,
+        subMenuItems,
+      };
+    } else if (input.subMenuItemId) {
+      const parentLinks = await _ServiceMenuItemSubMenuItems.listBySubMenuItem(
+        input.subMenuItemId
+      );
+
+      return {
+        success: true,
+        subMenuItems: parentLinks,
+      };
+    }
+
+    throw new Error("Either parentMenuItemId or subMenuItemId must be provided");
+  });
+
+export const listMenuItemParents = protectedProcedure
+  .input(z.object({ subMenuItemId: z.string() }))
+  .query(async ({ input }) => {
+    const parentLinks = await _ServiceMenuItemSubMenuItems.listBySubMenuItem(
+      input.subMenuItemId
     );
 
     return {
       success: true,
-      subMenuItems,
+      parentLinks,
     };
   });
 

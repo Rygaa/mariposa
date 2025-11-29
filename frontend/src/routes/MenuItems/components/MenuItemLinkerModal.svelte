@@ -96,6 +96,21 @@
         linkType: "subMenuItem",
       }));
     }
+
+    // For SUPPLEMENT types, also load reverse relationships (where this item is the child)
+    // This happens when MENU_ITEMs link TO this supplement
+    if (menuItem.type?.includes("SUPPLEMENT") && filterByType === "MENU_ITEM") {
+      const reverseResult = await trpc.listMenuItemSubMenuItems.query({
+        subMenuItemId: menuItem.id,
+      });
+      
+      if (reverseResult.success) {
+        existingLinks.push(...reverseResult.subMenuItems.map((link: any) => ({
+          ...link,
+          linkType: "subMenuItem",
+        })));
+      }
+    }
   }
 
   async function loadAvailableMenuItems() {
@@ -146,9 +161,14 @@
     );
 
     for (const [itemId, data] of selectedItems) {
+      // When linking from a SUPPLEMENT to MENU_ITEMs, swap parent/child
+      // MENU_ITEM should always be the parent, SUPPLEMENT should be the child
+      const isSupplementLinkingToMenuItem = 
+        menuItem.type?.includes("SUPPLEMENT") && filterByType === "MENU_ITEM";
+
       await trpc.createMenuItemSubMenuItem.mutate({
-        parentMenuItemId: menuItem.id,
-        subMenuItemId: itemId,
+        parentMenuItemId: isSupplementLinkingToMenuItem ? itemId : menuItem.id,
+        subMenuItemId: isSupplementLinkingToMenuItem ? menuItem.id : itemId,
         quantity: parseFloat(data.quantity),
         producedMenuItemsQuantity: parseProducedQuantity(data.producedQuantity),
       });
@@ -211,17 +231,16 @@
     };
   }
 
-  // Helper functions to determine which fields to show based on item type
-  function shouldShowQuantity(itemType: string[] | undefined): boolean {
-    if (!itemType || itemType.length === 0) return false;
-    const type = itemType[0];
-    return type === "MENU_ITEM" || type === "RECIPE" || type === "RAW_MATERIAL";
+  // Helper functions to determine which fields to show based on what we're linking
+  // Only show quantity fields when linking RAW_MATERIAL or RECIPE
+  function shouldShowQuantity(): boolean {
+    // Show quantity ONLY when linking RAW_MATERIAL or RECIPE
+    return filterByType === "RAW_MATERIAL" || filterByType === "RECIPE";
   }
 
-  function shouldShowProducedQuantity(itemType: string[] | undefined): boolean {
-    if (!itemType || itemType.length === 0) return false;
-    const type = itemType[0];
-    return type === "MENU_ITEM" || type === "RECIPE";
+  function shouldShowProducedQuantity(): boolean {
+    // Show produced quantity ONLY when linking RECIPE
+    return filterByType === "RECIPE";
   }
 </script>
 
@@ -241,7 +260,8 @@
       {#each filteredMenuItems as item}
         {@const existingLink = existingLinks.find(
           (link) =>
-            link.linkType === "subMenuItem" && link.subMenuItemId === item.id
+            link.linkType === "subMenuItem" && 
+            (link.subMenuItemId === item.id || link.parentMenuItemId === item.id)
         )}
         {@const isLinked = !!existingLink}
         {@const itemSelection = newItemSelections[item.id]}
@@ -279,8 +299,8 @@
 
               {#if isLinked && existingLink}
                 {@const linkUpdate = linkUpdates[existingLink.id]}
-                {@const showQuantity = shouldShowQuantity(item.type)}
-                {@const showProducedQuantity = shouldShowProducedQuantity(item.type)}
+                {@const showQuantity = shouldShowQuantity()}
+                {@const showProducedQuantity = shouldShowProducedQuantity()}
                 {#if showQuantity || showProducedQuantity}
                   <div class="mt-2 space-y-2">
                     {#if showQuantity}
@@ -323,8 +343,8 @@
               {/if}
 
               {#if isSelected && !isLinked}
-                {@const showQuantity = shouldShowQuantity(item.type)}
-                {@const showProducedQuantity = shouldShowProducedQuantity(item.type)}
+                {@const showQuantity = shouldShowQuantity()}
+                {@const showProducedQuantity = shouldShowProducedQuantity()}
                 {#if showQuantity || showProducedQuantity}
                   <div class="mt-2 space-y-2">
                     {#if showQuantity}

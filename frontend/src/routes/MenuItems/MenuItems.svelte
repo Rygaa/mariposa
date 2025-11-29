@@ -241,7 +241,7 @@
               </Select>
             </div>
 
-            {#if filterType.includes("MENU_ITEM")}
+            {#if filterType.includes("MENU_ITEM") && !filterType.includes("SUPPLEMENT")}
               <div class="w-full sm:w-48">
                 <Select bind:value={filterCategoryId}>
                   <SelectTrigger>
