@@ -4,6 +4,7 @@ import type { WebSocket } from "ws";
 // Socket list to track connections with user information
 interface SocketConnection {
   sockets: Array<{
+    socketId: string;
     socket: WebSocket;
     ipAddress: string;
     userAgent: string;
@@ -84,13 +85,17 @@ export function Add(
   socket: WebSocket,
   ipAddress: string,
   userAgent: string
-): void {
+): string {
+  // Generate unique socket ID
+  const socketId = `${user.id}-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+  
   // Check if user already exists
   const existingConnection = socketList.find(conn => conn.user?.id === user.id);
   
   if (existingConnection) {
     // User exists, just add the socket to their connection
     existingConnection.sockets.push({
+      socketId: socketId,
       socket: socket,
       ipAddress: ipAddress,
       userAgent: userAgent,
@@ -100,6 +105,7 @@ export function Add(
     // New user, create new connection
     socketList.push({
       sockets: [{
+        socketId: socketId,
         socket: socket,
         ipAddress: ipAddress,
         userAgent: userAgent,
@@ -108,6 +114,8 @@ export function Add(
     });
     console.log(`✅ New connection created for user ${user.email}. Total connections: ${socketList.length}`);
   }
+  
+  return socketId;
 }
 
 // Function to disconnect old sockets for the same user

@@ -7,6 +7,7 @@ export async function setupWebSocketServer(app: FastifyInstance, appRouter: any)
   // Register WebSocket route handler
   app.get("/ws", { websocket: true }, async (socket, req) => {
     console.log(`➕➕ WebSocket connection`);
+    let socketId: string | null = null;
     
     socket.on("message", async (message) => {
       const data = JSON.parse(message.toString());
@@ -17,8 +18,8 @@ export async function setupWebSocketServer(app: FastifyInstance, appRouter: any)
         const ipAddress = getIpAddress(req);
         const userAgent = getUserAgent(req);
         
-        // Add socket to the list using Add function
-        Add(data.user, socket, ipAddress, userAgent);
+        // Add socket to the list using Add function and store the socketId
+        socketId = Add(data.user, socket, ipAddress, userAgent);
         console.log(socketList);
 
         // Disconnect old sockets for the same user
@@ -37,10 +38,15 @@ export async function setupWebSocketServer(app: FastifyInstance, appRouter: any)
     socket.on("close", () => {
       console.log(`➖➖ WebSocket connection closed`);
       
-      // Remove socket from the list
+      if (!socketId) {
+        console.log('⚠️ Socket closed before authentication');
+        return;
+      }
+      
+      // Remove socket from the list using socketId
       for (let i = socketList.length - 1; i >= 0; i--) {
         const connection = socketList[i];
-        const socketIndex = connection.sockets.findIndex(s => s.socket === socket);
+        const socketIndex = connection.sockets.findIndex(s => s.socketId === socketId);
         
         if (socketIndex !== -1) {
           // Remove the specific socket from the connection
