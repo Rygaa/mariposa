@@ -16,6 +16,17 @@ async function create(
     })
     .returning();
 
+  // If this is a selling price, update the menuItem's price field
+  if (data.priceType === "selling") {
+    await tx
+      .update(SchemaDrizzle.menuItems)
+      .set({
+        price: data.priceValue,
+        updatedAt: new Date(),
+      })
+      .where(eq(SchemaDrizzle.menuItems.id, data.menuItemId));
+  }
+
   return createdItemPrice;
 }
 
