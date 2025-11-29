@@ -115,22 +115,18 @@
     await loadData();
   });
 
-  async function loadMenuItems() {
-    const response = await trpc.listAllMenuItems.query({
-      shouldIncludeSupplements: true,
-    });
-    menuItems = response.menuItems;
-  }
-
   async function loadData() {
     isLoading = true;
     try {
       const response1 = await trpc.listEatingTables.query();
       const response2 = await trpc.listCategories.query();
-      await loadMenuItems();
+      const response3 = await trpc.listAllMenuItems.query({
+        shouldIncludeSupplements: true,
+      });
 
       eatingTables = response1.eatingTables;
       categories = response2.categories.filter((c: any) => !c.isUnlisted);
+      menuItems = response3.menuItems;
 
       // If an existing order is passed, use it
       if (existingOrder) {
@@ -190,9 +186,6 @@
 
     isLoading = true;
     try {
-      // Reload menu items to get the latest relationships (options, supplements)
-      await loadMenuItems();
-
       const item = menuItems.find((m: any) => m.id === menuItemId);
       if (!item) return;
 

@@ -194,14 +194,15 @@
     );
 
     for (const [itemId, data] of selectedItems) {
-      // When linking from a SUPPLEMENT to MENU_ITEMs, swap parent/child
-      // MENU_ITEM should always be the parent, SUPPLEMENT should be the child
-      const isSupplementLinkingToMenuItem = 
-        menuItem.type?.includes("SUPPLEMENT") && filterByType === "MENU_ITEM";
+      // When linking from a SUPPLEMENT or MENU_ITEM_OPTION to MENU_ITEMs, swap parent/child
+      // MENU_ITEM should always be the parent, SUPPLEMENT/MENU_ITEM_OPTION should be the child
+      const shouldSwapParentChild = 
+        (menuItem.type?.includes("SUPPLEMENT") || menuItem.type?.includes("MENU_ITEM_OPTION")) 
+        && filterByType === "MENU_ITEM";
 
       await trpc.createMenuItemSubMenuItem.mutate({
-        parentMenuItemId: isSupplementLinkingToMenuItem ? itemId : menuItem.id,
-        subMenuItemId: isSupplementLinkingToMenuItem ? menuItem.id : itemId,
+        parentMenuItemId: shouldSwapParentChild ? itemId : menuItem.id,
+        subMenuItemId: shouldSwapParentChild ? menuItem.id : itemId,
         quantity: parseFloat(data.quantity),
         producedMenuItemsQuantity: parseProducedQuantity(data.producedQuantity),
       });
