@@ -38,23 +38,27 @@ export async function setupWebSocketServer(app: FastifyInstance, appRouter: any)
       console.log(`➖➖ WebSocket connection closed`);
       
       // Remove socket from the list
-      const connectionIndex = socketList.findIndex(conn => 
-        conn.sockets.some(s => s.socket === socket)
-      );
-      
-      if (connectionIndex !== -1) {
-        const connection = socketList[connectionIndex];
+      for (let i = socketList.length - 1; i >= 0; i--) {
+        const connection = socketList[i];
+        const socketIndex = connection.sockets.findIndex(s => s.socket === socket);
         
-        // Remove the specific socket from the connection
-        connection.sockets = connection.sockets.filter(s => s.socket !== socket);
-        
-        // If no sockets left for this connection, remove the entire connection
-        if (connection.sockets.length === 0) {
-          socketList.splice(connectionIndex, 1);
+        if (socketIndex !== -1) {
+          // Remove the specific socket from the connection
+          connection.sockets.splice(socketIndex, 1);
+          
+          console.log(`🔍 Socket removed from ${connection.user?.email || 'anonymous'}. Remaining sockets: ${connection.sockets.length}`);
+          
+          // If no sockets left for this connection, remove the entire connection
+          if (connection.sockets.length === 0) {
+            socketList.splice(i, 1);
+            console.log(`🗑️ Connection removed for ${connection.user?.email || 'anonymous'}`);
+          }
+          
+          break;
         }
       }
       
-      console.log(`📋 Socket removed. Total: ${socketList.length}`);
+      console.log(`📋 Total connections: ${socketList.length}, Total sockets: ${socketList.reduce((acc, conn) => acc + conn.sockets.length, 0)}`);
     });
   });
 

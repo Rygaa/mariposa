@@ -318,7 +318,7 @@
                     <Icon iconName="print" />
                     Print Receipt
                   </button>
-                  <button
+                  <!-- <button
                     onclick={(e) => {
                       e.stopPropagation();
                       handleDownloadTableReceipt(table.id);
@@ -327,7 +327,7 @@
                   >
                     <Icon iconName="download" />
                     Test
-                  </button>
+                  </button> -->
                 </div>
               {/if}
             </div>
