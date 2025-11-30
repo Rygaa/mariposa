@@ -16,7 +16,13 @@
 	}
 
 	function handleKeyDown(event: KeyboardEvent) {
-		if (event.key === 'Enter' || event.key === ' ') {
+		// Don't interfere with input fields, textareas, or contenteditable elements
+		const target = event.target as HTMLElement;
+		const isInputElement = target.tagName === 'INPUT' || 
+		                       target.tagName === 'TEXTAREA' || 
+		                       target.isContentEditable;
+		
+		if (!isInputElement && (event.key === 'Enter' || event.key === ' ')) {
 			event.preventDefault();
 			if (customOnClick) {
 				customOnClick();
