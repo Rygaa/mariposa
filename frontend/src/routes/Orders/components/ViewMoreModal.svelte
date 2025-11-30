@@ -101,6 +101,9 @@
                       <div class="flex-1">
                         <p class="font-medium text-gray-900">
                           {menuItemOrder.menuItem?.name || "Unknown Item"}
+                          {#if menuItemOrder.menuItem?.subName}
+                            <span class="text-gray-500 font-normal">({menuItemOrder.menuItem.subName})</span>
+                          {/if}
                         </p>
                         <p class="text-sm text-gray-600">
                           Quantity: {menuItemOrder.quantity}
@@ -139,6 +142,9 @@
                               <div class="flex-1">
                                 <p class="text-sm font-medium text-indigo-900">
                                   + {supplement.menuItem?.name || "Unknown Supplement"}
+                                  {#if supplement.menuItem?.subName}
+                                    <span class="text-indigo-600 font-normal">({supplement.menuItem.subName})</span>
+                                  {/if}
                                 </p>
                                 <p class="text-xs text-indigo-600">
                                   Quantity: {supplement.quantity}
@@ -169,10 +175,10 @@
                   {#each orderDetails.menuItemOrders.filter((mio: any) => !mio.parentMenuItemOrderId) as menuItemOrder}
                     <div class="flex justify-between">
                       <span>
-                        {menuItemOrder.menuItem?.name || "Unknown"} ({menuItemOrder.quantity} × {menuItemOrder.price.toFixed(2)} DZD)
+                        {menuItemOrder.menuItem?.name || "Unknown"}{#if menuItemOrder.menuItem?.subName} ({menuItemOrder.menuItem.subName}){/if} ({menuItemOrder.quantity} × {menuItemOrder.price.toFixed(2)} DZD)
                         {#if menuItemOrder.childMenuItemOrders && menuItemOrder.childMenuItemOrders.length > 0}
                           {#each menuItemOrder.childMenuItemOrders as supplement}
-                            + {supplement.menuItem?.name || "Unknown"} ({supplement.quantity} × {supplement.price.toFixed(2)} DZD)
+                            + {supplement.menuItem?.name || "Unknown"}{#if supplement.menuItem?.subName} ({supplement.menuItem.subName}){/if} ({supplement.quantity} × {supplement.price.toFixed(2)} DZD)
                           {/each}
                         {/if}
                       </span>
