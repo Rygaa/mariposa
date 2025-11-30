@@ -33,3 +33,20 @@ export function calculateMultipleOrdersTotal(orders: any[]): number {
     return sum + calculateOrderTotal(order.menuItemOrders || []);
   }, 0);
 }
+
+/**
+ * DEPRECATED: Calculate order total the old way (counting all items including supplements)
+ * This was incorrect as it double-counted supplements/options
+ * Used only for comparison to detect orders with calculation issues
+ */
+export function calculateOrderDeprecatedTotal(menuItemOrders: any[]): number {
+  if (!menuItemOrders || menuItemOrders.length === 0) {
+    return 0;
+  }
+  
+  // Old incorrect way: sum ALL items including supplements
+  return menuItemOrders.reduce(
+    (sum: number, mio: any) => sum + mio.price * mio.quantity,
+    0
+  );
+}

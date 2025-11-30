@@ -109,11 +109,13 @@
   });
 
 
-  import { calculateOrderTotal } from "../../utils/calcule";
+  import { calculateOrderTotal, calculateOrderDeprecatedTotal } from "../../utils/calcule";
 
   const gridData = $derived(
     filteredOrders.map((order) => {
       const total = calculateOrderTotal(order.menuItemOrders || []);
+      const deprecatedTotal = calculateOrderDeprecatedTotal(order.menuItemOrders || []);
+      const hasCalculationError = Math.abs(total - deprecatedTotal) > 0.01;
       
       const algerianDate = toAlgerianTime(new Date(order.createdAt));
       const formattedDate = algerianDate.toLocaleDateString('en-GB');
@@ -128,8 +130,10 @@
         Status: order.status,
         Table: order.eatingTable?.name || "N/A",
         Total: `$${total.toFixed(2)}`,
+        Valid: hasCalculationError ? '⚠️' : '✓',
         Created: `${formattedDate} ${formattedTime}`,
         _isDeleted: !!order.deletedAt,
+        _hasError: hasCalculationError,
       };
     })
   );

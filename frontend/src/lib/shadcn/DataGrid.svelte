@@ -122,7 +122,7 @@
       {#each filteredData as row, i (i)}
         <div class="flex hover:bg-gray-50 transition-colors {row._isDeleted ? 'bg-gray-100 opacity-60' : ''}">
           {#each columns as column}
-            <div class="flex-1 px-4 py-3 text-sm {row._isDeleted ? 'text-gray-500' : 'text-gray-900'}">
+            <div class="flex-1 px-4 py-3 text-sm {row._isDeleted ? 'text-gray-500' : 'text-gray-900'} {column === 'Valid' && row._hasError ? 'text-red-600 font-bold' : ''}">
               {#if isSnippet(row[column])}
                 {@render row[column]()}
               {:else if isHTML(row[column])}
