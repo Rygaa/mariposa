@@ -103,18 +103,9 @@
     }).format(amount);
   }
 
-  const tableTotal = $derived(
-    orders.reduce((sum, order) => {
-      if (!order.menuItemOrders) return sum;
-      return (
-        sum +
-        order.menuItemOrders.reduce(
-          (orderSum: number, mio: any) => orderSum + mio.price * mio.quantity,
-          0
-        )
-      );
-    }, 0)
-  );
+  import { calculateMultipleOrdersTotal } from "../../../utils/calcule";
+
+  const tableTotal = $derived(calculateMultipleOrdersTotal(orders));
 
   async function handlePrintOrder(orderId: string) {
     try {

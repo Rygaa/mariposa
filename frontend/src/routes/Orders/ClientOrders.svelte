@@ -109,11 +109,11 @@
   });
 
 
+  import { calculateOrderTotal } from "../../utils/calcule";
+
   const gridData = $derived(
     filteredOrders.map((order) => {
-      const total = order.menuItemOrders?.reduce((sum: number, item: any) => {
-        return sum + (item.price * item.quantity);
-      }, 0) || 0;
+      const total = calculateOrderTotal(order.menuItemOrders || []);
       
       const algerianDate = toAlgerianTime(new Date(order.createdAt));
       const formattedDate = algerianDate.toLocaleDateString('en-GB');

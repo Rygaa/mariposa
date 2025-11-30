@@ -2,6 +2,8 @@
   import Icon from "../../../lib/components/Icon.svelte";
   import type { getOrderByIdWithRelations } from "../../../../../backend/src/router.types";
 
+  import { calculateOrderTotal } from "../../../utils/calcule";
+
   let {
     open = $bindable(false),
     currentOrder,
@@ -25,6 +27,11 @@
     fromColor?: string;
     toColor?: string;
   } = $props();
+
+  // Calculate correct total using shared function
+  const calculatedTotal = $derived(
+    calculateOrderTotal(currentOrder?.menuItemOrders || [])
+  );
 
   // Group menu items with their supplements and options
   const orderItems = $derived.by(() => {
@@ -215,7 +222,7 @@
         class="font-bold text-2xl bg-gradient-to-r bg-clip-text text-transparent"
         style="background-image: linear-gradient(to right, {fromColor}, {toColor});"
       >
-        {totalPrice.toFixed(2)} DZD
+        {calculatedTotal.toFixed(2)} DZD
       </span>
     </div>
 

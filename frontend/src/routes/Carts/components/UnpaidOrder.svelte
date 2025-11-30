@@ -251,14 +251,10 @@
     });
   }
 
+  import { calculateOrderTotal } from "../../../utils/calcule";
+
   function calculateTotal(order: any): number {
-    if (!order.menuItemOrders || order.menuItemOrders.length === 0) {
-      return 0;
-    }
-    return order.menuItemOrders.reduce(
-      (sum: number, mio: any) => sum + mio.price * mio.quantity,
-      0
-    );
+    return calculateOrderTotal(order.menuItemOrders || []);
   }
 
   function calculateEditTotal(): number {
