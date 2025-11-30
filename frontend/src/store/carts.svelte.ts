@@ -8,6 +8,7 @@ class CartsStore {
     try {
       const result = await trpc.listOrdersWithRelations.query({
         status: "CONFIRMED",
+        includeDeletedMenuItemOrders: false,
       });
       if (result.success) {
         this.orders = result.orders;

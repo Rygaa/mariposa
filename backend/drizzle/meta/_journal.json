@@ -57,6 +57,20 @@
       "when": 1764263085617,
       "tag": "0007_illegal_violations",
       "breakpoints": true
+    },
+    {
+      "idx": 8,
+      "version": "7",
+      "when": 1764518642130,
+      "tag": "0008_past_punisher",
+      "breakpoints": true
+    },
+    {
+      "idx": 9,
+      "version": "7",
+      "when": 1764519903240,
+      "tag": "0009_amazing_angel",
+      "breakpoints": true
     }
   ]
 }

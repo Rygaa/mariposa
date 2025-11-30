@@ -95,25 +95,39 @@
               <div class="space-y-2">
                 {#each orderDetails.menuItemOrders as menuItemOrder (menuItemOrder.id)}
                   <div
-                    class="flex items-center justify-between bg-white border border-gray-200 rounded-lg p-3"
+                    class="bg-white border border-gray-200 rounded-lg p-3"
                   >
-                    <div class="flex-1">
-                      <p class="font-medium text-gray-900">
-                        {menuItemOrder.menuItem?.name || "Unknown Item"}
-                      </p>
-                      <p class="text-sm text-gray-600">
-                        Quantity: {menuItemOrder.quantity}
-                      </p>
+                    <div class="flex items-center justify-between">
+                      <div class="flex-1">
+                        <p class="font-medium text-gray-900">
+                          {menuItemOrder.menuItem?.name || "Unknown Item"}
+                        </p>
+                        <p class="text-sm text-gray-600">
+                          Quantity: {menuItemOrder.quantity}
+                        </p>
+                      </div>
+                      <div class="text-right">
+                        <p class="font-semibold text-gray-900">
+                          {(menuItemOrder.price * menuItemOrder.quantity).toFixed(
+                            2
+                          )} DZD
+                        </p>
+                        <p class="text-sm text-gray-600">
+                          @ {menuItemOrder.price.toFixed(2)} DZD
+                        </p>
+                      </div>
                     </div>
-                    <div class="text-right">
-                      <p class="font-semibold text-gray-900">
-                        {(menuItemOrder.price * menuItemOrder.quantity).toFixed(
-                          2
-                        )} DZD
-                      </p>
-                      <p class="text-sm text-gray-600">
-                        @ {menuItemOrder.price.toFixed(2)} DZD
-                      </p>
+                    <div class="mt-2 pt-2 border-t border-gray-100 flex gap-4 text-xs text-gray-500">
+                      <div>
+                        <span class="font-medium">Updated:</span>
+                        <span class="ml-1">{new Date(menuItemOrder.updatedAt).toLocaleString()}</span>
+                      </div>
+                      {#if menuItemOrder.deletedAt}
+                        <div>
+                          <span class="font-medium">Deleted:</span>
+                          <span class="ml-1">{new Date(menuItemOrder.deletedAt).toLocaleString()}</span>
+                        </div>
+                      {/if}
                     </div>
                   </div>
                 {/each}

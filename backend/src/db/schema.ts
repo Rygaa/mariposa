@@ -158,6 +158,7 @@ export const orders = pgTable("Order", {
   id: varchar("id").primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+  deletedAt: timestamp("deletedAt"),
   eatingTableId: varchar("eatingTableId").notNull(),
   status: eatingTableMenuItemStatusEnum("status").default("INITIALIZED").notNull(),
 });
@@ -166,6 +167,7 @@ export const menuItemOrders = pgTable("MenuItemOrder", {
   id: varchar("id").primaryKey(),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
+  deletedAt: timestamp("deletedAt"),
   orderId: varchar("orderId").notNull(),
   menuItemId: varchar("menuItemId").notNull(),
   quantity: integer("quantity").default(1).notNull(),

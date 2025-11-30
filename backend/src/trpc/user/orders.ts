@@ -110,6 +110,8 @@ export const listWithRelations = protectedProcedure
         status: z.enum(statusEnumValues).optional(),
         limit: z.number().int().positive().max(500).default(100).optional(),
         offset: z.number().int().nonnegative().default(0).optional(),
+        includeDeletedMenuItemOrders: z.boolean().optional(),
+        includeDeleted: z.boolean().optional(),
       })
       .optional()
   )

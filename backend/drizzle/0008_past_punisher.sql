@@ -1,0 +1,1 @@
+ALTER TABLE "MenuItemOrder" ADD COLUMN "deletedAt" timestamp;

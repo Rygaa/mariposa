@@ -1,4 +1,4 @@
-import { eq, and, gte, lte, inArray } from "drizzle-orm";
+import { eq, and, gte, lte, inArray, isNull } from "drizzle-orm";
 import { db, DbTransactionOrDB } from "../db/utils";
 import * as SchemaDrizzle from "../db/schema";
 import { TRPCError } from "@trpc/server";
@@ -123,7 +123,10 @@ async function deleteOrder(
   tx: DbTransactionOrDB = db
 ): Promise<void> {
   await getById(orderId, tx);
-  await tx.delete(SchemaDrizzle.orders).where(eq(SchemaDrizzle.orders.id, orderId));
+  await tx
+    .update(SchemaDrizzle.orders)
+    .set({ deletedAt: new Date() })
+    .where(eq(SchemaDrizzle.orders.id, orderId));
 }
 
 type ListFilters = {
@@ -132,13 +135,15 @@ type ListFilters = {
   status?: string;
   limit?: number;
   offset?: number;
+  includeDeletedMenuItemOrders?: boolean;
+  includeDeleted?: boolean;
 };
 
 async function list(
   filters: ListFilters = {},
   tx: DbTransactionOrDB = db
 ): Promise<SchemaDrizzle.Orders[]> {
-  const { eatingTableId, status, limit = 100, offset = 0 } = filters;
+  const { eatingTableId, status, limit = 100, offset = 0, includeDeleted = false } = filters;
 
   let query = tx.select().from(SchemaDrizzle.orders);
 
@@ -150,6 +155,10 @@ async function list(
 
   if (status) {
     conditions.push(eq(SchemaDrizzle.orders.status, status as any));
+  }
+
+  if (!includeDeleted) {
+    conditions.push(isNull(SchemaDrizzle.orders.deletedAt));
   }
 
   if (conditions.length > 0) {
@@ -165,7 +174,7 @@ async function listWithRelations(
   filters: ListFilters = {},
   tx: DbTransactionOrDB = db
 ): Promise<any[]> {
-  const { eatingTableId, status, limit, offset = 0 } = filters;
+  const { eatingTableId, status, limit, offset = 0, includeDeletedMenuItemOrders = false, includeDeleted = false } = filters;
 
   const conditions: any[] = [];
 
@@ -177,13 +186,23 @@ async function listWithRelations(
     conditions.push(eq(SchemaDrizzle.orders.status, status as any));
   }
 
+  if (!includeDeleted) {
+    conditions.push(isNull(SchemaDrizzle.orders.deletedAt));
+  }
+
   const whereClause = conditions.length > 0 ? and(...conditions) : undefined;
+
+  const menuItemOrdersConditions: any[] = [];
+  if (!includeDeletedMenuItemOrders) {
+    menuItemOrdersConditions.push(isNull(SchemaDrizzle.menuItemOrders.deletedAt));
+  }
 
   const queryOptions: any = {
     where: whereClause,
     with: {
       eatingTable: true,
       menuItemOrders: {
+        where: menuItemOrdersConditions.length > 0 ? and(...menuItemOrdersConditions) : undefined,
         with: {
           menuItem: {
             with: {

@@ -3,6 +3,7 @@
   import { trpc } from "../../../lib/trpc";
   import { onMount } from "svelte";
   import Icon from "../../../lib/components/Icon.svelte";
+  import Button from "../../../lib/components/Button.svelte";
   import testImage from "../../../assets/test.png";
 
   let {
@@ -163,24 +164,16 @@
       </span>
 
       {#if menuItem.isAvailable}
-        <button
+        <Button
           onclick={handleAdd}
-          class="flex justify-center items-center w-12 h-12 rounded-full bg-gray-900 text-white transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110 z-10"
-          aria-label="Ajouter un article"
-        >
-          <Icon iconName="add" class="fill-white" size={6} />
-        </button>
+          variant="secondary"
+          size="lg"
+          iconOnly={true}
+          iconName="add"
+          rounded="full"
+          tooltip="Ajouter un article"
+        />
       {/if}
     </div>
   </div>
 </div>
-
-<style>
-  .line-clamp-1 {
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    line-clamp: 1;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
-</style>
