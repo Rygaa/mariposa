@@ -54,7 +54,7 @@
     if (!open) handleClose();
   }}
 >
-  <DialogContent class="max-w-2xl">
+  <DialogContent class="max-w-7xl w-full">
     <DialogHeader>
       <DialogTitle>Order Details</DialogTitle>
     </DialogHeader>
@@ -92,7 +92,7 @@
           <div>
             <h4 class="font-semibold text-gray-900 mb-3">Menu Items</h4>
             {#if orderDetails.menuItemOrders && orderDetails.menuItemOrders.length > 0}
-              <div class="space-y-2">
+              <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {#each orderDetails.menuItemOrders.filter((mio: any) => !mio.parentMenuItemOrderId) as menuItemOrder (menuItemOrder.id)}
                   <div
                     class="bg-white border border-gray-200 rounded-lg p-3"
@@ -163,18 +163,43 @@
 
               <!-- Total -->
               <div
-                class="mt-4 pt-4 border-t border-gray-200 flex justify-between items-center"
+                class="mt-4 pt-4 border-t border-gray-200"
               >
-                <span class="font-semibold text-gray-900">Total:</span>
-                <span class="text-xl font-bold text-gray-900">
-                  {orderDetails.menuItemOrders
-                    .reduce(
-                      (sum: number, mio: any) =>
-                        sum + mio.price * mio.quantity,
-                      0
-                    )
-                    .toFixed(2)} DZD
-                </span>
+                <div class="space-y-2 mb-3 text-sm text-gray-600">
+                  {#each orderDetails.menuItemOrders.filter((mio: any) => !mio.parentMenuItemOrderId) as menuItemOrder}
+                    <div class="flex justify-between">
+                      <span>
+                        {menuItemOrder.menuItem?.name || "Unknown"} ({menuItemOrder.quantity} × {menuItemOrder.price.toFixed(2)} DZD)
+                        {#if menuItemOrder.childMenuItemOrders && menuItemOrder.childMenuItemOrders.length > 0}
+                          {#each menuItemOrder.childMenuItemOrders as supplement}
+                            + {supplement.menuItem?.name || "Unknown"} ({supplement.quantity} × {supplement.price.toFixed(2)} DZD)
+                          {/each}
+                        {/if}
+                      </span>
+                      <span class="font-medium">
+                        {(
+                          menuItemOrder.price * menuItemOrder.quantity +
+                          (menuItemOrder.childMenuItemOrders?.reduce(
+                            (sum: number, s: any) => sum + s.price * s.quantity,
+                            0
+                          ) || 0)
+                        ).toFixed(2)} DZD
+                      </span>
+                    </div>
+                  {/each}
+                </div>
+                <div class="flex justify-between items-center pt-3 border-t border-gray-300">
+                  <span class="font-semibold text-gray-900">Total:</span>
+                  <span class="text-xl font-bold text-gray-900">
+                    {orderDetails.menuItemOrders
+                      .reduce(
+                        (sum: number, mio: any) =>
+                          sum + mio.price * mio.quantity,
+                        0
+                      )
+                      .toFixed(2)} DZD
+                  </span>
+                </div>
               </div>
             {:else}
               <p class="text-gray-500 text-center py-4">
