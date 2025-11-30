@@ -194,17 +194,36 @@
                     </div>
                   {/each}
                 </div>
-                <div class="flex justify-between items-center pt-3 border-t border-gray-300">
-                  <span class="font-semibold text-gray-900">Total:</span>
-                  <span class="text-xl font-bold text-gray-900">
-                    {orderDetails.menuItemOrders
-                      .reduce(
-                        (sum: number, mio: any) =>
-                          sum + mio.price * mio.quantity,
-                        0
-                      )
-                      .toFixed(2)} DZD
-                  </span>
+                <div class="space-y-2 pt-3 border-t border-gray-300">
+                  <div class="flex justify-between items-center">
+                    <span class="font-medium text-gray-600">Old Total (with duplicates):</span>
+                    <span class="text-lg font-semibold text-gray-600 line-through">
+                      {orderDetails.menuItemOrders
+                        .reduce(
+                          (sum: number, mio: any) =>
+                            sum + mio.price * mio.quantity,
+                          0
+                        )
+                        .toFixed(2)} DZD
+                    </span>
+                  </div>
+                  <div class="flex justify-between items-center">
+                    <span class="font-semibold text-gray-900">Total:</span>
+                    <span class="text-xl font-bold text-gray-900">
+                      {orderDetails.menuItemOrders
+                        .filter((mio: any) => !mio.parentMenuItemOrderId)
+                        .reduce(
+                          (sum: number, mio: any) =>
+                            sum + mio.price * mio.quantity +
+                            (mio.childMenuItemOrders?.reduce(
+                              (childSum: number, child: any) => childSum + child.price * child.quantity,
+                              0
+                            ) || 0),
+                          0
+                        )
+                        .toFixed(2)} DZD
+                    </span>
+                  </div>
                 </div>
               </div>
             {:else}
