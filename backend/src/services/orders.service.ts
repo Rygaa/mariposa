@@ -36,6 +36,11 @@ async function findByIdWithRelations(
               },
             },
           },
+          childMenuItemOrders: {
+            with: {
+              menuItem: true,
+            },
+          },
         },
       },
     },
@@ -207,6 +212,11 @@ async function listWithRelations(
           menuItem: {
             with: {
               category: true,
+            },
+          },
+          childMenuItemOrders: {
+            with: {
+              menuItem: true,
             },
           },
         },

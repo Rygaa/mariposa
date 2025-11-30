@@ -93,7 +93,7 @@
             <h4 class="font-semibold text-gray-900 mb-3">Menu Items</h4>
             {#if orderDetails.menuItemOrders && orderDetails.menuItemOrders.length > 0}
               <div class="space-y-2">
-                {#each orderDetails.menuItemOrders as menuItemOrder (menuItemOrder.id)}
+                {#each orderDetails.menuItemOrders.filter((mio: any) => !mio.parentMenuItemOrderId) as menuItemOrder (menuItemOrder.id)}
                   <div
                     class="bg-white border border-gray-200 rounded-lg p-3"
                   >
@@ -129,6 +129,34 @@
                         </div>
                       {/if}
                     </div>
+                    
+                    <!-- Supplements -->
+                    {#if menuItemOrder.childMenuItemOrders && menuItemOrder.childMenuItemOrders.length > 0}
+                      <div class="mt-3 ml-4 space-y-2 border-l-2 border-indigo-200 pl-3">
+                        {#each menuItemOrder.childMenuItemOrders as supplement (supplement.id)}
+                          <div class="bg-indigo-50 border border-indigo-100 rounded p-2">
+                            <div class="flex items-center justify-between">
+                              <div class="flex-1">
+                                <p class="text-sm font-medium text-indigo-900">
+                                  + {supplement.menuItem?.name || "Unknown Supplement"}
+                                </p>
+                                <p class="text-xs text-indigo-600">
+                                  Quantity: {supplement.quantity}
+                                </p>
+                              </div>
+                              <div class="text-right">
+                                <p class="text-sm font-semibold text-indigo-900">
+                                  {(supplement.price * supplement.quantity).toFixed(2)} DZD
+                                </p>
+                                <p class="text-xs text-indigo-600">
+                                  @ {supplement.price.toFixed(2)} DZD
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        {/each}
+                      </div>
+                    {/if}
                   </div>
                 {/each}
               </div>
