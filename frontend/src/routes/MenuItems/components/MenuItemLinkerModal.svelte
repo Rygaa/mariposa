@@ -358,7 +358,7 @@
                   ? 'text-purple-700'
                   : 'text-gray-900'} truncate"
               >
-                {item.name}
+                {item.name}{#if item.subName} - {item.subName}{/if}
               </div>
               <div class="text-xs text-gray-500 mt-0.5">
                 {item.type?.join(", ")}
