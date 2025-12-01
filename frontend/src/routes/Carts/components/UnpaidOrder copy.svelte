@@ -454,6 +454,7 @@
                 </div>
               {/if}
             </div>
+            <div class="flex flex-col">
               <div class="flex items-center mb-2 gap-2 justify-end">
                 <span class="font-semibold text-gray-900 text-sm">
                   {formatCurrency(mainItemTotal + supplementsTotal)}
@@ -513,6 +514,7 @@
                   />
                 </div>
               {/if}
+            </div>
           </div>
         {/each}
       {:else}

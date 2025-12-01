@@ -20,6 +20,7 @@
   let { isOpen = $bindable(), table }: Props = $props();
 
   let isLoading = $state(false);
+  let zoomLevel = $state(1.2);
 
   // Derived state for this table's orders
   const orders = $derived(
@@ -104,6 +105,7 @@
   }
 
   import { calculateMultipleOrdersTotal } from "../../../utils/calcule";
+  import DialogFooter from "../../../lib/shadcn/Dialog/DialogFooter.svelte";
 
   const tableTotal = $derived(calculateMultipleOrdersTotal(orders));
 
@@ -113,7 +115,7 @@
       const result = await trpc.getOrderByIdWithRelations.query({
         id: orderId,
       });
-      
+
       if (result.success && result.order) {
         await generateOrderPDF(result.order);
       }
@@ -126,8 +128,10 @@
   async function handlePrintTableReceipt() {
     try {
       // Collect all menu item orders from all orders for this table
-      const allMenuItemOrders = orders.flatMap(order => order.menuItemOrders || []);
-      
+      const allMenuItemOrders = orders.flatMap(
+        (order) => order.menuItemOrders || []
+      );
+
       if (allMenuItemOrders.length > 0) {
         await generateReciptPdf(allMenuItemOrders, table.name);
       }
@@ -139,9 +143,25 @@
 </script>
 
 <Dialog bind:open={isOpen}>
-  <DialogContent class="max-w-4xl max-h-[90vh] overflow-y-auto">
+  <DialogContent class="w-full h-full overflow-y-auto">
     <DialogHeader>
       <DialogTitle>
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center gap-3 flex-1">
+            <Icon iconName="zoom_in" class="text-gray-500" />
+            <input
+              type="range"
+              min="0.8"
+              max="2"
+              step="0.1"
+              bind:value={zoomLevel}
+              class="w-32 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+            />
+            <span class="text-sm text-gray-600 min-w-[3rem]"
+              >{Math.round(zoomLevel * 100)}%</span
+            >
+          </div>
+        </div>
         <div class="flex items-center justify-between">
           <div class="flex items-center gap-3">
             <Icon
@@ -168,61 +188,63 @@
                 variant="secondary"
                 size="sm"
               >
-                Print Receipt
+                Imprimer le reçu
               </Button>
               <Button
                 onclick={handleMarkAllAsPaid}
                 iconName="check_circle"
-                variant="primary"
+                variant="danger"
                 size="sm"
               >
-                Mark All Paid
+                Marquer tout comme payé
               </Button>
             </div>
           {/if}
         </div>
       </DialogTitle>
     </DialogHeader>
-
-    <div class="mt-6">
-      {#if isLoading}
-        <div class="flex items-center justify-center py-12">
-          <div
-            class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"
-          ></div>
-        </div>
-      {:else if orders.length === 0}
-        <div class="text-center py-12">
-          <Icon
-            iconName="shopping_cart"
-            class="text-gray-300 text-6xl mx-auto mb-4"
-          />
-          <p class="text-gray-500 text-lg">
-            No confirmed orders for this table
-          </p>
-        </div>
-      {:else}
-        <div class="space-y-4">
-          {#each orders as order (order.id)}
-            <UnpaidOrder
-              {order}
-              onOrderUpdated={() => handleOrderUpdated(order.id)}
-              onMarkAsPaid={() => handleMarkAsPaid(order.id)}
-              onPrintOrder={() => handlePrintOrder(order.id)}
-            />
-          {/each}
-        </div>
-
-        <div class="mt-6 pt-4 border-t border-gray-200">
-          <div class="flex justify-between items-center">
-            <span class="text-lg font-semibold text-gray-700">Table Total:</span
-            >
-            <span class="text-2xl font-bold text-gray-900"
-              >{formatCurrency(tableTotal)}</span
-            >
+    <div class="mt-6 h-full overflow-y-auto">
+      <div style="zoom: {zoomLevel};">
+        {#if isLoading}
+          <div class="flex items-center justify-center py-12">
+            <div
+              class="animate-spin rounded-full h-8 w-8 border-b-2 border-indigo-600"
+            ></div>
           </div>
-        </div>
-      {/if}
+        {:else if orders.length === 0}
+          <div class="text-center py-12">
+            <Icon
+              iconName="shopping_cart"
+              class="text-gray-300 text-6xl mx-auto mb-4"
+            />
+            <p class="text-gray-500 text-lg">
+              No confirmed orders for this table
+            </p>
+          </div>
+        {:else}
+          <div class="space-y-4">
+            {#each orders as order (order.id)}
+              <UnpaidOrder
+                {order}
+                onOrderUpdated={() => handleOrderUpdated(order.id)}
+                onMarkAsPaid={() => handleMarkAsPaid(order.id)}
+                onPrintOrder={() => handlePrintOrder(order.id)}
+              />
+            {/each}
+          </div>
+        {/if}
+      </div>
     </div>
+
+    <DialogFooter>
+      <div class="flex justify-between items-center">
+        <span class="text-lg font-semibold text-gray-700"
+          >Table Total: &nbsp;</span
+        >
+        <span class="text-2xl font-bold text-gray-900"
+          >{formatCurrency(tableTotal)}</span
+        >
+      </div>
+    </DialogFooter>
   </DialogContent>
 </Dialog>

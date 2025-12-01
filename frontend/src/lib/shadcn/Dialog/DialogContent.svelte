@@ -78,7 +78,7 @@
     <div
       bind:this={modalElement}
       transition:scale={{ duration: 200, start: 0.95 }}
-      class="relative w-full bg-white rounded-lg shadow-xl flex flex-col max-h-[90vh] overflow-auto {className}"
+      class="relative w-full bg-white rounded-lg shadow-xl flex flex-col max-h-[99vh] overflow-auto {className}"
       tabindex="-1"
       onclick={(e) => e.stopPropagation()}
     >

@@ -21,8 +21,9 @@
   let imageLoaded = $state(false);
   
   // Aspect ratio control
-  let aspectRatioMode = $state<"free" | "3:4">("free");
-  const ASPECT_RATIO = 3 / 4; // width:height = 3:4 (standard portrait)
+  let aspectRatioMode = $state<"free" | "3:4" | "386:384">("free");
+  const ASPECT_RATIO_3_4 = 3 / 4; // width:height = 3:4 (standard portrait)
+  const ASPECT_RATIO_386_384 = 386 / 384; // width:height = 386:384 (nearly square)
   
   // Crop area state
   let cropX = $state(50);
@@ -86,11 +87,26 @@
       if (aspectRatioMode === "3:4") {
         // Start with 3:4 ratio (width:height = 3:4 portrait)
         cropWidth = Math.min(imgWidth * 0.5, 250);
-        cropHeight = cropWidth / ASPECT_RATIO;
+        cropHeight = cropWidth / ASPECT_RATIO_3_4;
         // Adjust if height is too large
         if (cropHeight > imgHeight * 0.9) {
           cropHeight = imgHeight * 0.9;
-          cropWidth = cropHeight * ASPECT_RATIO;
+          cropWidth = cropHeight * ASPECT_RATIO_3_4;
+        }
+      } else if (aspectRatioMode === "386:384") {
+        // Start with 386:384 ratio (nearly square) - maximize size to 100%
+        const maxWidth = imgWidth;
+        const maxHeight = imgHeight;
+        
+        // Calculate dimensions that fit and maximize area
+        if (maxWidth / ASPECT_RATIO_386_384 <= maxHeight) {
+          // Width is limiting factor
+          cropWidth = maxWidth;
+          cropHeight = cropWidth / ASPECT_RATIO_386_384;
+        } else {
+          // Height is limiting factor
+          cropHeight = maxHeight;
+          cropWidth = cropHeight * ASPECT_RATIO_386_384;
         }
       } else {
         cropWidth = Math.min(imgWidth * 0.6, 300);
@@ -204,24 +220,25 @@
     } else if (isResizing && resizeHandle) {
       const minSize = 50;
       
-      if (aspectRatioMode === "3:4") {
-        // Maintain 3:4 aspect ratio while resizing
+      if (aspectRatioMode === "3:4" || aspectRatioMode === "386:384") {
+        const currentRatio = aspectRatioMode === "3:4" ? ASPECT_RATIO_3_4 : ASPECT_RATIO_386_384;
+        // Maintain aspect ratio while resizing
         if (resizeHandle === "br" || resizeHandle === "tr") {
           // Resize based on width, calculate height
           let newWidth = Math.max(minSize, Math.min(x - cropX, imgX + imgWidth - cropX));
-          let newHeight = newWidth / ASPECT_RATIO;
+          let newHeight = newWidth / currentRatio;
           
           // Check if height fits
           if (resizeHandle === "br") {
             if (cropY + newHeight > imgY + imgHeight) {
               newHeight = imgY + imgHeight - cropY;
-              newWidth = newHeight * ASPECT_RATIO;
+              newWidth = newHeight * currentRatio;
             }
           } else if (resizeHandle === "tr") {
             const newY = cropY + cropHeight - newHeight;
             if (newY < imgY) {
               newHeight = cropY + cropHeight - imgY;
-              newWidth = newHeight * ASPECT_RATIO;
+              newWidth = newHeight * currentRatio;
             }
           }
           
@@ -243,13 +260,13 @@
             newHeight = cropY + cropHeight - newY;
           }
           
-          let newWidth = newHeight * ASPECT_RATIO;
+          let newWidth = newHeight * currentRatio;
           const newX = cropX + cropWidth - newWidth;
           
           // Check if it fits
           if (newX < imgX) {
             newWidth = cropX + cropWidth - imgX;
-            newHeight = newWidth / ASPECT_RATIO;
+            newHeight = newWidth / currentRatio;
             
             if (resizeHandle === "tl") {
               newY = cropY + cropHeight - newHeight;
@@ -418,12 +435,12 @@
                 aspectRatioMode = "3:4";
                 if (imageLoaded && img) {
                   // Adjust current crop to 3:4 ratio
-                  const newHeight = cropWidth / ASPECT_RATIO;
+                  const newHeight = cropWidth / ASPECT_RATIO_3_4;
                   if (cropY + newHeight <= imgY + imgHeight) {
                     cropHeight = newHeight;
                   } else {
                     cropHeight = imgY + imgHeight - cropY;
-                    cropWidth = cropHeight * ASPECT_RATIO;
+                    cropWidth = cropHeight * ASPECT_RATIO_3_4;
                   }
                   draw();
                 }
@@ -434,6 +451,20 @@
             >
               3:4 Portrait
             </button>
+            <button
+              type="button"
+              onclick={() => {
+                aspectRatioMode = "386:384";
+                if (imageLoaded && img) {
+                  loadImage();
+                }
+              }}
+              class="px-3 py-1.5 text-sm rounded {aspectRatioMode === '386:384' 
+                ? 'bg-blue-500 text-white' 
+                : 'bg-white text-gray-700 border border-gray-300 hover:bg-gray-50'}"
+            >
+              386:384 (Max)
+            </button>
           </div>
         </div>
         
@@ -442,6 +473,8 @@
           <span class="font-medium">Tip:</span> Drag the blue box to move the crop area. Drag the corners to resize.
           {#if aspectRatioMode === "3:4"}
             <span class="text-blue-600"> (Maintaining 3:4 portrait aspect ratio)</span>
+          {:else if aspectRatioMode === "386:384"}
+            <span class="text-blue-600"> (Maintaining 386:384 aspect ratio, maximized)</span>
           {/if}
         </p>
       </div>

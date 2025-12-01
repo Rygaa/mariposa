@@ -180,7 +180,7 @@
         file: croppedImageBase64,
         filename: `${cropImageName}-cropped.jpg`,
         mimeType: "image/jpeg",
-        shouldBeUsedInMenuItemsPage: false,
+        shouldBeUsedInMenuItemsPage: true,
       });
       
       // Reload images list
