@@ -17,6 +17,8 @@
   import Orders from "./routes/Orders/ClientOrders.svelte";
   import Stats from "./routes/Stats/Stats.svelte";
   import Carts from "./routes/Carts/Carts.svelte";
+  import RawMaterials from "./routes/MenuItems/RawMaterials.svelte";
+  import Dashboard from "./routes/Dashboard/Dashboard.svelte";
 
   $effect(() => {
     if (_globalStore.wsMessage) {
@@ -70,6 +72,7 @@
   let isSidebarOpen = $state(true);
 
   const navigationItems = $derived([
+    { name: "Dashboard", path: "/dashboard", icon: "📊", section: "main" },
     { name: "Profile", path: "/profile", icon: "👤", section: "main" },
     {
       name: "Eating Tables",
@@ -78,10 +81,17 @@
       section: "main",
     },
     {
-      name: "Menu Items",
+      name: "Elements",
       path: "/menu-items",
       icon: "🍕",
       section: "main",
+      subItems: [
+        { name: "Menu Elements", path: "/menu-items/MENU_ITEM", icon: "🍽️" },
+        { name: "Recettes", path: "/menu-items/RECIPE", icon: "📖" },
+        { name: "Materiels", path: "/menu-items/RAW_MATERIAL", icon: "🥕" },
+        { name: "Supplements", path: "/menu-items/SUPPLEMENT", icon: "➕" },
+        { name: "Options", path: "/menu-items/MENU_ITEM_OPTION", icon: "⚙️" },
+      ],
     },
     {
       name: "Categories",
@@ -174,47 +184,56 @@
     <Router>
       <AppLayout {navigationItems} bind:isSidebarOpen onLogout={handleLogout}>
         {#snippet children()}
-        <Route path="/signup"><Signup /></Route>
-        <Route path="/login"><Login /></Route>
+          <Route path="/signup"><Signup /></Route>
+          <Route path="/login"><Login /></Route>
 
-        {#if _globalStore.user}
-          <Route path="/">
-            <EatingTables />
-          </Route>
-          <Route path="/profile">
-            <Profile />
-          </Route>
-          <Route path="/categories">
-            <Categories />
-          </Route>
-          <Route path="/eating-tables">
-            <EatingTables />
-          </Route>
-          <Route path="/menu-items">
-            <MenuItems />
-          </Route>
-          <Route path="/orders">
-            <Orders />
-          </Route>
-          <Route path="/carts">
-            <Carts />
-          </Route>
-          <Route path="/stats">
-            <Stats />
-          </Route>
-          <Route path="/client-orders">
-            <ClientOrders />
-          </Route>
-          <Route path="/client-orders-v3">
-            <ClientOrdersV3 />
-          </Route>
-          <Route path="/users">
-            <Users />
-          </Route>
-          <Route path="/nodes-demo">
-            <NodesDemo />
-          </Route>
-        {/if}
+          {#if _globalStore.user}
+            <Route path="/">
+              <Dashboard />
+            </Route>
+            <Route path="/dashboard">
+              <Dashboard />
+            </Route>
+            <Route path="/profile">
+              <Profile />
+            </Route>
+            <Route path="/categories">
+              <Categories />
+            </Route>
+            <Route path="/eating-tables">
+              <EatingTables />
+            </Route>
+            <Route path="/menu-items">
+              <MenuItems />
+            </Route>
+            <Route path="/menu-items/:RAW_MATERIAL" let:params>
+              <RawMaterials type={params.RAW_MATERIAL} />
+            </Route>
+            <Route path="/menu-items/:type" let:params>
+              <MenuItems type={params.type} />
+            </Route>
+            <Route path="/orders">
+              <Orders />
+            </Route>
+            <Route path="/carts">
+              <Carts />
+            </Route>
+            <Route path="/stats">
+              <Stats />
+            </Route>
+            <Route path="/client-orders">
+              <ClientOrders />
+            </Route>
+            <Route path="/client-orders-v3">
+              <ClientOrdersV3 />
+            </Route>
+            <Route path="/users">
+              <Users />
+            </Route>
+            <Route path="/nodes-demo">
+              <NodesDemo />
+            </Route>
+          {/if}
         {/snippet}
       </AppLayout>
     </Router>

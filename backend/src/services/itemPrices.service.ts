@@ -37,6 +37,17 @@ async function deleteItemPrice(
   await tx.delete(SchemaDrizzle.itemPrices).where(eq(SchemaDrizzle.itemPrices.id, itemPriceId));
 }
 
+async function deleteAllNonTemplates(
+  tx: DbTransactionOrDB = db
+): Promise<number> {
+  const result = await tx
+    .delete(SchemaDrizzle.itemPrices)
+    .where(eq(SchemaDrizzle.itemPrices.isTemplate, false))
+    .returning({ id: SchemaDrizzle.itemPrices.id });
+  
+  return result.length;
+}
+
 async function listByMenuItem(
   menuItemId: string,
   priceType?: "selling" | "buying",
@@ -59,6 +70,7 @@ async function listByMenuItem(
 const _ServiceItemPrices = {
   create,
   deleteItemPrice,
+  deleteAllNonTemplates,
   listByMenuItem,
 };
 

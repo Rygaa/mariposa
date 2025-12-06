@@ -71,6 +71,20 @@
       "when": 1764519903240,
       "tag": "0009_amazing_angel",
       "breakpoints": true
+    },
+    {
+      "idx": 10,
+      "version": "7",
+      "when": 1764810334894,
+      "tag": "0010_bored_the_captain",
+      "breakpoints": true
+    },
+    {
+      "idx": 11,
+      "version": "7",
+      "when": 1764813620959,
+      "tag": "0011_normal_orphan",
+      "breakpoints": true
     }
   ]
 }

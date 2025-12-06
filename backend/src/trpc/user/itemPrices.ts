@@ -10,10 +10,11 @@ export const create = protectedProcedureGlobalTransaction
     z.object({
       menuItemId: z.string().uuid(),
       priceValue: z.number(),
-      unitValue: z.number().optional(),
-      multiplier: z.number().default(1).optional(),
+      unitValue: z.number(),
+      multiplier: z.number().default(1),
       description: z.string().optional(),
       priceType: z.enum(["selling", "buying"]),
+      isTemplate: z.boolean().default(false),
     })
   )
   .mutation(async ({ ctx, input }) => {
@@ -43,6 +44,17 @@ export const deleteItemPrice = protectedProcedureGlobalTransaction
     return {
       success: true,
       message: "Item price deleted successfully",
+    };
+  });
+
+export const deleteAllNonTemplates = protectedProcedureGlobalTransaction
+  .mutation(async ({ ctx }) => {
+    const deletedCount = await _ServiceItemPrices.deleteAllNonTemplates(ctx.globalTx);
+
+    return {
+      success: true,
+      deletedCount,
+      message: `Deleted ${deletedCount} purchase records`,
     };
   });
 

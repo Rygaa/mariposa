@@ -8,12 +8,14 @@
     tableId = "default-table",
     actions,
     excludeFilters = [],
+    inputFilters = [],
   }: {
     data?: any[];
     onCellClick?: (event: MouseEvent) => void;
     tableId?: string;
     actions?: Snippet<[any]>;
     excludeFilters?: string[];
+    inputFilters?: string[];
   } = $props();
 
   const columns = $derived(data.length > 0 ? Object.keys(data[0]).filter(key => !key.startsWith('_')) : []);
@@ -64,6 +66,13 @@
         if (!filterValue) return true;
         const cellValue = row[column];
         if (cellValue === null || cellValue === undefined) return false;
+        
+        // For input filters, use case-insensitive partial match
+        if (inputFilters.includes(column)) {
+          return String(cellValue).toLowerCase().includes(filterValue.toLowerCase());
+        }
+        
+        // For dropdown filters, use exact match
         return String(cellValue) === filterValue;
       });
     })
@@ -96,16 +105,26 @@
                 {column}
               </div>
               {#if !excludeFilters.includes(column)}
-                <select
-                  bind:value={columnFilters[column]}
-                  class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500 bg-white"
-                  onclick={(e) => e.stopPropagation()}
-                >
-                  <option value="">All</option>
-                  {#each columnOptions[column] || [] as option}
-                    <option value={option}>{option}</option>
-                  {/each}
-                </select>
+                {#if inputFilters.includes(column)}
+                  <input
+                    type="text"
+                    bind:value={columnFilters[column]}
+                    placeholder="Filter..."
+                    class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500 bg-white"
+                    onclick={(e) => e.stopPropagation()}
+                  />
+                {:else}
+                  <select
+                    bind:value={columnFilters[column]}
+                    class="w-full px-2 py-1 text-xs border border-gray-300 rounded focus:ring-indigo-500 focus:border-indigo-500 bg-white"
+                    onclick={(e) => e.stopPropagation()}
+                  >
+                    <option value="">All</option>
+                    {#each columnOptions[column] || [] as option}
+                      <option value={option}>{option}</option>
+                    {/each}
+                  </select>
+                {/if}
               {/if}
             </div>
           {/each}

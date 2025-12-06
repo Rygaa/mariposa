@@ -120,9 +120,9 @@
       }));
     }
 
-    // For SUPPLEMENT and MENU_ITEM_OPTION types, also load reverse relationships (where this item is the child)
-    // This happens when MENU_ITEMs link TO this supplement/option
-    if ((menuItem.type?.includes("SUPPLEMENT") || menuItem.type?.includes("MENU_ITEM_OPTION")) && filterByType === "MENU_ITEM") {
+    // For SUPPLEMENT, MENU_ITEM_OPTION, and RAW_MATERIAL types, also load reverse relationships (where this item is the child)
+    // This happens when MENU_ITEMs link TO this supplement/option/raw material
+    if ((menuItem.type?.includes("SUPPLEMENT") || menuItem.type?.includes("MENU_ITEM_OPTION") || menuItem.type?.includes("RAW_MATERIAL")) && filterByType === "MENU_ITEM") {
       const reverseResult = await trpc.listMenuItemSubMenuItems.query({
         subMenuItemId: menuItem.id,
       });
@@ -194,10 +194,10 @@
     );
 
     for (const [itemId, data] of selectedItems) {
-      // When linking from a SUPPLEMENT or MENU_ITEM_OPTION to MENU_ITEMs, swap parent/child
-      // MENU_ITEM should always be the parent, SUPPLEMENT/MENU_ITEM_OPTION should be the child
+      // When linking from a SUPPLEMENT, MENU_ITEM_OPTION, or RAW_MATERIAL to MENU_ITEMs, swap parent/child
+      // MENU_ITEM should always be the parent, SUPPLEMENT/MENU_ITEM_OPTION/RAW_MATERIAL should be the child
       const shouldSwapParentChild = 
-        (menuItem.type?.includes("SUPPLEMENT") || menuItem.type?.includes("MENU_ITEM_OPTION")) 
+        (menuItem.type?.includes("SUPPLEMENT") || menuItem.type?.includes("MENU_ITEM_OPTION") || menuItem.type?.includes("RAW_MATERIAL")) 
         && filterByType === "MENU_ITEM";
 
       await trpc.createMenuItemSubMenuItem.mutate({

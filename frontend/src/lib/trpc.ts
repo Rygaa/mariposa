@@ -357,4 +357,16 @@ export const trpc = {
   reorderEatingTables: {
     mutate: wrapMutation(baseClient.reorderEatingTables.mutate),
   },
+  getLogs: {
+    query: wrapMutation(baseClient.getLogs.query),
+  },
+  createLog: {
+    mutate: wrapMutation(baseClient.createLog.mutate),
+  },
+  clearLogs: {
+    mutate: wrapMutation(baseClient.clearLogs.mutate),
+  },
+  deleteAllNonTemplateItemPrices: {
+    mutate: wrapMutation(baseClient.deleteAllNonTemplateItemPrices.mutate),
+  },
 };

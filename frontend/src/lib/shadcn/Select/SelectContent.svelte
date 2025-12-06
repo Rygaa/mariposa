@@ -14,6 +14,8 @@
 		getIsOpen: () => boolean;
 		setIsOpen: (value: boolean) => void;
 		getTriggerRef: () => HTMLElement | null;
+		isSearchable: () => boolean;
+		getSearchText: () => string;
 	}>('select');
 
 	let contentElement = $state<HTMLDivElement>();

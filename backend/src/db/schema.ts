@@ -184,15 +184,28 @@ export const menuItemImages = pgTable("MenuItemImage", {
   updatedAt: timestamp("updatedAt").defaultNow().notNull(),
 });
 
+export const activityLogs = pgTable("ActivityLog", {
+  id: varchar("id").primaryKey(),
+  timestamp: timestamp("timestamp").defaultNow().notNull(),
+  action: text("action").notNull(),
+  userId: varchar("userId"),
+  userName: text("userName"),
+  request: jsonb("request").notNull().$type<Record<string, any>>(),
+  response: jsonb("response").notNull().$type<Record<string, any>>(),
+  createdAt: timestamp("createdAt").defaultNow().notNull(),
+});
+
 export const itemPrices = pgTable("ItemPrice", {
   id: varchar("id").primaryKey(),
-  priceValue: real("priceValue").notNull(),
+  priceValue: real("priceValue"),
   unitValue: real("unitValue"),
-  multiplier: real("multiplier").default(1),
+  multiplier: real("multiplier").default(1).notNull(),
   description: text("description"),
   priceType: priceTypeEnum("priceType").notNull(), // "selling" or "buying"
   createdAt: timestamp("createdAt").defaultNow().notNull(),
+  updatedAt: timestamp("updatedAt").defaultNow(),
   menuItemId: varchar("menuItemId").notNull(), // References menuItems
+  isTemplate: boolean("isTemplate").default(false), // True for reusable price templates, false for actual purchase records
 });
 
 export const menuItemSubMenuItems = pgTable(
@@ -284,6 +297,10 @@ export const eatingTableRelations = relations(eatingTables, ({ many }) => ({
   orders: many(orders),
 }));
 
+export const activityLogRelations = relations(activityLogs, ({ one }) => ({
+  user: one(users, { fields: [activityLogs.userId], references: [users.id] }),
+}));
+
 // types users
 export type User = typeof users.$inferSelect;
 export type NewUser = typeof users.$inferInsert;
@@ -315,3 +332,6 @@ export type NewMenuItemOrders = typeof menuItemOrders.$inferInsert;
 // types menuItemImages
 export type MenuItemImages = typeof menuItemImages.$inferSelect;
 export type NewMenuItemImages = typeof menuItemImages.$inferInsert;
+// types activityLogs
+export type ActivityLogs = typeof activityLogs.$inferSelect;
+export type NewActivityLogs = typeof activityLogs.$inferInsert;

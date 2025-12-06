@@ -3,6 +3,7 @@ import { getAllUsers, createUser, updateUser, deleteUser } from "./admin/users";
 import { auth, login, signup, updateMyPassword, updateUserMeta } from "./user/users";
 import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById, reorder as reorderEatingTables } from "./user/eatingTables";
 import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById } from "./user/categories";
+import { createLog, getLogs, clearLogs } from "./user/logs";
 import { 
   create as createMenuItem, 
   update as updateMenuItem, 
@@ -19,7 +20,7 @@ import {
   listMenuItemImages,
   batchUpdateMenuItems
 } from "./user/menuItems";
-import { create as createItemPrice, deleteItemPrice, listByMenuItem as listItemPricesByMenuItem } from "./user/itemPrices";
+import { create as createItemPrice, deleteItemPrice, deleteAllNonTemplates as deleteAllNonTemplateItemPrices, listByMenuItem as listItemPricesByMenuItem } from "./user/itemPrices";
 import { 
   createMenuItemSubMenuItem,
   deleteMenuItemSubMenuItem,
@@ -82,6 +83,7 @@ export const appRouter = router({
   getMenuItemById,
   createItemPrice,
   deleteItemPrice,
+  deleteAllNonTemplateItemPrices,
   listItemPricesByMenuItem,
   createMenuItemSubMenuItem,
   deleteMenuItemSubMenuItem,
@@ -114,6 +116,9 @@ export const appRouter = router({
   getMenuItemImageViewUrl,
   listMenuItemImages,
   batchUpdateMenuItems,
+  createLog,
+  getLogs,
+  clearLogs,
 });
 
 export type AppRouter = typeof appRouter;

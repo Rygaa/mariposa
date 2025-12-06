@@ -6,16 +6,27 @@
 		value: string;
 		disabled?: boolean;
 		class?: string;
+		searchLabel?: string;
 		children?: Snippet;
 	}
 
-	let { value, disabled = false, class: className = '', children }: Props = $props();
+	let { value, disabled = false, class: className = '', searchLabel, children }: Props = $props();
 
 	const select = getContext<{
 		getValue: () => string | string[] | undefined;
 		setValue: (newValue: string) => void;
 		isMultiple: () => boolean;
+		isSearchable: () => boolean;
+		getSearchText: () => string;
+		registerItemLabel: (value: string, label: string) => void;
 	}>('select');
+
+	// Register the label when component mounts or when searchLabel changes
+	$effect(() => {
+		if (searchLabel) {
+			select.registerItemLabel(value, searchLabel);
+		}
+	});
 
 	let isSelected = $derived(() => {
 		const currentValue = select.getValue();
@@ -23,6 +34,20 @@
 			return Array.isArray(currentValue) && currentValue.includes(value);
 		}
 		return currentValue === value;
+	});
+
+	let isVisible = $derived(() => {
+		if (!select.isSearchable()) return true;
+		const searchText = select.getSearchText();
+		if (!searchText) return true;
+		
+		// Convert search text to lowercase for case-insensitive search
+		const searchLower = searchText.toLowerCase();
+		
+		// Check if searchLabel, value, or both match the search text (case-insensitive)
+		const labelMatch = searchLabel ? searchLabel.toLowerCase().includes(searchLower) : false;
+		const valueMatch = value.toLowerCase().includes(searchLower);
+		return labelMatch || valueMatch;
 	});
 
 	function handleClick() {
@@ -39,6 +64,7 @@
 	}
 </script>
 
+{#if isVisible()}
 <div
 	role="option"
 	aria-selected={isSelected()}
@@ -83,3 +109,4 @@
 		</span>
 	{/if}
 </div>
+{/if}

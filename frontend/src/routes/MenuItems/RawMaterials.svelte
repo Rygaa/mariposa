@@ -1,36 +1,26 @@
 <script lang="ts">
   import { onMount } from "svelte";
-  import Icon from "../../lib/components/Icon.svelte";
-  import MenuItem from "./components/MenuItem.svelte";
   import CreateMenuItemModal from "./components/CreateMenuItemModal.svelte";
+  import UpdateRawMaterialModal from "./components/UpdateRawMaterialModal.svelte";
+  import UpdateRawMaterialStock from "./components/UpdateRawMaterialStock.svelte";
   import { _globalStore } from "../../store/globalStore.svelte";
   import { navigate } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
   import Page from "../../lib/shadcn/Page.svelte";
   import DataDisplayer from "../../lib/shadcn/DataDisplayer.svelte";
+  import DataGrid from "../../lib/shadcn/DataGrid.svelte";
   import {
     Card,
     CardContent,
     CardHeader,
     CardTitle,
   } from "../../lib/shadcn/Card/index";
-  import {
-    Select,
-    SelectContent,
-    SelectItem,
-    SelectTrigger,
-    SelectValue,
-  } from "../../lib/shadcn/Select/index";
   import type { getMenuItemById } from "../../../../backend/src/router.types";
-  import { typeEnum } from "../../../../backend/src/db/schema";
 
   let { type }: { type?: string } = $props();
 
   let menuItems = $state<getMenuItemById["menuItem"][]>([]);
   let categories = $state<any[]>([]);
-  let showUpdateModal = $state(false);
-  let showDeleteModal = $state(false);
-  let showVersionsModal = $state(false);
   let isLoading = $state(false);
   let searchQuery = $state("");
   let filterType = $state<Array<string>>([]);
@@ -38,8 +28,11 @@
   let filterAvailable = $state<string>("all");
   let hasLoadedUserPreferences = $state(false);
   let lastSavedFilters = $state<string>("");
-  let draggedIndex = $state<number | null>(null);
-  let isDragging = $state(false);
+  let isUpdateModalOpen = $state(false);
+  let selectedMenuItem = $state<any>(null);
+  let isStockModalOpen = $state(false);
+  let stockModalMode = $state<"add" | "subtract">("add");
+  let selectedStockItem = $state<any>(null);
 
   onMount(async () => {
     if (!_globalStore.user) {
@@ -176,40 +169,68 @@
     }
   });
 
-  const filteredMenuItems = $derived(menuItems);
+  const filteredMenuItems = $derived(
+    menuItems.map(item => {
+      // Get latest buying and selling prices if they exist
+      const buyingPrices = (item as any).buyingPrices || [];
+      const sellingPrices = (item as any).sellingPrices || [];
+      
+      const latestBuyingPrice = buyingPrices.length > 0 
+        ? buyingPrices.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0]
+        : null;
+      
+      const latestSellingPrice = sellingPrices.length > 0
+        ? sellingPrices.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0]
+        : null;
 
-  // Drag and drop handlers
-  async function handleDrop(targetIndex: number) {
-    if (draggedIndex === null || draggedIndex === targetIndex) {
-      isDragging = false;
-      draggedIndex = null;
-      return;
-    }
+      const inHouse = item.inHouseStockQuantity ?? 0;
+      const inShop = item.inShopStockQuantity ?? 0;
+      const unit = item.unit || 'units';
 
-    // Swap the items
-    const newItems = [...menuItems];
-    const temp = newItems[draggedIndex];
-    newItems[draggedIndex] = newItems[targetIndex];
-    newItems[targetIndex] = temp;
+      return {
+        name: item.name,
+        'in-house stock': `${inHouse} ${unit}`,
+        'in-shop stock': `${inShop} ${unit}`,
+        'buying price': latestBuyingPrice ? `$${latestBuyingPrice.priceValue}` : (item.cost ? `$${item.cost}` : 'N/A'),
+        'selling price': latestSellingPrice ? `$${latestSellingPrice.priceValue}` : (item.price ? `$${item.price}` : 'N/A'),
+        _original: item
+      };
+    })
+  );
 
-    // Update the local state immediately for smooth UX
-    menuItems = newItems;
-    isDragging = false;
-    draggedIndex = null;
+  function handleEdit(row: any) {
+    selectedMenuItem = row._original;
+    isUpdateModalOpen = true;
+  }
 
-    // Prepare batch update with new indices
-    const updates = newItems.map((item, index) => ({
-      id: item.id,
-      index: index,
-    }));
+  function handleCloseUpdateModal() {
+    isUpdateModalOpen = false;
+    selectedMenuItem = null;
+  }
 
-    try {
-      await trpc.batchUpdateMenuItems.mutate({ updates });
-    } catch (error) {
-      console.error("Error reordering menu items:", error);
-      // Reload items on error
-      await loadMenuItems();
-    }
+  async function handleMenuItemUpdated() {
+    await loadMenuItems();
+  }
+
+  function handleAddStock(row: any) {
+    selectedStockItem = row._original;
+    stockModalMode = "add";
+    isStockModalOpen = true;
+  }
+
+  function handleSubtractStock(row: any) {
+    selectedStockItem = row._original;
+    stockModalMode = "subtract";
+    isStockModalOpen = true;
+  }
+
+  function handleCloseStockModal() {
+    isStockModalOpen = false;
+    selectedStockItem = null;
+  }
+
+  async function handleStockUpdated() {
+    await loadMenuItems();
   }
 </script>
 
@@ -217,7 +238,19 @@
   <Card>
     <CardHeader>
       <CardTitle>Menu Items</CardTitle>
-      <CreateMenuItemModal onMenuItemCreated={loadMenuItems} />
+      <div class="flex gap-2">
+        <CreateMenuItemModal onMenuItemCreated={loadMenuItems} />
+        <button
+          onclick={() => {
+            selectedStockItem = null;
+            stockModalMode = 'add';
+            isStockModalOpen = true;
+          }}
+          class="px-4 py-2 text-sm bg-orange-600 text-white rounded-lg hover:bg-orange-700 transition-colors"
+        >
+          Manage Stocks
+        </button>
+      </div>
     </CardHeader>
     <CardContent class="p-4 flex flex-col">
       <div class="mb-6">
@@ -271,33 +304,40 @@
       </div>
 
       <DataDisplayer {isLoading} isEmpty={filteredMenuItems.length === 0}>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
+        <DataGrid 
+          data={filteredMenuItems} 
+          tableId="raw-materials-menu-items"
+          inputFilters={['name']}
         >
-          {#each filteredMenuItems as menuItem, index (menuItem.id)}
-            <!-- svelte-ignore a11y_no_static_element_interactions -->
-            <div
-              draggable="true"
-              ondragstart={() => {
-                draggedIndex = index;
-                isDragging = true;
-              }}
-              ondragend={() => {
-                draggedIndex = null;
-                isDragging = false;
-              }}
-              ondragover={(e) => {
-                e.preventDefault();
-              }}
-              ondrop={() => handleDrop(index)}
-              class="transition-opacity {isDragging && draggedIndex === index ? 'opacity-50' : 'opacity-100'} cursor-move"
+          {#snippet actions(row)}
+            <button
+              onclick={() => handleEdit(row)}
+              class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
             >
-              <MenuItem {menuItem} />
-            </div>
-          {/each}
-        </div>
+              Edit
+            </button>
+          {/snippet}
+        </DataGrid>
       </DataDisplayer>
     </CardContent>
   </Card>
 </Page>
+
+{#if selectedMenuItem}
+  <UpdateRawMaterialModal
+    bind:isOpen={isUpdateModalOpen}
+    menuItem={selectedMenuItem}
+    onClose={handleCloseUpdateModal}
+    onMenuItemUpdated={handleMenuItemUpdated}
+  />
+{/if}
+
+<UpdateRawMaterialStock
+  bind:isOpen={isStockModalOpen}
+  menuItem={selectedStockItem}
+  menuItems={menuItems}
+  mode={stockModalMode}
+  onClose={handleCloseStockModal}
+  onStockUpdated={handleStockUpdated}
+/>
 

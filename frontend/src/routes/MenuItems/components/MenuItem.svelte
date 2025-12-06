@@ -101,7 +101,7 @@
   }
 
   async function loadImageUrl() {
-    if (menuItem.type?.includes("MENU_ITEM")) {
+    if (menuItem.type?.includes("MENU_ITEM") && menuItem.image && menuItem.image.length > 0) {
       try {
         const result = await trpc.listMenuItemImages.query({
           menuItemId: menuItem.id,

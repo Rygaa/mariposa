@@ -6,6 +6,7 @@ import {
 } from "../../index";
 import _ServiceMenuItems from "../../services/menuItems.service";
 import _ServiceMenuItemImages from "../../services/menuItemImages.service";
+import _ServiceLogs from "../../services/logs.service";
 
 export const create = protectedProcedureGlobalTransaction
   .input(
@@ -59,6 +60,8 @@ export const update = protectedProcedureGlobalTransaction
       unit: z.enum(["gramme", "Kg", "portion", "liter", "milliliter"]).optional(),
       averagePrice: z.number().optional(),
       stockQuantity: z.number().optional(),
+      inHouseStockQuantity: z.number().optional(),
+      inShopStockQuantity: z.number().optional(),
       stockConversionRatio: z.number().optional(),
       designVersion: z.number().int().optional(),
       imageSourceMenuItemId: z.string().uuid().optional().nullable(),
@@ -66,6 +69,9 @@ export const update = protectedProcedureGlobalTransaction
     })
   )
   .mutation(async ({ ctx, input }) => {
+    // Get the current state before update for logging purposes
+    const currentMenuItem = await _ServiceMenuItems.findById(input.id, ctx.globalTx);
+    
     const updatedMenuItem = await _ServiceMenuItems.update(
       {
         ...input,
@@ -74,6 +80,89 @@ export const update = protectedProcedureGlobalTransaction
       } as any,
       ctx.globalTx
     );
+
+    // Log stock changes
+    const isStockChange = 
+      input.inHouseStockQuantity !== undefined || 
+      input.inShopStockQuantity !== undefined;
+
+    if (isStockChange && currentMenuItem) {
+      let action = "STOCK_UPDATE";
+      let actionDetails: any = {
+        menuItemId: input.id,
+        menuItemName: updatedMenuItem.name,
+      };
+
+      // Determine if this is a transfer or add/subtract
+      if (input.inHouseStockQuantity !== undefined && input.inShopStockQuantity !== undefined) {
+        // Both changed - likely a transfer
+        const inHouseDiff = input.inHouseStockQuantity - (currentMenuItem.inHouseStockQuantity || 0);
+        const inShopDiff = input.inShopStockQuantity - (currentMenuItem.inShopStockQuantity || 0);
+        
+        if (inHouseDiff < 0 && inShopDiff > 0) {
+          action = "TRANSFER_STOCK_TO_SHOP";
+          actionDetails = {
+            ...actionDetails,
+            quantity: Math.abs(inHouseDiff),
+            from: "In-House",
+            to: "In-Shop",
+            previousInHouse: currentMenuItem.inHouseStockQuantity || 0,
+            newInHouse: input.inHouseStockQuantity,
+            previousInShop: currentMenuItem.inShopStockQuantity || 0,
+            newInShop: input.inShopStockQuantity,
+          };
+        } else if (inHouseDiff > 0 && inShopDiff < 0) {
+          action = "TRANSFER_STOCK_TO_HOUSE";
+          actionDetails = {
+            ...actionDetails,
+            quantity: inHouseDiff,
+            from: "In-Shop",
+            to: "In-House",
+            previousInHouse: currentMenuItem.inHouseStockQuantity || 0,
+            newInHouse: input.inHouseStockQuantity,
+            previousInShop: currentMenuItem.inShopStockQuantity || 0,
+            newInShop: input.inShopStockQuantity,
+          };
+        }
+      } else if (input.inHouseStockQuantity !== undefined) {
+        const diff = input.inHouseStockQuantity - (currentMenuItem.inHouseStockQuantity || 0);
+        action = diff > 0 ? "ADD_STOCK_IN_HOUSE" : "SUBTRACT_STOCK_IN_HOUSE";
+        actionDetails = {
+          ...actionDetails,
+          quantity: Math.abs(diff),
+          stockType: "In-House",
+          previousStock: currentMenuItem.inHouseStockQuantity || 0,
+          newStock: input.inHouseStockQuantity,
+        };
+      } else if (input.inShopStockQuantity !== undefined) {
+        const diff = input.inShopStockQuantity - (currentMenuItem.inShopStockQuantity || 0);
+        action = diff > 0 ? "ADD_STOCK_IN_SHOP" : "SUBTRACT_STOCK_IN_SHOP";
+        actionDetails = {
+          ...actionDetails,
+          quantity: Math.abs(diff),
+          stockType: "In-Shop",
+          previousStock: currentMenuItem.inShopStockQuantity || 0,
+          newStock: input.inShopStockQuantity,
+        };
+      }
+
+      // Log the stock change
+      await _ServiceLogs.createLog({
+        action,
+        userId: ctx.user?.id,
+        userName: ctx.user?.username || ctx.user?.email,
+        request: actionDetails,
+        response: {
+          success: true,
+          updatedMenuItem: {
+            id: updatedMenuItem.id,
+            name: updatedMenuItem.name,
+            inHouseStockQuantity: updatedMenuItem.inHouseStockQuantity,
+            inShopStockQuantity: updatedMenuItem.inShopStockQuantity,
+          },
+        },
+      });
+    }
 
     return {
       success: true,

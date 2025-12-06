@@ -7,13 +7,23 @@
 		onValueChange?: (value: string | string[]) => void;
 		disabled?: boolean;
 		multiple?: boolean;
+		searchable?: boolean;
 		children?: Snippet;
 	}
 
-	let { value = $bindable(), onValueChange, disabled = false, multiple = false, children }: Props = $props();
+	let { value = $bindable(), onValueChange, disabled = false, multiple = false, searchable = false, children }: Props = $props();
 
 	let isOpen = $state(false);
 	let triggerRef = $state<HTMLElement | null>(null);
+	let searchText = $state("");
+	let selectedItemLabels = $state<Map<string, string>>(new Map());
+
+	// Reset search when closing
+	$effect(() => {
+		if (!isOpen) {
+			searchText = "";
+		}
+	});
 
 	setContext('select', {
 		getValue: () => value,
@@ -42,7 +52,18 @@
 		setTriggerRef: (ref: HTMLElement | null) => {
 			triggerRef = ref;
 		},
-		isMultiple: () => multiple
+		isMultiple: () => multiple,
+		isSearchable: () => searchable,
+		getSearchText: () => searchText,
+		setSearchText: (text: string) => {
+			searchText = text;
+		},
+		registerItemLabel: (value: string, label: string) => {
+			selectedItemLabels.set(value, label);
+		},
+		getSelectedLabel: (value: string) => {
+			return selectedItemLabels.get(value) || '';
+		}
 	});
 
 	// Handle escape key

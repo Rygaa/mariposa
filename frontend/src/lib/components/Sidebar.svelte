@@ -17,6 +17,12 @@
       icon: string;
       section?: string;
       variant?: "default" | "admin" | "danger";
+      subItems?: Array<{
+        name: string;
+        path: string;
+        icon: string;
+        variant?: "default" | "admin" | "danger";
+      }>;
     }>;
     onLogout?: (() => void) | null;
     isOpen?: boolean;
@@ -92,7 +98,7 @@
 
   // Make isActive reactive
   function isActive(path: string) {
-    return currentPath === path || currentPath.startsWith(path);
+    return currentPath === path || currentPath.startsWith(path + "/");
   }
 </script>
 
@@ -178,6 +184,19 @@
             icon={item.icon}
             text={item.name}
           />
+          {#if item.subItems && isActive(item.path)}
+            <div class="ml-4 mt-1 space-y-1">
+              {#each item.subItems as subItem}
+                <SidebarButton
+                  onclick={() => navigateTo(subItem.path)}
+                  active={isActive(subItem.path)}
+                  variant={subItem.variant || "default"}
+                  icon={subItem.icon}
+                  text={subItem.name}
+                />
+              {/each}
+            </div>
+          {/if}
         {/each}
       {:else}
         <!-- Other sections with headers -->
@@ -195,6 +214,19 @@
               icon={item.icon}
               text={item.name}
             />
+            {#if item.subItems && isActive(item.path)}
+              <div class="ml-4 mt-1 space-y-1">
+                {#each item.subItems as subItem}
+                  <SidebarButton
+                    onclick={() => navigateTo(subItem.path)}
+                    active={isActive(subItem.path)}
+                    variant={subItem.variant || "default"}
+                    icon={subItem.icon}
+                    text={subItem.name}
+                  />
+                {/each}
+              </div>
+            {/if}
           {/each}
         </div>
       {/if}
