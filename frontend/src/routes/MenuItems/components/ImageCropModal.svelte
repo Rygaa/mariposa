@@ -1,6 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Button from "../../../lib/components/Button.svelte";
+  import MenuItemV0 from "../../ClientOrders_version3/components/MenuItemV0.svelte";
 
   interface Props {
     isOpen?: boolean;
@@ -12,9 +13,10 @@
 
   let { isOpen = $bindable(false), imageUrl, imageName, onSave, onClose }: Props = $props();
 
-  let canvas: HTMLCanvasElement;
+  let canvas = $state<HTMLCanvasElement>();
+  let previewCanvas = $state<HTMLCanvasElement>();
   let ctx: CanvasRenderingContext2D | null = null;
-  let img: HTMLImageElement | null = null;
+  let img = $state<HTMLImageElement | null>(null);
   let isDragging = $state(false);
   let isResizing = $state(false);
   let resizeHandle = $state<string | null>(null);
@@ -41,6 +43,18 @@
   let imgY = $state(0);
   let imgWidth = $state(0);
   let imgHeight = $state(0);
+  
+  // Preview image URL for MenuItemV0 component
+  let previewImageUrl = $state<string | null>(null);
+  
+  // Mock menu item for preview
+  let previewMenuItem = $derived({
+    id: 'preview',
+    name: 'Preview',
+    subName: img ? `${Math.round(cropWidth * img.width / imgWidth)} × ${Math.round(cropHeight * img.height / imgHeight)} px` : 'Loading...',
+    price: null,
+    isAvailable: true,
+  });
 
   function loadImage() {
     if (!canvas || !imageUrl) {
@@ -117,6 +131,7 @@
       
       imageLoaded = true;
       draw();
+      drawPreview();
     };
     
     img.onerror = (e) => {
@@ -172,6 +187,8 @@
   }
 
   function handleMouseDown(e: MouseEvent) {
+    if (!canvas) return;
+    
     e.preventDefault();
     e.stopPropagation();
     
@@ -206,6 +223,7 @@
 
   function handleMouseMove(e: MouseEvent) {
     if (!isDragging && !isResizing) return;
+    if (!canvas) return;
     
     e.preventDefault();
     e.stopPropagation();
@@ -312,6 +330,7 @@
     }
     
     draw();
+    drawPreview();
   }
 
   function handleMouseUp() {
@@ -372,13 +391,39 @@
     const _ = [cropX, cropY, cropWidth, cropHeight];
     if (img && img.complete && imageLoaded) {
       draw();
+      drawPreview();
     }
   });
+
+  // Draw preview and update preview URL
+  function drawPreview() {
+    if (!img || !imageLoaded || !previewCanvas) return;
+    
+    const previewCtx = previewCanvas.getContext("2d", { alpha: true });
+    if (!previewCtx) return;
+    
+    previewCtx.clearRect(0, 0, previewCanvas.width, previewCanvas.height);
+    
+    previewCtx.drawImage(
+      img,
+      (cropX - imgX) * (img.width / imgWidth),
+      (cropY - imgY) * (img.height / imgHeight),
+      cropWidth * (img.width / imgWidth),
+      cropHeight * (img.height / imgHeight),
+      0,
+      0,
+      previewCanvas.width,
+      previewCanvas.height
+    );
+    
+    // Update preview URL for MenuItemV0 component
+    previewImageUrl = previewCanvas.toDataURL("image/png");
+  }
 </script>
 
 {#if isOpen}
   <div class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50">
-    <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full mx-4 max-h-[90vh] flex flex-col">
+    <div class="bg-white rounded-lg shadow-xl w-full mx-4 max-h-[90vh] flex flex-col" style="max-width: 95vw;">
       <!-- Header -->
       <div class="flex items-center justify-between p-4 border-b">
         <h2 class="text-lg font-semibold text-gray-900">Crop Image</h2>
@@ -393,20 +438,59 @@
         </button>
       </div>
 
-      <!-- Canvas -->
-      <div class="flex-1 p-4 overflow-hidden flex items-center justify-center">
-        <canvas
-          bind:this={canvas}
-          width={700}
-          height={500}
-          class="border border-gray-300 rounded cursor-move select-none"
-          style="-webkit-user-drag: none; user-select: none;"
-          onmousedown={handleMouseDown}
-          onmousemove={handleMouseMove}
-          onmouseup={handleMouseUp}
-          onmouseleave={handleMouseUp}
-          ondragstart={(e) => e.preventDefault()}
-        ></canvas>
+      <!-- Canvas and Preview -->
+      <div class="flex-1 p-4 overflow-hidden flex gap-4">
+        <!-- Canvas Section -->
+        <div class="flex-1 flex items-center justify-center">
+          <canvas
+            bind:this={canvas}
+            width={700}
+            height={500}
+            class="border border-gray-300 rounded cursor-move select-none"
+            style="-webkit-user-drag: none; user-select: none;"
+            onmousedown={handleMouseDown}
+            onmousemove={handleMouseMove}
+            onmouseup={handleMouseUp}
+            onmouseleave={handleMouseUp}
+            ondragstart={(e) => e.preventDefault()}
+          ></canvas>
+        </div>
+        
+        <!-- Preview Section -->
+        <div class="flex flex-col items-center justify-start gap-3" style="width: 280px;">
+          <span class="text-sm font-medium text-gray-700 mb-2">Preview</span>
+          <canvas
+            bind:this={previewCanvas}
+            width={img && imgWidth ? cropWidth * (img.width / imgWidth) : 100}
+            height={img && imgHeight ? cropHeight * (img.height / imgHeight) : 100}
+            class="hidden"
+          ></canvas>
+          {#if imageLoaded && previewImageUrl}
+            <MenuItemV0 
+              menuItem={{...previewMenuItem, imageUrl: previewImageUrl}}
+              count={0}
+            />
+          {:else}
+            <div class="relative w-full">
+              <div class="relative rounded-3xl overflow-hidden h-full flex flex-col">
+                <div class="flex-1 relative overflow-hidden rounded-3xl shadow-md bg-gray-100" style="margin: 1rem; margin-bottom: -20%; aspect-ratio: 386 / 384;">
+                  <div class="w-full h-full flex items-center justify-center">
+                    <span class="text-sm text-gray-400">No preview</span>
+                  </div>
+                </div>
+                
+                <div
+                  class="w-full py-4 flex items-center justify-between backdrop-blur-xs rounded-3xl border border-black/20 shadow-lg"
+                  style="background-color: rgba(255, 255, 255, 0.25);"
+                >
+                  <div class="flex flex-col items-start justify-between w-full px-4">
+                    <span class="text-xs text-gray-400">Waiting for image...</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          {/if}
+        </div>
       </div>
 
       <!-- Controls -->

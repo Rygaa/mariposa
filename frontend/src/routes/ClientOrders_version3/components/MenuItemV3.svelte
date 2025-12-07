@@ -27,14 +27,6 @@
   let isSupplementModalOpen = $state(false);
   let imageUrl = $state<string | null>(null);
   let imageLoaded = $state(false);
-  
-  // React to menuItem.imageUrl changes (for preview mode)
-  $effect(() => {
-    if (menuItem.imageUrl && menuItem.id === 'preview') {
-      imageUrl = menuItem.imageUrl;
-      imageLoaded = true;
-    }
-  });
 
   // Get supplements from subMenuItems that are of type SUPPLEMENT
   const hasSupplements = $derived(
@@ -58,14 +50,7 @@
   }
 
   async function loadImageUrl() {
-    // If imageUrl is already provided (e.g., for preview), skip loading
-    if (menuItem.imageUrl && menuItem.id === 'preview') {
-      imageUrl = menuItem.imageUrl;
-      imageLoaded = true;
-      return;
-    }
-    
-    if (!menuItem.id || menuItem.id === 'preview') {
+    if (!menuItem.id) {
       return;
     }
 
@@ -108,20 +93,52 @@
   }
 
   // Use placeholder image as fallback or while loading
-  const displayImage = $derived(
-    imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg"
-  );
+  const displayImage = $derived(imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg");
 </script>
 
-<div class="relative w-full">
+<div class="relative w-full h-full">
+  <!-- Main Card -->
   <div
-    class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl h-full flex flex-col"
+    class="relative rounded-3xl overflow-hidden shadow-md transition-all duration-300 hover:shadow-2xl h-full flex flex-col"
+    style="background-color: {fromColor};"
   >
-    <div class="flex-1 relative overflow-hidden rounded-3xl shadow-md" style="margin: 1rem; margin-bottom: -20%; aspect-ratio: 386 / 384;">
+    <!-- Header with name and rating -->
+    <div class="p-6 pb-3 border-b-2 border-gray-400 bg-white/75 absolute top-0 left-0 right-0 z-10 backdrop-blur-sm">
+      <div class="flex items-start justify-between mb-2">
+        <div class="flex flex-col gap-y-2">
+          <p class="font-bold text-gray-900 text-2xl pr-4">
+            {menuItem.name}
+        </p>
+          <span
+            class="font-bold text-gray-900 text-1xl bg-white/70 backdrop-blur-sm px-6 py-1.25 rounded-full inline-block w-fit"
+          >
+            {menuItem.subName}
+        </span>
+        </div>
+
+        {#if menuItem.rating}
+          <div
+            class="flex items-center gap-1 bg-white/80 backdrop-blur-sm px-2 py-1 rounded-full"
+          >
+            <span class="text-sm font-semibold">{menuItem.rating}</span>
+            <Icon iconName="star" class="text-yellow-500" size={4} />
+          </div>
+        {/if}
+      </div>
+
+      <!-- {#if menuItem.description}
+        <p class="text-gray-700 text-sm line-clamp-1">
+          {menuItem.description}
+        </p>
+      {/if} -->
+    </div>
+
+    <!-- Image Section - positioned to overlap -->
+    <div class="flex-1 relative">
       <img
         src={displayImage}
         alt={menuItem.name}
-        class="w-full h-full object-cover transition-transform duration-300"
+        class="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
       />
 
       {#if !menuItem.isAvailable}
@@ -139,42 +156,24 @@
 
     <!-- Price and Add button positioned absolutely at bottom with background -->
     <div
-      class="w-full py-4 flex items-center justify-between backdrop-blur-xs rounded-3xl border border-black/20 shadow-lg"
+      class="absolute bottom-4 left-4 right-4 px-6 py-4 flex items-center justify-between backdrop-blur-sm rounded-2xl"
       style="background-color: rgba(255, 255, 255, 0.25); background-blend-mode: lighten; background-image: linear-gradient({fromColor}B3, {fromColor}B3);"
     >
-      <div
-        class="flex flex-col items-start justify-between w-full px-4 gap-y-4"
-      >
-        <div class="flex flex-col gap-y-2 w-full">
-          <div class="flex items-center justify-between w-full">
-            <span class="text-3xl font-bold text-gray-900">
-              {menuItem.name}
-            </span>
+      <span class="text-3xl font-bold text-gray-900">
+        {formatPrice(menuItem.price)}
+      </span>
 
-            <span class="text-2xl font-bold text-gray-900">
-              {formatPrice(menuItem.price)}
-            </span>
-          </div>
-
-          <span
-            class="font-bold text-gray-900 text-1xl bg-white/70 backdrop-blur-sm px-6 py-1.25 rounded-full inline-block w-fit"
-          >
-            {menuItem.subName}
-          </span>
-        </div>
-        {#if menuItem.isAvailable}
-          <Button
-            onclick={handleAdd}
-            variant="secondary"
-            size="lg"
-            fullWidth
-            iconOnly={true}
-            iconName="add"
-            rounded="full"
-            tooltip="Ajouter un article"
-          />
-        {/if}
-      </div>
+      {#if menuItem.isAvailable}
+        <Button
+          onclick={handleAdd}
+          variant="secondary"
+          size="lg"
+          iconOnly={true}
+          iconName="add"
+          rounded="full"
+          tooltip="Ajouter un article"
+        />
+      {/if}
     </div>
   </div>
 </div>

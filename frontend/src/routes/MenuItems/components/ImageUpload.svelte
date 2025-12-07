@@ -290,69 +290,75 @@
   {/if}
 
   {#if images.length > 0}
-    <div class="grid grid-cols-3 gap-2">
+    <div class="grid grid-cols-3 gap-4">
       {#each images as image, index}
         <div class="relative group">
           {#if imageUrls[image.fileId] && imageUrls[image.fileId] !== ""}
-            <img
-              src={imageUrls[image.fileId]}
-              alt="Menu item {index + 1}"
-              class="w-full h-24 object-cover rounded border {image.shouldBeUsedInMenuItemsPage ? 'border-green-500 border-2' : 'border-gray-200'}"
-            />
-            <!-- Badge for main image -->
-            {#if image.shouldBeUsedInMenuItemsPage}
-              <div class="absolute top-1 left-1 bg-green-500 text-white text-xs px-2 py-1 rounded">
-                Main
-              </div>
-            {/if}
-            <!-- Action buttons overlay -->
-            {#if !isInherited}
-              <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
-                <button
-                  type="button"
-                  onclick={() => toggleShouldBeUsedInMenuItemsPage(index)}
-                  disabled={disabled || uploading}
-                  aria-label="Toggle main image"
-                  class="bg-green-500 text-white rounded-full p-2 hover:bg-green-600 transition-colors disabled:opacity-50"
-                  title={image.shouldBeUsedInMenuItemsPage ? "Unset as main" : "Set as main"}
-                >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onclick={() => handleCropImage(index)}
-                  disabled={disabled || uploading}
-                  aria-label="Crop image"
-                  class="bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition-colors disabled:opacity-50"
-                  title="Crop/Edit"
-                >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                  </svg>
-                </button>
-                <button
-                  type="button"
-                  onclick={() => removeImage(index)}
-                  disabled={disabled}
-                  aria-label="Remove image"
-                  class="bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition-colors disabled:opacity-50"
-                  title="Remove"
-                >
-                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                  </svg>
-                </button>
-              </div>
-            {/if}
+            <div class="relative overflow-hidden rounded-3xl shadow-md" style="aspect-ratio: 1 / 1;">
+              <img
+                src={imageUrls[image.fileId]}
+                alt="Menu item {index + 1}"
+                class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+              />
+              <!-- Badge for main image -->
+              {#if image.shouldBeUsedInMenuItemsPage}
+                <div class="absolute top-2 left-2 bg-green-500 text-white text-xs px-3 py-1.5 rounded-full font-semibold shadow-lg">
+                  Main
+                </div>
+              {/if}
+              <!-- Action buttons overlay -->
+              {#if !isInherited}
+                <div class="absolute inset-0 bg-black bg-opacity-50 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-2">
+                  <button
+                    type="button"
+                    onclick={() => toggleShouldBeUsedInMenuItemsPage(index)}
+                    disabled={disabled || uploading}
+                    aria-label="Toggle main image"
+                    class="bg-green-500 text-white rounded-full p-2.5 hover:bg-green-600 transition-colors disabled:opacity-50 shadow-lg"
+                    title={image.shouldBeUsedInMenuItemsPage ? "Unset as main" : "Set as main"}
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    onclick={() => handleCropImage(index)}
+                    disabled={disabled || uploading}
+                    aria-label="Crop image"
+                    class="bg-blue-500 text-white rounded-full p-2.5 hover:bg-blue-600 transition-colors disabled:opacity-50 shadow-lg"
+                    title="Crop/Edit"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
+                    </svg>
+                  </button>
+                  <button
+                    type="button"
+                    onclick={() => removeImage(index)}
+                    disabled={disabled}
+                    aria-label="Remove image"
+                    class="bg-red-500 text-white rounded-full p-2.5 hover:bg-red-600 transition-colors disabled:opacity-50 shadow-lg"
+                    title="Remove"
+                  >
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                  </button>
+                </div>
+              {/if}
+            </div>
           {:else if imageUrls[image.fileId] === ""}
-            <div class="w-full h-24 bg-gray-100 rounded border border-gray-200 flex items-center justify-center">
-              <span class="text-xs text-gray-400">Image unavailable</span>
+            <div class="relative overflow-hidden rounded-3xl shadow-md" style="aspect-ratio: 1 / 1;">
+              <div class="w-full h-full bg-gray-100 flex items-center justify-center">
+                <span class="text-sm text-gray-400">Image unavailable</span>
+              </div>
             </div>
           {:else}
-            <div class="w-full h-24 bg-gray-100 rounded border border-gray-200 flex items-center justify-center">
-              <span class="text-xs text-gray-400">Loading...</span>
+            <div class="relative overflow-hidden rounded-3xl shadow-md" style="aspect-ratio: 1 / 1;">
+              <div class="w-full h-full bg-gray-100 flex items-center justify-center">
+                <span class="text-sm text-gray-400">Loading...</span>
+              </div>
             </div>
           {/if}
         </div>
