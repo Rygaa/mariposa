@@ -505,10 +505,10 @@
         </div>
 
         <!-- Category Pills -->
-        <div class="flex overflow-x-auto gap-3 px-4 pb-3 no-scrollbar">
+        <div class="flex flex-wrap gap-3 px-4 pb-3">
           <button
             onclick={() => (selectedCategoryId = "")}
-            class="flex-shrink-0 px-5 py-2 rounded-full font-medium transition-all duration-300 {selectedCategoryId ===
+            class="px-5 py-2 rounded-full font-medium transition-all duration-300 {selectedCategoryId ===
             ''
               ? 'text-white shadow-md'
               : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'}"
@@ -521,7 +521,7 @@
           {#each categories as category (category.id)}
             <button
               onclick={() => (selectedCategoryId = category.id)}
-              class="flex-shrink-0 px-5 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 {selectedCategoryId ===
+              class="px-5 py-2 rounded-full font-medium transition-all duration-300 flex items-center gap-2 {selectedCategoryId ===
               category.id
                 ? 'text-white shadow-md'
                 : 'bg-white text-gray-700 hover:bg-gray-100 border border-gray-200'}"
