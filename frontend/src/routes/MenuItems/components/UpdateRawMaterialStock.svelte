@@ -442,7 +442,15 @@
             >
               <div class="flex flex-col items-start">
                 <span class="font-medium">In-House</span>
-                <span class="text-xs">{unitsInHouse.toFixed(2)} units | Total: {totalInHouse.toFixed(2)}</span>
+                <span class="text-xs">{unitsInHouse.toFixed(2)} units | ${totalInHouse.toFixed(2)}</span>
+                {#if templatePrices.length > 0}
+                  <span class="text-xs text-gray-600">
+                    {#each templatePrices as template, idx}
+                      {#if idx > 0} | {/if}
+                      {(unitsInHouse / (template.unitValue || 1)).toFixed(1)}×{template.unitValue}
+                    {/each}
+                  </span>
+                {/if}
               </div>
             </Button>
             <Button
@@ -451,7 +459,15 @@
             >
               <div class="flex flex-col items-start">
                 <span class="font-medium">In-Shop</span>
-                <span class="text-xs">{unitsInShop.toFixed(2)} units | Total: {totalInShop.toFixed(2)}</span>
+                <span class="text-xs">{unitsInShop.toFixed(2)} units | ${totalInShop.toFixed(2)}</span>
+                {#if templatePrices.length > 0}
+                  <span class="text-xs text-gray-600">
+                    {#each templatePrices as template, idx}
+                      {#if idx > 0} | {/if}
+                      {(unitsInShop / (template.unitValue || 1)).toFixed(1)}×{template.unitValue}
+                    {/each}
+                  </span>
+                {/if}
               </div>
             </Button>
           </div>
@@ -470,9 +486,11 @@
               {#each templatePrices as template}
                 {@const count = countNonTemplateInstances(template.priceValue, template.unitValue)}
                 {@const perUnitPrice = template.unitValue ? (template.priceValue! / template.unitValue).toFixed(2) : 'N/A'}
+                {@const currentLocationUnits = stockLocation === "in-house" ? unitsInHouse : unitsInShop}
+                {@const packageCount = (currentLocationUnits / (template.unitValue || 1)).toFixed(1)}
                 <div class="flex flex-col gap-3 p-4 border border-gray-300 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
                   <div class="flex-1">
-                    <div class="grid grid-cols-3 gap-3 text-sm">
+                    <div class="grid grid-cols-4 gap-3 text-sm">
                       <div>
                         <span class="text-gray-500 text-xs font-medium">Price</span>
                         <div class="text-gray-900 font-semibold">{template.priceValue}</div>
@@ -484,6 +502,10 @@
                       <div>
                         <span class="text-gray-500 text-xs font-medium">Per Unit</span>
                         <div class="text-gray-900 font-semibold">{perUnitPrice}</div>
+                      </div>
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">In Stock</span>
+                        <div class="text-gray-900 font-semibold">{packageCount}× packages</div>
                       </div>
                     </div>
                   </div>
