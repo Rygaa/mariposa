@@ -24,6 +24,7 @@
   let todayLogs = $state<any[]>([]);
   let isLoadingLogs = $state(false);
   let isDeletingPurchases = $state(false);
+  let totalStockValue = $state({ inHouse: 0, inShop: 0, total: 0 });
 
   onMount(async () => {
     if (!_globalStore.user) {
@@ -42,11 +43,47 @@
       });
       if (result.success) {
         menuItems = result.menuItems;
+        await calculateTotalStockValue();
       }
     } catch (error) {
       console.error("Error loading menu items:", error);
     }
     isLoading = false;
+  }
+
+  async function calculateTotalStockValue() {
+    let inHouseTotal = 0;
+    let inShopTotal = 0;
+
+    for (const item of menuItems) {
+      try {
+        const result = await trpc.listItemPricesByMenuItem.query({
+          menuItemId: item.id,
+          priceType: "buying",
+        });
+        
+        if (result.success) {
+          const prices = result.itemPrices.filter((p: any) => !p.isTemplate);
+          
+          for (const price of prices) {
+            const isInShop = price.description?.includes("[in-shop]");
+            if (isInShop) {
+              inShopTotal += price.priceValue || 0;
+            } else {
+              inHouseTotal += price.priceValue || 0;
+            }
+          }
+        }
+      } catch (error) {
+        console.error(`Error loading prices for ${item.name}:`, error);
+      }
+    }
+
+    totalStockValue = {
+      inHouse: inHouseTotal,
+      inShop: inShopTotal,
+      total: inHouseTotal + inShopTotal,
+    };
   }
 
   function handleCloseStockModal() {
@@ -56,6 +93,7 @@
   async function handleStockUpdated() {
     await loadMenuItems();
     await loadTodayLogs();
+    await calculateTotalStockValue();
   }
 
   async function loadTodayLogs() {
@@ -150,6 +188,23 @@
   <Card useAvailableHeight>
     <CardHeader>
       <CardTitle>Dashboard</CardTitle>
+      
+      <!-- Total Stock Value Display -->
+      <div class="grid grid-cols-3 gap-4 my-4">
+        <div class="p-4 bg-blue-50 rounded-lg border border-blue-200">
+          <div class="text-sm text-blue-600 font-medium">In-House Stock</div>
+          <div class="text-2xl font-bold text-blue-900">${totalStockValue.inHouse.toFixed(2)}</div>
+        </div>
+        <div class="p-4 bg-green-50 rounded-lg border border-green-200">
+          <div class="text-sm text-green-600 font-medium">In-Shop Stock</div>
+          <div class="text-2xl font-bold text-green-900">${totalStockValue.inShop.toFixed(2)}</div>
+        </div>
+        <div class="p-4 bg-purple-50 rounded-lg border border-purple-200">
+          <div class="text-sm text-purple-600 font-medium">Total Stock Value</div>
+          <div class="text-2xl font-bold text-purple-900">${totalStockValue.total.toFixed(2)}</div>
+        </div>
+      </div>
+      
       <div class="flex gap-2">
         <button
           onclick={openManageStocks}

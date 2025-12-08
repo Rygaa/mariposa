@@ -182,16 +182,32 @@
         ? [...sellingPrices].sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0]
         : null;
 
-      const inHouse = item.inHouseStockQuantity ?? 0;
-      const inShop = item.inShopStockQuantity ?? 0;
-      const unit = item.unit || 'units';
+      // Calculate stock quantities and values from non-template buying prices
+      const nonTemplatePrices = buyingPrices.filter((p: any) => !p.isTemplate);
+      
+      const inHouseUnits = nonTemplatePrices
+        .filter((p: any) => !p.description?.includes("[in-shop]"))
+        .reduce((sum: number, p: any) => sum + (p.unitValue || 0), 0);
+      
+      const inShopUnits = nonTemplatePrices
+        .filter((p: any) => p.description?.includes("[in-shop]"))
+        .reduce((sum: number, p: any) => sum + (p.unitValue || 0), 0);
+      
+      const inHouseValue = nonTemplatePrices
+        .filter((p: any) => !p.description?.includes("[in-shop]"))
+        .reduce((sum: number, p: any) => sum + (p.priceValue || 0), 0);
+      
+      const inShopValue = nonTemplatePrices
+        .filter((p: any) => p.description?.includes("[in-shop]"))
+        .reduce((sum: number, p: any) => sum + (p.priceValue || 0), 0);
 
+      const unit = item.unit || 'units';
 
       return {
         needUpdate: buyingPrices.filter((p: any) => p.isTemplate).length === 0 ? "⚠️" : "🟢",
         name: item.name,
-        'in-house stock': `${inHouse} ${unit}`,
-        'in-shop stock': `${inShop} ${unit}`,
+        'in-house stock': `${inHouseUnits.toFixed(2)} ${unit} | $${inHouseValue.toFixed(2)}`,
+        'in-shop stock': `${inShopUnits.toFixed(2)} ${unit} | $${inShopValue.toFixed(2)}`,
         'buying price': latestBuyingPrice ? `$${latestBuyingPrice.priceValue}` : (item.cost ? `$${item.cost}` : 'N/A'),
         'selling price': latestSellingPrice ? `$${latestSellingPrice.priceValue}` : (item.price ? `$${item.price}` : 'N/A'),
         _original: item
