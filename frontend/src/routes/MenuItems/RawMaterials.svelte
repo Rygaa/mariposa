@@ -171,6 +171,9 @@
       const buyingPrices = (item as any).buyingPrices || [];
       const sellingPrices = (item as any).sellingPrices || [];
       
+      // Check for template prices
+      const hasTemplates = buyingPrices.some((p: any) => p.isTemplate === true);
+      
       const latestBuyingPrice = buyingPrices.length > 0 
         ? buyingPrices.sort((a: any, b: any) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())[0]
         : null;
@@ -189,7 +192,8 @@
         'in-shop stock': `${inShop} ${unit}`,
         'buying price': latestBuyingPrice ? `$${latestBuyingPrice.priceValue}` : (item.cost ? `$${item.cost}` : 'N/A'),
         'selling price': latestSellingPrice ? `$${latestSellingPrice.priceValue}` : (item.price ? `$${item.price}` : 'N/A'),
-        _original: item
+        _original: item,
+        _hasTemplates: hasTemplates
       };
     })
   );
@@ -256,12 +260,26 @@
           inputFilters={['name']}
         >
           {#snippet actions(row)}
-            <button
-              onclick={() => handleEdit(row)}
-              class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
-            >
-              Edit
-            </button>
+            <div class="flex items-center gap-2">
+              {#if !row._hasTemplates}
+                <button
+                  onclick={() => {
+                    selectedStockItem = row._original;
+                    isStockModalOpen = true;
+                  }}
+                  class="px-2 py-1 text-xs bg-amber-500 text-white rounded hover:bg-amber-600 transition-colors"
+                  title="No price templates! Click to add templates."
+                >
+                  ⚠️ Add Templates
+                </button>
+              {/if}
+              <button
+                onclick={() => handleEdit(row)}
+                class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
+              >
+                Edit
+              </button>
+            </div>
           {/snippet}
         </DataGrid>
       </DataDisplayer>
@@ -278,12 +296,9 @@
   />
 {/if}
 
-<!-- <UpdateRawMaterialStock
+<UpdateRawMaterialStock
   bind:isOpen={isStockModalOpen}
-  menuItem={selectedStockItem}
-  menuItems={menuItems}
-  mode={stockModalMode}
   onClose={handleCloseStockModal}
   onStockUpdated={handleStockUpdated}
 />
- -->
+

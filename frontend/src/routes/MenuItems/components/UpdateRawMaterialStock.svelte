@@ -23,10 +23,12 @@
     isOpen = $bindable(false),
     onStockUpdated,
     onClose,
+    defaultMaterialId,
   }: {
     isOpen?: boolean;
     onStockUpdated?: () => void | Promise<void>;
     onClose?: () => void;
+    defaultMaterialId?: string;
   } = $props();
   let isSubmitting = $state(false);
   let error = $state("");
@@ -67,6 +69,13 @@
 
   onMount(() => {
     loadRawMaterials();
+  });
+
+  // Set default material when provided
+  $effect(() => {
+    if (defaultMaterialId && rawMaterials.length > 0 && !selectedMaterialId) {
+      selectedMaterialId = defaultMaterialId;
+    }
   });
 
   async function loadRawMaterials() {
