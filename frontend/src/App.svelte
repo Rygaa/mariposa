@@ -207,8 +207,8 @@
             <Route path="/menu-items">
               <MenuItems />
             </Route>
-            <Route path="/menu-items/RAW_MATERIAL" let:params>
-              <RawMaterials type={params.RAW_MATERIAL} />
+            <Route path="/menu-items/RAW_MATERIAL">
+              <RawMaterials type="RAW_MATERIAL" />
             </Route>
             <Route path="/menu-items/:type" let:params>
               <MenuItems type={params.type} />

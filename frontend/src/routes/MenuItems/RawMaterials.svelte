@@ -93,10 +93,6 @@
         filters.type = filterType as any;
       }
 
-      // Only apply category filter when filtering by MENU_ITEM type
-      if (filterCategoryId && filterType.includes("MENU_ITEM")) {
-        filters.categoryId = filterCategoryId;
-      }
 
       if (filterAvailable !== "all") {
         filters.isAvailable = filterAvailable === "available";
@@ -237,9 +233,9 @@
 <Page>
   <Card>
     <CardHeader>
-      <CardTitle>Menu Items</CardTitle>
+      <CardTitle>Raw Materials</CardTitle>
       <div class="flex gap-2">
-        <CreateMenuItemModal onMenuItemCreated={loadMenuItems} />
+        <CreateMenuItemModal defaultType="RAW_MATERIAL" onMenuItemCreated={loadMenuItems} />
         <button
           onclick={() => {
             selectedStockItem = null;
@@ -253,56 +249,6 @@
       </div>
     </CardHeader>
     <CardContent class="p-4 flex flex-col">
-      <div class="mb-6">
-        <div class="flex flex-col gap-4">
-          {#if filterType.includes("MENU_ITEM") && !filterType.includes("SUPPLEMENT")}
-            <div>
-              <h3 class="text-sm font-medium text-gray-700 mb-2">Categories</h3>
-              <div class="flex flex-wrap gap-2">
-                <button
-                  onclick={() => filterCategoryId = ""}
-                  class="px-3 py-1.5 text-sm rounded-md transition-colors {filterCategoryId === '' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-                >
-                  All Categories
-                </button>
-                {#each categories as category}
-                  <button
-                    onclick={() => filterCategoryId = category.id}
-                    class="px-3 py-1.5 text-sm rounded-md transition-colors {filterCategoryId === category.id ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-                  >
-                    {category.name}
-                  </button>
-                {/each}
-              </div>
-            </div>
-          {/if}
-
-          <div>
-            <h3 class="text-sm font-medium text-gray-700 mb-2">Availability</h3>
-            <div class="flex flex-wrap gap-2">
-              <button
-                onclick={() => filterAvailable = "all"}
-                class="px-3 py-1.5 text-sm rounded-md transition-colors {filterAvailable === 'all' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-              >
-                All Items
-              </button>
-              <button
-                onclick={() => filterAvailable = "available"}
-                class="px-3 py-1.5 text-sm rounded-md transition-colors {filterAvailable === 'available' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-              >
-                Available
-              </button>
-              <button
-                onclick={() => filterAvailable = "unavailable"}
-                class="px-3 py-1.5 text-sm rounded-md transition-colors {filterAvailable === 'unavailable' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-              >
-                Unavailable
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-
       <DataDisplayer {isLoading} isEmpty={filteredMenuItems.length === 0}>
         <DataGrid 
           data={filteredMenuItems} 
@@ -332,7 +278,7 @@
   />
 {/if}
 
-<UpdateRawMaterialStock
+<!-- <UpdateRawMaterialStock
   bind:isOpen={isStockModalOpen}
   menuItem={selectedStockItem}
   menuItems={menuItems}
@@ -340,4 +286,4 @@
   onClose={handleCloseStockModal}
   onStockUpdated={handleStockUpdated}
 />
-
+ -->

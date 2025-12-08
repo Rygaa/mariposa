@@ -23,12 +23,14 @@
 
   let {
     onMenuItemCreated,
+    defaultType,
   }: {
     onMenuItemCreated?: () => void | Promise<void>;
+    defaultType?: "MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION";
   } = $props();
 
   let name = $state("");
-  let type = $state<Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">>(["MENU_ITEM"]);
+  let type = $state<Array<"MENU_ITEM" | "RECIPE" | "RAW_MATERIAL" | "SUPPLEMENT" | "MENU_ITEM_OPTION">>([defaultType || "MENU_ITEM"]);
   let price = $state<number | undefined>(undefined);
   let priceString = $state("");
   let description = $state("");
@@ -66,7 +68,7 @@
 
   function resetForm() {
     name = "";
-    type = ["MENU_ITEM"];
+    type = [defaultType || "MENU_ITEM"];
     price = undefined;
     priceString = "";
     description = "";
