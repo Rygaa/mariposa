@@ -188,7 +188,7 @@
 
 
       return {
-        needUpdate: buyingPrices.length === 0 ? "⚠️" : "🟢",
+        needUpdate: buyingPrices.filter((p: any) => p.isTemplate).length === 0 ? "⚠️" : "🟢",
         name: item.name,
         'in-house stock': `${inHouse} ${unit}`,
         'in-shop stock': `${inShop} ${unit}`,
