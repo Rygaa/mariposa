@@ -33,6 +33,7 @@
   let isStockModalOpen = $state(false);
   let stockModalMode = $state<"add" | "subtract">("add");
   let selectedStockItem = $state<any>(null);
+  let defaultMaterialId = $state<string | undefined>(undefined);
 
   onMount(async () => {
     if (!_globalStore.user) {
@@ -227,10 +228,16 @@
   function handleCloseStockModal() {
     isStockModalOpen = false;
     selectedStockItem = null;
+    defaultMaterialId = undefined;
   }
 
   async function handleStockUpdated() {
     await loadMenuItems();
+  }
+
+  function handleStockClick(row: any) {
+    defaultMaterialId = row._original.id;
+    isStockModalOpen = true;
   }
 </script>
 
@@ -260,12 +267,20 @@
           inputFilters={['name']}
         >
           {#snippet actions(row)}
-            <button
-              onclick={() => handleEdit(row)}
-              class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
-            >
-              Edit
-            </button>
+            <div class="flex gap-2">
+              <button
+                onclick={() => handleEdit(row)}
+                class="px-3 py-1 text-sm bg-indigo-600 text-white rounded hover:bg-indigo-700 transition-colors"
+              >
+                Edit
+              </button>
+              <button
+                onclick={() => handleStockClick(row)}
+                class="px-3 py-1 text-sm bg-orange-600 text-white rounded hover:bg-orange-700 transition-colors"
+              >
+                Stocks
+              </button>
+            </div>
           {/snippet}
         </DataGrid>
       </DataDisplayer>
@@ -286,5 +301,6 @@
   bind:isOpen={isStockModalOpen}
   onClose={handleCloseStockModal}
   onStockUpdated={handleStockUpdated}
+  defaultMaterialId={defaultMaterialId}
 />
 

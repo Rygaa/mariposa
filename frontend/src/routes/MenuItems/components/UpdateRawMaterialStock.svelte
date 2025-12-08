@@ -71,9 +71,9 @@
     loadRawMaterials();
   });
 
-  // Set default material when provided
+  // Set default material when provided and modal opens
   $effect(() => {
-    if (defaultMaterialId && rawMaterials.length > 0 && !selectedMaterialId) {
+    if (isOpen && defaultMaterialId && rawMaterials.length > 0) {
       selectedMaterialId = defaultMaterialId;
     }
   });
@@ -389,35 +389,47 @@
 
     <div class="space-y-6 py-4 h-full overflow-y-auto overflow-x-visible p-4">
       <!-- Material Selection -->
-      <div class="space-y-2">
-        <div class="text-sm font-medium">Select Material</div>
-        <Select searchable bind:value={selectedMaterialId}>
-          <SelectTrigger class="w-full">
-            <SelectValue placeholder="Choose a material..." />
-          </SelectTrigger>
-          <SelectContent class="max-h-60">
-            {#each rawMaterials as material}
-              <SelectItem value={material.id} searchLabel={material.name}>
-                <div class="flex flex-col">
-                  <span class="font-medium">{material.name}</span>
-                  {#if material.unit}
-                    <span class="text-xs text-gray-500">Unit: {material.unit}</span>
-                  {/if}
-                </div>
-              </SelectItem>
-            {/each}
-          </SelectContent>
-        </Select>
-        
-        {#if selectedMaterial}
-          <div class="text-sm text-gray-600">
-            Selected: <span class="font-medium">{selectedMaterial.name}</span>
+      {#if !defaultMaterialId}
+        <div class="space-y-2">
+          <div class="text-sm font-medium">Select Material</div>
+          <Select searchable bind:value={selectedMaterialId}>
+            <SelectTrigger class="w-full">
+              <SelectValue placeholder="Choose a material..." />
+            </SelectTrigger>
+            <SelectContent class="max-h-60">
+              {#each rawMaterials as material}
+                <SelectItem value={material.id} searchLabel={material.name}>
+                  <div class="flex flex-col">
+                    <span class="font-medium">{material.name}</span>
+                    {#if material.unit}
+                      <span class="text-xs text-gray-500">Unit: {material.unit}</span>
+                    {/if}
+                  </div>
+                </SelectItem>
+              {/each}
+            </SelectContent>
+          </Select>
+          
+          {#if selectedMaterial}
+            <div class="text-sm text-gray-600">
+              Selected: <span class="font-medium">{selectedMaterial.name}</span>
+              {#if selectedMaterial.unit}
+                <span class="text-gray-500">({selectedMaterial.unit})</span>
+              {/if}
+            </div>
+          {/if}
+        </div>
+      {:else if selectedMaterial}
+        <div class="space-y-2">
+          <div class="text-sm font-medium">Material</div>
+          <div class="text-lg font-semibold text-gray-900">
+            {selectedMaterial.name}
             {#if selectedMaterial.unit}
-              <span class="text-gray-500">({selectedMaterial.unit})</span>
+              <span class="text-sm text-gray-500">({selectedMaterial.unit})</span>
             {/if}
           </div>
-        {/if}
-      </div>
+        </div>
+      {/if}
 
       {#if selectedMaterial}
         <!-- Stock Location Selection -->
