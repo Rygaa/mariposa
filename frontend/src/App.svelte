@@ -19,6 +19,7 @@
   import Carts from "./routes/Carts/Carts.svelte";
   import RawMaterials from "./routes/MenuItems/RawMaterials.svelte";
   import Dashboard from "./routes/Dashboard/Dashboard.svelte";
+  import Admin from "../Admin.svelte";
 
   $effect(() => {
     if (_globalStore.wsMessage) {
@@ -217,6 +218,9 @@
             </Route>
             <Route path="/carts">
               <Carts />
+            </Route>
+                  <Route path="/admin">
+              <Admin />
             </Route>
             <Route path="/stats">
               <Stats />

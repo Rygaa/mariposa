@@ -49,6 +49,8 @@
     unitValue: number | null;
     description: string | null;
     isTemplate: boolean;
+    location?: "in-house" | "in-shop";
+    createdAt?: Date;
   }>>([]);
   let loadingPrices = $state(false);
 
@@ -93,13 +95,17 @@
         priceType: "buying",
       });
       if (result.success) {
-        buyingPrices = result.itemPrices.map((p: any) => ({
-          id: p.id,
-          priceValue: p.priceValue,
-          unitValue: p.unitValue,
-          description: p.description,
-          isTemplate: p.isTemplate,
-        }));
+        buyingPrices = result.itemPrices
+          .map((p: any) => ({
+            id: p.id,
+            priceValue: p.priceValue,
+            unitValue: p.unitValue,
+            description: p.description,
+            isTemplate: p.isTemplate,
+            location: p.description?.includes("[in-shop]") ? "in-shop" : "in-house",
+            createdAt: p.createdAt ? new Date(p.createdAt) : new Date(),
+          }))
+          .sort((a: any, b: any) => a.createdAt!.getTime() - b.createdAt!.getTime()); // Sort by creation date
       }
     } catch (err) {
       console.error("Failed to load buying prices:", err);
@@ -123,6 +129,7 @@
         multiplier: 1,
         priceType: "buying",
         isTemplate: false,
+        description: stockLocation === "in-shop" ? `[in-shop]` : `[in-house]`,
       });
       
       if (result.success) {
@@ -136,19 +143,50 @@
     isSubmitting = false;
   }
 
+  async function handleAddPricePerUnit(priceValue: number, unitValue: number) {
+    if (!selectedMaterial) return;
+    
+    isSubmitting = true;
+    error = "";
+    
+    try {
+      // Calculate price for a single unit
+      const pricePerUnit = priceValue / unitValue;
+      
+      const result = await trpc.createItemPrice.mutate({
+        menuItemId: selectedMaterial.id,
+        priceValue: pricePerUnit,
+        unitValue: 1,
+        multiplier: 1,
+        priceType: "buying",
+        isTemplate: false,
+        description: stockLocation === "in-shop" ? `[in-shop]` : `[in-house]`,
+      });
+      
+      if (result.success) {
+        await loadBuyingPrices();
+      }
+    } catch (err: any) {
+      error = err.message || "Failed to add price per unit";
+      console.error("Failed to add price per unit:", err);
+    }
+    
+    isSubmitting = false;
+  }
+
   async function handleRemovePrice(priceValue: number, unitValue: number) {
     if (!selectedMaterial) return;
     
-    // Find the first non-template price that matches
-    const priceToRemove = buyingPrices.find(
+    // Find any non-template price in the selected location with enough units
+    const priceToUpdate = buyingPrices.find(
       (p) => 
         !p.isTemplate && 
-        p.priceValue === priceValue && 
-        p.unitValue === unitValue
+        p.location === stockLocation &&
+        (p.unitValue || 0) >= unitValue
     );
     
-    if (!priceToRemove) {
-      error = "No matching non-template price found";
+    if (!priceToUpdate) {
+      error = "No purchase record found with enough units";
       return;
     }
     
@@ -156,16 +194,109 @@
     error = "";
     
     try {
-      const result = await trpc.deleteItemPrice.mutate({
-        id: priceToRemove.id,
-      });
+      const newUnitValue = (priceToUpdate.unitValue || 0) - unitValue;
       
-      if (result.success) {
-        await loadBuyingPrices();
+      if (newUnitValue <= 0) {
+        // Delete the record if units would be 0 or less
+        const result = await trpc.deleteItemPrice.mutate({
+          id: priceToUpdate.id,
+        });
+        
+        if (result.success) {
+          await loadBuyingPrices();
+        }
+      } else {
+        // Delete old record and create new one with updated units
+        const pricePerUnit = (priceToUpdate.priceValue || 0) / (priceToUpdate.unitValue || 1);
+        const newPriceValue = pricePerUnit * newUnitValue;
+        
+        const deleteResult = await trpc.deleteItemPrice.mutate({
+          id: priceToUpdate.id,
+        });
+        
+        if (deleteResult.success) {
+          const createResult = await trpc.createItemPrice.mutate({
+            menuItemId: selectedMaterial.id,
+            priceValue: newPriceValue,
+            unitValue: newUnitValue,
+            multiplier: 1,
+            priceType: "buying",
+            isTemplate: false,
+            description: stockLocation === "in-shop" ? `[in-shop]` : `[in-house]`,
+          });
+          
+          if (createResult.success) {
+            await loadBuyingPrices();
+          }
+        }
       }
     } catch (err: any) {
-      error = err.message || "Failed to remove price";
-      console.error("Failed to remove price:", err);
+      error = err.message || "Failed to remove units";
+      console.error("Failed to remove units:", err);
+    }
+    
+    isSubmitting = false;
+  }
+
+  async function handleRemovePricePerUnit(priceValue: number, unitValue: number) {
+    if (!selectedMaterial) return;
+    
+    // Find any non-template price in the selected location with at least 1 unit
+    const priceToUpdate = buyingPrices.find(
+      (p) => 
+        !p.isTemplate && 
+        p.location === stockLocation &&
+        (p.unitValue || 0) >= 1
+    );
+    
+    if (!priceToUpdate) {
+      error = "No purchase record found with units to remove";
+      return;
+    }
+    
+    isSubmitting = true;
+    error = "";
+    
+    try {
+      const newUnitValue = (priceToUpdate.unitValue || 0) - 1;
+      
+      if (newUnitValue <= 0) {
+        // Delete the record if units would be 0 or less
+        const result = await trpc.deleteItemPrice.mutate({
+          id: priceToUpdate.id,
+        });
+        
+        if (result.success) {
+          await loadBuyingPrices();
+        }
+      } else {
+        // Delete old record and create new one with updated units
+        const pricePerUnit = (priceToUpdate.priceValue || 0) / (priceToUpdate.unitValue || 1);
+        const newPriceValue = pricePerUnit * newUnitValue;
+        
+        const deleteResult = await trpc.deleteItemPrice.mutate({
+          id: priceToUpdate.id,
+        });
+        
+        if (deleteResult.success) {
+          const createResult = await trpc.createItemPrice.mutate({
+            menuItemId: selectedMaterial.id,
+            priceValue: newPriceValue,
+            unitValue: newUnitValue,
+            multiplier: 1,
+            priceType: "buying",
+            isTemplate: false,
+            description: stockLocation === "in-shop" ? `[in-shop]` : `[in-house]`,
+          });
+          
+          if (createResult.success) {
+            await loadBuyingPrices();
+          }
+        }
+      }
+    } catch (err: any) {
+      error = err.message || "Failed to remove per-unit";
+      console.error("Failed to remove per-unit:", err);
     }
     
     isSubmitting = false;
@@ -210,18 +341,44 @@
       (p) => 
         !p.isTemplate && 
         p.priceValue === priceValue && 
-        p.unitValue === unitValue
+        p.unitValue === unitValue &&
+        p.location === stockLocation
     ).length;
   }
+
+  // Calculate totals by location
+  let totalInHouse = $derived.by(() => {
+    return buyingPrices
+      .filter(p => !p.isTemplate && p.location === "in-house")
+      .reduce((sum, p) => sum + (p.priceValue || 0), 0);
+  });
+
+  let totalInShop = $derived.by(() => {
+    return buyingPrices
+      .filter(p => !p.isTemplate && p.location === "in-shop")
+      .reduce((sum, p) => sum + (p.priceValue || 0), 0);
+  });
+
+  let unitsInHouse = $derived.by(() => {
+    return buyingPrices
+      .filter(p => !p.isTemplate && p.location === "in-house")
+      .reduce((sum, p) => sum + (p.unitValue || 0), 0);
+  });
+
+  let unitsInShop = $derived.by(() => {
+    return buyingPrices
+      .filter(p => !p.isTemplate && p.location === "in-shop")
+      .reduce((sum, p) => sum + (p.unitValue || 0), 0);
+  });
 </script>
 
 <Dialog bind:open={isOpen}>
-  <DialogContent class="max-w-2xl max-h-[90vh] !overflow-visible">
+  <DialogContent class="w-full h-full !overflow-visible">
     <DialogHeader>
       <DialogTitle>Update Raw Material Stock</DialogTitle>
     </DialogHeader>
 
-    <div class="space-y-6 py-4 max-h-[70vh] overflow-y-auto overflow-x-visible p-4">
+    <div class="space-y-6 py-4 h-full overflow-y-auto overflow-x-visible p-4">
       <!-- Material Selection -->
       <div class="space-y-2">
         <div class="text-sm font-medium">Select Material</div>
@@ -262,13 +419,19 @@
               variant={stockLocation === "in-house" ? "primary" : "outline"}
               onclick={() => { stockLocation = "in-house"; }}
             >
-              <span class="flex-1">In-House</span>
+              <div class="flex flex-col items-start">
+                <span class="font-medium">In-House</span>
+                <span class="text-xs">{unitsInHouse.toFixed(2)} units | Total: {totalInHouse.toFixed(2)}</span>
+              </div>
             </Button>
             <Button
               variant={stockLocation === "in-shop" ? "primary" : "outline"}
               onclick={() => { stockLocation = "in-shop"; }}
             >
-              <span class="flex-1">In-Shop</span>
+              <div class="flex flex-col items-start">
+                <span class="font-medium">In-Shop</span>
+                <span class="text-xs">{unitsInShop.toFixed(2)} units | Total: {totalInShop.toFixed(2)}</span>
+              </div>
             </Button>
           </div>
         </div>
@@ -285,35 +448,43 @@
             <div class="space-y-3">
               {#each templatePrices as template}
                 {@const count = countNonTemplateInstances(template.priceValue, template.unitValue)}
-                <div class="flex items-center gap-3 p-3 border border-gray-200 rounded-md bg-gray-50">
+                {@const perUnitPrice = template.unitValue ? (template.priceValue! / template.unitValue).toFixed(2) : 'N/A'}
+                <div class="flex flex-col gap-3 p-4 border border-gray-300 rounded-lg bg-white shadow-sm hover:shadow-md transition-shadow">
                   <div class="flex-1">
-                    <div class="font-medium">
-                      {template.description || "Unnamed Price"}
-                    </div>
-                    <div class="text-sm text-gray-600">
-                      Price: {template.priceValue} | Unit: {template.unitValue}
-                    </div>
-                    <div class="text-xs text-gray-500 mt-1">
-                      Non-template instances: {count}
+                    <div class="grid grid-cols-3 gap-3 text-sm">
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">Price</span>
+                        <div class="text-gray-900 font-semibold">{template.priceValue}</div>
+                      </div>
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">Units</span>
+                        <div class="text-gray-900 font-semibold">{template.unitValue}</div>
+                      </div>
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">Per Unit</span>
+                        <div class="text-gray-900 font-semibold">{perUnitPrice}</div>
+                      </div>
                     </div>
                   </div>
                   
-                  <div class="flex items-center gap-2">
-                    <button
-                      type="button"
-                      onclick={() => handleRemovePrice(template.priceValue!, template.unitValue!)}
-                      disabled={isSubmitting || count === 0}
-                      class="w-8 h-8 p-0 rounded border border-gray-300 hover:bg-gray-100 disabled:opacity-50 disabled:cursor-not-allowed"
-                    >
-                      -
-                    </button>
+                  <div class="flex gap-2">
                     <button
                       type="button"
                       onclick={() => handleAddPrice(template.priceValue!, template.unitValue!)}
                       disabled={isSubmitting}
-                      class="w-8 h-8 p-0 rounded bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed"
+                      class="flex-1 px-4 py-2 rounded-md bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium transition-colors shadow-sm"
+                      title="Add purchase (whole units)"
                     >
-                      +
+                      + Whole ({template.unitValue} units)
+                    </button>
+                    <button
+                      type="button"
+                      onclick={() => handleAddPricePerUnit(template.priceValue!, template.unitValue!)}
+                      disabled={isSubmitting}
+                      class="flex-1 px-4 py-2 rounded-md bg-green-500 text-white hover:bg-green-600 disabled:opacity-50 disabled:cursor-not-allowed text-sm font-medium transition-colors shadow-sm"
+                      title="Add purchase (per unit)"
+                    >
+                      + Per Unit (1 unit)
                     </button>
                   </div>
                 </div>
@@ -324,47 +495,108 @@
 
         <!-- Non-Template Buying Prices -->
         <div class="space-y-2">
-          <div class="text-sm font-medium">Purchase Records (Non-Template)</div>
+          <div class="text-sm font-medium">Purchase Records</div>
           
           {#if loadingPrices}
             <div class="text-sm text-gray-500">Loading...</div>
           {:else}
-            {@const nonTemplatePrices = buyingPrices.filter(p => !p.isTemplate)}
+            {@const nonTemplatePrices = buyingPrices.filter(p => !p.isTemplate && p.location === stockLocation)}
             {#if nonTemplatePrices.length === 0}
-              <div class="text-sm text-gray-500">No purchase records found</div>
+              <div class="text-sm text-gray-500 p-4 border border-gray-200 rounded-lg bg-gray-50">No purchase records found</div>
             {:else}
               <div class="max-h-60 overflow-y-auto space-y-2">
                 {#each nonTemplatePrices as price}
-                  <div class="flex items-center justify-between p-2 border border-gray-200 rounded-md bg-white text-sm">
-                    <div class="flex-1">
-                      <span class="text-gray-700">{price.description || "Purchase"}</span>
-                      <span class="text-gray-500 ml-2">
-                        Price: {price.priceValue} | Unit: {price.unitValue}
-                      </span>
+                  {@const perUnitPrice = price.unitValue ? (price.priceValue! / price.unitValue).toFixed(2) : 'N/A'}
+                  <div class="flex flex-col gap-3 p-3 border border-gray-200 rounded-lg bg-white hover:bg-gray-50 transition-colors">
+                    <div class="grid grid-cols-3 gap-3 text-sm">
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">Total Price</span>
+                        <div class="text-gray-900 font-semibold">{price.priceValue}</div>
+                      </div>
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">Units</span>
+                        <div class="text-gray-900 font-semibold">{price.unitValue}</div>
+                      </div>
+                      <div>
+                        <span class="text-gray-500 text-xs font-medium">Per Unit</span>
+                        <div class="text-gray-900 font-semibold">{perUnitPrice}</div>
+                      </div>
                     </div>
-                    <button
-                      type="button"
-                      onclick={async () => {
-                        isSubmitting = true;
-                        error = "";
-                        try {
-                          const result = await trpc.deleteItemPrice.mutate({ id: price.id });
-                          if (result.success) {
-                            await loadBuyingPrices();
-                          }
-                        } catch (err: any) {
-                          error = err.message || "Failed to delete";
-                        }
-                        isSubmitting = false;
-                      }}
-                      disabled={isSubmitting}
-                      aria-label="Delete purchase record"
-                      class="text-red-600 hover:text-red-800 disabled:opacity-50"
-                    >
-                      <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
-                      </svg>
-                    </button>
+                    
+                    <div class="flex items-center justify-between pt-2 border-t border-gray-100">
+                      <div class="text-xs text-gray-500">
+                        {price.description || "Purchase"}
+                      </div>
+                      <div class="flex items-center gap-2">
+                        <button
+                          type="button"
+                          onclick={async () => {
+                            isSubmitting = true;
+                            error = "";
+                            try {
+                              const newUnitValue = (price.unitValue || 0) - 1;
+                              
+                              if (newUnitValue <= 0) {
+                                const result = await trpc.deleteItemPrice.mutate({ id: price.id });
+                                if (result.success) {
+                                  await loadBuyingPrices();
+                                }
+                              } else {
+                                const pricePerUnit = (price.priceValue || 0) / (price.unitValue || 1);
+                                price.unitValue = newUnitValue;
+                                price.priceValue = pricePerUnit * newUnitValue;
+                                
+                                const deleteResult = await trpc.deleteItemPrice.mutate({ id: price.id });
+                                if (deleteResult.success) {
+                                  const createResult = await trpc.createItemPrice.mutate({
+                                    menuItemId: selectedMaterial!.id,
+                                    priceValue: price.priceValue,
+                                    unitValue: price.unitValue,
+                                    multiplier: 1,
+                                    priceType: "buying",
+                                    isTemplate: false,
+                                    description: price.description || (stockLocation === "in-shop" ? `[in-shop]` : `[in-house]`),
+                                  });
+                                  if (createResult.success) {
+                                    price.id = createResult.itemPrice.id;
+                                  }
+                                }
+                              }
+                            } catch (err: any) {
+                              error = err.message || "Failed to remove per unit";
+                              await loadBuyingPrices();
+                            }
+                            isSubmitting = false;
+                          }}
+                          disabled={isSubmitting}
+                          title="Remove 1 unit"
+                          class="px-3 py-1.5 rounded-md border border-orange-300 bg-orange-50 text-orange-700 hover:bg-orange-100 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium transition-colors"
+                        >
+                          - 1 Unit
+                        </button>
+                        <button
+                          type="button"
+                          onclick={async () => {
+                            isSubmitting = true;
+                            error = "";
+                            try {
+                              const result = await trpc.deleteItemPrice.mutate({ id: price.id });
+                              if (result.success) {
+                                await loadBuyingPrices();
+                              }
+                            } catch (err: any) {
+                              error = err.message || "Failed to delete";
+                            }
+                            isSubmitting = false;
+                          }}
+                          disabled={isSubmitting}
+                          title="Delete entire purchase record"
+                          class="px-3 py-1.5 rounded-md bg-red-500 text-white hover:bg-red-600 disabled:opacity-50 disabled:cursor-not-allowed text-xs font-medium transition-colors"
+                        >
+                          Delete
+                        </button>
+                      </div>
+                    </div>
                   </div>
                 {/each}
               </div>

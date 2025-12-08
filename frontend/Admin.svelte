@@ -4,12 +4,59 @@
   import { _globalStore } from "./src/store/globalStore.svelte";
   import AvailableHeightContainer from "./src/lib/components/AvailableHeightContainer.svelte";
   import Button from "./src/lib/components/Button.svelte";
+  import { trpc } from "./src/lib/trpc";
 
-  onMount(() => {
+  let settings = $state<any>(null);
+  let isLoading = $state(false);
+  let isSaving = $state(false);
+  let message = $state("");
+
+  onMount(async () => {
     if (!_globalStore.user || !_globalStore.user.role?.includes("ADMIN")) {
       navigate("/learning", { replace: true });
+      return;
     }
+
+    // Load settings
+    await loadSettings();
   });
+
+  async function loadSettings() {
+    isLoading = true;
+    try {
+      const result = await trpc.getSettings.query();
+      if (result.success) {
+        settings = result.settings;
+      }
+    } catch (error) {
+      console.error("Error loading settings:", error);
+      message = "Failed to load settings";
+    } finally {
+      isLoading = false;
+    }
+  }
+
+  async function updateShouldCountRawMaterial(value: boolean) {
+    isSaving = true;
+    message = "";
+    try {
+      const result = await trpc.updateSettings.mutate({
+        shouldCountRawMaterial: value,
+      });
+      if (result.success) {
+        settings = result.settings;
+        message = "Setting updated successfully!";
+        setTimeout(() => {
+          message = "";
+        }, 3000);
+      }
+    } catch (error) {
+      console.error("Error updating settings:", error);
+      message = "Failed to update setting";
+    } finally {
+      isSaving = false;
+    }
+  }
 </script>
 
 <AvailableHeightContainer>
@@ -78,7 +125,38 @@
         </div>
         <h3 class="text-lg font-semibold text-gray-900 mb-2">System Settings</h3>
         <p class="text-gray-600 text-sm mb-4">Configure system preferences</p>
-        <div class="text-gray-400 text-sm">Coming soon...</div>
+        
+        {#if isLoading}
+          <div class="text-gray-500 text-sm">Loading settings...</div>
+        {:else if settings}
+          <div class="space-y-4">
+            <!-- Should Count Raw Material Toggle -->
+            <div class="flex items-center justify-between">
+              <div>
+                <div class="text-sm font-medium text-gray-700">Count Raw Material</div>
+                <p class="text-xs text-gray-500 mt-1">Enable raw material counting in inventory</p>
+              </div>
+              <button
+                onclick={() => updateShouldCountRawMaterial(!settings.shouldCountRawMaterial)}
+                disabled={isSaving}
+                aria-label="Toggle raw material counting"
+                class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 {settings.shouldCountRawMaterial ? 'bg-purple-600' : 'bg-gray-200'} {isSaving ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}"
+              >
+                <span
+                  class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {settings.shouldCountRawMaterial ? 'translate-x-6' : 'translate-x-1'}"
+                ></span>
+              </button>
+            </div>
+            
+            {#if message}
+              <div class="text-sm {message.includes('success') ? 'text-green-600' : 'text-red-600'}">
+                {message}
+              </div>
+            {/if}
+          </div>
+        {:else}
+          <div class="text-gray-400 text-sm">Failed to load settings</div>
+        {/if}
       </div>
     </div>
 

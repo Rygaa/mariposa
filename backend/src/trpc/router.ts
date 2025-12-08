@@ -1,5 +1,6 @@
 import { router, ping, giveMeRandomNumber, heartbeat } from "../index";
 import { getAllUsers, createUser, updateUser, deleteUser } from "./admin/users";
+import { getSettings, updateSettings } from "./admin/settings";
 import { auth, login, signup, updateMyPassword, updateUserMeta } from "./user/users";
 import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById, reorder as reorderEatingTables } from "./user/eatingTables";
 import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById } from "./user/categories";
@@ -119,6 +120,8 @@ export const appRouter = router({
   createLog,
   getLogs,
   clearLogs,
+  getSettings,
+  updateSettings,
 });
 
 export type AppRouter = typeof appRouter;

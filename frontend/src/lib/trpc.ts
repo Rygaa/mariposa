@@ -369,4 +369,10 @@ export const trpc = {
   deleteAllNonTemplateItemPrices: {
     mutate: wrapMutation(baseClient.deleteAllNonTemplateItemPrices.mutate),
   },
+  getSettings: {
+    query: wrapMutation(baseClient.getSettings.query),
+  },
+  updateSettings: {
+    mutate: wrapMutation(baseClient.updateSettings.mutate),
+  },
 };
