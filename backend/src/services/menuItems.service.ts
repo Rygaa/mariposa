@@ -84,44 +84,96 @@ type ListFilters = {
   offset?: number;
   excludeIds?: string[];
   shouldIncludeSupplements?: boolean;
+  shouldIncludeItemPrices?: boolean;
 };
 
 async function list(
   filters: ListFilters = {},
   tx: DbTransactionOrDB = db
 ): Promise<any[]> {
-  const { search, type, categoryId, isAvailable, limit = 100, offset = 0, excludeIds = [], shouldIncludeSupplements = false } = filters;
+  const { search, type, categoryId, isAvailable, limit = 100, offset = 0, excludeIds = [], shouldIncludeSupplements = false, shouldIncludeItemPrices = false } = filters;
 
   let query: any;
   
-  if (shouldIncludeSupplements) {
-    // Query with supplements joined - using subquery approach to avoid alias conflicts
-    query = tx
-      .select({
-        menuItem: SchemaDrizzle.menuItems,
-        subMenuItems: sql`COALESCE(
-          (
-            SELECT json_agg(
-              json_build_object(
-                'id', sub_item.id,
-                'name', sub_item.name,
-                'type', sub_item.type,
-                'price', sub_item.price,
-                'image', sub_item.image,
-                'description', sub_item.description,
-                'isAvailable', sub_item."isAvailable",
-                'quantity', link.quantity
-              )
+  if (shouldIncludeSupplements || shouldIncludeItemPrices) {
+    // Query with supplements and/or prices joined - using subquery approach to avoid alias conflicts
+    const selectFields: any = {
+      menuItem: SchemaDrizzle.menuItems,
+    };
+
+    if (shouldIncludeSupplements) {
+      selectFields.subMenuItems = sql`COALESCE(
+        (
+          SELECT json_agg(
+            json_build_object(
+              'id', sub_item.id,
+              'name', sub_item.name,
+              'type', sub_item.type,
+              'price', sub_item.price,
+              'image', sub_item.image,
+              'description', sub_item.description,
+              'isAvailable', sub_item."isAvailable",
+              'quantity', link.quantity
             )
-            FROM "MenuItemSubMenuItem" link
-            INNER JOIN "MenuItem" sub_item ON sub_item.id = link."subMenuItemId"
-            WHERE link."parentMenuItemId" = "MenuItem"."id"
-              AND (sub_item.type::jsonb ? 'SUPPLEMENT' OR sub_item.type::jsonb ? 'MENU_ITEM_OPTION')
-          ),
-          '[]'::json
-        )`.as('subMenuItems'),
-      })
-      .from(SchemaDrizzle.menuItems);
+          )
+          FROM "MenuItemSubMenuItem" link
+          INNER JOIN "MenuItem" sub_item ON sub_item.id = link."subMenuItemId"
+          WHERE link."parentMenuItemId" = "MenuItem"."id"
+            AND (sub_item.type::jsonb ? 'SUPPLEMENT' OR sub_item.type::jsonb ? 'MENU_ITEM_OPTION')
+        ),
+        '[]'::json
+      )`.as('subMenuItems');
+    }
+
+    if (shouldIncludeItemPrices) {
+      selectFields.buyingPrices = sql`COALESCE(
+        (
+          SELECT json_agg(
+            json_build_object(
+              'id', ip.id,
+              'priceValue', ip."priceValue",
+              'unitValue', ip."unitValue",
+              'multiplier', ip.multiplier,
+              'description', ip.description,
+              'priceType', ip."priceType",
+              'createdAt', ip."createdAt",
+              'updatedAt', ip."updatedAt",
+              'isTemplate', ip."isTemplate"
+            )
+            ORDER BY ip."createdAt" DESC
+          )
+          FROM "ItemPrice" ip
+          WHERE ip."menuItemId" = "MenuItem"."id"
+            AND ip."priceType" = 'buying'
+        ),
+        '[]'::json
+      )`.as('buyingPrices');
+
+      selectFields.sellingPrices = sql`COALESCE(
+        (
+          SELECT json_agg(
+            json_build_object(
+              'id', ip.id,
+              'priceValue', ip."priceValue",
+              'unitValue', ip."unitValue",
+              'multiplier', ip.multiplier,
+              'description', ip.description,
+              'priceType', ip."priceType",
+              'createdAt', ip."createdAt",
+              'updatedAt', ip."updatedAt",
+              'isTemplate', ip."isTemplate"
+            )
+            ORDER BY ip."createdAt" DESC
+          )
+          FROM "ItemPrice" ip
+          WHERE ip."menuItemId" = "MenuItem"."id"
+            AND ip."priceType" = 'selling'
+        ),
+        '[]'::json
+      )`.as('sellingPrices');
+    }
+
+    query = tx.select(selectFields).from(SchemaDrizzle.menuItems);
   } else {
     query = tx.select().from(SchemaDrizzle.menuItems);
   }
@@ -174,11 +226,15 @@ async function list(
 
   const results = await query.limit(limit).offset(offset);
 
-  // If shouldIncludeSupplements, transform the results
-  if (shouldIncludeSupplements) {
+  // If shouldIncludeSupplements or shouldIncludeItemPrices, transform the results
+  if (shouldIncludeSupplements || shouldIncludeItemPrices) {
     return results.map((row: any) => ({
       ...row.menuItem,
-      subMenuItems: row.subMenuItems || [],
+      ...(shouldIncludeSupplements && { subMenuItems: row.subMenuItems || [] }),
+      ...(shouldIncludeItemPrices && {
+        buyingPrices: row.buyingPrices || [],
+        sellingPrices: row.sellingPrices || [],
+      }),
     }));
   }
 

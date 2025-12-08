@@ -244,6 +244,7 @@ export const listAll = protectedProcedure
         offset: z.number().int().nonnegative().default(0).optional(),
         excludeIds: z.array(z.string().uuid()).default([]).optional(),
         shouldIncludeSupplements: z.boolean().default(false).optional(),
+        shouldIncludeItemPrices: z.boolean().default(false).optional(),
       })
       .optional()
   )
