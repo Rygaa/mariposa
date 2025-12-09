@@ -313,6 +313,7 @@ async function getMenuItemSales(
   menuItems: Array<{
     id: string;
     name: string;
+    subName: string | null;
     type: string[];
     quantitySold: number;
     revenue: number;
@@ -320,6 +321,7 @@ async function getMenuItemSales(
   supplements: Array<{
     id: string;
     name: string;
+    subName: string | null;
     quantitySold: number;
     revenue: number;
   }>;
@@ -352,6 +354,7 @@ async function getMenuItemSales(
       quantity: SchemaDrizzle.menuItemOrders.quantity,
       price: SchemaDrizzle.menuItemOrders.price,
       menuItemName: SchemaDrizzle.menuItems.name,
+      menuItemSubName: SchemaDrizzle.menuItems.subName,
       menuItemType: SchemaDrizzle.menuItems.type,
     })
     .from(SchemaDrizzle.menuItemOrders)
@@ -365,6 +368,7 @@ async function getMenuItemSales(
   const menuItemMap = new Map<string, {
     id: string;
     name: string;
+    subName: string | null;
     type: string[];
     quantitySold: number;
     revenue: number;
@@ -379,6 +383,7 @@ async function getMenuItemSales(
       menuItemMap.set(order.menuItemId, {
         id: order.menuItemId,
         name: order.menuItemName,
+        subName: order.menuItemSubName,
         type: order.menuItemType as string[],
         quantitySold: order.quantity,
         revenue: order.price * order.quantity,
@@ -390,6 +395,7 @@ async function getMenuItemSales(
   const menuItems: Array<{
     id: string;
     name: string;
+    subName: string | null;
     type: string[];
     quantitySold: number;
     revenue: number;
@@ -398,6 +404,7 @@ async function getMenuItemSales(
   const supplements: Array<{
     id: string;
     name: string;
+    subName: string | null;
     quantitySold: number;
     revenue: number;
   }> = [];
@@ -410,6 +417,7 @@ async function getMenuItemSales(
       supplements.push({
         id: item.id,
         name: item.name,
+        subName: item.subName,
         quantitySold: item.quantitySold,
         revenue: item.revenue,
       });
