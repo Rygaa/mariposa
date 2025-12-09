@@ -3,7 +3,7 @@
     Dialog,
     DialogContent,
   } from "../../../lib/shadcn/Dialog/index";
-  import ClientOrders from "../../ClientOrders_version3/ClientOrders.svelte";
+  import ClientOrders from "../../ClientOrders/ClientOrders.svelte";
   import { trpc } from "../../../lib/trpc";
   import { _cartsStore } from "../../../store/carts.svelte";
 

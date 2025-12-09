@@ -1,7 +1,7 @@
 <script lang="ts">
   import { onMount } from "svelte";
   import Button from "../../../lib/components/Button.svelte";
-  import MenuItemV0 from "../../ClientOrders_version3/components/MenuItemV0.svelte";
+  import MenuItemV0 from "../../ClientOrders/components/MenuItemV0.svelte";
 
   interface Props {
     isOpen?: boolean;

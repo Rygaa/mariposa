@@ -13,7 +13,7 @@
   import Categories from "./routes/Categories/Categories.svelte";
   import NodesDemo from "./routes/NodesDemo.svelte";
   import ClientOrders from "./routes/ClientOrders/ClientOrders.svelte";
-  import ClientOrdersV3 from "./routes/ClientOrders_version3/ClientOrders.svelte";
+  import ClientOrdersV3 from "./routes/ClientOrders/ClientOrders.svelte";
   import Orders from "./routes/Orders/ClientOrders.svelte";
   import Stats from "./routes/Stats/Stats.svelte";
   import Carts from "./routes/Carts/Carts.svelte";
