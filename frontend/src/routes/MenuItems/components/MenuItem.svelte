@@ -25,6 +25,7 @@
   } = $props();
 
   let imageUrl = $state<string | null>(null);
+  let imageLoaded = $state(false);
 
   let isDropdownOpen = $state(false);
   let isUpdateMenuItemModalOpen = $state(false);
@@ -101,34 +102,41 @@
   }
 
   async function loadImageUrl() {
-    if (menuItem.type?.includes("MENU_ITEM") && menuItem.image && menuItem.image.length > 0) {
-      try {
-        const result = await trpc.listMenuItemImages.query({
-          menuItemId: menuItem.id,
+    if (!menuItem.id) {
+      return;
+    }
+
+    try {
+      const result = await trpc.listMenuItemImages.query({
+        menuItemId: menuItem.id,
+      });
+
+      if (result.success && result.images.length > 0) {
+        const mainImage =
+          result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) ||
+          result.images[0];
+
+        const urlResult = await trpc.getMenuItemImageViewUrl.query({
+          fileId: mainImage.fileId,
         });
 
-        if (result.success && result.images.length > 0) {
-          const mainImage =
-            result.images.find((img: any) => img.shouldBeUsedInMenuItemsPage) ||
-            result.images[0];
-
-          const urlResult = await trpc.getMenuItemImageViewUrl.query({
-            fileId: mainImage.fileId,
-          });
-
-          if (urlResult.success) {
-            imageUrl = urlResult.url;
-          }
-        } else {
-          // No images found, use placeholder
-          imageUrl = "/placeholder-image.jpg";
+        if (urlResult.success) {
+          imageUrl = urlResult.url;
+          // Preload the image
+          const img = new Image();
+          img.onload = () => {
+            imageLoaded = true;
+          };
+          img.src = urlResult.url;
         }
-      } catch (error) {
-        // On error, use placeholder
-        imageUrl = "/placeholder-image.jpg";
       }
+    } catch (error) {
+      console.error("Failed to load image:", error);
     }
   }
+
+  // Use placeholder image as fallback or while loading
+  const displayImage = $derived(imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg");
 
   onMount(() => {
     loadImageUrl();
@@ -143,7 +151,7 @@
 >
   <div class="w-1/3 flex-shrink-0">
     <img
-      src={imageUrl || "/placeholder-image.jpg"}
+      src={displayImage}
       alt={menuItem.name}
       class="w-full h-full object-contain rounded-md"
       onerror={(e) => {
