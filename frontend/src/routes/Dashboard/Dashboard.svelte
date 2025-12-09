@@ -60,6 +60,7 @@
         const result = await trpc.listItemPricesByMenuItem.query({
           menuItemId: item.id,
           priceType: "buying",
+          
         });
         
         if (result.success) {

@@ -30,6 +30,7 @@
     menuItems: Array<{
       id: string;
       name: string;
+      subName?: string | null;
       type: string[];
       quantitySold: number;
       revenue: number;
@@ -37,6 +38,7 @@
     supplements: Array<{
       id: string;
       name: string;
+      subName?: string | null;
       quantitySold: number;
       revenue: number;
     }>;
@@ -207,7 +209,9 @@
                     {#each salesData.menuItems as item}
                       <div class="flex items-center justify-between py-2 border-b last:border-b-0">
                         <div class="flex-1 min-w-0">
-                          <div class="text-sm font-medium text-gray-900 truncate">{item.name}</div>
+                          <div class="text-sm font-medium text-gray-900 truncate">
+                            {item.name} {#if item.subName}<span class="text-xs text-gray-500">({item.subName})</span>{/if}
+                          </div>
                           <div class="text-xs text-gray-500">{formatCurrency(item.revenue)}</div>
                         </div>
                         <div class="text-sm font-semibold text-indigo-600 ml-4">
@@ -233,7 +237,9 @@
                     {#each salesData.supplements as supplement}
                       <div class="flex items-center justify-between py-2 border-b last:border-b-0">
                         <div class="flex-1 min-w-0">
-                          <div class="text-sm font-medium text-gray-900 truncate">{supplement.name}</div>
+                          <div class="text-sm font-medium text-gray-900 truncate">
+                            {supplement.name} {#if supplement.subName}<span class="text-xs text-gray-500">({supplement.subName})</span>{/if}
+                          </div>
                           <div class="text-xs text-gray-500">{formatCurrency(supplement.revenue)}</div>
                         </div>
                         <div class="text-sm font-semibold text-indigo-600 ml-4">
