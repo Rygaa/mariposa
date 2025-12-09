@@ -3,7 +3,7 @@ import type { getLocation } from "svelte-routing/src/history";
 
 const protectedRoutes = ["/learning", "/profile", "/admin", "/users"];
 const unprotectedRoutes = ["/login", "/signup"];
-const routesWithoutSidebar = ["/client-orders-v2", "/client-orders-v3"];
+const routesWithoutSidebar = [ "/client-orders"];
 
 export function isInProtectedRoutes(location: LOCATION | null): boolean {
   if (!location || !location.pathname) return false;
