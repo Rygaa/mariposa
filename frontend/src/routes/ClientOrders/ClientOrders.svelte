@@ -569,34 +569,20 @@
               <Button onclick={openTableModal}>Choisir une table</Button>
             </div>
           </div>
-        {:else if menuItems.filter((item) => item.type?.includes("MENU_ITEM") && item.isAvailable).length > 0}
+        {:else if filteredMenuItems().length > 0}
           <div
             class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 pb-6 auto-rows-fr"
           >
-            {#each menuItems.filter((item) => item.type?.includes("MENU_ITEM") && item.isAvailable).sort((a, b) => {
-              if (a.index === null && b.index === null) return a.name?.localeCompare(b.name) || 0;
-              if (a.index === null) return 1;
-              if (b.index === null) return -1;
-              return a.index - b.index;
-            }) as item (item.id)}
-              <div 
-                class:hidden={
-                  (selectedCategoryId && item.categoryId !== selectedCategoryId) ||
-                  (searchQuery.trim() && 
-                    !item.name?.toLowerCase().includes(searchQuery.toLowerCase()) && 
-                    !item.description?.toLowerCase().includes(searchQuery.toLowerCase()))
-                }
-              >
-                <MenuItem
-                  menuItem={item}
-                  count={itemCounts[item.id] || 0}
-                  {toColor}
-                  onAdd={() => handleAddMenuItem(item.id)}
-                  onRemove={() => handleRemoveMenuItem(item.id)}
-                  onAddSupplement={(suppId: string) =>
-                    handleAddSupplement(item.id, suppId)}
-                />
-              </div>
+            {#each filteredMenuItems() as item (item.id)}
+              <MenuItem
+                menuItem={item}
+                count={itemCounts[item.id] || 0}
+                {toColor}
+                onAdd={() => handleAddMenuItem(item.id)}
+                onRemove={() => handleRemoveMenuItem(item.id)}
+                onAddSupplement={(suppId: string) =>
+                  handleAddSupplement(item.id, suppId)}
+              />
             {/each}
 
           </div>
