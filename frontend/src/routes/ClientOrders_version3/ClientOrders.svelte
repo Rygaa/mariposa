@@ -122,6 +122,7 @@
       const response2 = await trpc.listCategories.query();
       const response3 = await trpc.listAllMenuItems.query({
         shouldIncludeSupplements: true,
+        shouldIncludeItemPrices: true,
       });
 
       eatingTables = response1.eatingTables;
@@ -218,12 +219,25 @@
       const item = menuItems.find((m: any) => m.id === menuItemId);
       if (!item) return;
 
+      // Calculate the actual price to use (with discount if available)
+      let priceToUse = item.price || 0;
+      const sellingPrice = item.sellingPrices?.[0];
+      
+      if (sellingPrice) {
+        if (sellingPrice.discountInPercent && sellingPrice.discountInPercent > 0) {
+          priceToUse = priceToUse * (1 - sellingPrice.discountInPercent / 100);
+        } else if (sellingPrice.discountInValue && sellingPrice.discountInValue > 0) {
+          priceToUse = priceToUse - sellingPrice.discountInValue;
+        }
+        priceToUse = Math.max(0, priceToUse);
+      }
+
       // Create the main menu item order
       const response = await trpc.createMenuItemOrder.mutate({
         orderId: currentOrder.id,
         menuItemId,
         quantity: 1,
-        price: item.price || 0,
+        price: priceToUse,
       });
 
       // Store the menu item order ID for adding options

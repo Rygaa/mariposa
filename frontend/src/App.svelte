@@ -106,18 +106,6 @@
     {
       name: "Client Orders",
       path: "/client-orders",
-      icon: "🛍️",
-      section: "main",
-    },
-    {
-      name: "Client Orders V2",
-      path: "/client-orders-v2",
-      icon: "📱",
-      section: "main",
-    },
-    {
-      name: "Client Orders V3 (Tablet)",
-      path: "/client-orders-v3",
       icon: "📱",
       section: "main",
     },
@@ -226,9 +214,6 @@
               <Stats />
             </Route>
             <Route path="/client-orders">
-              <ClientOrders />
-            </Route>
-            <Route path="/client-orders-v3">
               <ClientOrdersV3 />
             </Route>
             <Route path="/users">

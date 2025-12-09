@@ -202,6 +202,8 @@ export const itemPrices = pgTable("ItemPrice", {
   multiplier: real("multiplier").default(1).notNull(),
   description: text("description"),
   priceType: priceTypeEnum("priceType").notNull(), // "selling" or "buying"
+  discountInPercent: real("discountInPercent"),
+  discountInValue: real("discountInValue"),
   createdAt: timestamp("createdAt").defaultNow().notNull(),
   updatedAt: timestamp("updatedAt").defaultNow(),
   menuItemId: varchar("menuItemId").notNull(), // References menuItems

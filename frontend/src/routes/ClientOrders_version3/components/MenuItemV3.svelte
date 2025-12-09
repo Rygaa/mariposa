@@ -92,6 +92,37 @@
     return `$${price}`;
   }
 
+  // Calculate discounted price if applicable
+  const priceInfo = $derived(() => {
+    const originalPrice = menuItem.price || 0;
+    
+    // Get the most recent selling price with discount
+    const sellingPrice = menuItem.sellingPrices?.[0];
+    
+    if (!sellingPrice) {
+      return { originalPrice, discountedPrice: null, hasDiscount: false };
+    }
+
+    let discountedPrice = originalPrice;
+    let hasDiscount = false;
+
+    // Apply discount in percent
+    if (sellingPrice.discountInPercent && sellingPrice.discountInPercent > 0) {
+      discountedPrice = originalPrice * (1 - sellingPrice.discountInPercent / 100);
+      hasDiscount = true;
+    }
+    // Apply discount in value (takes precedence over percent if both exist)
+    else if (sellingPrice.discountInValue && sellingPrice.discountInValue > 0) {
+      discountedPrice = originalPrice - sellingPrice.discountInValue;
+      hasDiscount = true;
+    }
+
+    // Ensure price doesn't go negative
+    discountedPrice = Math.max(0, discountedPrice);
+
+    return { originalPrice, discountedPrice, hasDiscount };
+  });
+
   // Use placeholder image as fallback or while loading
   const displayImage = $derived(imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg");
 </script>
@@ -159,9 +190,20 @@
       class="absolute bottom-4 left-4 right-4 px-6 py-4 flex items-center justify-between backdrop-blur-sm rounded-2xl"
       style="background-color: rgba(255, 255, 255, 0.25); background-blend-mode: lighten; background-image: linear-gradient({fromColor}B3, {fromColor}B3);"
     >
-      <span class="text-3xl font-bold text-gray-900">
-        {formatPrice(menuItem.price)}
-      </span>
+      <div class="flex flex-col items-start">
+        {#if priceInfo().hasDiscount}
+          <span class="text-2xl font-bold text-gray-600 line-through">
+            {formatPrice(priceInfo().originalPrice)}
+          </span>
+          <span class="text-3xl font-bold text-red-600">
+            {formatPrice(priceInfo().discountedPrice)}
+          </span>
+        {:else}
+          <span class="text-3xl font-bold text-gray-900">
+            {formatPrice(menuItem.price)}
+          </span>
+        {/if}
+      </div>
 
       {#if menuItem.isAvailable}
         <Button

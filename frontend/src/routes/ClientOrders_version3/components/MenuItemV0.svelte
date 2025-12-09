@@ -107,6 +107,37 @@
     return `$${price}`;
   }
 
+  // Calculate discounted price if applicable
+  const priceInfo = $derived(() => {
+    const originalPrice = menuItem.price || 0;
+    
+    // Get the most recent selling price with discount
+    const sellingPrice = menuItem.sellingPrices?.[0];
+    
+    if (!sellingPrice) {
+      return { originalPrice, discountedPrice: null, hasDiscount: false };
+    }
+
+    let discountedPrice = originalPrice;
+    let hasDiscount = false;
+
+    // Apply discount in percent
+    if (sellingPrice.discountInPercent && sellingPrice.discountInPercent > 0) {
+      discountedPrice = originalPrice * (1 - sellingPrice.discountInPercent / 100);
+      hasDiscount = true;
+    }
+    // Apply discount in value (takes precedence over percent if both exist)
+    else if (sellingPrice.discountInValue && sellingPrice.discountInValue > 0) {
+      discountedPrice = originalPrice - sellingPrice.discountInValue;
+      hasDiscount = true;
+    }
+
+    // Ensure price doesn't go negative
+    discountedPrice = Math.max(0, discountedPrice);
+
+    return { originalPrice, discountedPrice, hasDiscount };
+  });
+
   // Use placeholder image as fallback or while loading
   const displayImage = $derived(
     imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg"
@@ -151,9 +182,20 @@
               {menuItem.name}
             </span>
 
-            <span class="text-2xl font-bold text-gray-900">
-              {formatPrice(menuItem.price)}
-            </span>
+            <div class="flex flex-col items-end">
+              {#if priceInfo().hasDiscount}
+                <span class="text-lg font-bold text-gray-600 line-through">
+                  {formatPrice(priceInfo().originalPrice)}
+                </span>
+                <span class="text-2xl font-bold text-red-600">
+                  {formatPrice(priceInfo().discountedPrice)}
+                </span>
+              {:else}
+                <span class="text-2xl font-bold text-gray-900">
+                  {formatPrice(menuItem.price)}
+                </span>
+              {/if}
+            </div>
           </div>
 
           <span

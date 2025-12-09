@@ -10,11 +10,13 @@ export const create = protectedProcedureGlobalTransaction
     z.object({
       menuItemId: z.string().uuid(),
       priceValue: z.number(),
-      unitValue: z.number(),
+      unitValue: z.number().optional(),
       multiplier: z.number().default(1),
       description: z.string().optional(),
       priceType: z.enum(["selling", "buying"]),
       isTemplate: z.boolean().default(false),
+      discountInPercent: z.number().optional(),
+      discountInValue: z.number().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {

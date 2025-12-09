@@ -30,6 +30,8 @@
   let unitValue = $state("");
   let multiplier = $state("");
   let description = $state("");
+  let discountInPercent = $state("");
+  let discountInValue = $state("");
   let isSubmitting = $state(false);
 
   function resetForm() {
@@ -37,6 +39,8 @@
     unitValue = "";
     multiplier = "";
     description = "";
+    discountInPercent = "";
+    discountInValue = "";
     error = "";
   }
 
@@ -69,6 +73,8 @@
         multiplier: multiplier ? parseFloat(multiplier) : 1,
         description: description || undefined,
         priceType: "selling",
+        discountInPercent: discountInPercent ? parseFloat(discountInPercent) : undefined,
+        discountInValue: discountInValue ? parseFloat(discountInValue) : undefined,
       });
 
       if (result.success) {
@@ -132,6 +138,20 @@
         type="text"
         bind:value={description}
         placeholder="Optional description"
+      />
+
+      <Input
+        label="Discount in Percent"
+        type="number"
+        bind:value={discountInPercent}
+        placeholder="0-100"
+      />
+
+      <Input
+        label="Discount in Value"
+        type="number"
+        bind:value={discountInValue}
+        placeholder="0.00"
       />
     </div>
 

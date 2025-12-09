@@ -159,6 +159,8 @@ async function list(
               'multiplier', ip.multiplier,
               'description', ip.description,
               'priceType', ip."priceType",
+              'discountInPercent', ip."discountInPercent",
+              'discountInValue', ip."discountInValue",
               'createdAt', ip."createdAt",
               'updatedAt', ip."updatedAt",
               'isTemplate', ip."isTemplate"
