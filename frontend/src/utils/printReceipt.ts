@@ -29,9 +29,11 @@ function createReceiptPdf(
   yPos += 8;
 
   // Calculate column positions (in mm)
-  const itemStartX = 3;
-  const priceStartX = widthMm * 0.62;
-  const totalStartX = widthMm * 0.78;
+  const marginX = 3;
+  const itemStartX = marginX;
+  const priceStartX = 48;
+  const totalStartX = 63;
+  const itemMaxWidth = priceStartX - itemStartX - 2;
 
   // --- TABLE HEADER ---
   doc.setFontSize(10);
@@ -94,36 +96,34 @@ function createReceiptPdf(
     const subName = element.menuItem?.subName ? ` (${element.menuItem.subName})` : '';
     const name = `${element.quantity} ${itemName}${subName}`;
     
-    // Format child items (supplements and options) that were actually ordered for this specific item
-    const childItemsText = element.childItems
-      ?.map((child: any) => {
-        const qty = child.quantity > 1 ? `${child.quantity}x ` : '';
-        const price = (child.price || 0);
-        const childSubName = child.menuItem?.subName ? ` (${child.menuItem.subName})` : '';
-        return `${qty}${child.menuItem?.name}${childSubName} ${price}`;
-      })
-      .join("\n") || "";
-
-    const finalPrice = element.finalPrice; // Convert from cents to dollars
+    const finalPrice = element.finalPrice;
     grandTotal += finalPrice;
 
-    // Print item name in first column
-    doc.text(name, itemStartX, yPos);
+    // Print item name with text wrapping
+    const itemLines = doc.splitTextToSize(name, itemMaxWidth);
+    doc.text(itemLines, itemStartX, yPos);
     
-    // Print price in second column (per item)
+    // Print price in second column (aligned with first line)
     const pricePerItem = element.finalPriceForOneItem;
     doc.text(pricePerItem.toString(), priceStartX, yPos);
     
-    // Print total in third column
+    // Print total in third column (aligned with first line)
     doc.text(finalPrice.toString(), totalStartX, yPos);
-    yPos += 4;
+    
+    // Advance yPos based on wrapped lines
+    yPos += itemLines.length * 4;
 
-    // Print child items (supplements and options) indented
-    if (childItemsText) {
-      const childLines = childItemsText.split("\n");
-      childLines.forEach((line: string) => {
-        doc.text(line, itemStartX + 2, yPos);
-        yPos += 3.5;
+    // Print child items (supplements and options) with wrapping
+    if (element.childItems && element.childItems.length > 0) {
+      element.childItems.forEach((child: any) => {
+        const qty = child.quantity > 1 ? `${child.quantity}x ` : '';
+        const price = (child.price || 0);
+        const childSubName = child.menuItem?.subName ? ` (${child.menuItem.subName})` : '';
+        const childText = `${qty}${child.menuItem?.name}${childSubName} ${price}`;
+        
+        const childLines = doc.splitTextToSize(childText, itemMaxWidth - 2);
+        doc.text(childLines, itemStartX + 2, yPos);
+        yPos += childLines.length * 3.5;
       });
     }
 

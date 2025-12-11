@@ -74,7 +74,12 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
 
     if (data.type === "ORDER_CONFIRMED") {
       console.log("🔔 Order confirmed notification received:", data);
-      
+      // play a ring sound
+      // in src/assets/sounds/ring.mp3
+      const audio = new Audio(new URL("../assets/sounds/ring.mp3", import.meta.url).href);
+      audio.play().catch((error) => {
+        console.error("❌ Failed to play sound:", error);
+      });
       // Automatically print the order
       if (data.orderId) {
         await _cartsStore.loadOrders();
