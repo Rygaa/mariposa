@@ -25,6 +25,7 @@ export const create = protectedProcedureGlobalTransaction
       stockQuantity: z.number().default(0).optional(),
       stockConversionRatio: z.number().default(1).optional(),
       isMenuItemOptionUniquePerSelection: z.boolean().optional(),
+      shouldPrintInOrder: z.boolean().default(true).optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
@@ -68,6 +69,7 @@ export const update = protectedProcedureGlobalTransaction
       imageSourceMenuItemId: z.string().uuid().optional().nullable(),
       index: z.number().int().optional(),
       isMenuItemOptionUniquePerSelection: z.boolean().optional(),
+      shouldPrintInOrder: z.boolean().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {

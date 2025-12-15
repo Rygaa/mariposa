@@ -89,6 +89,11 @@ function createOrderPDF(order: any): jsPDF {
       doc.setFont("courier", "normal");
       doc.setFontSize(11);
       options.forEach((opt: any) => {
+        // Skip options that should not be printed
+        if (opt.menuItem?.shouldPrintInOrder === false) {
+          return;
+        }
+        
         const optName = opt.menuItem?.name || '';
         const optSubName = opt.menuItem?.subName ? ` (${opt.menuItem.subName})` : '';
         if (optName) {

@@ -54,6 +54,7 @@
   let availableMenuItems = $state<Array<{id: string, name: string}>>([]);
   let loadingMenuItems = $state(false);
   let isMenuItemOptionUniquePerSelection = $state(false);
+  let shouldPrintInOrder = $state(true);
 
   onMount(async () => {
     await loadCategories();
@@ -155,6 +156,7 @@
       designVersion = menuItem.designVersion ?? null;
       imageSourceMenuItemId = menuItem.imageSourceMenuItemId ?? null;
       isMenuItemOptionUniquePerSelection = menuItem.isMenuItemOptionUniquePerSelection ?? false;
+      shouldPrintInOrder = menuItem.shouldPrintInOrder ?? true;
       
       // Load item prices
       if (menuItem.id) {
@@ -179,6 +181,7 @@
     designVersion = null;
     imageSourceMenuItemId = null;
     isMenuItemOptionUniquePerSelection = false;
+    shouldPrintInOrder = true;
   }
 
   function handleClose() {
@@ -213,6 +216,7 @@
         designVersion: designVersion ?? undefined,
         imageSourceMenuItemId: imageSourceMenuItemId || null,
         isMenuItemOptionUniquePerSelection,
+        shouldPrintInOrder,
       });
 
       if (result.success) {
@@ -467,6 +471,18 @@
           />
           <label for="isMenuItemOptionUniquePerSelection" class="ml-2 block text-sm text-gray-900">
             Unique per selection (customer can only select this option once)
+          </label>
+        </div>
+
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            id="shouldPrintInOrder"
+            bind:checked={shouldPrintInOrder}
+            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+          />
+          <label for="shouldPrintInOrder" class="ml-2 block text-sm text-gray-900">
+            Print in order (show this option when printing orders)
           </label>
         </div>
       {/if}
