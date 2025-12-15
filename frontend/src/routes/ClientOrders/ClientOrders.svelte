@@ -126,7 +126,15 @@
       });
 
       eatingTables = response1.eatingTables;
-      categories = response2.categories.filter((c: any) => !c.isUnlisted);
+      categories = response2.categories
+        .filter((c: any) => !c.isUnlisted)
+        .sort((a: any, b: any) => {
+          // Sort by index (nulls last), then by name
+          if (a.index === null && b.index === null) return a.name?.localeCompare(b.name) || 0;
+          if (a.index === null) return 1;
+          if (b.index === null) return -1;
+          return a.index - b.index;
+        });
       menuItems = response3.menuItems;
 
       // If an existing order is passed, use it

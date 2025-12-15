@@ -3,7 +3,7 @@ import { getAllUsers, createUser, updateUser, deleteUser } from "./admin/users";
 import { getSettings, updateSettings } from "./admin/settings";
 import { auth, login, signup, updateMyPassword, updateUserMeta } from "./user/users";
 import { create as createEatingTable, update as updateEatingTable, deleteEatingTable, list as listEatingTables, getById as getEatingTableById, reorder as reorderEatingTables } from "./user/eatingTables";
-import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById } from "./user/categories";
+import { create as createCategory, update as updateCategory, deleteCategory, list as listCategories, getById as getCategoryById, batchUpdate as batchUpdateCategories } from "./user/categories";
 import { createLog, getLogs, clearLogs } from "./user/logs";
 import { 
   create as createMenuItem, 
@@ -76,6 +76,7 @@ export const appRouter = router({
   deleteCategory,
   listCategories,
   getCategoryById,
+  batchUpdateCategories,
   createMenuItem,
   updateMenuItem,
   deleteMenuItem,

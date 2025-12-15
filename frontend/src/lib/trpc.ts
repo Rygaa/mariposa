@@ -359,6 +359,9 @@ export const trpc = {
   batchUpdateMenuItems: {
     mutate: wrapMutation(baseClient.batchUpdateMenuItems.mutate),
   },
+  batchUpdateCategories: {
+    mutate: wrapMutation(baseClient.batchUpdateCategories.mutate),
+  },
   reorderEatingTables: {
     mutate: wrapMutation(baseClient.reorderEatingTables.mutate),
   },

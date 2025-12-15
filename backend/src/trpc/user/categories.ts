@@ -122,3 +122,42 @@ export const getById = protectedProcedure
       category,
     };
   });
+
+export const batchUpdate = protectedProcedureGlobalTransaction
+  .input(
+    z.object({
+      updates: z.array(
+        z.object({
+          id: z.string().uuid(),
+          index: z.number().int(),
+        })
+      ),
+    })
+  )
+  .mutation(async ({ ctx, input }) => {
+    try {
+      // Update all categories in parallel
+      await Promise.all(
+        input.updates.map((update) =>
+          _ServiceCategories.update(
+            {
+              id: update.id,
+              index: update.index,
+            } as any,
+            ctx.globalTx
+          )
+        )
+      );
+
+      return {
+        success: true,
+        message: "Categories reordered successfully",
+      };
+    } catch (error) {
+      console.error("Error batch updating categories:", error);
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "Failed to reorder categories",
+      });
+    }
+  });
