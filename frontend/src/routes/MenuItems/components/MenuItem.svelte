@@ -20,12 +20,16 @@
 
   let {
     menuItem,
+    dragHandleProps,
   }: {
     menuItem: getMenuItemById["menuItem"];
+    dragHandleProps?: any;
   } = $props();
 
   let imageUrl = $state<string | null>(null);
   let imageLoaded = $state(false);
+  let isInView = $state(false);
+  let containerRef: HTMLDivElement | null = $state(null);
 
   let isDropdownOpen = $state(false);
   let isUpdateMenuItemModalOpen = $state(false);
@@ -139,16 +143,38 @@
   const displayImage = $derived(imageLoaded && imageUrl ? imageUrl : "/placeholder-image.jpg");
 
   onMount(() => {
-    loadImageUrl();
+    if (!containerRef) return;
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !isInView) {
+            isInView = true;
+            loadImageUrl();
+          }
+        });
+      },
+      {
+        rootMargin: "100px", // Start loading 100px before item enters viewport
+        threshold: 0.01,
+      }
+    );
+
+    observer.observe(containerRef);
+
+    return () => {
+      observer.disconnect();
+    };
   });
 </script>
 
-<ClickableDiv
-  customOnClick={() => {}}
-  class="bg-white border {menuItem.isAvailable
-    ? 'border-gray-200'
-    : 'border-gray-100 opacity-60'} rounded-lg p-2 hover:shadow-md transition-all relative cursor-pointer flex gap-4"
->
+<div bind:this={containerRef}>
+  <ClickableDiv
+    customOnClick={() => {}}
+    class="bg-white border {menuItem.isAvailable
+      ? 'border-gray-200'
+      : 'border-gray-100 opacity-60'} rounded-lg p-2 hover:shadow-md transition-all relative cursor-pointer flex gap-4"
+  >
   <div class="w-1/3 flex-shrink-0">
     <img
       src={displayImage}
@@ -194,7 +220,18 @@
       </div>
     </div>
 
-    <ClickableDiv class="ml-2" onclick={(e) => e.stopPropagation()}>
+    <ClickableDiv class="ml-2 flex items-center gap-2" onclick={(e) => e.stopPropagation()}>
+      {#if dragHandleProps}
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div
+          {...dragHandleProps}
+          class="cursor-move p-1.5 hover:bg-gray-100 rounded transition-colors"
+          title="Drag to reorder"
+          onclick={(e) => e.stopPropagation()}
+        >
+          <Icon iconName="move" size="4" class="text-gray-600" />
+        </div>
+      {/if}
       <Dropdown bind:open={isDropdownOpen} align="end">
         {#snippet trigger()}
           <Button
@@ -275,6 +312,7 @@
     </ClickableDiv>
   </div>
 </ClickableDiv>
+</div>
 
 {#if isUpdateMenuItemModalOpen}
   <UpdateMenuItemModal

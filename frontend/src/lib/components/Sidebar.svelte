@@ -100,6 +100,12 @@
   function isActive(path: string) {
     return currentPath === path || currentPath.startsWith(path + "/");
   }
+
+  // Check if any subItem is active
+  function hasActiveSubItem(item: any) {
+    if (!item.subItems) return false;
+    return item.subItems.some((subItem: any) => isActive(subItem.path));
+  }
 </script>
 
 <!-- Mobile Menu Button (visible only on mobile) -->
@@ -184,7 +190,7 @@
             icon={item.icon}
             text={item.name}
           />
-          {#if item.subItems && isActive(item.path)}
+          {#if item.subItems && (isActive(item.path) || hasActiveSubItem(item))}
             <div class="ml-4 mt-1 space-y-1">
               {#each item.subItems as subItem}
                 <SidebarButton
@@ -214,7 +220,7 @@
               icon={item.icon}
               text={item.name}
             />
-            {#if item.subItems && isActive(item.path)}
+            {#if item.subItems && (isActive(item.path) || hasActiveSubItem(item))}
               <div class="ml-4 mt-1 space-y-1">
                 {#each item.subItems as subItem}
                   <SidebarButton

@@ -76,14 +76,14 @@
     { name: "Dashboard", path: "/dashboard", icon: "📊", section: "main" },
     { name: "Profile", path: "/profile", icon: "👤", section: "main" },
     {
-      name: "Eating Tables",
+      name: "Tables",
       path: "/eating-tables",
       icon: "🍽️",
       section: "main",
     },
     {
       name: "Elements",
-      path: "/menu-items",
+      path: "/menu-items/MENU_ITEM",
       icon: "🍕",
       section: "main",
       subItems: [
@@ -109,15 +109,18 @@
       icon: "📱",
       section: "main",
     },
-    { name: "Users", path: "/users", icon: "👥", section: "main" },
-    { name: "Nodes Demo", path: "/nodes-demo", icon: "🔗", section: "main" },
     ...(_globalStore.user?.role?.includes("ADMIN")
       ? [
           {
             name: "Admin",
             path: "/admin",
             icon: "⚙️",
-            variant: "admin" as const,
+            section: "main",
+            subItems: [
+              { name: "Admin Panel", path: "/admin", icon: "⚙️" },
+              { name: "Users", path: "/users", icon: "👥" },
+              { name: "Nodes Demo", path: "/nodes-demo", icon: "🔗" },
+            ],
           },
         ]
       : []),

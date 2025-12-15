@@ -13,8 +13,10 @@
 
   let {
     category,
+    dragHandleProps,
   }: {
     category: getCategoryById["category"];
+    dragHandleProps?: any;
   } = $props();
 
   let isDropdownOpen = $state(false);
@@ -70,7 +72,17 @@
       </div>
     </div>
 
-    <div class="ml-2">
+    <div class="ml-2 flex items-center gap-2">
+      {#if dragHandleProps}
+        <!-- svelte-ignore a11y_no_static_element_interactions -->
+        <div
+          {...dragHandleProps}
+          class="cursor-move p-1.5 hover:bg-gray-100 rounded transition-colors"
+          title="Drag to reorder"
+        >
+          <Icon iconName="move" size="4" class="text-gray-600" />
+        </div>
+      {/if}
       <Dropdown bind:open={isDropdownOpen} align="end">
         {#snippet trigger()}
           <Button

@@ -3,6 +3,7 @@
   import Icon from "../../lib/components/Icon.svelte";
   import Category from "./components/Category.svelte";
   import CreateCategoryModal from "./components/CreateCategoryModal.svelte";
+  import DraggableList from "../../lib/components/DraggableList.svelte";
   import { _globalStore } from "../../store/globalStore.svelte";
   import { navigate } from "svelte-routing";
   import { trpc } from "../../lib/trpc";
@@ -20,8 +21,6 @@
   let isLoading = $state(false);
   let searchQuery = $state("");
   let filterUnlisted = $state<string>("all");
-  let draggedIndex = $state<number | null>(null);
-  let isDragging = $state(false);
 
   onMount(async () => {
     if (!_globalStore.user) {
@@ -60,27 +59,9 @@
 
   const filteredCategories = $derived(categories);
 
-  // Drag and drop handlers
-  async function handleDrop(targetIndex: number) {
-    if (draggedIndex === null || draggedIndex === targetIndex) {
-      isDragging = false;
-      draggedIndex = null;
-      return;
-    }
-
-    // Swap the items
-    const newItems = [...categories];
-    const temp = newItems[draggedIndex];
-    newItems[draggedIndex] = newItems[targetIndex];
-    newItems[targetIndex] = temp;
-
-    // Update the local state immediately for smooth UX
-    categories = newItems;
-    isDragging = false;
-    draggedIndex = null;
-
-    // Prepare batch update with new indices
-    const updates = newItems.map((item, index) => ({
+  // Reorder handler for drag and drop
+  async function handleReorder(reorderedItems: getCategoryById["category"][]) {
+    const updates = reorderedItems.map((item, index) => ({
       id: item.id,
       index: index,
     }));
@@ -127,33 +108,11 @@
       </div>
 
       <DataDisplayer {isLoading} isEmpty={filteredCategories.length === 0}>
-        <div
-          class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4"
-        >
-          {#each filteredCategories as category, index (category.id)}
-            <!-- svelte-ignore a11y_no_static_element_interactions -->
-            <div
-              draggable="true"
-              ondragstart={() => {
-                draggedIndex = index;
-                isDragging = true;
-              }}
-              ondragend={() => {
-                draggedIndex = null;
-                isDragging = false;
-              }}
-              ondragover={(e) => {
-                e.preventDefault();
-              }}
-              ondrop={() => handleDrop(index)}
-              class="transition-opacity {isDragging && draggedIndex === index ? 'opacity-50' : 'opacity-100'} cursor-move"
-            >
-              <Category
-                {category}
-              />
-            </div>
-          {/each}
-        </div>
+        <DraggableList items={filteredCategories} onReorder={handleReorder}>
+          {#snippet children({ item: category, dragHandleProps })}
+            <Category {category} {dragHandleProps} />
+          {/snippet}
+        </DraggableList>
       </DataDisplayer>
     </CardContent>
   </Card>

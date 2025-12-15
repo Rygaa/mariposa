@@ -206,10 +206,12 @@ export const getRevenueStats = protectedProcedure
       period: z.enum(["today", "yesterday", "lastWeek", "custom"]).optional(),
       from: z.string().optional(),
       to: z.string().optional(),
+      status: z.array(z.enum(statusEnumValues)).optional(),
+      includeDeletedMenuItemOrders: z.boolean().optional(),
     })
   )
   .query(async ({ ctx, input }) => {
-    const { period, from, to } = input;
+    const { period, from, to, status, includeDeletedMenuItemOrders } = input;
 
     // Algeria timezone
     const algeriaTimezone = "Africa/Algiers";
@@ -254,7 +256,7 @@ export const getRevenueStats = protectedProcedure
       periodLabel = "Last 7 Days";
     }
 
-    const stats = await _ServiceOrders.getRevenueStats(startDate, endDate);
+    const stats = await _ServiceOrders.getRevenueStats(startDate, endDate, status, includeDeletedMenuItemOrders);
 
     return {
       success: true,
@@ -271,10 +273,12 @@ export const getMenuItemSales = protectedProcedure
       period: z.enum(["today", "yesterday", "lastWeek", "custom"]).optional(),
       from: z.string().optional(),
       to: z.string().optional(),
+      status: z.array(z.enum(statusEnumValues)).optional(),
+      includeDeletedMenuItemOrders: z.boolean().optional(),
     })
   )
   .query(async ({ ctx, input }) => {
-    const { period, from, to } = input;
+    const { period, from, to, status, includeDeletedMenuItemOrders } = input;
 
     // Algeria timezone
     const algeriaTimezone = "Africa/Algiers";
@@ -312,7 +316,7 @@ export const getMenuItemSales = protectedProcedure
       endDate.setHours(23, 59, 59, 999);
     }
 
-    const sales = await _ServiceOrders.getMenuItemSales(startDate, endDate);
+    const sales = await _ServiceOrders.getMenuItemSales(startDate, endDate, status, includeDeletedMenuItemOrders);
 
     return {
       success: true,
@@ -326,10 +330,12 @@ export const getRawMaterialConsumption = protectedProcedure
       period: z.enum(["today", "yesterday", "lastWeek", "custom"]).optional(),
       from: z.string().optional(),
       to: z.string().optional(),
+      status: z.array(z.enum(statusEnumValues)).optional(),
+      includeDeletedMenuItemOrders: z.boolean().optional(),
     })
   )
   .query(async ({ ctx, input }) => {
-    const { period, from, to } = input;
+    const { period, from, to, status, includeDeletedMenuItemOrders } = input;
 
     // Algeria timezone
     const algeriaTimezone = "Africa/Algiers";
@@ -367,7 +373,7 @@ export const getRawMaterialConsumption = protectedProcedure
       endDate.setHours(23, 59, 59, 999);
     }
 
-    const consumption = await _ServiceOrders.getRawMaterialConsumption(startDate, endDate);
+    const consumption = await _ServiceOrders.getRawMaterialConsumption(startDate, endDate, status, includeDeletedMenuItemOrders);
 
     return {
       success: true,

@@ -256,23 +256,28 @@ async function printReceiptOfOrder(orderId: string): Promise<{ success: boolean;
 async function getRevenueStats(
   startDate: Date,
   endDate: Date,
+  statuses?: string[],
+  includeDeletedMenuItemOrders: boolean = false,
   tx: DbTransactionOrDB = db
 ): Promise<{
   totalRevenue: number;
+  deletedRevenue: number;
+  activeRevenue: number;
   orderCount: number;
   averageOrderValue: number;
 }> {
-  // Get all PAID orders in the date range
+  // Get all orders in the date range with specified statuses (default to PAID)
+  const statusFilter = statuses && statuses.length > 0 ? statuses : ["PAID"];
+  const conditions = [
+    inArray(SchemaDrizzle.orders.status, statusFilter as any),
+    gte(SchemaDrizzle.orders.createdAt, startDate),
+    lte(SchemaDrizzle.orders.createdAt, endDate)
+  ];
+  
   const orders = await tx
     .select()
     .from(SchemaDrizzle.orders)
-    .where(
-      and(
-        eq(SchemaDrizzle.orders.status, "PAID"),
-        gte(SchemaDrizzle.orders.createdAt, startDate),
-        lte(SchemaDrizzle.orders.createdAt, endDate)
-      )
-    );
+    .where(and(...conditions));
 
   // Get all menu item orders for those paid orders
   const orderIds = orders.map(o => o.id);
@@ -280,26 +285,45 @@ async function getRevenueStats(
   if (orderIds.length === 0) {
     return {
       totalRevenue: 0,
+      deletedRevenue: 0,
+      activeRevenue: 0,
       orderCount: 0,
       averageOrderValue: 0,
     };
   }
 
+  // Get menu item orders based on includeDeletedMenuItemOrders flag
+  const menuItemOrdersConditions: any[] = [inArray(SchemaDrizzle.menuItemOrders.orderId, orderIds)];
+  if (!includeDeletedMenuItemOrders) {
+    menuItemOrdersConditions.push(isNull(SchemaDrizzle.menuItemOrders.deletedAt));
+  }
+
   const menuItemOrders = await tx
     .select()
     .from(SchemaDrizzle.menuItemOrders)
-    .where(inArray(SchemaDrizzle.menuItemOrders.orderId, orderIds));
+    .where(and(...menuItemOrdersConditions));
 
-  // Calculate total revenue
-  const totalRevenue = menuItemOrders.reduce((sum, item) => {
+  // Separate deleted and active menu item orders
+  const activeOrders = menuItemOrders.filter(item => !item.deletedAt);
+  const deletedOrders = menuItemOrders.filter(item => item.deletedAt);
+
+  // Calculate revenues
+  const activeRevenue = activeOrders.reduce((sum, item) => {
     return sum + (item.price * item.quantity);
   }, 0);
 
+  const deletedRevenue = deletedOrders.reduce((sum, item) => {
+    return sum + (item.price * item.quantity);
+  }, 0);
+
+  const totalRevenue = activeRevenue + deletedRevenue;
   const orderCount = orders.length;
   const averageOrderValue = orderCount > 0 ? totalRevenue / orderCount : 0;
 
   return {
     totalRevenue,
+    deletedRevenue,
+    activeRevenue,
     orderCount,
     averageOrderValue,
   };
@@ -308,6 +332,8 @@ async function getRevenueStats(
 async function getMenuItemSales(
   startDate: Date,
   endDate: Date,
+  statuses?: string[],
+  includeDeletedMenuItemOrders: boolean = false,
   tx: DbTransactionOrDB = db
 ): Promise<{
   menuItems: Array<{
@@ -317,6 +343,8 @@ async function getMenuItemSales(
     type: string[];
     quantitySold: number;
     revenue: number;
+    deletedQuantitySold: number;
+    deletedRevenue: number;
   }>;
   supplements: Array<{
     id: string;
@@ -324,19 +352,22 @@ async function getMenuItemSales(
     subName: string | null;
     quantitySold: number;
     revenue: number;
+    deletedQuantitySold: number;
+    deletedRevenue: number;
   }>;
 }> {
-  // Get all PAID orders in the date range
+  // Get all orders in the date range with specified statuses (default to PAID)
+  const statusFilter = statuses && statuses.length > 0 ? statuses : ["PAID"];
+  const conditions = [
+    inArray(SchemaDrizzle.orders.status, statusFilter as any),
+    gte(SchemaDrizzle.orders.createdAt, startDate),
+    lte(SchemaDrizzle.orders.createdAt, endDate)
+  ];
+  
   const orders = await tx
     .select()
     .from(SchemaDrizzle.orders)
-    .where(
-      and(
-        eq(SchemaDrizzle.orders.status, "PAID"),
-        gte(SchemaDrizzle.orders.createdAt, startDate),
-        lte(SchemaDrizzle.orders.createdAt, endDate)
-      )
-    );
+    .where(and(...conditions));
 
   const orderIds = orders.map(o => o.id);
   
@@ -347,12 +378,18 @@ async function getMenuItemSales(
     };
   }
 
-  // Get all menu item orders with menu item details
+  // Get all menu item orders with menu item details, optionally including deleted
+  const menuItemOrdersConditions: any[] = [inArray(SchemaDrizzle.menuItemOrders.orderId, orderIds)];
+  if (!includeDeletedMenuItemOrders) {
+    menuItemOrdersConditions.push(isNull(SchemaDrizzle.menuItemOrders.deletedAt));
+  }
+
   const menuItemOrders = await tx
     .select({
       menuItemId: SchemaDrizzle.menuItemOrders.menuItemId,
       quantity: SchemaDrizzle.menuItemOrders.quantity,
       price: SchemaDrizzle.menuItemOrders.price,
+      deletedAt: SchemaDrizzle.menuItemOrders.deletedAt,
       menuItemName: SchemaDrizzle.menuItems.name,
       menuItemSubName: SchemaDrizzle.menuItems.subName,
       menuItemType: SchemaDrizzle.menuItems.type,
@@ -362,7 +399,7 @@ async function getMenuItemSales(
       SchemaDrizzle.menuItems,
       eq(SchemaDrizzle.menuItemOrders.menuItemId, SchemaDrizzle.menuItems.id)
     )
-    .where(inArray(SchemaDrizzle.menuItemOrders.orderId, orderIds));
+    .where(and(...menuItemOrdersConditions));
 
   // Aggregate by menu item
   const menuItemMap = new Map<string, {
@@ -372,21 +409,32 @@ async function getMenuItemSales(
     type: string[];
     quantitySold: number;
     revenue: number;
+    deletedQuantitySold: number;
+    deletedRevenue: number;
   }>();
 
   for (const order of menuItemOrders) {
     const existing = menuItemMap.get(order.menuItemId);
+    const isDeleted = !!order.deletedAt;
+    
     if (existing) {
-      existing.quantitySold += order.quantity;
-      existing.revenue += order.price * order.quantity;
+      if (isDeleted) {
+        existing.deletedQuantitySold += order.quantity;
+        existing.deletedRevenue += order.price * order.quantity;
+      } else {
+        existing.quantitySold += order.quantity;
+        existing.revenue += order.price * order.quantity;
+      }
     } else {
       menuItemMap.set(order.menuItemId, {
         id: order.menuItemId,
         name: order.menuItemName,
         subName: order.menuItemSubName,
         type: order.menuItemType as string[],
-        quantitySold: order.quantity,
-        revenue: order.price * order.quantity,
+        quantitySold: isDeleted ? 0 : order.quantity,
+        revenue: isDeleted ? 0 : order.price * order.quantity,
+        deletedQuantitySold: isDeleted ? order.quantity : 0,
+        deletedRevenue: isDeleted ? order.price * order.quantity : 0,
       });
     }
   }
@@ -399,6 +447,8 @@ async function getMenuItemSales(
     type: string[];
     quantitySold: number;
     revenue: number;
+    deletedQuantitySold: number;
+    deletedRevenue: number;
   }> = [];
   
   const supplements: Array<{
@@ -407,6 +457,8 @@ async function getMenuItemSales(
     subName: string | null;
     quantitySold: number;
     revenue: number;
+    deletedQuantitySold: number;
+    deletedRevenue: number;
   }> = [];
 
   for (const item of menuItemMap.values()) {
@@ -420,6 +472,8 @@ async function getMenuItemSales(
         subName: item.subName,
         quantitySold: item.quantitySold,
         revenue: item.revenue,
+        deletedQuantitySold: item.deletedQuantitySold,
+        deletedRevenue: item.deletedRevenue,
       });
     }
   }
@@ -437,24 +491,28 @@ async function getMenuItemSales(
 async function getRawMaterialConsumption(
   startDate: Date,
   endDate: Date,
+  statuses?: string[],
+  includeDeletedMenuItemOrders: boolean = false,
   tx: DbTransactionOrDB = db
 ): Promise<Array<{
   id: string;
   name: string;
   unit: string | null;
   totalQuantityUsed: number;
+  deletedQuantityUsed: number;
 }>> {
-  // Get all paid orders in the date range
+  // Get all orders in the date range with specified statuses (default to PAID)
+  const statusFilter = statuses && statuses.length > 0 ? statuses : ["PAID"];
+  const conditions = [
+    inArray(SchemaDrizzle.orders.status, statusFilter as any),
+    gte(SchemaDrizzle.orders.createdAt, startDate),
+    lte(SchemaDrizzle.orders.createdAt, endDate)
+  ];
+  
   const orders = await tx
     .select()
     .from(SchemaDrizzle.orders)
-    .where(
-      and(
-        eq(SchemaDrizzle.orders.status, "PAID"),
-        gte(SchemaDrizzle.orders.createdAt, startDate),
-        lte(SchemaDrizzle.orders.createdAt, endDate)
-      )
-    );
+    .where(and(...conditions));
 
   const orderIds = orders.map(o => o.id);
   
@@ -462,14 +520,20 @@ async function getRawMaterialConsumption(
     return [];
   }
 
-  // Get all menu item orders
+  // Get all menu item orders, optionally including deleted
+  const menuItemOrdersConditions: any[] = [inArray(SchemaDrizzle.menuItemOrders.orderId, orderIds)];
+  if (!includeDeletedMenuItemOrders) {
+    menuItemOrdersConditions.push(isNull(SchemaDrizzle.menuItemOrders.deletedAt));
+  }
+
   const menuItemOrders = await tx
     .select({
       menuItemId: SchemaDrizzle.menuItemOrders.menuItemId,
       quantity: SchemaDrizzle.menuItemOrders.quantity,
+      deletedAt: SchemaDrizzle.menuItemOrders.deletedAt,
     })
     .from(SchemaDrizzle.menuItemOrders)
-    .where(inArray(SchemaDrizzle.menuItemOrders.orderId, orderIds));
+    .where(and(...menuItemOrdersConditions));
 
   // Recursive function to get all raw materials from a menu item (including nested recipes)
   const getRawMaterials = async (
@@ -530,19 +594,24 @@ async function getRawMaterialConsumption(
     return rawMaterials;
   };
 
-  // Collect all raw materials from all orders
+  // Collect all raw materials from all orders, separating deleted and active
   const allRawMaterials = new Map<string, number>();
+  const deletedRawMaterials = new Map<string, number>();
 
   for (const order of menuItemOrders) {
     const rawMaterials = await getRawMaterials(order.menuItemId, order.quantity);
+    const isDeleted = !!order.deletedAt;
+    const targetMap = isDeleted ? deletedRawMaterials : allRawMaterials;
+    
     for (const [rawMatId, qty] of rawMaterials.entries()) {
-      const existing = allRawMaterials.get(rawMatId) || 0;
-      allRawMaterials.set(rawMatId, existing + qty);
+      const existing = targetMap.get(rawMatId) || 0;
+      targetMap.set(rawMatId, existing + qty);
     }
   }
 
   // Get details of all raw materials
-  const rawMaterialIds = Array.from(allRawMaterials.keys());
+  const allRawMaterialIds = new Set([...allRawMaterials.keys(), ...deletedRawMaterials.keys()]);
+  const rawMaterialIds = Array.from(allRawMaterialIds);
   
   if (rawMaterialIds.length === 0) {
     return [];
@@ -563,10 +632,11 @@ async function getRawMaterialConsumption(
     name: rm.name,
     unit: rm.unit,
     totalQuantityUsed: allRawMaterials.get(rm.id) || 0,
+    deletedQuantityUsed: deletedRawMaterials.get(rm.id) || 0,
   }));
 
-  // Sort by quantity used descending
-  result.sort((a, b) => b.totalQuantityUsed - a.totalQuantityUsed);
+  // Sort by total quantity (active + deleted) used descending
+  result.sort((a, b) => (b.totalQuantityUsed + b.deletedQuantityUsed) - (a.totalQuantityUsed + a.deletedQuantityUsed));
 
   return result;
 }
