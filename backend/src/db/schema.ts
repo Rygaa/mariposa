@@ -153,6 +153,7 @@ export const menuItems = pgTable("MenuItem", {
   designVersion: integer("designVersion"),
   imageSourceMenuItemId: varchar("imageSourceMenuItemId"), // Reference to another menu item to use its images
   isMenuItemOptionUniquePerSelection: boolean("isMenuItemOptionUniquePerSelection").default(false),
+  shouldPrintInOrder: boolean("shouldPrintInOrder").default(true).notNull(),
 });
 
 export const orders = pgTable("Order", {

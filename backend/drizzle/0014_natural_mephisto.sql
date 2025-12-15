@@ -1,0 +1,1 @@
+ALTER TABLE "MenuItem" ADD COLUMN "shouldPrintInOrder" boolean DEFAULT true NOT NULL;
