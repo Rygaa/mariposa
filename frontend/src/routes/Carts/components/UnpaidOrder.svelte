@@ -356,7 +356,7 @@
       >
         Imprimer la commande
       </Button>
-      <!-- <Button
+      <Button
         size="sm"
         onclick={handlePrintOrderV2}
         disabled={isSubmitting}
@@ -364,7 +364,7 @@
         variant="secondary"
       >
         Print Order (v2)
-      </Button> -->
+      </Button>
       <Button
         size="sm"
         variant="danger"
