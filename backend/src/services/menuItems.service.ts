@@ -113,6 +113,7 @@ async function list(
               'image', sub_item.image,
               'description', sub_item.description,
               'isAvailable', sub_item."isAvailable",
+              'isMenuItemOptionUniquePerSelection', sub_item."isMenuItemOptionUniquePerSelection",
               'quantity', link.quantity
             )
           )

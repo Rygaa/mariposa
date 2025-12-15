@@ -53,6 +53,7 @@
   let imageSourceMenuItemId = $state<string | null>(null);
   let availableMenuItems = $state<Array<{id: string, name: string}>>([]);
   let loadingMenuItems = $state(false);
+  let isMenuItemOptionUniquePerSelection = $state(false);
 
   onMount(async () => {
     await loadCategories();
@@ -153,6 +154,7 @@
       categoryId = menuItem.categoryId || "";
       designVersion = menuItem.designVersion ?? null;
       imageSourceMenuItemId = menuItem.imageSourceMenuItemId ?? null;
+      isMenuItemOptionUniquePerSelection = menuItem.isMenuItemOptionUniquePerSelection ?? false;
       
       // Load item prices
       if (menuItem.id) {
@@ -176,6 +178,7 @@
     latestBuyingPrice = null;
     designVersion = null;
     imageSourceMenuItemId = null;
+    isMenuItemOptionUniquePerSelection = false;
   }
 
   function handleClose() {
@@ -209,6 +212,7 @@
         categoryId: categoryId || undefined,
         designVersion: designVersion ?? undefined,
         imageSourceMenuItemId: imageSourceMenuItemId || null,
+        isMenuItemOptionUniquePerSelection,
       });
 
       if (result.success) {
@@ -452,6 +456,20 @@
           Available (item is available for order)
         </label>
       </div>
+
+      {#if type.includes("MENU_ITEM_OPTION")}
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            id="isMenuItemOptionUniquePerSelection"
+            bind:checked={isMenuItemOptionUniquePerSelection}
+            class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+          />
+          <label for="isMenuItemOptionUniquePerSelection" class="ml-2 block text-sm text-gray-900">
+            Unique per selection (customer can only select this option once)
+          </label>
+        </div>
+      {/if}
 
       {#if menuItem}
         <div class="pt-4 border-t border-gray-200">

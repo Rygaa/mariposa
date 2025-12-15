@@ -28,13 +28,24 @@
 
   let selectedOptions = $state<string[]>([]);
 
-  function toggleOption(optionId: string) {
-    if (selectedOptions.includes(optionId)) {
+  function toggleOption(option: any) {
+    console.log("Toggling option:", option.isMenuItemOptionUniquePerSelection);
+    if (selectedOptions.includes(option.id)) {
       selectedOptions = selectedOptions.filter(
-        (id) => id !== optionId
+        (id) => id !== option.id
       );
     } else {
-      selectedOptions = [...selectedOptions, optionId];
+      // If this option requires unique selection, clear all other selections
+      if (option.isMenuItemOptionUniquePerSelection) {
+        selectedOptions = [option.id];
+      } else {
+        // When selecting a non-unique option, filter out any unique options
+        const filteredOptions = selectedOptions.filter(id => {
+          const existingOption = options.find((opt: any) => opt.id === id);
+          return existingOption && !existingOption.isMenuItemOptionUniquePerSelection;
+        });
+        selectedOptions = [...filteredOptions, option.id];
+      }
     }
   }
 
@@ -82,7 +93,7 @@
           {#each options as option (option.id)}
             {@const isSelected = selectedOptions.includes(option.id)}
             <button
-              onclick={() => toggleOption(option.id)}
+              onclick={() => toggleOption(option)}
               class="group relative flex items-center gap-4 p-5 border-2 rounded-2xl transition-all duration-300 hover:scale-[1.02] {isSelected
                 ? 'shadow-lg'
                 : 'border-gray-200 bg-white hover:shadow-md'}"

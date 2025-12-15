@@ -152,6 +152,7 @@ export const menuItems = pgTable("MenuItem", {
   stockConversionRatio: real("stockConversionRatio").default(1),
   designVersion: integer("designVersion"),
   imageSourceMenuItemId: varchar("imageSourceMenuItemId"), // Reference to another menu item to use its images
+  isMenuItemOptionUniquePerSelection: boolean("isMenuItemOptionUniquePerSelection").default(false),
 });
 
 export const orders = pgTable("Order", {

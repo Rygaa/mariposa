@@ -24,6 +24,7 @@ export const create = protectedProcedureGlobalTransaction
       averagePrice: z.number().optional(),
       stockQuantity: z.number().default(0).optional(),
       stockConversionRatio: z.number().default(1).optional(),
+      isMenuItemOptionUniquePerSelection: z.boolean().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {
@@ -66,6 +67,7 @@ export const update = protectedProcedureGlobalTransaction
       designVersion: z.number().int().optional(),
       imageSourceMenuItemId: z.string().uuid().optional().nullable(),
       index: z.number().int().optional(),
+      isMenuItemOptionUniquePerSelection: z.boolean().optional(),
     })
   )
   .mutation(async ({ ctx, input }) => {

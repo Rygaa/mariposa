@@ -27,10 +27,10 @@
   let isSupplementModalOpen = $state(false);
   let imageUrl = $state<string | null>(null);
   let imageLoaded = $state(false);
-  
+
   // React to menuItem.imageUrl changes (for preview mode)
   $effect(() => {
-    if (menuItem.imageUrl && menuItem.id === 'preview') {
+    if (menuItem.imageUrl && menuItem.id === "preview") {
       imageUrl = menuItem.imageUrl;
       imageLoaded = true;
     }
@@ -59,13 +59,13 @@
 
   async function loadImageUrl() {
     // If imageUrl is already provided (e.g., for preview), skip loading
-    if (menuItem.imageUrl && menuItem.id === 'preview') {
+    if (menuItem.imageUrl && menuItem.id === "preview") {
       imageUrl = menuItem.imageUrl;
       imageLoaded = true;
       return;
     }
-    
-    if (!menuItem.id || menuItem.id === 'preview') {
+
+    if (!menuItem.id || menuItem.id === "preview") {
       return;
     }
 
@@ -110,10 +110,10 @@
   // Calculate discounted price if applicable
   const priceInfo = $derived(() => {
     const originalPrice = menuItem.price || 0;
-    
+
     // Get the most recent selling price with discount
     const sellingPrice = menuItem.sellingPrices?.[0];
-    
+
     if (!sellingPrice) {
       return { originalPrice, discountedPrice: null, hasDiscount: false };
     }
@@ -123,7 +123,8 @@
 
     // Apply discount in percent
     if (sellingPrice.discountInPercent && sellingPrice.discountInPercent > 0) {
-      discountedPrice = originalPrice * (1 - sellingPrice.discountInPercent / 100);
+      discountedPrice =
+        originalPrice * (1 - sellingPrice.discountInPercent / 100);
       hasDiscount = true;
     }
     // Apply discount in value (takes precedence over percent if both exist)
@@ -148,7 +149,10 @@
   <div
     class="relative rounded-3xl overflow-hidden transition-all duration-300 hover:shadow-2xl h-full flex flex-col"
   >
-    <div class="flex-1 relative overflow-hidden rounded-3xl shadow-md" style="margin: 1rem; margin-bottom: -20%; aspect-ratio: 386 / 384;">
+    <div
+      class="flex-1 relative overflow-hidden rounded-3xl shadow-md"
+      style="margin: 1rem; margin-bottom: -20%; aspect-ratio: 386 / 384;"
+    >
       <img
         src={displayImage}
         alt={menuItem.name}
@@ -168,7 +172,6 @@
       {/if}
     </div>
 
-    <!-- Price and Add button positioned absolutely at bottom with background -->
     <div
       class="w-full py-4 flex items-center justify-between backdrop-blur-xs rounded-3xl border border-black/20 shadow-lg"
       style="background-color: rgba(255, 255, 255, 0.25); background-blend-mode: lighten; background-image: linear-gradient({fromColor}B3, {fromColor}B3);"
@@ -199,23 +202,32 @@
           </div>
 
           <span
-            class="font-bold text-gray-900 text-1xl bg-white/70 backdrop-blur-sm px-6 py-1.25 rounded-full inline-block w-fit"
+            class="font-bold text-gray-900 text-1xl bg-white/70 backdrop-blur-sm px-6 py-1.25 rounded-full inline-block w-fit text-2xl font-bold text-gray-900"
           >
             {menuItem.subName}
           </span>
         </div>
-        {#if menuItem.isAvailable}
-          <Button
-            onclick={handleAdd}
-            variant="secondary"
-            size="lg"
-            fullWidth
-            iconOnly={true}
-            iconName="add"
-            rounded="full"
-            tooltip="Ajouter un article"
-          />
-        {/if}
+
+        <div class="flex w-full items-center justify-between gap-x-4">
+          {#if menuItem.isAvailable}
+            <Button
+              onclick={handleAdd}
+              variant="secondary"
+              size="lg"
+              fullWidth
+              iconOnly={true}
+              iconName="add"
+              rounded="full"
+              tooltip="Ajouter un article"
+            />
+          {/if}
+
+          {#if count > 0}
+            <span class="text-lg font-bold text-white aspect-square min-w-10 flex items-center justify-center rounded-full bg-red-500/70 backdrop-blur-sm">
+              {count}
+            </span>
+          {/if}
+        </div>
       </div>
     </div>
   </div>
