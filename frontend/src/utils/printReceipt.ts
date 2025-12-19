@@ -39,8 +39,8 @@ function createReceiptPdf(
   doc.setFontSize(10);
   doc.setFont("courier", "bold");
   doc.text("Item", itemStartX, yPos);
-  doc.text("Price", priceStartX, yPos);
-  doc.text("Total", totalStartX, yPos);
+  doc.text("Price", priceStartX + 12, yPos, { align: "right" });
+  doc.text("Total", totalStartX + 12, yPos, { align: "right" });
   yPos += 2;
 
   // Line separator
@@ -105,10 +105,10 @@ function createReceiptPdf(
     
     // Print price in second column (aligned with first line)
     const pricePerItem = element.finalPriceForOneItem;
-    doc.text(pricePerItem.toString(), priceStartX, yPos);
+    doc.text(pricePerItem.toString(), priceStartX + 12, yPos, { align: "right" });
     
     // Print total in third column (aligned with first line)
-    doc.text(finalPrice.toString(), totalStartX, yPos);
+    doc.text(finalPrice.toString(), totalStartX + 12, yPos, { align: "right" });
     
     // Advance yPos based on wrapped lines
     yPos += itemLines.length * 4;

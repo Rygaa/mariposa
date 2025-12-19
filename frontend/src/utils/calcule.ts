@@ -7,22 +7,34 @@ export function calculateOrderTotal(menuItemOrders: any[]): number {
     return 0;
   }
 
-  // Only sum parent items (those without parentMenuItemOrderId)
-  // The supplements and options are already included in the parent's price
-  return menuItemOrders
-    .filter((mio: any) => !mio.parentMenuItemOrderId)
-    .reduce((sum: number, mio: any) => {
-      // Add parent item price
-      const parentTotal = mio.price * mio.quantity;
-      
-      // Add all child items (supplements and options) if they exist
-      const childTotal = (mio.childMenuItemOrders || []).reduce(
-        (childSum: number, child: any) => childSum + child.price * child.quantity,
-        0
-      );
-      
-      return sum + parentTotal + childTotal;
-    }, 0);
+  // Filter main items only (not child supplements/options)
+  const mainItems = menuItemOrders.filter((mio: any) => 
+    !mio.parentMenuItemOrderId && mio.menuItem?.type?.includes("MENU_ITEM")
+  );
+  
+  // Group child items by parent
+  const childItemsByParent = menuItemOrders
+    .filter((mio: any) => 
+      mio.menuItem?.type?.includes("SUPPLEMENT") && mio.parentMenuItemOrderId
+    )
+    .reduce((acc: any, child: any) => {
+      if (!acc[child.parentMenuItemOrderId]) {
+        acc[child.parentMenuItemOrderId] = [];
+      }
+      acc[child.parentMenuItemOrderId].push(child);
+      return acc;
+    }, {});
+  
+  // Calculate total including child items
+  return mainItems.reduce((sum: number, mio: any) => {
+    const childItems = childItemsByParent[mio.id] || [];
+    const childItemsTotal = childItems.reduce(
+      (childSum: number, child: any) => childSum + (child.price || 0) * child.quantity,
+      0
+    );
+    const itemTotal = (mio.price + childItemsTotal) * mio.quantity;
+    return sum + itemTotal;
+  }, 0);
 }
 
 /**

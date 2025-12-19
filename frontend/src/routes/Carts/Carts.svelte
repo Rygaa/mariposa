@@ -67,14 +67,37 @@
         );
         const totalAmount = tableOrders.reduce((sum, order) => {
           if (!order.menuItemOrders) return sum;
-          return (
-            sum +
-            order.menuItemOrders.reduce(
-              (orderSum: number, mio: any) =>
-                orderSum + mio.price * mio.quantity,
-              0
-            )
+          
+          // Filter main items only (not child supplements/options)
+          const mainItems = order.menuItemOrders.filter((mio: any) => 
+            !mio.parentMenuItemOrderId && mio.menuItem?.type?.includes("MENU_ITEM")
           );
+          
+          // Group child items by parent
+          const childItemsByParent = order.menuItemOrders
+            .filter((mio: any) => 
+              mio.menuItem?.type?.includes("SUPPLEMENT") && mio.parentMenuItemOrderId
+            )
+            .reduce((acc: any, child: any) => {
+              if (!acc[child.parentMenuItemOrderId]) {
+                acc[child.parentMenuItemOrderId] = [];
+              }
+              acc[child.parentMenuItemOrderId].push(child);
+              return acc;
+            }, {});
+          
+          // Calculate total including child items
+          const orderTotal = mainItems.reduce((orderSum: number, mio: any) => {
+            const childItems = childItemsByParent[mio.id] || [];
+            const childItemsTotal = childItems.reduce(
+              (childSum: number, child: any) => childSum + (child.price || 0) * child.quantity,
+              0
+            );
+            const itemTotal = (mio.price + childItemsTotal) * mio.quantity;
+            return orderSum + itemTotal;
+          }, 0);
+          
+          return sum + orderTotal;
         }, 0);
 
         return {
@@ -318,7 +341,7 @@
                     <Icon iconName="print" />
                     Print Receipt
                   </button>
-                  <!-- <button
+                 <button
                     onclick={(e) => {
                       e.stopPropagation();
                       handleDownloadTableReceipt(table.id);
@@ -327,7 +350,7 @@
                   >
                     <Icon iconName="download" />
                     Test
-                  </button> -->
+                  </button> 
                 </div>
               {/if}
             </div>

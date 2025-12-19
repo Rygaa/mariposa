@@ -258,12 +258,41 @@
   function calculateEditTotal(): number {
     if (!order.menuItemOrders) return 0;
 
-    return order.menuItemOrders.reduce((sum: number, mio: any) => {
+    // Filter main items only (not child supplements/options)
+    const mainItems = order.menuItemOrders.filter((mio: any) => {
       const change = menuItemChanges.get(mio.id);
-      if (change?.toDelete) return sum;
+      return !change?.toDelete && !mio.parentMenuItemOrderId && mio.menuItem?.type?.includes("MENU_ITEM");
+    });
+    
+    // Group child items by parent
+    const childItemsByParent = order.menuItemOrders
+      .filter((mio: any) => {
+        const change = menuItemChanges.get(mio.id);
+        return !change?.toDelete && mio.menuItem?.type?.includes("SUPPLEMENT") && mio.parentMenuItemOrderId;
+      })
+      .reduce((acc: any, child: any) => {
+        if (!acc[child.parentMenuItemOrderId]) {
+          acc[child.parentMenuItemOrderId] = [];
+        }
+        acc[child.parentMenuItemOrderId].push(child);
+        return acc;
+      }, {});
+    
+    // Calculate total including child items
+    return mainItems.reduce((sum: number, mio: any) => {
+      const change = menuItemChanges.get(mio.id);
       const quantity = change?.quantity ?? mio.quantity;
       const price = change?.price ?? mio.price;
-      return sum + quantity * price;
+      
+      const childItems = childItemsByParent[mio.id] || [];
+      const childItemsTotal = childItems.reduce((childSum: number, child: any) => {
+        const childChange = menuItemChanges.get(child.id);
+        const childQty = childChange?.quantity ?? child.quantity;
+        return childSum + (child.price || 0) * childQty;
+      }, 0);
+      
+      const itemTotal = (price + childItemsTotal) * quantity;
+      return sum + itemTotal;
     }, 0);
   }
 
