@@ -64,8 +64,8 @@ function createOrderPDF(order: any): jsPDF {
   for (let i = 0; i < itemsWithChildren.length; i++) {
     const element = itemsWithChildren[i];
     const itemName = element.menuItem?.name || 'Unknown Item';
-    const subName = element.menuItem?.subName ? ` (${element.menuItem.subName})` : '';
-    const name = `${element.quantity} ${itemName}${subName}`;
+    const subName = element.menuItem?.subName || '';
+    const name = `${element.quantity} ${itemName}`;
     const supplements = element.supplements || [];
     const options = element.options || [];
 
@@ -83,6 +83,14 @@ function createOrderPDF(order: any): jsPDF {
     doc.setFontSize(13);
     doc.text(name, 5, yPos);
     yPos += 6;
+    
+    // Draw subName on separate line if it exists
+    if (subName) {
+      doc.setFont("courier", "bold");
+      doc.setFontSize(11);
+      doc.text(`  (${subName})`, 5, yPos);
+      yPos += 5;
+    }
 
     // Draw options with margin and underline effect
     if (options.length > 0) {
@@ -95,14 +103,21 @@ function createOrderPDF(order: any): jsPDF {
         }
         
         const optName = opt.menuItem?.name || '';
-        const optSubName = opt.menuItem?.subName ? ` (${opt.menuItem.subName})` : '';
+        const optSubName = opt.menuItem?.subName || '';
         if (optName) {
-          const indentedText = `  ${optName}${optSubName}`;
+          const indentedText = `  ${optName}`;
           doc.text(indentedText, 5, yPos);
           const textWidth = doc.getTextWidth(indentedText);
           doc.setLineWidth(0.3);
           doc.line(5, yPos + 1, 5 + textWidth, yPos + 1);
           yPos += 5;
+          
+          // Draw option subName on separate line if it exists
+          if (optSubName) {
+            doc.setFont("courier", "bold");
+            doc.text(`    (${optSubName})`, 5, yPos);
+            yPos += 4;
+          }
         }
       });
     }
@@ -113,10 +128,17 @@ function createOrderPDF(order: any): jsPDF {
       doc.setFontSize(11);
       supplements.forEach((supp: any) => {
         const suppName = supp.menuItem?.name || '';
-        const suppSubName = supp.menuItem?.subName ? ` (${supp.menuItem.subName})` : '';
+        const suppSubName = supp.menuItem?.subName || '';
         if (suppName) {
-          doc.text(`  s: ${suppName}${suppSubName}`, 5, yPos);
+          doc.text(`  s: ${suppName}`, 5, yPos);
           yPos += 5;
+          
+          // Draw supplement subName on separate line if it exists
+          if (suppSubName) {
+            doc.setFont("courier", "bold");
+            doc.text(`     (${suppSubName})`, 5, yPos);
+            yPos += 4;
+          }
         }
       });
     }
