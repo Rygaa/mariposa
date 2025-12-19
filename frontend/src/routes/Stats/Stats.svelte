@@ -142,19 +142,19 @@
   }
 
   const periods: { value: Period; label: string }[] = [
-    { value: "today", label: "Today" },
-    { value: "yesterday", label: "Yesterday" },
-     { value: "lastWeek", label: "Last Week" },
-     { value: "custom", label: "Custom" },
+    { value: "today", label: "Aujourd'hui" },
+    { value: "yesterday", label: "Hier" },
+     { value: "lastWeek", label: "Semaine Dernière" },
+     { value: "custom", label: "Personnalisé" },
   ];
 
   const statuses: { value: OrderStatus; label: string; color: string }[] = [
-    { value: "INITIALIZED", label: "Initialized", color: "bg-gray-100 text-gray-700" },
-    { value: "CONFIRMED", label: "Confirmed", color: "bg-blue-100 text-blue-700" },
-    { value: "WAITING_TO_BE_PRINTED", label: "Waiting to Print", color: "bg-yellow-100 text-yellow-700" },
-    { value: "PRINTED", label: "Printed", color: "bg-purple-100 text-purple-700" },
-    { value: "SERVED", label: "Served", color: "bg-green-100 text-green-700" },
-    { value: "PAID", label: "Paid", color: "bg-emerald-100 text-emerald-700" },
+    { value: "INITIALIZED", label: "Initialisé", color: "bg-gray-100 text-gray-700" },
+    { value: "CONFIRMED", label: "Confirmé", color: "bg-blue-100 text-blue-700" },
+    { value: "WAITING_TO_BE_PRINTED", label: "En Attente d'Impression", color: "bg-yellow-100 text-yellow-700" },
+    { value: "PRINTED", label: "Imprimé", color: "bg-purple-100 text-purple-700" },
+    { value: "SERVED", label: "Servi", color: "bg-green-100 text-green-700" },
+    { value: "PAID", label: "Payé", color: "bg-emerald-100 text-emerald-700" },
   ];
 
   function toggleStatus(status: OrderStatus) {
@@ -177,21 +177,21 @@
 <Page>
   <Card>
     <CardHeader>
-      <CardTitle>Revenue Statistics</CardTitle>
+      <CardTitle>Statistiques de Revenus</CardTitle>
     </CardHeader>
-    <CardContent class="p-6 flex flex-col">
-      <div class="mb-6 flex gap-3">
-         <div class="flex items-center gap-3 mr-4">
-          <div class="flex flex-col">
+    <CardContent class="p-4 md:p-6 flex flex-col">
+      <div class="mb-6 flex flex-col md:flex-row gap-3">
+         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 md:mr-4">
+          <div class="flex flex-col flex-1">
             <label class="text-xs text-gray-500 mb-1">
-              From
+              De
               <DateTimePicker bind:value={fromValue} />
             </label>
           </div>
 
-          <div class="flex flex-col">
+          <div class="flex flex-col flex-1">
             <label class="text-xs text-gray-500 mb-1">
-              To
+              À
               <DateTimePicker bind:value={toValue} />
             </label>
           </div>
@@ -199,33 +199,35 @@
            <div class="flex items-end">
              <button
               onclick={() => loadRevenueData('custom', fromValue, toValue, selectedStatuses, includeDeletedMenuItemOrders)}
-               class="ml-2 px-4 py-2 rounded bg-indigo-600 text-white text-sm"
+               class="w-full sm:w-auto px-4 py-2 rounded bg-indigo-600 text-white text-sm"
              >
-               Apply Range
+               Appliquer
              </button>
            </div>
          </div>
-        {#each periods as period}
-          <button
-            onclick={() => loadRevenueData(period.value, undefined, undefined, selectedStatuses, includeDeletedMenuItemOrders)}
-            class="px-6 py-2.5 rounded-lg font-medium transition-all {selectedPeriod ===
-            period.value
-              ? 'bg-indigo-600 text-white shadow-md'
-              : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
-          >
-            {period.label}
-          </button>
-        {/each}
+        <div class="flex flex-wrap gap-2">
+          {#each periods as period}
+            <button
+              onclick={() => loadRevenueData(period.value, undefined, undefined, selectedStatuses, includeDeletedMenuItemOrders)}
+              class="flex-1 sm:flex-none px-4 sm:px-6 py-2.5 rounded-lg font-medium transition-all text-sm {selectedPeriod ===
+              period.value
+                ? 'bg-indigo-600 text-white shadow-md'
+                : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+            >
+              {period.label}
+            </button>
+          {/each}
+        </div>
       </div>
 
       <!-- Status Filter Section -->
       <div class="mb-6 border-t pt-4">
-        <div class="block text-sm font-medium text-gray-700 mb-3">Order Status Filter:</div>
+        <div class="block text-sm font-medium text-gray-700 mb-3">Filtre par Statut de Commande :</div>
         <div class="flex flex-wrap gap-2">
           {#each statuses as status}
             <button
               onclick={() => toggleStatus(status.value)}
-              class="px-4 py-2 rounded-lg text-sm font-medium transition-all border {selectedStatuses.includes(status.value)
+              class="flex-1 sm:flex-none px-3 sm:px-4 py-2 rounded-lg text-xs sm:text-sm font-medium transition-all border {selectedStatuses.includes(status.value)
                 ? status.color + ' border-current shadow-sm'
                 : 'bg-white text-gray-400 border-gray-200 hover:border-gray-300'}"
             >
@@ -237,7 +239,7 @@
           {/each}
         </div>
         <p class="mt-2 text-xs text-gray-500">
-          {selectedStatuses.length === 0 ? 'No status selected (showing all)' : `Showing ${selectedStatuses.length} status(es): ${selectedStatuses.join(', ')}`}
+          {selectedStatuses.length === 0 ? 'Aucun statut sélectionné (affichage de tous)' : `Affichage de ${selectedStatuses.length} statut(s) : ${selectedStatuses.join(', ')}`}
         </p>
       </div>
 
@@ -251,8 +253,8 @@
             class="w-5 h-5 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
           />
           <span class="text-sm font-medium text-gray-700">
-            Include deleted menu item orders
-            <span class="text-xs text-gray-500 block mt-0.5">Revenue from deleted items will be shown separately</span>
+            Inclure les commandes d'articles supprimés
+            <span class="text-xs text-gray-500 block mt-0.5">Les revenus des articles supprimés seront affichés séparément</span>
           </span>
         </label>
       </div>
@@ -264,40 +266,42 @@
       {:else}
         <Card class="w-full" useAvailableHeight={false}>
           <CardContent class="p-4">
-            <div class="flex items-center justify-between gap-6">
+            <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 sm:gap-6">
               <div class="flex-1 min-w-0">
-                <div class="text-xs text-gray-500">Total Revenue</div>
-                <div class="text-lg font-semibold text-gray-900 truncate">{revenueData ? formatCurrency(revenueData.totalRevenue) : '-'}</div>
+                <div class="text-xs text-gray-500">Revenu Total</div>
+                <div class="text-lg sm:text-xl font-semibold text-gray-900 truncate">{revenueData ? formatCurrency(revenueData.totalRevenue) : '-'}</div>
                 {#if includeDeletedMenuItemOrders && revenueData}
                   <div class="text-xs text-gray-400 mt-1">
-                    Active: {formatCurrency(revenueData.activeRevenue)} | 
-                    <span class="text-red-500">Deleted: {formatCurrency(revenueData.deletedRevenue)}</span>
+                    Actif : {formatCurrency(revenueData.activeRevenue)} | 
+                    <span class="text-red-500">Supprimé : {formatCurrency(revenueData.deletedRevenue)}</span>
                   </div>
                 {/if}
-                <div class="text-xs text-gray-400">{revenueData ? revenueData.period : 'No data'}</div>
+                <div class="text-xs text-gray-400">{revenueData ? revenueData.period : 'Aucune donnée'}</div>
               </div>
 
-              <div class="w-28 text-center">
-                <div class="text-xs text-gray-500">Orders</div>
-                <div class="text-lg font-medium text-gray-900">{revenueData ? revenueData.orderCount : '-'}</div>
-              </div>
+              <div class="flex gap-6 sm:gap-4">
+                <div class="flex-1 sm:w-28 text-center">
+                  <div class="text-xs text-gray-500">Commandes</div>
+                  <div class="text-lg font-medium text-gray-900">{revenueData ? revenueData.orderCount : '-'}</div>
+                </div>
 
-              <div class="w-32 text-center">
-                <div class="text-xs text-gray-500">Avg order</div>
-                <div class="text-lg font-medium text-gray-900">{revenueData ? formatCurrency(revenueData.averageOrderValue) : '-'}</div>
+                <div class="flex-1 sm:w-32 text-center">
+                  <div class="text-xs text-gray-500">Moy. commande</div>
+                  <div class="text-base sm:text-lg font-medium text-gray-900">{revenueData ? formatCurrency(revenueData.averageOrderValue) : '-'}</div>
+                </div>
               </div>
             </div>
           </CardContent>
         </Card>
 
         {#if salesData}
-          <div class="mt-6 grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <div class="mt-6 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
             <!-- Menu Items Sales -->
             <Card useAvailableHeight={false}>
               <CardHeader>
-                <div class="text-base font-semibold">Menu Items Sold</div>
+                <div class="text-sm sm:text-base font-semibold">Articles du Menu Vendus</div>
               </CardHeader>
-              <CardContent class="p-4">
+              <CardContent class="p-3 sm:p-4">
                 {#if salesData.menuItems.length > 0}
                   <div class="space-y-2">
                     {#each salesData.menuItems as item}
@@ -310,7 +314,7 @@
                             {formatCurrency(item.revenue)}
                             {#if includeDeletedMenuItemOrders && item.deletedRevenue > 0}
                               <span class="text-red-500 ml-2">
-                                + {formatCurrency(item.deletedRevenue)} (deleted)
+                                + {formatCurrency(item.deletedRevenue)} (supprimé)
                               </span>
                             {/if}
                           </div>
@@ -327,7 +331,7 @@
                     {/each}
                   </div>
                 {:else}
-                  <div class="text-center py-8 text-gray-400 text-sm">No menu items sold</div>
+                  <div class="text-center py-8 text-gray-400 text-sm">Aucun article du menu vendu</div>
                 {/if}
               </CardContent>
             </Card>
@@ -335,9 +339,9 @@
             <!-- Supplements Sales -->
             <Card useAvailableHeight={false}>
               <CardHeader>
-                <div class="text-base font-semibold">Supplements Sold</div>
+                <div class="text-sm sm:text-base font-semibold">Suppléments Vendus</div>
               </CardHeader>
-              <CardContent class="p-4">
+              <CardContent class="p-3 sm:p-4">
                 {#if salesData.supplements.length > 0}
                   <div class="space-y-2">
                     {#each salesData.supplements as supplement}
@@ -350,7 +354,7 @@
                             {formatCurrency(supplement.revenue)}
                             {#if includeDeletedMenuItemOrders && supplement.deletedRevenue > 0}
                               <span class="text-red-500 ml-2">
-                                + {formatCurrency(supplement.deletedRevenue)} (deleted)
+                                + {formatCurrency(supplement.deletedRevenue)} (supprimé)
                               </span>
                             {/if}
                           </div>
@@ -367,7 +371,7 @@
                     {/each}
                   </div>
                 {:else}
-                  <div class="text-center py-8 text-gray-400 text-sm">No supplements sold</div>
+                  <div class="text-center py-8 text-gray-400 text-sm">Aucun supplément vendu</div>
                 {/if}
               </CardContent>
             </Card>
@@ -379,9 +383,9 @@
             <!-- Raw Materials Consumption -->
             <Card useAvailableHeight={false}>
               <CardHeader>
-                <div class="text-base font-semibold">Raw Materials Consumed</div>
+                <div class="text-sm sm:text-base font-semibold">Matières Premières Consommées</div>
               </CardHeader>
-              <CardContent class="p-4">
+              <CardContent class="p-3 sm:p-4">
                 {#if rawMaterialData.length > 0}
                   <div class="space-y-2">
                     {#each rawMaterialData as material}
@@ -394,7 +398,7 @@
                           {material.totalQuantityUsed.toFixed(2)} {material.unit || ''}
                           {#if includeDeletedMenuItemOrders && material.deletedQuantityUsed > 0}
                             <span class="text-xs text-red-500 block">
-                              +{material.deletedQuantityUsed.toFixed(2)} {material.unit || ''} (deleted)
+                              +{material.deletedQuantityUsed.toFixed(2)} {material.unit || ''} (supprimé)
                             </span>
                           {/if}
                         </div>
@@ -402,7 +406,7 @@
                     {/each}
                   </div>
                 {:else}
-                  <div class="text-center py-8 text-gray-400 text-sm">No raw materials consumed</div>
+                  <div class="text-center py-8 text-gray-400 text-sm">Aucune matière première consommée</div>
                 {/if}
               </CardContent>
             </Card>

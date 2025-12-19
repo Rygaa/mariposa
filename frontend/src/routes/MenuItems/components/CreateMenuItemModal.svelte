@@ -125,7 +125,7 @@
     if (!open) handleClose();
   }}
 >
-  <Button onclick={handleOnOpen} iconName="add">Create Menu Item</Button>
+  <Button onclick={handleOnOpen} iconName="add">Create</Button>
 
   <DialogContent class="max-w-md">
     <DialogHeader>

@@ -80,6 +80,11 @@
       const result = await trpc.listCategories.query({ limit: 500 });
       if (result.success) {
         categories = result.categories;
+        
+        // Set first category as default if no filter is set
+        if (!filterCategoryId && categories.length > 0) {
+          filterCategoryId = categories[0].id;
+        }
       }
     } catch (error) {
       console.error("Error loading categories:", error);
@@ -101,7 +106,11 @@
 
       // Only apply category filter when filtering by MENU_ITEM type
       if (filterCategoryId && filterType.includes("MENU_ITEM")) {
-        filters.categoryId = filterCategoryId;
+        if (filterCategoryId === "not-linked") {
+          filters.categoryId = null;
+        } else {
+          filters.categoryId = filterCategoryId;
+        }
       }
 
       if (filterAvailable !== "all") {
@@ -208,10 +217,10 @@
               <h3 class="text-sm font-medium text-gray-700 mb-2">Categories</h3>
               <div class="flex flex-wrap gap-2">
                 <button
-                  onclick={() => filterCategoryId = ""}
-                  class="px-3 py-1.5 text-sm rounded-md transition-colors {filterCategoryId === '' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
+                  onclick={() => filterCategoryId = "not-linked"}
+                  class="px-3 py-1.5 text-sm rounded-md transition-colors {filterCategoryId === 'not-linked' ? 'bg-indigo-600 text-white' : 'bg-gray-100 text-gray-700 hover:bg-gray-200'}"
                 >
-                  All Categories
+                  Not Linked
                 </button>
                 {#each categories as category}
                   <button

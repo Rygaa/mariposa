@@ -17,6 +17,7 @@
   import MenuItemLinkerModal from "./MenuItemLinkerModal.svelte";
   import { trpc } from "../../../lib/trpc";
   import { onMount } from "svelte";
+  import { _globalStore } from "../../../store/globalStore.svelte";
 
   let {
     menuItem,
@@ -244,34 +245,40 @@
 
         <DropdownItem onclick={handleEdit}>
           <Icon iconName="edit" size="4" class="fill-gray-600" />
-          <span class="ml-2">Edit</span>
+          <span class="ml-2">Modifier</span>
         </DropdownItem>
         <DropdownItem onclick={handleManageSellingPrices}>
           <Icon iconName="money" size="4" class="fill-gray-600" />
-          <span class="ml-2">Create Selling Prices</span>
+          <span class="ml-2">Créer des prix de vente</span>
         </DropdownItem>
-        <DropdownItem onclick={handleViewSellingPrices}>
-          <Icon iconName="money" size="4" class="fill-gray-600" />
-          <span class="ml-2">View Selling Prices</span>
-        </DropdownItem>
+        {#if _globalStore.user?.role?.includes("ADMIN")}
+          <DropdownItem onclick={handleViewSellingPrices}>
+            <Icon iconName="money" size="4" class="fill-gray-600" />
+            <span class="ml-2">Voir les prix de vente</span>
+          </DropdownItem>
+        {/if}
         <DropdownItem onclick={handleManagePrices}>
           <Icon iconName="money" size="4" class="fill-gray-600" />
-          <span class="ml-2">Create Buying Prices</span>
+          <span class="ml-2">Créer des prix d'achat</span>
         </DropdownItem>
-        <DropdownItem onclick={handleViewBuyingPrices}>
-          <Icon iconName="money" size="4" class="fill-gray-600" />
-          <span class="ml-2">View Buying Prices</span>
-        </DropdownItem>
+        {#if _globalStore.user?.role?.includes("ADMIN")}
+          <DropdownItem onclick={handleViewBuyingPrices}>
+            <Icon iconName="money" size="4" class="fill-gray-600" />
+            <span class="ml-2">Voir les prix d'achat</span>
+          </DropdownItem>
+        {/if}
         <DropdownSeparator />
-        <DropdownItem onclick={handleLinkMenuItems}>
-          <Icon iconName="link" size="4" class="fill-gray-600" />
-          <span class="ml-2">Link Menu Items</span>
-        </DropdownItem>
+        {#if !menuItem.type?.includes("MENU_ITEM")}
+          <DropdownItem onclick={handleLinkMenuItems}>
+            <Icon iconName="link" size="4" class="fill-gray-600" />
+            <span class="ml-2">Lier des articles de menu</span>
+          </DropdownItem>
+        {/if}
         {#if !menuItem.type?.includes("MENU_ITEM_OPTION")}
           {#if !menuItem.type?.includes("SUPPLEMENT")}
             <DropdownItem onclick={handleLinkRecipe}>
               <Icon iconName="link" size="4" class="fill-gray-600" />
-              <span class="ml-2">Link Recipe</span>
+              <span class="ml-2">Lier une recette</span>
             </DropdownItem>
           {/if}
           {#if !menuItem.type?.includes("SUPPLEMENT")}
@@ -280,7 +287,7 @@
               isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
             >
               <Icon iconName="link" size="4" class="fill-gray-600" />
-              <span class="ml-2">Link Raw Material</span>
+              <span class="ml-2">Lier une matière première</span>
             </DropdownItem>
           {/if}
           {#if !menuItem.type?.includes("MENU_ITEM") && !menuItem.type?.includes("SUPPLEMENT")}
@@ -289,7 +296,7 @@
               isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
             >
               <Icon iconName="link" size="4" class="fill-gray-600" />
-              <span class="ml-2">Link Supplement</span>
+              <span class="ml-2">Lier un supplément</span>
             </DropdownItem>
           {/if}
           {#if !menuItem.type?.includes("MENU_ITEM") && !menuItem.type?.includes("SUPPLEMENT")}
@@ -298,7 +305,7 @@
               isDisabled={menuItem.type?.includes("RAW_MATERIAL")}
             >
               <Icon iconName="link" size="4" class="fill-gray-600" />
-              <span class="ml-2">Link Menu Item Option</span>
+              <span class="ml-2">Lier une option d'article</span>
             </DropdownItem>
           {/if}
         {/if}
@@ -306,7 +313,7 @@
         <DropdownSeparator />
         <DropdownItem onclick={handleDelete} class="text-red-600">
           <Icon iconName="trash" size="4" class="fill-red-600" />
-          <span class="ml-2">Delete</span>
+          <span class="ml-2">Supprimer</span>
         </DropdownItem>
       </Dropdown>
     </ClickableDiv>

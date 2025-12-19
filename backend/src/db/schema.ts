@@ -32,7 +32,7 @@ export const models = [
 const operations = ["view", "create", "update", "delete"] as const;
 
 // System-level roles
-const systemRoles = ["ROOT", "ADMIN", "MEMBER"] as const;
+const systemRoles = ["ROOT", "ADMIN", "MEMBER", "MENU_ITEMS", "STATS"] as const;
 
 // Generate dynamic roles: model_operation (e.g., users_view, users_create)
 const dynamicRoles = models.flatMap((model) => operations.map((op) => `${model}_${op}` as const));
