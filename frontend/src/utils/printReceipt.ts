@@ -172,7 +172,7 @@ export async function generateReciptPdf(
           printWindow.close();
           URL.revokeObjectURL(url);
         }
-      }, 6000);
+      }, 30000);
     };
   } else {
     console.error("Failed to open print window");
