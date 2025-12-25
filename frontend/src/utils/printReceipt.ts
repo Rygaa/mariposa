@@ -151,33 +151,19 @@ export async function generateReciptPdf(
 ): Promise<void> {
   const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
   
-  // Create a temporary container for printing
-  const printContainer = document.createElement('div');
-  printContainer.style.position = 'fixed';
-  printContainer.style.top = '0';
-  printContainer.style.left = '0';
-  printContainer.style.width = '100%';
-  printContainer.style.height = '100%';
-  printContainer.style.zIndex = '9999';
-  printContainer.style.backgroundColor = 'white';
-  document.body.appendChild(printContainer);
+  // Enable auto-print in the PDF
+  doc.autoPrint();
   
-  // Create embed element for PDF
-  const pdfDataUri = doc.output('datauristring');
-  printContainer.innerHTML = `<embed src="${pdfDataUri}" type="application/pdf" width="100%" height="100%" />`;
+  // Open PDF in new window
+  const blob = doc.output("blob");
+  const url = URL.createObjectURL(blob);
   
-  // Wait a bit for PDF to load, then print
-  setTimeout(() => {
-    window.print();
-    
-    // Listen for after print to clean up
-    const afterPrint = () => {
-      document.body.removeChild(printContainer);
-      window.removeEventListener('afterprint', afterPrint);
-    };
-    
-    window.addEventListener('afterprint', afterPrint);
-  }, 500);
+  const printWindow = window.open(url, '_blank');
+  
+  if (!printWindow) {
+    console.error("Failed to open print window");
+    URL.revokeObjectURL(url);
+  }
 }
 
 export function downloadReceiptPdf(
