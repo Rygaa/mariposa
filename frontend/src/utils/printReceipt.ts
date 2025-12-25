@@ -160,7 +160,10 @@ export async function generateReciptPdf(
   if (printWindow) {
     printWindow.onload = function() {
       printWindow.print();
-      URL.revokeObjectURL(url);
+      printWindow.onafterprint = function() {
+        printWindow.close();
+        URL.revokeObjectURL(url);
+      };
     };
   } else {
     console.error("Failed to open print window");
