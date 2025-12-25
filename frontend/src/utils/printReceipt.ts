@@ -151,22 +151,18 @@ export async function generateReciptPdf(
 ): Promise<void> {
   const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
   
-  // Open PDF in new window and print
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
   
-  const printWindow = window.open(url, '_blank');
+  const printWindow = window.open(url);
   
   if (printWindow) {
     printWindow.onload = function() {
-      printWindow.focus();
       printWindow.print();
-      
-      // Cleanup after printing
-      setTimeout(() => {
+      printWindow.onafterprint = function() {
         printWindow.close();
         URL.revokeObjectURL(url);
-      }, 1000);
+      };
     };
   } else {
     console.error("Failed to open print window");
