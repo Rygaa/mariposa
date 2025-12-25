@@ -151,27 +151,39 @@ export async function generateReciptPdf(
 ): Promise<void> {
   const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
   
-  // Open PDF in new window and print
+  // Silent printing using hidden iframe for kiosk mode
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
   
-  const printWindow = window.open(url, '_blank');
+  // Create hidden iframe
+  const iframe = document.createElement("iframe");
+  iframe.style.position = "fixed";
+  iframe.style.right = "0";
+  iframe.style.bottom = "0";
+  iframe.style.width = "0";
+  iframe.style.height = "0";
+  iframe.style.border = "none";
+  document.body.appendChild(iframe);
   
-  if (printWindow) {
-    printWindow.onload = function() {
-      printWindow.focus();
-      printWindow.print();
+  // Load PDF and print
+  iframe.onload = function() {
+    try {
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
       
       // Cleanup after printing
       setTimeout(() => {
-        printWindow.close();
+        document.body.removeChild(iframe);
         URL.revokeObjectURL(url);
       }, 1000);
-    };
-  } else {
-    console.error("Failed to open print window");
-    URL.revokeObjectURL(url);
-  }
+    } catch (error) {
+      console.error("Print error:", error);
+      document.body.removeChild(iframe);
+      URL.revokeObjectURL(url);
+    }
+  };
+  
+  iframe.src = url;
 }
 
 export function downloadReceiptPdf(
