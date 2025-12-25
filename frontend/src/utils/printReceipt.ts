@@ -154,16 +154,26 @@ export async function generateReciptPdf(
   // Enable auto-print in the PDF
   doc.autoPrint();
   
-  // Open PDF in new window
+  // Create hidden iframe
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
   
-  const printWindow = window.open(url, '_blank');
+  const iframe = document.createElement("iframe");
+  iframe.style.position = "fixed";
+  iframe.style.right = "0";
+  iframe.style.bottom = "0";
+  iframe.style.width = "0";
+  iframe.style.height = "0";
+  iframe.style.border = "none";
+  iframe.src = url;
   
-  if (!printWindow) {
-    console.error("Failed to open print window");
+  document.body.appendChild(iframe);
+  
+  // Cleanup after delay
+  setTimeout(() => {
+    document.body.removeChild(iframe);
     URL.revokeObjectURL(url);
-  }
+  }, 30000);
 }
 
 export function downloadReceiptPdf(
