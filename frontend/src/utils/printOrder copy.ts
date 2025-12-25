@@ -156,13 +156,11 @@ function createOrderPDF(order: any): jsPDF {
 export async function generateOrderPDF(order: any): Promise<void> {
   const doc = createOrderPDF(order);
   
-  // Enable auto-print in the PDF
-  doc.autoPrint();
-  
-  // Create hidden iframe
+  // Silent printing using hidden iframe for kiosk mode
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
   
+  // Create hidden iframe
   const iframe = document.createElement("iframe");
   iframe.style.position = "fixed";
   iframe.style.right = "0";
@@ -170,15 +168,27 @@ export async function generateOrderPDF(order: any): Promise<void> {
   iframe.style.width = "0";
   iframe.style.height = "0";
   iframe.style.border = "none";
-  iframe.src = url;
-  
   document.body.appendChild(iframe);
   
-  // Cleanup after delay
-  setTimeout(() => {
-    document.body.removeChild(iframe);
-    URL.revokeObjectURL(url);
-  }, 30000);
+  // Load PDF and print
+  iframe.onload = function() {
+    try {
+      iframe.contentWindow?.focus();
+      iframe.contentWindow?.print();
+      
+      // Cleanup after printing
+      setTimeout(() => {
+        document.body.removeChild(iframe);
+        URL.revokeObjectURL(url);
+      }, 1000);
+    } catch (error) {
+      console.error("Print error:", error);
+      document.body.removeChild(iframe);
+      URL.revokeObjectURL(url);
+    }
+  };
+  
+  iframe.src = url;
 }
 
 export async function downloadOrderPDF(order: any): Promise<void> {
