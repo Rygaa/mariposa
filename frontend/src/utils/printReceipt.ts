@@ -39,8 +39,8 @@ function createReceiptPdf(
   doc.setFontSize(10);
   doc.setFont("courier", "bold");
   doc.text("Item", itemStartX, yPos);
-  doc.text("Price", priceStartX + 12, yPos, { align: "right" });
-  doc.text("Total", totalStartX + 12, yPos, { align: "right" });
+  doc.text("Price", priceStartX, yPos);
+  doc.text("Total", totalStartX, yPos);
   yPos += 2;
 
   // Line separator
@@ -105,10 +105,10 @@ function createReceiptPdf(
     
     // Print price in second column (aligned with first line)
     const pricePerItem = element.finalPriceForOneItem;
-    doc.text(pricePerItem.toString(), priceStartX + 12, yPos, { align: "right" });
+    doc.text(pricePerItem.toString(), priceStartX, yPos);
     
     // Print total in third column (aligned with first line)
-    doc.text(finalPrice.toString(), totalStartX + 12, yPos, { align: "right" });
+    doc.text(finalPrice.toString(), totalStartX, yPos);
     
     // Advance yPos based on wrapped lines
     yPos += itemLines.length * 4;
@@ -151,28 +151,16 @@ export async function generateReciptPdf(
 ): Promise<void> {
   const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
   
+  // Open PDF in new window and print
   const blob = doc.output("blob");
   const url = URL.createObjectURL(blob);
   
-  const printWindow = window.open(url);
+  const printWindow = window.open(url, '_blank');
   
   if (printWindow) {
     printWindow.onload = function() {
       printWindow.print();
-      
-      // Try onafterprint first
-      printWindow.onafterprint = function() {
-        printWindow.close();
-        URL.revokeObjectURL(url);
-      };
-      
-      // Fallback: close after 6 seconds if onafterprint doesn't fire
-      setTimeout(() => {
-        if (!printWindow.closed) {
-          printWindow.close();
-          URL.revokeObjectURL(url);
-        }
-      }, 30000);
+      URL.revokeObjectURL(url);
     };
   } else {
     console.error("Failed to open print window");
