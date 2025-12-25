@@ -438,7 +438,7 @@ export const getMenuItemImageViewUrl = protectedProcedure
 
       return {
         success: true,
-        url,
+        url: url + "&compressionValue=35", // Append compression parameter for images
       };
     } catch (error) {
       console.error("Error getting file view URL for fileId:", input.fileId, error);
