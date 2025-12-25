@@ -151,24 +151,33 @@ export async function generateReciptPdf(
 ): Promise<void> {
   const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
   
-  // Open PDF in new window and print
-  const blob = doc.output("blob");
-  const url = URL.createObjectURL(blob);
+  // Create a temporary container for printing
+  const printContainer = document.createElement('div');
+  printContainer.style.position = 'fixed';
+  printContainer.style.top = '0';
+  printContainer.style.left = '0';
+  printContainer.style.width = '100%';
+  printContainer.style.height = '100%';
+  printContainer.style.zIndex = '9999';
+  printContainer.style.backgroundColor = 'white';
+  document.body.appendChild(printContainer);
   
-  const printWindow = window.open(url, '_blank');
+  // Create embed element for PDF
+  const pdfDataUri = doc.output('datauristring');
+  printContainer.innerHTML = `<embed src="${pdfDataUri}" type="application/pdf" width="100%" height="100%" />`;
   
-  if (printWindow) {
-    printWindow.onload = function() {
-      printWindow.print();
-      printWindow.onafterprint = function() {
-        printWindow.close();
-        URL.revokeObjectURL(url);
-      };
+  // Wait a bit for PDF to load, then print
+  setTimeout(() => {
+    window.print();
+    
+    // Listen for after print to clean up
+    const afterPrint = () => {
+      document.body.removeChild(printContainer);
+      window.removeEventListener('afterprint', afterPrint);
     };
-  } else {
-    console.error("Failed to open print window");
-    URL.revokeObjectURL(url);
-  }
+    
+    window.addEventListener('afterprint', afterPrint);
+  }, 500);
 }
 
 export function downloadReceiptPdf(
