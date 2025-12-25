@@ -166,13 +166,13 @@ export async function generateReciptPdf(
         URL.revokeObjectURL(url);
       };
       
-      // Fallback: close after 2 seconds if onafterprint doesn't fire
+      // Fallback: close after 6 seconds if onafterprint doesn't fire
       setTimeout(() => {
         if (!printWindow.closed) {
           printWindow.close();
           URL.revokeObjectURL(url);
         }
-      }, 2000);
+      }, 6000);
     };
   } else {
     console.error("Failed to open print window");
