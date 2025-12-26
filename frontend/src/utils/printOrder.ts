@@ -301,22 +301,34 @@ function createOrderPDF(order: any): jsPDF {
 export async function generateOrderPrint(order: any): Promise<void> {
   const html = generateOrderHTML(order);
   
-  const printWindow = window.open('', '_blank', 'width=800,height=600');
-  if (!printWindow) return;
+  const iframe = document.createElement('iframe');
+  iframe.style.position = 'fixed';
+  iframe.style.width = '0';
+  iframe.style.height = '0';
+  iframe.style.border = 'none';
+  iframe.style.visibility = 'hidden';
   
-  printWindow.document.write(html);
-  printWindow.document.close();
+  document.body.appendChild(iframe);
   
-  printWindow.onload = () => {
-    printWindow.print();
-    printWindow.close();
-  };
+  const iframeDoc = iframe.contentWindow?.document;
+  if (!iframeDoc) {
+    document.body.removeChild(iframe);
+    return;
+  }
   
-  // Fallback if onload doesn't fire
+  iframeDoc.open();
+  iframeDoc.write(html);
+  iframeDoc.close();
+  
   setTimeout(() => {
-    printWindow.print();
-    printWindow.close();
-  }, 250);
+    iframe.contentWindow?.print();
+    
+    setTimeout(() => {
+      if (document.body.contains(iframe)) {
+        document.body.removeChild(iframe);
+      }
+    }, 500);
+  }, 100);
 }
 
 // SLOWER: PDF-based printing (use only if PDF format is required)
