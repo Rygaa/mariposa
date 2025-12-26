@@ -1,78 +1,116 @@
 // src/utils/printOrder.ts
 import { jsPDF } from "jspdf";
 
-const mmToPt = (mm: number): number => mm * 2.83465;
-
-// Fast HTML-based printing for older PCs (10x faster than PDF)
-function generateOrderHTML(order: any): string {
+function createOrderHTML(order: any): string {
+  console.log(order);
   const dateStr = new Date().toLocaleString();
+  
   const MenuItemOrderContainer = order.menuItemOrders || [];
+
+  // Build lookup map for faster child access
+  const childrenMap = new Map();
+  const mainItems = [];
   
-  // Filter and group items
-  const mainItems = MenuItemOrderContainer.filter((item: any) => !item.parentMenuItemOrderId);
+  for (let i = 0; i < MenuItemOrderContainer.length; i++) {
+    const item = MenuItemOrderContainer[i];
+    if (!item.parentMenuItemOrderId) {
+      mainItems.push(item);
+    } else {
+      if (!childrenMap.has(item.parentMenuItemOrderId)) {
+        childrenMap.set(item.parentMenuItemOrderId, []);
+      }
+      childrenMap.get(item.parentMenuItemOrderId).push(item);
+    }
+  }
+
+  // Group main items with their children
   const itemsWithChildren = mainItems.map((mainItem: any) => {
-    const children = MenuItemOrderContainer.filter(
-      (item: any) => item.parentMenuItemOrderId === mainItem.id
-    );
-    const supplements = children.filter((child: any) => 
-      child.menuItem?.type?.includes("SUPPLEMENT")
-    );
-    const options = children.filter((child: any) => 
-      child.menuItem?.type?.includes("MENU_ITEM_OPTION")
-    );
-    return { ...mainItem, supplements, options };
-  });
-  
-  let itemsHTML = '';
-  itemsWithChildren.forEach((element: any) => {
-    const itemName = element.menuItem?.name || 'Unknown Item';
-    const subName = element.menuItem?.subName || '';
-    const supplements = element.supplements || [];
-    const options = element.options || [];
+    const children = childrenMap.get(mainItem.id) || [];
     
-    itemsHTML += `
-      <div class="item">
-        <div class="item-name">${element.quantity} ${itemName}</div>
-        ${subName ? `<div class="subname">(${subName})</div>` : ''}
-        ${options.map((opt: any) => {
-          if (opt.menuItem?.shouldPrintInOrder === false) return '';
-          const optName = opt.menuItem?.name || '';
-          const optSubName = opt.menuItem?.subName || '';
-          return optName ? `
-            <div class="option">${optName}</div>
-            ${optSubName ? `<div class="option-sub">(${optSubName})</div>` : ''}
-          ` : '';
-        }).join('')}
-        ${supplements.map((supp: any) => {
-          const suppName = supp.menuItem?.name || '';
-          const suppSubName = supp.menuItem?.subName || '';
-          return suppName ? `
-            <div class="supplement">s: ${suppName}</div>
-            ${suppSubName ? `<div class="supplement-sub">(${suppSubName})</div>` : ''}
-          ` : '';
-        }).join('')}
-      </div>
-    `;
+    const supplements = [];
+    const options = [];
+    
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const type = child.menuItem?.type;
+      if (type?.includes("SUPPLEMENT")) {
+        supplements.push(child);
+      } else if (type?.includes("MENU_ITEM_OPTION")) {
+        options.push(child);
+      }
+    }
+    
+    return { mainItem, supplements, options };
   });
+
+  // Build items HTML
+  let itemsHTML = '';
   
+  for (let i = 0; i < itemsWithChildren.length; i++) {
+    const element = itemsWithChildren[i];
+    const mainItem = element.mainItem;
+    const itemName = mainItem.menuItem?.name || 'Unknown Item';
+    const subName = mainItem.menuItem?.subName || '';
+    const name = `${mainItem.quantity} ${itemName}`;
+    const supplements = element.supplements;
+    const options = element.options;
+
+    itemsHTML += `<div class="item">`;
+    itemsHTML += `<div class="item-name">${name}</div>`;
+    
+    if (subName) {
+      itemsHTML += `<div class="item-subname">(${subName})</div>`;
+    }
+
+    // Options
+    if (options.length > 0) {
+      for (let j = 0; j < options.length; j++) {
+        const opt = options[j];
+        if (opt.menuItem?.shouldPrintInOrder === false) continue;
+        
+        const optName = opt.menuItem?.name || '';
+        const optSubName = opt.menuItem?.subName || '';
+        if (optName) {
+          itemsHTML += `<div class="option">${optName}</div>`;
+          if (optSubName) {
+            itemsHTML += `<div class="option-subname">(${optSubName})</div>`;
+          }
+        }
+      }
+    }
+
+    // Supplements
+    if (supplements.length > 0) {
+      for (let j = 0; j < supplements.length; j++) {
+        const supp = supplements[j];
+        const suppName = supp.menuItem?.name || '';
+        const suppSubName = supp.menuItem?.subName || '';
+        if (suppName) {
+          itemsHTML += `<div class="supplement">s: ${suppName}</div>`;
+          if (suppSubName) {
+            itemsHTML += `<div class="supplement-subname">(${suppSubName})</div>`;
+          }
+        }
+      }
+    }
+
+    itemsHTML += `</div>`;
+  }
+
   return `
     <!DOCTYPE html>
     <html>
     <head>
       <meta charset="UTF-8">
       <style>
-        @page { 
-          size: 80mm auto;
-          margin: 0;
+        @media print {
+          @page { margin: 0; size: 80mm auto; }
+          body { margin: 0; }
         }
-        * {
-          margin: 0;
-          padding: 0;
-          box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-          width: 80mm;
           font-family: 'Courier New', monospace;
+          width: 80mm;
           padding: 10mm;
           background: white;
         }
@@ -87,50 +125,47 @@ function generateOrderHTML(order: any): string {
         }
         .date {
           font-size: 10pt;
+          margin-bottom: 3mm;
         }
         .separator {
           border-top: 1px solid #000;
-          margin: 5mm 0;
+          margin: 3mm 0;
         }
         .item {
-          margin-bottom: 4mm;
+          margin-bottom: 3mm;
         }
         .item-name {
           font-size: 13pt;
           font-weight: bold;
         }
-        .subname {
+        .item-subname {
           font-size: 11pt;
           font-weight: bold;
-          margin-left: 2mm;
+          padding-left: 2mm;
           margin-top: 1mm;
         }
         .option {
           font-size: 11pt;
-          margin-left: 2mm;
-          margin-top: 1mm;
+          padding-left: 2mm;
           text-decoration: underline;
+          margin-top: 1mm;
         }
-        .option-sub {
-          font-size: 10pt;
+        .option-subname {
+          font-size: 11pt;
           font-weight: bold;
-          margin-left: 4mm;
+          padding-left: 4mm;
+          margin-top: 1mm;
         }
         .supplement {
           font-size: 11pt;
-          margin-left: 2mm;
+          padding-left: 2mm;
           margin-top: 1mm;
         }
-        .supplement-sub {
-          font-size: 10pt;
+        .supplement-subname {
+          font-size: 11pt;
           font-weight: bold;
-          margin-left: 5mm;
-        }
-        @media print {
-          body { 
-            -webkit-print-color-adjust: exact;
-            print-color-adjust: exact;
-          }
+          padding-left: 5mm;
+          margin-top: 1mm;
         }
       </style>
     </head>
@@ -148,6 +183,7 @@ function generateOrderHTML(order: any): string {
 }
 
 function createOrderPDF(order: any): jsPDF {
+  // Legacy PDF generation kept for downloadOrderPDF
   console.log(order)
   const widthMm = 80;
   const doc = new jsPDF({
@@ -157,94 +193,88 @@ function createOrderPDF(order: any): jsPDF {
   });
 
   let yPos = 10;
+  const centerX = widthMm / 2;
+  const lineLeft = 3;
+  const lineRight = widthMm - 3;
 
-  // --- HEADER ---
   doc.setFontSize(28);
   doc.setFont("courier", "bold");
-  doc.text(order.eatingTable.name, widthMm / 2, yPos, { align: "center" });
+  doc.text(order.eatingTable.name, centerX, yPos, { align: "center" });
   yPos += 10;
 
   const dateStr = new Date().toLocaleString();
   doc.setFontSize(10);
   doc.setFont("courier", "normal");
-  doc.text(`Date: ${dateStr}`, widthMm / 2, yPos, { align: "center" });
+  doc.text(`Date: ${dateStr}`, centerX, yPos, { align: "center" });
   yPos += 8;
 
-  // Line separator
-  doc.line(3, yPos, widthMm - 3, yPos);
+  doc.line(lineLeft, yPos, lineRight, yPos);
   yPos += 5;
-
-  doc.setFontSize(13);
-  doc.setFont("courier", "bold");
   
-  let grandTotal = 0;
-
   const MenuItemOrderContainer = order.menuItemOrders || [];
+  const childrenMap = new Map();
+  const mainItems = [];
+  
+  for (let i = 0; i < MenuItemOrderContainer.length; i++) {
+    const item = MenuItemOrderContainer[i];
+    if (!item.parentMenuItemOrderId) {
+      mainItems.push(item);
+    } else {
+      if (!childrenMap.has(item.parentMenuItemOrderId)) {
+        childrenMap.set(item.parentMenuItemOrderId, []);
+      }
+      childrenMap.get(item.parentMenuItemOrderId).push(item);
+    }
+  }
 
-  // Filter main items (items without parentMenuItemOrderId)
-  const mainItems = MenuItemOrderContainer.filter((item: any) => !item.parentMenuItemOrderId);
-
-  // Group main items with their children (supplements and options)
   const itemsWithChildren = mainItems.map((mainItem: any) => {
-    const children = MenuItemOrderContainer.filter(
-      (item: any) => item.parentMenuItemOrderId === mainItem.id
-    );
+    const children = childrenMap.get(mainItem.id) || [];
+    const supplements = [];
+    const options = [];
     
-    // Separate supplements and options based on type
-    const supplements = children.filter((child: any) => 
-      child.menuItem?.type?.includes("SUPPLEMENT")
-    );
-    const options = children.filter((child: any) => 
-      child.menuItem?.type?.includes("MENU_ITEM_OPTION")
-    );
+    for (let i = 0; i < children.length; i++) {
+      const child = children[i];
+      const type = child.menuItem?.type;
+      if (type?.includes("SUPPLEMENT")) {
+        supplements.push(child);
+      } else if (type?.includes("MENU_ITEM_OPTION")) {
+        options.push(child);
+      }
+    }
     
-    return {
-      ...mainItem,
-      supplements,
-      options,
-    };
+    return { mainItem, supplements, options };
   });
 
+  doc.setFont("courier", "bold");
+  doc.setFontSize(13);
+  
   for (let i = 0; i < itemsWithChildren.length; i++) {
     const element = itemsWithChildren[i];
-    const itemName = element.menuItem?.name || 'Unknown Item';
-    const subName = element.menuItem?.subName || '';
-    const name = `${element.quantity} ${itemName}`;
-    const supplements = element.supplements || [];
-    const options = element.options || [];
+    const mainItem = element.mainItem;
+    const itemName = mainItem.menuItem?.name || 'Unknown Item';
+    const subName = mainItem.menuItem?.subName || '';
+    const name = `${mainItem.quantity} ${itemName}`;
+    const supplements = element.supplements;
+    const options = element.options;
 
-    // Calculate item total including supplements
-    const itemTotal = element.price * element.quantity;
-    const supplementsTotal = supplements.reduce(
-      (sum: number, supp: any) => sum + (supp.price || 0) * supp.quantity,
-      0
-    );
-    const finalPrice = itemTotal + supplementsTotal;
-    grandTotal += finalPrice;
-
-    // Draw item name
-    doc.setFont("courier", "bold");
-    doc.setFontSize(13);
     doc.text(name, 5, yPos);
     yPos += 6;
     
-    // Draw subName on separate line if it exists
     if (subName) {
-      doc.setFont("courier", "bold");
       doc.setFontSize(11);
       doc.text(`  (${subName})`, 5, yPos);
       yPos += 5;
+      doc.setFontSize(13);
     }
 
-    // Draw options with margin and underline effect
     if (options.length > 0) {
       doc.setFont("courier", "normal");
       doc.setFontSize(11);
-      options.forEach((opt: any) => {
-        // Skip options that should not be printed
-        if (opt.menuItem?.shouldPrintInOrder === false) {
-          return;
-        }
+      doc.setLineWidth(0.3);
+      
+      for (let j = 0; j < options.length; j++) {
+        const opt = options[j];
+        if (opt.menuItem?.shouldPrintInOrder === false) continue;
         
         const optName = opt.menuItem?.name || '';
         const optSubName = opt.menuItem?.subName || '';
@@ -252,96 +282,60 @@ function createOrderPDF(order: any): jsPDF {
           const indentedText = `  ${optName}`;
           doc.text(indentedText, 5, yPos);
           const textWidth = doc.getTextWidth(indentedText);
-          doc.setLineWidth(0.3);
           doc.line(5, yPos + 1, 5 + textWidth, yPos + 1);
           yPos += 5;
           
-          // Draw option subName on separate line if it exists
           if (optSubName) {
             doc.setFont("courier", "bold");
             doc.text(`    (${optSubName})`, 5, yPos);
+            doc.setFont("courier", "normal");
             yPos += 4;
           }
         }
-      });
+      }
+      
+      doc.setFont("courier", "bold");
+      doc.setFontSize(13);
     }
 
-    // Draw supplements with margin
     if (supplements.length > 0) {
       doc.setFont("courier", "normal");
       doc.setFontSize(11);
-      supplements.forEach((supp: any) => {
+      
+      for (let j = 0; j < supplements.length; j++) {
+        const supp = supplements[j];
         const suppName = supp.menuItem?.name || '';
         const suppSubName = supp.menuItem?.subName || '';
         if (suppName) {
           doc.text(`  s: ${suppName}`, 5, yPos);
           yPos += 5;
           
-          // Draw supplement subName on separate line if it exists
           if (suppSubName) {
             doc.setFont("courier", "bold");
             doc.text(`     (${suppSubName})`, 5, yPos);
+            doc.setFont("courier", "normal");
             yPos += 4;
           }
         }
-      });
+      }
+      
+      doc.setFont("courier", "bold");
+      doc.setFontSize(13);
     }
 
     yPos += 3;
   }
 
-  // Line separator
-  doc.line(3, yPos, widthMm - 3, yPos);
+  doc.line(lineLeft, yPos, lineRight, yPos);
   yPos += 5;
 
   return doc;
 }
 
-// FAST: HTML-based printing (recommended for older PCs)
-export async function generateOrderPrint(order: any): Promise<void> {
-  const html = generateOrderHTML(order);
-  
-  const iframe = document.createElement('iframe');
-  iframe.style.position = 'fixed';
-  iframe.style.width = '0';
-  iframe.style.height = '0';
-  iframe.style.border = 'none';
-  iframe.style.visibility = 'hidden';
-  
-  document.body.appendChild(iframe);
-  
-  const iframeDoc = iframe.contentWindow?.document;
-  if (!iframeDoc) {
-    document.body.removeChild(iframe);
-    return;
-  }
-  
-  iframeDoc.open();
-  iframeDoc.write(html);
-  iframeDoc.close();
-  
-  setTimeout(() => {
-    iframe.contentWindow?.print();
-    
-    setTimeout(() => {
-      if (document.body.contains(iframe)) {
-        document.body.removeChild(iframe);
-      }
-    }, 500);
-  }, 100);
-}
-
-// SLOWER: PDF-based printing (use only if PDF format is required)
 export async function generateOrderPDF(order: any): Promise<void> {
-  const doc = createOrderPDF(order);
-  
-  // Enable auto-print in the PDF
-  doc.autoPrint();
+  const html = createOrderHTML(order);
   
   // Create hidden iframe
-  const blob = doc.output("blob");
-  const url = URL.createObjectURL(blob);
-  
   const iframe = document.createElement("iframe");
   iframe.style.position = "fixed";
   iframe.style.right = "0";
@@ -352,27 +346,25 @@ export async function generateOrderPDF(order: any): Promise<void> {
   
   document.body.appendChild(iframe);
   
-  // Wait for iframe to be ready before setting src
-  iframe.onload = () => {
-    // Cleanup quickly after print dialog opens (1 second instead of 30)
-    setTimeout(() => {
-      if (document.body.contains(iframe)) {
-        document.body.removeChild(iframe);
-      }
-      URL.revokeObjectURL(url);
-    }, 1000);
-  };
-  
-  // Handle load errors
-  iframe.onerror = () => {
-    if (document.body.contains(iframe)) {
-      document.body.removeChild(iframe);
-    }
-    URL.revokeObjectURL(url);
-  };
-  
-  // Set src after event handlers are attached
-  iframe.src = url;
+  // Write HTML and trigger print
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+  if (iframeDoc) {
+    iframeDoc.open();
+    iframeDoc.write(html);
+    iframeDoc.close();
+    
+    // Wait for content to load, then print
+    iframe.onload = () => {
+      setTimeout(() => {
+        iframe.contentWindow?.print();
+        
+        // Cleanup after print dialog closes
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 1000);
+      }, 100);
+    };
+  }
 }
 
 export async function downloadOrderPDF(order: any): Promise<void> {
