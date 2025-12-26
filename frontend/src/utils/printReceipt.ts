@@ -1,7 +1,170 @@
 // src/utils/printReceipt.ts
 import { jsPDF } from "jspdf";
 
-const mmToPt = (mm: number): number => mm * 2.83465;
+function createReceiptHTML(
+  MenuItemOrderContainer: any,
+  tableName: string
+): string {
+  const dateStr = new Date().toLocaleString();
+
+  // Separate main items from supplements and options
+  const mainItems = [];
+  const childItemsByParent: { [key: string]: any[] } = {};
+  
+  for (let i = 0; i < MenuItemOrderContainer.length; i++) {
+    const item = MenuItemOrderContainer[i];
+    if (!item.parentMenuItemOrderId && item.menuItem?.type?.includes("MENU_ITEM")) {
+      mainItems.push(item);
+    } else if (item.menuItem?.type?.includes("SUPPLEMENT") && item.parentMenuItemOrderId) {
+      if (!childItemsByParent[item.parentMenuItemOrderId]) {
+        childItemsByParent[item.parentMenuItemOrderId] = [];
+      }
+      childItemsByParent[item.parentMenuItemOrderId].push(item);
+    }
+  }
+
+  let grandTotal = 0;
+  let itemsHTML = '';
+
+  for (let i = 0; i < mainItems.length; i++) {
+    const item = mainItems[i];
+    const childItems = childItemsByParent[item.id] || [];
+    
+    let childItemsTotal = 0;
+    for (let j = 0; j < childItems.length; j++) {
+      childItemsTotal += (childItems[j].price || 0) * childItems[j].quantity;
+    }
+
+    const finalPriceForOneItem = item.price + childItemsTotal;
+    const finalPrice = finalPriceForOneItem * item.quantity;
+    grandTotal += finalPrice;
+
+    const itemName = item.menuItem.name;
+    const subName = item.menuItem?.subName ? ` (${item.menuItem.subName})` : '';
+    const name = `${item.quantity} ${itemName}${subName}`;
+
+    itemsHTML += `
+      <tr class="item-row">
+        <td class="item-name">${name}</td>
+        <td class="price">${finalPriceForOneItem}</td>
+        <td class="total">${finalPrice}</td>
+      </tr>
+    `;
+
+    // Add child items
+    for (let j = 0; j < childItems.length; j++) {
+      const child = childItems[j];
+      const qty = child.quantity > 1 ? `${child.quantity}x ` : '';
+      const price = child.price || 0;
+      const childSubName = child.menuItem?.subName ? ` (${child.menuItem.subName})` : '';
+      const childText = `${qty}${child.menuItem?.name}${childSubName} ${price}`;
+
+      itemsHTML += `
+        <tr class="child-row">
+          <td class="child-item" colspan="3">${childText}</td>
+        </tr>
+      `;
+    }
+  }
+
+  return `
+    <!DOCTYPE html>
+    <html>
+    <head>
+      <meta charset="UTF-8">
+      <style>
+        @media print {
+          @page { margin: 0; size: 80mm auto; }
+          body { margin: 0; }
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+          font-family: 'Courier New', monospace;
+          width: 80mm;
+          padding: 10mm 3mm;
+          background: white;
+        }
+        .header {
+          text-align: center;
+          margin-bottom: 8mm;
+        }
+        .title {
+          font-size: 14pt;
+          font-weight: bold;
+          margin-bottom: 2mm;
+        }
+        .subtitle {
+          font-size: 10pt;
+        }
+        table {
+          width: 100%;
+          border-collapse: collapse;
+          font-size: 9pt;
+        }
+        .table-header {
+          font-weight: bold;
+          font-size: 10pt;
+          text-align: left;
+          border-bottom: 1px solid #000;
+          padding-bottom: 1mm;
+          padding-top: 2mm;
+        }
+        .item-row td {
+          padding: 1mm 0;
+          vertical-align: top;
+        }
+        .item-name {
+          width: 50%;
+          padding-right: 2mm;
+          word-wrap: break-word;
+        }
+        .price {
+          width: 20%;
+          text-align: left;
+        }
+        .total {
+          width: 20%;
+          text-align: left;
+        }
+        .child-row td {
+          padding-left: 2mm;
+          font-size: 8.5pt;
+          padding-top: 0.5mm;
+          padding-bottom: 0.5mm;
+        }
+        .separator {
+          border-top: 1px solid #000;
+          margin: 2mm 0;
+        }
+        .grand-total {
+          font-size: 12pt;
+          font-weight: bold;
+          text-align: right;
+          margin-top: 5mm;
+        }
+      </style>
+    </head>
+    <body>
+      <div class="header">
+        <div class="title">Mariposa</div>
+        <div class="subtitle">${tableName} - Date: ${dateStr}</div>
+      </div>
+      
+      <table>
+        <tr class="table-header">
+          <th class="item-name">Item</th>
+          <th class="price">Price</th>
+          <th class="total">Total</th>
+        </tr>
+        ${itemsHTML}
+      </table>
+      
+      <div class="separator"></div>
+      <div class="grand-total">TOTAL: $${grandTotal}</div>
+    </body>
+    </html>
+  `;
+}
 
 function createReceiptPdf(
   MenuItemOrderContainer: any,
@@ -53,25 +216,21 @@ function createReceiptPdf(
   let grandTotal = 0;
 
 
-  // Separate main items from supplements and options
-  const mainItems = MenuItemOrderContainer.filter((item: any) => 
-    !item.parentMenuItemOrderId && item.menuItem?.type?.includes("MENU_ITEM")
-  );
+  // Separate main items from supplements and options - optimized with loops
+  const mainItems = [];
+  const childItemsByParent: { [key: string]: any[] } = {};
   
-  // Group child items (supplements and options) by their parent
-  const childItemsByParent = MenuItemOrderContainer
-  .filter((item: any) => 
-    item.menuItem?.type?.includes("SUPPLEMENT")
-  )
-  .filter((item: any) => 
-    item.parentMenuItemOrderId
-  ).reduce((acc: any, childItem: any) => {
-    if (!acc[childItem.parentMenuItemOrderId]) {
-      acc[childItem.parentMenuItemOrderId] = [];
+  for (let i = 0; i < MenuItemOrderContainer.length; i++) {
+    const item = MenuItemOrderContainer[i];
+    if (!item.parentMenuItemOrderId && item.menuItem?.type?.includes("MENU_ITEM")) {
+      mainItems.push(item);
+    } else if (item.menuItem?.type?.includes("SUPPLEMENT") && item.parentMenuItemOrderId) {
+      if (!childItemsByParent[item.parentMenuItemOrderId]) {
+        childItemsByParent[item.parentMenuItemOrderId] = [];
+      }
+      childItemsByParent[item.parentMenuItemOrderId].push(item);
     }
-    acc[childItem.parentMenuItemOrderId].push(childItem);
-    return acc;
-  }, {});
+  }
 
   const groupedMenuItemOrder = mainItems.map((item: any) => {
     // Get all child items (supplements and options) that were actually ordered for this item
@@ -149,15 +308,9 @@ export async function generateReciptPdf(
   MenuItemOrderContainer: any,
   tableName: string
 ): Promise<void> {
-  const doc = createReceiptPdf(MenuItemOrderContainer, tableName);
-  
-  // Enable auto-print in the PDF
-  doc.autoPrint();
+  const html = createReceiptHTML(MenuItemOrderContainer, tableName);
   
   // Create hidden iframe
-  const blob = doc.output("blob");
-  const url = URL.createObjectURL(blob);
-  
   const iframe = document.createElement("iframe");
   iframe.style.position = "fixed";
   iframe.style.right = "0";
@@ -165,15 +318,28 @@ export async function generateReciptPdf(
   iframe.style.width = "0";
   iframe.style.height = "0";
   iframe.style.border = "none";
-  iframe.src = url;
   
   document.body.appendChild(iframe);
   
-  // Cleanup after delay
-  setTimeout(() => {
-    document.body.removeChild(iframe);
-    URL.revokeObjectURL(url);
-  }, 30000);
+  // Write HTML and trigger print
+  const iframeDoc = iframe.contentDocument || iframe.contentWindow?.document;
+  if (iframeDoc) {
+    iframeDoc.open();
+    iframeDoc.write(html);
+    iframeDoc.close();
+    
+    // Wait for content to load, then print
+    iframe.onload = () => {
+      setTimeout(() => {
+        iframe.contentWindow?.print();
+        
+        // Cleanup after print dialog closes
+        setTimeout(() => {
+          document.body.removeChild(iframe);
+        }, 1000);
+      }, 100);
+    };
+  }
 }
 
 export function downloadReceiptPdf(
