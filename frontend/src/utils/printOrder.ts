@@ -301,30 +301,22 @@ function createOrderPDF(order: any): jsPDF {
 export async function generateOrderPrint(order: any): Promise<void> {
   const html = generateOrderHTML(order);
   
-  // Create a hidden iframe
-  const iframe = document.createElement('iframe');
-  iframe.style.position = 'fixed';
-  iframe.style.top = '-10000px';
-  document.body.appendChild(iframe);
+  const printWindow = window.open('', '_blank', 'width=800,height=600');
+  if (!printWindow) return;
   
-  const iframeDoc = iframe.contentWindow?.document;
-  if (!iframeDoc) return;
+  printWindow.document.write(html);
+  printWindow.document.close();
   
-  // Write HTML and trigger print immediately
-  iframeDoc.open();
-  iframeDoc.write(html);
-  iframeDoc.close();
-  
-  // Wait for content to load then print
-  iframe.onload = () => {
-    iframe.contentWindow?.focus();
-    iframe.contentWindow?.print();
-    
-    // Cleanup after print dialog closes
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-    }, 100);
+  printWindow.onload = () => {
+    printWindow.print();
+    printWindow.close();
   };
+  
+  // Fallback if onload doesn't fire
+  setTimeout(() => {
+    printWindow.print();
+    printWindow.close();
+  }, 250);
 }
 
 // SLOWER: PDF-based printing (use only if PDF format is required)
