@@ -137,9 +137,12 @@
   }
 
   function handleBroadcastOrder() {
+    console.log("📡 Broadcast button clicked!", order);
     if (order?.id) {
-      broadcastOrderToPrinters(order.id);
       console.log("📡 Broadcasting order to printers:", order.id);
+      broadcastOrderToPrinters(order.id);
+    } else {
+      console.error("❌ No order ID found");
     }
   }
 
