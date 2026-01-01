@@ -33,6 +33,58 @@ export async function setupWebSocketServer(app: FastifyInstance, appRouter: any)
           user: data.user 
         }));
       }
+
+      if (data.type === "BROADCAST_ORDER") {
+        console.log('📡 BROADCAST_ORDER received, forwarding to printers...');
+        // Find all connections with email containing "printer"
+        const printerConnections = socketList.filter(conn => 
+          conn.user?.email?.toLowerCase().includes("printer")
+        );
+        
+        console.log(`🖨️ Found ${printerConnections.length} printer connections`);
+        
+        // Send to all printer sockets
+        printerConnections.forEach(connection => {
+          connection.sockets.forEach(socketInfo => {
+            try {
+              socketInfo.socket.send(JSON.stringify({
+                type: "BROADCAST_ORDER",
+                orderId: data.orderId
+              }));
+              console.log(`✅ Sent BROADCAST_ORDER to printer: ${connection.user?.email}`);
+            } catch (error) {
+              console.error(`❌ Failed to send to printer ${connection.user?.email}:`, error);
+            }
+          });
+        });
+      }
+
+      if (data.type === "BROADCAST_RECEIPT") {
+        console.log('📡 BROADCAST_RECEIPT received, forwarding to printers...');
+        // Find all connections with email containing "printer"
+        const printerConnections = socketList.filter(conn => 
+          conn.user?.email?.toLowerCase().includes("printer")
+        );
+        
+        console.log(`🖨️ Found ${printerConnections.length} printer connections`);
+        
+        // Send to all printer sockets
+        printerConnections.forEach(connection => {
+          connection.sockets.forEach(socketInfo => {
+            try {
+              socketInfo.socket.send(JSON.stringify({
+                type: "BROADCAST_RECEIPT",
+                tableId: data.tableId,
+                tableName: data.tableName,
+                menuItemOrders: data.menuItemOrders
+              }));
+              console.log(`✅ Sent BROADCAST_RECEIPT to printer: ${connection.user?.email}`);
+            } catch (error) {
+              console.error(`❌ Failed to send to printer ${connection.user?.email}:`, error);
+            }
+          });
+        });
+      }
     });
     
     socket.on("close", () => {
