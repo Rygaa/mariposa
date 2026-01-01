@@ -5,7 +5,7 @@
   import { _globalStore } from "../../store/globalStore.svelte";
   import { _cartsStore } from "../../store/carts.svelte";
   import { navigate } from "svelte-routing";
-  import { trpc } from "../../lib/trpc";
+  import { trpc, broadcastReceiptToPrinters } from "../../lib/trpc";
   import { generateReciptPdf, downloadReceiptPdf } from "../../utils/printReceipt";
   import Page from "../../lib/shadcn/Page.svelte";
   import {
@@ -211,6 +211,43 @@
     }
   }
 
+  async function handleBroadcastTableReceipt(tableId: string) {
+    try {
+      // Get all orders for this table
+      const tableOrders = _cartsStore.orders.filter(
+        (order) => order.eatingTableId === tableId && order.status === "CONFIRMED"
+      );
+      
+      if (tableOrders.length === 0) return;
+      
+      // Get table name
+      const table = tables.find(t => t.id === tableId);
+      const tableName = table?.name || `Table ${table?.tableNumber || tableId.slice(0, 8)}`;
+      
+      // Collect all menu item orders from all orders for this table
+      const allMenuItemOrders: any[] = [];
+      for (const order of tableOrders) {
+        // Fetch full order details with relations
+        const result = await trpc.getOrderByIdWithRelations.query({
+          id: order.id,
+        });
+        
+        if (result.success && result.order?.menuItemOrders) {
+          allMenuItemOrders.push(...result.order.menuItemOrders);
+        }
+      }
+      
+      // Broadcast receipt to printers
+      if (allMenuItemOrders.length > 0) {
+        broadcastReceiptToPrinters(tableId, tableName, allMenuItemOrders);
+        console.log("📡 Broadcasting receipt to printers for table:", tableName);
+      }
+    } catch (error) {
+      console.error("Error broadcasting receipt:", error);
+      alert("Erreur lors de la diffusion du reçu");
+    }
+  }
+
 
 </script>
 
@@ -351,6 +388,16 @@
                     <Icon iconName="download" />
                     Test
                   </button> 
+                  <button
+                    onclick={(e) => {
+                      e.stopPropagation();
+                      handleBroadcastTableReceipt(table.id);
+                    }}
+                    class="w-full flex items-center justify-center gap-2 px-4 py-2 bg-purple-500 hover:bg-purple-600 text-white rounded-lg transition-colors text-sm font-medium"
+                  >
+                    <Icon iconName="cast" />
+                    Broadcast Receipt
+                  </button>
                 </div>
               {/if}
             </div>

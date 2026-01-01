@@ -7,7 +7,7 @@
   import Button from "../../../lib/components/Button.svelte";
   import Icon from "../../../lib/components/Icon.svelte";
   import UnpaidOrder from "./UnpaidOrder.svelte";
-  import { trpc } from "../../../lib/trpc";
+  import { trpc, broadcastReceiptToPrinters } from "../../../lib/trpc";
   import { _cartsStore } from "../../../store/carts.svelte";
   import { generateReciptPdf } from "../../../utils/printReceipt";
   import { generateOrderPDF } from "../../../utils/printOrder";
@@ -140,6 +140,24 @@
       alert("Erreur lors de l'impression du reçu de table");
     }
   }
+
+  function handleBroadcastTableReceipt() {
+    try {
+      // Collect all menu item orders from all orders for this table
+      const allMenuItemOrders = orders.flatMap(
+        (order) => order.menuItemOrders || []
+      );
+
+      if (allMenuItemOrders.length > 0) {
+        const tableName = table.name || `Table ${table.tableNumber || table.id.slice(0, 8)}`;
+        broadcastReceiptToPrinters(table.id, tableName, allMenuItemOrders);
+        console.log("📡 Broadcasting receipt to printers for table:", tableName);
+      }
+    } catch (error) {
+      console.error("Error broadcasting table receipt:", error);
+      alert("Erreur lors de la diffusion du reçu de table");
+    }
+  }
 </script>
 
 <Dialog bind:open={isOpen}>
@@ -189,6 +207,14 @@
                 size="sm"
               >
                 Imprimer le reçu
+              </Button>
+              <Button
+                onclick={handleBroadcastTableReceipt}
+                iconName="cast"
+                variant="secondary"
+                size="sm"
+              >
+                Broadcast Receipt
               </Button>
               <Button
                 onclick={handleMarkAllAsPaid}

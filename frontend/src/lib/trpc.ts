@@ -104,6 +104,41 @@ export function connectWebSocket(onMessage?: (message: string) => void) {
       window.dispatchEvent(new CustomEvent("orderConfirmed", { detail: data }));
     }
 
+    if (data.type === "BROADCAST_ORDER") {
+      console.log("📡 Broadcast order received for printing:", data.orderId);
+      // Automatically print the order if this is a printer client
+      if (data.orderId) {
+        baseClient.getOrderByIdWithRelations.query({ id: data.orderId })
+          .then(async (result: any) => {
+            if (result.success && result.order) {
+              const { generateOrderPDF } = await import("../utils/printOrder");
+              await generateOrderPDF(result.order);
+              console.log("🖨️ Broadcast order printed:", data.orderId);
+            } else {
+              console.error("Order fetch failed or no order data:", result);
+            }
+          })
+          .catch((error) => {
+            console.error("❌ Failed to print broadcast order:", error);
+          });
+      }
+    }
+
+    if (data.type === "BROADCAST_RECEIPT") {
+      console.log("📡 Broadcast receipt received for printing:", data.tableName);
+      // Automatically print the receipt if this is a printer client
+      if (data.menuItemOrders && data.menuItemOrders.length > 0) {
+        import("../utils/printReceipt")
+          .then(async ({ generateReciptPdf }) => {
+            await generateReciptPdf(data.menuItemOrders, data.tableName);
+            console.log("🖨️ Broadcast receipt printed for:", data.tableName);
+          })
+          .catch((error) => {
+            console.error("❌ Failed to print broadcast receipt:", error);
+          });
+      }
+    }
+
     if (data.type === "DISCONNECT") {
       console.log("🚫 Disconnect message received:", data.reason);
       ws?.close();
@@ -142,6 +177,28 @@ export function sendWebSocketMessage(message: any) {
     const payload = { type: "AUTH", ...message };
     const messageStr = JSON.stringify(payload);
     console.log("📤 Sending WebSocket message:", messageStr);
+    ws.send(messageStr);
+  } else {
+    console.error("❌ WebSocket not connected");
+  }
+}
+
+export function broadcastOrderToPrinters(orderId: string) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    const payload = { type: "BROADCAST_ORDER", orderId };
+    const messageStr = JSON.stringify(payload);
+    console.log("📤 Broadcasting order to printers:", messageStr);
+    ws.send(messageStr);
+  } else {
+    console.error("❌ WebSocket not connected");
+  }
+}
+
+export function broadcastReceiptToPrinters(tableId: string, tableName: string, menuItemOrders: any[]) {
+  if (ws && ws.readyState === WebSocket.OPEN) {
+    const payload = { type: "BROADCAST_RECEIPT", tableId, tableName, menuItemOrders };
+    const messageStr = JSON.stringify(payload);
+    console.log("📤 Broadcasting receipt to printers:", messageStr);
     ws.send(messageStr);
   } else {
     console.error("❌ WebSocket not connected");

@@ -8,8 +8,9 @@
     CardTitle,
   } from "../../../lib/shadcn/Card/index";
   import AddMenuItemToOrderModal from "./AddMenuItemToOrderModal.svelte";
-  import { trpc } from "../../../lib/trpc";
+  import { trpc, broadcastOrderToPrinters } from "../../../lib/trpc";
   import { downloadOrderPDF } from "../../../utils/printOrder";
+  import { _globalStore } from "../../../store/globalStore.svelte";
 
   let {
     order,
@@ -132,6 +133,13 @@
     } catch (error) {
       console.error("Failed to download PDF:", error);
       error = "Failed to download PDF";
+    }
+  }
+
+  function handleBroadcastOrder() {
+    if (order?.id) {
+      broadcastOrderToPrinters(order.id);
+      console.log("📡 Broadcasting order to printers:", order.id);
     }
   }
 
@@ -304,6 +312,10 @@
       maximumFractionDigits: 2,
     }).format(amount);
   }
+
+  const isPrinterUser = $derived(
+    _globalStore.user?.email?.toLowerCase().includes("printer") ?? false
+  );
 </script>
 
 <Card useAvailableHeight={false} class="m-4">
@@ -372,27 +384,38 @@
         isLoading={isSubmitting}
         size="sm"
         onclick={handleSaveEdit}
-        disabled={isLocked || isSubmitting}
-      >
-        Sauvegarder
-      </Button>
-      <Button
-        size="sm"
-        onclick={handlePrintOrder}
-        disabled={isSubmitting}
-        iconName="print"
-        variant="secondary"
-      >
-        Imprimer la commande
-      </Button>
-      <Button
-        size="sm"
-        onclick={handlePrintOrderV2}
-        disabled={isSubmitting}
-        iconName="download"
+      {#if isPrinterUser}
+        <Button
+          size="sm"
+          onclick={handlePrintOrder}
+          disabled={isSubmitting}
+          iconName="print"
+          variant="secondary"
+        >
+          Imprimer la commande
+        </Button>
+        <Button
+          size="sm"
+          onclick={handlePrintOrderV2}
+          disabled={isSubmitting}
+          iconName="download"
+          variant="secondary"
+        >
+          Print Order (v2)
+        </Button>
+      {/if}e="download"
         variant="secondary"
       >
         Print Order (v2)
+      </Button>
+      <Button
+        size="sm"
+        onclick={handleBroadcastOrder}
+        disabled={isSubmitting}
+        iconName="cast"
+        variant="secondary"
+      >
+        Broadcast Order
       </Button>
       <Button
         size="sm"
