@@ -384,6 +384,10 @@
         isLoading={isSubmitting}
         size="sm"
         onclick={handleSaveEdit}
+        disabled={isLocked || isSubmitting}
+      >
+        Sauvegarder
+      </Button>
       {#if isPrinterUser}
         <Button
           size="sm"
@@ -403,11 +407,7 @@
         >
           Print Order (v2)
         </Button>
-      {/if}e="download"
-        variant="secondary"
-      >
-        Print Order (v2)
-      </Button>
+      {/if}
       <Button
         size="sm"
         onclick={handleBroadcastOrder}
