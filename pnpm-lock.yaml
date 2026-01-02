@@ -20,8 +20,8 @@ importers:
         specifier: ^11.2.0
         version: 11.2.0
       '@oasis-path/gamma-sdk':
-        specifier: ^1.0.8
-        version: 1.0.8
+        specifier: ^1.0.10
+        version: 1.0.10
       '@trpc/server':
         specifier: ^11.7.0
         version: 11.7.1(typescript@5.9.3)
@@ -775,8 +775,8 @@ packages:
     resolution: {integrity: sha512-ReCjd5SYI/UKx/olaQLC4GtN6wUQGjlgHXs1lvUvWGXfBMR3Fxnik3cL+OxKN5ithNdoU0/GlCrdKcQDFh2XKQ==}
     engines: {node: '>= 10'}
 
-  '@oasis-path/gamma-sdk@1.0.8':
-    resolution: {integrity: sha512-qV0uqBr4c0oJqzEvqSeYoFYZQTkSsPtww614+E8wfk4nAg+kP9+mWU1Z6fDav+z0XBi0+OYkhw9fJ/RfJ8gTuA==}
+  '@oasis-path/gamma-sdk@1.0.10':
+    resolution: {integrity: sha512-2uPscJHN0tr0KV5+cqaAqcIBbm1/kj7HV6RA5j1GY15qqEsiOEzq7KZWt0uKosMGBNfG9tfOcirDriWLwViQQA==}
 
   '@pinojs/redact@0.4.0':
     resolution: {integrity: sha512-k2ENnmBugE/rzQfEcdWHcCY+/FM3VLzH9cYEsbdsoqrvzAKRhUZeRNhAZvB8OitQJ1TBed3yqWtdjzS6wJKBwg==}
@@ -3343,7 +3343,7 @@ snapshots:
       '@napi-rs/canvas-win32-x64-msvc': 0.1.81
     optional: true
 
-  '@oasis-path/gamma-sdk@1.0.8':
+  '@oasis-path/gamma-sdk@1.0.10':
     dependencies:
       form-data: 4.0.4
 

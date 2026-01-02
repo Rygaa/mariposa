@@ -7,16 +7,18 @@ const gammaClient = new GammaFilesClient({
 });
 
 /**
- * Upload a file to Gamma Files storage
- * @param file - Buffer, Blob, File, base64 string, or ReadableStream
+ * Upload a file to Gamma Files storage using presigned upload
+ * @param file - Buffer, Blob, File, or ReadableStream
  * @param filename - Name for the file
+ * @param token - Presigned upload token
  * @param mimeType - MIME type of the file
  * @param folderId - Optional folder ID to upload to
  * @returns Upload response with file metadata including file ID
  */
 export async function uploadFile(
-  file: Buffer | Blob | File | string | NodeJS.ReadableStream,
+  file: Buffer | Blob | File | NodeJS.ReadableStream,
   filename: string,
+  token: string,
   mimeType?: string,
   folderId?: string
 ) {
@@ -27,11 +29,12 @@ export async function uploadFile(
     console.log(mimeType)
     console.log(folderId)
 
-    const result = await gammaClient.uploadFile({
-      file: file as any,
+    const result = await gammaClient.uploadPresigned({
+      file,
       filename,
       mimeType,
       folderId: folderId || process.env.GAMMA_FOLDER_ID,
+      token,
     });
 
     console.log(result)
@@ -45,106 +48,65 @@ export async function uploadFile(
 }
 
 /**
- * Get file metadata by file ID
- * @param fileId - ID of the file
- * @returns File metadata
+ * Download a file using presigned token
+ * @param fileId - ID of the file to download
+ * @param token - Presigned download token
+ * @returns File data as ArrayBuffer
  */
-export async function getFileMetadata(fileId: string) {
+export async function downloadFile(fileId: string, token: string) {
   try {
-    const result = await gammaClient.getFileMetadata(fileId);
-    return result.file;
-  } catch (error) {
-    console.error('Error getting file metadata:', error);
-    throw error;
-  }
-}
-
-/**
- * Delete a file from Gamma Files storage
- * @param fileId - ID of the file to delete
- * @returns Delete response
- */
-export async function deleteFile(fileId: string) {
-  try {
-    const result = await gammaClient.deleteFile(fileId);
+    const result = await gammaClient.downloadPresigned(fileId, token);
     return result;
   } catch (error) {
-    console.error('Error deleting file:', error);
+    console.error('Error downloading file:', error);
     throw error;
   }
 }
 
 /**
- * Generate a presigned URL for a file
- * @param fileId - ID of the file
- * @param expiresIn - Expiration time in seconds (min: 60, max: 86400)
- * @param maxUsageCount - Maximum number of times the URL can be used
- * @returns Presigned URL response with token and URL
+ * Download an entire folder as a zip file using presigned token
+ * @param folderId - ID of the folder to download
+ * @param token - Presigned download token
+ * @returns Zip file data as ArrayBuffer
  */
-export async function generatePresignedUrl(
-  fileId: string,
-  expiresIn: number = 3600,
-  maxUsageCount: number = 1
-) {
+export async function downloadFolder(folderId: string, token: string) {
   try {
-    const result = await gammaClient.generatePresignedUrl({
-      fileId,
-      expiresIn,
-      maxUsageCount,
-    });
+    const result = await gammaClient.downloadFolder(folderId, token);
     return result;
   } catch (error) {
-    console.error('Error generating presigned URL:', error);
+    console.error('Error downloading folder:', error);
     throw error;
   }
 }
 
 /**
- * Get a public URL for viewing a file using a token
- * @param fileId - ID of the file
- * @returns Public URL for viewing the file
+ * View a file using presigned token with optional compression
+ * @param fileId - ID of the file to view
+ * @param token - Presigned view token
+ * @param compressionValue - Optional compression value (0-100)
+ * @returns File data with headers
  */
-export async function getFileViewUrl(fileId: string): Promise<string> {
+export async function viewFile(fileId: string, token: string, compressionValue?: number) {
   try {
-    // Generate a long-lived presigned URL (24 hours, unlimited usage)
-    const result = await gammaClient.generatePresignedUrl({
-      fileId,
-      expiresIn: 86400, // 24 hours
-      maxUsageCount: 999999, // Effectively unlimited
-    });
-    return result.url;
+    const result = await gammaClient.viewFile(fileId, token, compressionValue);
+    return result;
   } catch (error) {
-    console.error('Error generating file view URL:', error);
+    console.error('Error viewing file:', error);
     throw error;
   }
 }
 
 /**
  * List all files in a folder
- * @param folderId - ID of the folder
- * @returns List of files
+ * @param folderId - ID of the folder (defaults to GAMMA_FOLDER_ID from env)
+ * @returns List of files with metadata
  */
 export async function listFiles(folderId?: string) {
   try {
-    const result = await gammaClient.listFiles(folderId || process.env.GAMMA_FOLDER_ID || '');
+    const result = await gammaClient.listFolderFiles(folderId || process.env.GAMMA_FOLDER_ID || '');
     return result.files;
   } catch (error) {
     console.error('Error listing files:', error);
-    throw error;
-  }
-}
-
-/**
- * Download a file as ArrayBuffer
- * @param fileId - ID of the file to download
- * @returns File data as ArrayBuffer
- */
-export async function downloadFile(fileId: string) {
-  try {
-    const result = await gammaClient.downloadFile(fileId);
-    return result;
-  } catch (error) {
-    console.error('Error downloading file:', error);
     throw error;
   }
 }
