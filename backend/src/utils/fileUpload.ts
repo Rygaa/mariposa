@@ -161,6 +161,7 @@ export async function generatePresignedUrl(
     });
     return result;
   } catch (error) {
+    console.log(error)
     console.error('Error generating presigned URL:', error);
     throw error;
   }
