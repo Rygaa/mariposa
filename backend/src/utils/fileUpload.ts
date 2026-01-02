@@ -110,3 +110,58 @@ export async function listFiles(folderId?: string) {
     throw error;
   }
 }
+
+/**
+ * Delete a file from Gamma Files storage
+ * @param fileId - ID of the file to delete
+ * @returns Success message
+ */
+export async function deleteFile(fileId: string) {
+  try {
+    const result = await gammaClient.deleteFile(fileId);
+    return result;
+  } catch (error) {
+    console.error('Error deleting file:', error);
+    throw error;
+  }
+}
+
+/**
+ * Get metadata for a specific file
+ * @param fileId - ID of the file
+ * @returns File metadata
+ */
+export async function getFileMetadata(fileId: string) {
+  try {
+    const result = await gammaClient.getFileMetadata(fileId);
+    return result.file;
+  } catch (error) {
+    console.error('Error getting file metadata:', error);
+    throw error;
+  }
+}
+
+/**
+ * Generate a presigned URL for file access
+ * @param fileId - ID of the file
+ * @param expiresIn - Optional expiration time in seconds
+ * @param maxUsageCount - Optional maximum usage count
+ * @returns Presigned URL with token and expiration
+ */
+export async function generatePresignedUrl(
+  fileId: string,
+  expiresIn?: number,
+  maxUsageCount?: number
+) {
+  try {
+    const result = await gammaClient.generatePresignedUrl({
+      fileId,
+      expiresIn,
+      maxUsageCount,
+    });
+    return result;
+  } catch (error) {
+    console.error('Error generating presigned URL:', error);
+    throw error;
+  }
+}

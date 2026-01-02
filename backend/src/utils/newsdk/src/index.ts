@@ -3,6 +3,9 @@ import { downloadPresigned } from './methods/downloadPresigned';
 import { downloadFolder } from './methods/downloadFolder';
 import { viewFile } from './methods/viewFile';
 import { listFolderFiles } from './methods/listFolderFiles';
+import { deleteFile } from './methods/deleteFile';
+import { getFileMetadata } from './methods/getFileMetadata';
+import { generatePresignedUrl } from './methods/generatePresignedUrl';
 
 // Types
 export interface GammaFilesClientConfig {
@@ -93,5 +96,26 @@ export class GammaFilesClient {
       throw new Error('API key is required for listFolderFiles method. Please provide apiKey in the constructor config.');
     }
     return listFolderFiles(folderId, this.apiKey, this.baseUrl);
+  }
+
+  async deleteFile(fileId: string): Promise<{ success: true; message: string }> {
+    if (!this.apiKey) {
+      throw new Error('API key is required for deleteFile method. Please provide apiKey in the constructor config.');
+    }
+    return deleteFile(fileId, this.apiKey, this.baseUrl);
+  }
+
+  async getFileMetadata(fileId: string): Promise<{ success: true; file: FileMetadata }> {
+    if (!this.apiKey) {
+      throw new Error('API key is required for getFileMetadata method. Please provide apiKey in the constructor config.');
+    }
+    return getFileMetadata(fileId, this.apiKey, this.baseUrl);
+  }
+
+  async generatePresignedUrl(options: { fileId: string; expiresIn?: number; maxUsageCount?: number }): Promise<{ success: true; token: string; url: string; expiresAt: string }> {
+    if (!this.apiKey) {
+      throw new Error('API key is required for generatePresignedUrl method. Please provide apiKey in the constructor config.');
+    }
+    return generatePresignedUrl(options, this.apiKey, this.baseUrl);
   }
 }

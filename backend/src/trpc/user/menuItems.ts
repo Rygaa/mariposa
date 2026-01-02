@@ -431,10 +431,10 @@ export const getMenuItemImageViewUrl = protectedProcedure
     })
   )
   .query(async ({ input }) => {
-    const { getFileViewUrl } = await import("../../utils/fileUpload");
+       const { generatePresignedUrl } = await import("../../utils/fileUpload");
     
     try {
-      const url = await getFileViewUrl(input.fileId);
+      const url = await generatePresignedUrl(input.fileId);
 
       return {
         success: true,
