@@ -159,6 +159,8 @@ export async function generatePresignedUrl(
       expiresIn,
       maxUsageCount,
     });
+    console.log('Presigned URL generated:', result);
+    console.log(result)
     return result;
   } catch (error) {
     console.log(error)
