@@ -12,7 +12,17 @@ export const create = protectedProcedureGlobalTransaction
   .input(
     z.object({
       name: z.string(),
-      type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).default(["MENU_ITEM"]),
+      type: z
+        .array(
+          z.enum([
+            "MENU_ITEM",
+            "RECIPE",
+            "RAW_MATERIAL",
+            "SUPPLEMENT",
+            "MENU_ITEM_OPTION",
+          ])
+        )
+        .default(["MENU_ITEM"]),
       price: z.number().optional(),
       image: z.array(z.string()).optional(),
       description: z.string().optional(),
@@ -20,7 +30,9 @@ export const create = protectedProcedureGlobalTransaction
       categoryId: z.string().uuid().optional(),
       producedQuantityPerRecipe: z.number().optional(),
       cost: z.number().optional(),
-      unit: z.enum(["gramme", "Kg", "portion", "liter", "milliliter"]).optional(),
+      unit: z
+        .enum(["gramme", "Kg", "portion", "liter", "milliliter"])
+        .optional(),
       averagePrice: z.number().optional(),
       stockQuantity: z.number().default(0).optional(),
       stockConversionRatio: z.number().default(1).optional(),
@@ -33,7 +45,9 @@ export const create = protectedProcedureGlobalTransaction
       {
         ...input,
         // Only MENU_ITEM type can have a category
-        categoryId: input.type.includes("MENU_ITEM") ? input.categoryId : undefined,
+        categoryId: input.type.includes("MENU_ITEM")
+          ? input.categoryId
+          : undefined,
       } as any,
       ctx.globalTx
     );
@@ -51,7 +65,17 @@ export const update = protectedProcedureGlobalTransaction
       id: z.string().uuid("Invalid menu item ID"),
       name: z.string().optional(),
       subName: z.string().optional(),
-      type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
+      type: z
+        .array(
+          z.enum([
+            "MENU_ITEM",
+            "RECIPE",
+            "RAW_MATERIAL",
+            "SUPPLEMENT",
+            "MENU_ITEM_OPTION",
+          ])
+        )
+        .optional(),
       price: z.number().optional(),
       image: z.array(z.string()).optional(),
       description: z.string().optional(),
@@ -59,7 +83,9 @@ export const update = protectedProcedureGlobalTransaction
       categoryId: z.string().uuid().optional(),
       producedQuantityPerRecipe: z.number().optional(),
       cost: z.number().optional(),
-      unit: z.enum(["gramme", "Kg", "portion", "liter", "milliliter"]).optional(),
+      unit: z
+        .enum(["gramme", "Kg", "portion", "liter", "milliliter"])
+        .optional(),
       averagePrice: z.number().optional(),
       stockQuantity: z.number().optional(),
       inHouseStockQuantity: z.number().optional(),
@@ -74,20 +100,26 @@ export const update = protectedProcedureGlobalTransaction
   )
   .mutation(async ({ ctx, input }) => {
     // Get the current state before update for logging purposes
-    const currentMenuItem = await _ServiceMenuItems.findById(input.id, ctx.globalTx);
-    
+    const currentMenuItem = await _ServiceMenuItems.findById(
+      input.id,
+      ctx.globalTx
+    );
+
     const updatedMenuItem = await _ServiceMenuItems.update(
       {
         ...input,
         // Only MENU_ITEM type can have a category
-        categoryId: input.type && !input.type.includes("MENU_ITEM") ? null : input.categoryId,
+        categoryId:
+          input.type && !input.type.includes("MENU_ITEM")
+            ? null
+            : input.categoryId,
       } as any,
       ctx.globalTx
     );
 
     // Log stock changes
-    const isStockChange = 
-      input.inHouseStockQuantity !== undefined || 
+    const isStockChange =
+      input.inHouseStockQuantity !== undefined ||
       input.inShopStockQuantity !== undefined;
 
     if (isStockChange && currentMenuItem) {
@@ -98,11 +130,18 @@ export const update = protectedProcedureGlobalTransaction
       };
 
       // Determine if this is a transfer or add/subtract
-      if (input.inHouseStockQuantity !== undefined && input.inShopStockQuantity !== undefined) {
+      if (
+        input.inHouseStockQuantity !== undefined &&
+        input.inShopStockQuantity !== undefined
+      ) {
         // Both changed - likely a transfer
-        const inHouseDiff = input.inHouseStockQuantity - (currentMenuItem.inHouseStockQuantity || 0);
-        const inShopDiff = input.inShopStockQuantity - (currentMenuItem.inShopStockQuantity || 0);
-        
+        const inHouseDiff =
+          input.inHouseStockQuantity -
+          (currentMenuItem.inHouseStockQuantity || 0);
+        const inShopDiff =
+          input.inShopStockQuantity -
+          (currentMenuItem.inShopStockQuantity || 0);
+
         if (inHouseDiff < 0 && inShopDiff > 0) {
           action = "TRANSFER_STOCK_TO_SHOP";
           actionDetails = {
@@ -129,7 +168,9 @@ export const update = protectedProcedureGlobalTransaction
           };
         }
       } else if (input.inHouseStockQuantity !== undefined) {
-        const diff = input.inHouseStockQuantity - (currentMenuItem.inHouseStockQuantity || 0);
+        const diff =
+          input.inHouseStockQuantity -
+          (currentMenuItem.inHouseStockQuantity || 0);
         action = diff > 0 ? "ADD_STOCK_IN_HOUSE" : "SUBTRACT_STOCK_IN_HOUSE";
         actionDetails = {
           ...actionDetails,
@@ -139,7 +180,9 @@ export const update = protectedProcedureGlobalTransaction
           newStock: input.inHouseStockQuantity,
         };
       } else if (input.inShopStockQuantity !== undefined) {
-        const diff = input.inShopStockQuantity - (currentMenuItem.inShopStockQuantity || 0);
+        const diff =
+          input.inShopStockQuantity -
+          (currentMenuItem.inShopStockQuantity || 0);
         action = diff > 0 ? "ADD_STOCK_IN_SHOP" : "SUBTRACT_STOCK_IN_SHOP";
         actionDetails = {
           ...actionDetails,
@@ -197,7 +240,17 @@ export const list = protectedProcedure
     z
       .object({
         search: z.string().optional(),
-        type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
+        type: z
+          .array(
+            z.enum([
+              "MENU_ITEM",
+              "RECIPE",
+              "RAW_MATERIAL",
+              "SUPPLEMENT",
+              "MENU_ITEM_OPTION",
+            ])
+          )
+          .optional(),
         categoryId: z.string().uuid().optional(),
         isAvailable: z.boolean().optional(),
         limit: z.number().int().positive().max(500).default(100).optional(),
@@ -241,7 +294,17 @@ export const listAll = protectedProcedure
     z
       .object({
         search: z.string().optional(),
-        type: z.array(z.enum(["MENU_ITEM", "RECIPE", "RAW_MATERIAL", "SUPPLEMENT", "MENU_ITEM_OPTION"])).optional(),
+        type: z
+          .array(
+            z.enum([
+              "MENU_ITEM",
+              "RECIPE",
+              "RAW_MATERIAL",
+              "SUPPLEMENT",
+              "MENU_ITEM_OPTION",
+            ])
+          )
+          .optional(),
         categoryId: z.string().uuid().optional(),
         isAvailable: z.boolean().optional(),
         limit: z.number().int().positive().max(10000).optional(),
@@ -254,7 +317,7 @@ export const listAll = protectedProcedure
   )
   .query(async ({ ctx, input }) => {
     const filters = input || {};
-    
+
     // If no limit specified, set it to a very high number to get all items
     if (!filters.limit) {
       filters.limit = 10000;
@@ -282,11 +345,11 @@ export const uploadMenuItemImage = protectedProcedureGlobalTransaction
   )
   .mutation(async ({ ctx, input }) => {
     const { uploadFile } = await import("../../utils/fileUpload");
-    
+
     try {
       // Convert base64 to buffer
-      const base64Data = input.file.replace(/^data:[^;]+;base64,/, '');
-      const buffer = Buffer.from(base64Data, 'base64');
+      const base64Data = input.file.replace(/^data:[^;]+;base64,/, "");
+      const buffer = Buffer.from(base64Data, "base64");
 
       const result = await uploadFile(
         buffer,
@@ -297,7 +360,7 @@ export const uploadMenuItemImage = protectedProcedureGlobalTransaction
 
       // Verify menu item exists
       await _ServiceMenuItems.getById(input.menuItemId, ctx.globalTx);
-      
+
       // Create menu item image record
       const menuItemImage = await _ServiceMenuItemImages.create(
         {
@@ -333,11 +396,14 @@ export const deleteMenuItemImage = protectedProcedureGlobalTransaction
   )
   .mutation(async ({ ctx, input }) => {
     const { deleteFile } = await import("../../utils/fileUpload");
-    
+
     try {
       // Get menu item image record
-      const menuItemImage = await _ServiceMenuItemImages.getById(input.id, ctx.globalTx);
-      
+      const menuItemImage = await _ServiceMenuItemImages.getById(
+        input.id,
+        ctx.globalTx
+      );
+
       // Delete the image record
       await _ServiceMenuItemImages.deleteById(input.id, ctx.globalTx);
 
@@ -368,7 +434,7 @@ export const getMenuItemImageMetadata = protectedProcedure
   )
   .query(async ({ input }) => {
     const { getFileMetadata } = await import("../../utils/fileUpload");
-    
+
     try {
       const file = await getFileMetadata(input.fileId);
 
@@ -398,7 +464,7 @@ export const generateMenuItemImageUrl = protectedProcedure
   )
   .query(async ({ input }) => {
     const { generatePresignedUrl } = await import("../../utils/fileUpload");
-    
+
     try {
       const result = await generatePresignedUrl(
         input.fileId,
@@ -431,8 +497,8 @@ export const getMenuItemImageViewUrl = protectedProcedure
     })
   )
   .query(async ({ input }) => {
-       const { generatePresignedUrl } = await import("../../utils/fileUpload");
-    
+    const { generatePresignedUrl } = await import("../../utils/fileUpload");
+
     try {
       const url = await generatePresignedUrl(input.fileId);
 
@@ -441,7 +507,11 @@ export const getMenuItemImageViewUrl = protectedProcedure
         url: url + "&compressionValue=35", // Append compression parameter for images
       };
     } catch (error) {
-      console.error("Error getting file view URL for fileId:", input.fileId, error);
+      console.error(
+        "Error getting file view URL for fileId:",
+        input.fileId,
+        error
+      );
       throw new TRPCError({
         code: "INTERNAL_SERVER_ERROR",
         message: "Failed to get file view URL",
@@ -462,7 +532,7 @@ export const listMenuItemImages = protectedProcedure
     try {
       // First check if this menu item references another item for images
       const menuItem = await _ServiceMenuItems.findById(input.menuItemId);
-      
+
       if (!menuItem) {
         throw new TRPCError({
           code: "NOT_FOUND",
@@ -471,8 +541,11 @@ export const listMenuItemImages = protectedProcedure
       }
 
       // If it has an imageSourceMenuItemId, fetch images from that item instead
-      const targetMenuItemId = menuItem.imageSourceMenuItemId || input.menuItemId;
-      const images = await _ServiceMenuItemImages.listByMenuItemId(targetMenuItemId);
+      const targetMenuItemId =
+        menuItem.imageSourceMenuItemId || input.menuItemId;
+      const images = await _ServiceMenuItemImages.listByMenuItemId(
+        targetMenuItemId
+      );
 
       return {
         success: true,
