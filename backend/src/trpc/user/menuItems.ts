@@ -500,11 +500,11 @@ export const getMenuItemImageViewUrl = protectedProcedure
     const { generatePresignedUrl } = await import("../../utils/fileUpload");
 
     try {
-      const url = await generatePresignedUrl(input.fileId);
+      const result = await generatePresignedUrl(input.fileId);
 
       return {
         success: true,
-        url: url + "&compressionValue=35", // Append compression parameter for images
+        url: result.url + "&compressionValue=35", // Append compression parameter for images
       };
     } catch (error) {
       console.error(
