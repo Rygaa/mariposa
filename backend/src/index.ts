@@ -265,13 +265,13 @@ export type { AppRouter } from "./trpc/router";
 
 function getAllowedOrigins() {
   return [
-    "http://localhost:5173", 
+    "http://localhost:5174", 
     "https://mariposa.food",
     "https://www.mariposa.food",
     "https://coffee.oasispath.ca",
     "https://www.coffee.oasispath.ca",
     "http://coffee.oasispath.ca",
-    "127.0.0.1:5173"
+    "127.0.0.1:5174"
   ];
 }
 

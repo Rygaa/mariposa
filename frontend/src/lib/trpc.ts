@@ -12,12 +12,12 @@ let ws: WebSocket | null = null;
 
 // HTTP URL for API calls
 const getBaseUrl = () => {
-  return import.meta.env.VITE_API_URL || "http://localhost:6100";
+  return import.meta.env.VITE_API_URL || "http://localhost:6200";
 };
 
 // WebSocket URL
 const getWsUrl = () => {
-  const base = import.meta.env.VITE_API_URL || "http://localhost:6100";
+  const base = import.meta.env.VITE_API_URL || "http://localhost:6200";
   return base.replace(/^http/, "ws") + "/ws";
 };
 
