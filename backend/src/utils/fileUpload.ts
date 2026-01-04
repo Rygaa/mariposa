@@ -29,7 +29,7 @@ export async function uploadFile(
     console.log(mimeType)
     console.log(folderId)
 
-    const result = await gammaClient.uploadPresigned({
+    const result = await gammaClient.uploadWithToken({
       file,
       filename,
       mimeType,
@@ -55,7 +55,7 @@ export async function uploadFile(
  */
 export async function downloadFile(fileId: string, token: string) {
   try {
-    const result = await gammaClient.downloadPresigned(fileId, token);
+    const result = await gammaClient.downloadWithToken(fileId, token);
     return result;
   } catch (error) {
     console.error('Error downloading file:', error);
@@ -154,7 +154,7 @@ export async function generatePresignedUrl(
   maxUsageCount?: number
 ) {
   try {
-    const result = await gammaClient.generatePresignedUrl({
+    const result = await gammaClient.generatePresignedFileDownloadUrl({
       fileId,
       expiresIn,
       maxUsageCount,
