@@ -24,7 +24,7 @@
         "@chargily/chargily-pay": "^2.1.0",
         "@fastify/cors": "^11.1.0",
         "@fastify/websocket": "^11.2.0",
-        "@oasis-path/gamma-sdk": "^1.0.23",
+        "@oasis-path/gamma-sdk": "^1.0.24",
         "@trpc/server": "^11.7.0",
         "@types/bcryptjs": "^2.4.6",
         "@types/jsonwebtoken": "^9.0.10",
