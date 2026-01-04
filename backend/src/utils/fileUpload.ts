@@ -154,6 +154,8 @@ export async function generatePresignedUrl(
   maxUsageCount?: number
 ) {
   try {
+    console.log(`fileId: ${fileId}, expiresIn: ${expiresIn}, maxUsageCount: ${maxUsageCount}`);
+
     const result = await gammaClient.generatePresignedFileDownloadUrl({
       fileId,
       expiresIn,
