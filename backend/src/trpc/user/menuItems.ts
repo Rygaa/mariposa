@@ -351,11 +351,12 @@ export const uploadMenuItemImage = protectedProcedureGlobalTransaction
       const base64Data = input.file.replace(/^data:[^;]+;base64,/, "");
       const buffer = Buffer.from(base64Data, "base64");
 
+
+
       const result = await uploadFile(
         buffer,
         input.filename,
-        input.mimeType,
-        input.folderId
+        input.mimeType
       );
 
       // Verify menu item exists

@@ -18,7 +18,6 @@ const gammaClient = new GammaFilesClient({
 export async function uploadFile(
   file: Buffer | Blob | File | NodeJS.ReadableStream,
   filename: string,
-  token: string,
   mimeType?: string,
   folderId?: string
 ) {
@@ -29,12 +28,14 @@ export async function uploadFile(
     console.log(mimeType)
     console.log(folderId)
 
+    const presignedUrl = await gammaClient.generatePresignedFileUploadUrl({folderId: folderId || process.env.GAMMA_FOLDER_ID})
+    console.log(presignedUrl)
     const result = await gammaClient.uploadWithToken({
       file,
       filename,
       mimeType,
       folderId: folderId || process.env.GAMMA_FOLDER_ID,
-      token,
+      token: presignedUrl.token
     });
 
     console.log(result)
