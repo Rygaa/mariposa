@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 const app = express();
-const PORT = process.env.PORT || 6000;
+const PORT = process.env.PORT;
 
 /* -------------------------------------------------------------
    GLOBAL NO-CACHE FOR ALL REQUESTS
@@ -43,6 +43,17 @@ app.use(
     }
   })
 );
+
+/* -------------------------------------------------------------
+   HEALTH CHECK ENDPOINT
+------------------------------------------------------------- */
+app.get("/health", (req, res) => {
+  res.status(200).json({
+    status: "healthy",
+    timestamp: new Date().toISOString(),
+    service: "frontend"
+  });
+});
 
 /* -------------------------------------------------------------
    SPA ROUTING:

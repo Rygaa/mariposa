@@ -3,7 +3,7 @@
  * Functional API for server management
  */
 
-import dotenv from "dotenv";
+import * as dotenv from "dotenv";
 import "async-array-utils";
 import Fastify, { FastifyInstance } from "fastify";
 import cors from "@fastify/cors";
@@ -11,7 +11,7 @@ import { fastifyTRPCPlugin, CreateFastifyContextOptions } from "@trpc/server/ada
 import { initTRPC, TRPCError } from "@trpc/server";
 import { z } from "zod";
 import jwt from "jsonwebtoken";
-import { eq } from "drizzle-orm";
+import { eq, sql } from "drizzle-orm";
 import { User, users } from "./db/schema";
 import { catchErrors } from "./utils/catchErrors";
 import { db, type DbTransaction } from "./db/utils";
@@ -287,10 +287,26 @@ async function setupMiddleware(): Promise<void> {
 }
 
 async function setupRoutes(): Promise<void> {
-  app.get("/health", async () => ({
-    status: "OK",
-    timestamp: new Date().toISOString(),
-  }));
+  app.get("/health", async (request, reply) => {
+    try {
+      // Check database connection
+      await db.execute(sql`SELECT 1`);
+      return reply.status(200).send({
+        status: "healthy",
+        timestamp: new Date().toISOString(),
+        service: "backend",
+        database: "connected"
+      });
+    } catch (error) {
+      return reply.status(503).send({
+        status: "unhealthy",
+        timestamp: new Date().toISOString(),
+        service: "backend",
+        database: "disconnected",
+        error: error instanceof Error ? error.message : "Unknown error"
+      });
+    }
+  });
 
   // Register WebSocket plugin BEFORE tRPC and routes
   await app.register(websocket);

@@ -12,6 +12,12 @@ dist/
 .env
 .env.local
 .env.production
+backend/.env
+backend/.env.local
+backend/.env.production
+frontend/.env
+frontend/.env.local
+frontend/.env.production
 
 # TypeScript build info
 *.tsbuildinfo
