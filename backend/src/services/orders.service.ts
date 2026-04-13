@@ -308,7 +308,9 @@ async function getRevenueStats(
   const deletedOrders = menuItemOrders.filter(item => item.deletedAt);
 
   // Calculate revenues
-  const activeRevenue = activeOrders.reduce((sum, item) => {
+  const activeRevenue = activeOrders
+  .filter(item => !item.parentMenuItemOrderId)
+  .reduce((sum, item) => {
     return sum + (item.price * item.quantity);
   }, 0);
 
