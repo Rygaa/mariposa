@@ -1,3 +1,7 @@
 packages:
   - 'backend'
   - 'frontend'
+allowBuilds:
+  core-js: true
+  esbuild: true
+  sharp: true

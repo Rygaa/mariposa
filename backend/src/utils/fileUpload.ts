@@ -1,16 +1,48 @@
-import { GammaFilesClient } from '@oasis-path/gamma-sdk';
+import { downloadFolder as downloadFolderWithToken } from '@oasis-path/gamma-sdk/dist/methods/downloadFolder';
+import { downloadWithToken } from '@oasis-path/gamma-sdk/dist/methods/downloadWithToken';
+import { uploadWithToken } from '@oasis-path/gamma-sdk/dist/methods/uploadWithToken';
+import { viewFile as viewFileWithToken } from '@oasis-path/gamma-sdk/dist/methods/viewFile';
+import { makeTrpcRequest } from '@oasis-path/gamma-sdk/dist/utils/makeTrpcRequest';
 
-// Initialize the Gamma Files SDK client
-const gammaClient = new GammaFilesClient({
-  baseUrl: process.env.GAMMA_URL || 'http://localhost:3000',
-  apiKey: process.env.GAMMA_API_KEY || '',
-});
+const gammaBaseUrl = process.env.GAMMA_URL || 'http://localhost:3000';
+const gammaApiKey = process.env.GAMMA_API_KEY || '';
+
+interface GammaFileMetadata {
+  id: string;
+  name: string;
+  originalName: string;
+  mimeType: string;
+  size: number;
+  folderId: string;
+  uploadedBy: string;
+  createdAt: string;
+  updatedAt?: string | null;
+}
+
+interface PresignedUploadResponse {
+  success: true;
+  token: string;
+}
+
+interface PresignedDownloadResponse {
+  success: true;
+  token: string;
+  url: string;
+  expiresAt: string;
+}
+
+function requireGammaApiKey() {
+  if (!gammaApiKey) {
+    throw new Error('GAMMA_API_KEY is required for this Gamma operation.');
+  }
+
+  return gammaApiKey;
+}
 
 /**
  * Upload a file to Gamma Files storage using presigned upload
  * @param file - Buffer, Blob, File, or ReadableStream
  * @param filename - Name for the file
- * @param token - Presigned upload token
  * @param mimeType - MIME type of the file
  * @param folderId - Optional folder ID to upload to
  * @returns Upload response with file metadata including file ID
@@ -22,25 +54,33 @@ export async function uploadFile(
   folderId?: string
 ) {
   try {
-    console.log("----")
-    console.log(file)
-    console.log(filename)
-    console.log(mimeType)
-    console.log(folderId)
+    const targetFolderId = folderId || process.env.GAMMA_FOLDER_ID;
 
-    const presignedUrl = await gammaClient.generatePresignedFileUploadUrl({folderId: folderId || process.env.GAMMA_FOLDER_ID})
-    console.log(presignedUrl)
-    const result = await gammaClient.uploadWithToken({
-      file,
-      filename,
-      mimeType,
-      folderId: folderId || process.env.GAMMA_FOLDER_ID,
-      token: presignedUrl.token
-    });
+    if (!targetFolderId) {
+      throw new Error(
+        'A Gamma folder ID is required. Pass folderId or set GAMMA_FOLDER_ID.'
+      );
+    }
 
-    console.log(result)
-    console.log("----")
-    
+    const presignedUrl = await makeTrpcRequest<PresignedUploadResponse>(
+      'POST',
+      '/trpc/generatePresignedFileUploadUrl',
+      gammaBaseUrl,
+      requireGammaApiKey(),
+      {
+        body: { folderId: targetFolderId },
+      }
+    );
+    const result = await uploadWithToken(
+      {
+        file,
+        filename,
+        mimeType,
+        token: presignedUrl.token,
+      },
+      gammaBaseUrl
+    );
+
     return result;
   } catch (error) {
     console.error('Error uploading file:', error);
@@ -56,7 +96,7 @@ export async function uploadFile(
  */
 export async function downloadFile(fileId: string, token: string) {
   try {
-    const result = await gammaClient.downloadWithToken(fileId, token);
+    const result = await downloadWithToken(fileId, token, gammaBaseUrl);
     return result;
   } catch (error) {
     console.error('Error downloading file:', error);
@@ -72,7 +112,11 @@ export async function downloadFile(fileId: string, token: string) {
  */
 export async function downloadFolder(folderId: string, token: string) {
   try {
-    const result = await gammaClient.downloadFolder(folderId, token);
+    const result = await downloadFolderWithToken(
+      folderId,
+      token,
+      gammaBaseUrl
+    );
     return result;
   } catch (error) {
     console.error('Error downloading folder:', error);
@@ -89,7 +133,12 @@ export async function downloadFolder(folderId: string, token: string) {
  */
 export async function viewFile(fileId: string, token: string, compressionValue?: number) {
   try {
-    const result = await gammaClient.viewFile(fileId, token, compressionValue);
+    const result = await viewFileWithToken(
+      fileId,
+      token,
+      gammaBaseUrl,
+      compressionValue
+    );
     return result;
   } catch (error) {
     console.error('Error viewing file:', error);
@@ -104,7 +153,26 @@ export async function viewFile(fileId: string, token: string, compressionValue?:
  */
 export async function listFiles(folderId?: string) {
   try {
-    const result = await gammaClient.listFolderFiles(folderId || process.env.GAMMA_FOLDER_ID || '');
+    const targetFolderId = folderId || process.env.GAMMA_FOLDER_ID;
+
+    if (!targetFolderId) {
+      throw new Error(
+        'A Gamma folder ID is required. Pass folderId or set GAMMA_FOLDER_ID.'
+      );
+    }
+
+    const input = encodeURIComponent(
+      JSON.stringify({ folderId: targetFolderId, sortBy: 'createdAt' })
+    );
+    const result = await makeTrpcRequest<{
+      success: true;
+      files: GammaFileMetadata[];
+    }>(
+      'GET',
+      `/trpc/listFolderFiles?input=${input}`,
+      gammaBaseUrl,
+      requireGammaApiKey()
+    );
     return result.files;
   } catch (error) {
     console.error('Error listing files:', error);
@@ -119,7 +187,16 @@ export async function listFiles(folderId?: string) {
  */
 export async function deleteFile(fileId: string) {
   try {
-    const result = await gammaClient.deleteFile(fileId);
+    const result = await makeTrpcRequest<{
+      success: true;
+      message: string;
+    }>(
+      'POST',
+      '/trpc/deleteFile',
+      gammaBaseUrl,
+      requireGammaApiKey(),
+      { body: { fileId } }
+    );
     return result;
   } catch (error) {
     console.error('Error deleting file:', error);
@@ -134,7 +211,16 @@ export async function deleteFile(fileId: string) {
  */
 export async function getFileMetadata(fileId: string) {
   try {
-    const result = await gammaClient.getFileMetadata(fileId);
+    const input = encodeURIComponent(JSON.stringify({ fileId }));
+    const result = await makeTrpcRequest<{
+      success: true;
+      file: GammaFileMetadata;
+    }>(
+      'GET',
+      `/trpc/getFileMetadata?input=${input}`,
+      gammaBaseUrl,
+      requireGammaApiKey()
+    );
     return result.file;
   } catch (error) {
     console.error('Error getting file metadata:', error);
@@ -155,18 +241,21 @@ export async function generatePresignedUrl(
   maxUsageCount?: number
 ) {
   try {
-    console.log(`fileId: ${fileId}, expiresIn: ${expiresIn}, maxUsageCount: ${maxUsageCount}`);
-
-    const result = await gammaClient.generatePresignedFileDownloadUrl({
-      fileId,
-      expiresIn,
-      maxUsageCount,
-    });
-    console.log('Presigned URL generated:', result);
-    console.log(result)
+    const result = await makeTrpcRequest<PresignedDownloadResponse>(
+      'POST',
+      '/trpc/generatePresignedFileDownloadUrl',
+      gammaBaseUrl,
+      requireGammaApiKey(),
+      {
+        body: {
+          fileId,
+          expiresIn,
+          maxUsageCount,
+        },
+      }
+    );
     return result;
   } catch (error) {
-    console.log(error)
     console.error('Error generating presigned URL:', error);
     throw error;
   }

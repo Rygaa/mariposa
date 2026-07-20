@@ -356,7 +356,8 @@ export const uploadMenuItemImage = protectedProcedureGlobalTransaction
       const result = await uploadFile(
         buffer,
         input.filename,
-        input.mimeType
+        input.mimeType,
+        input.folderId
       );
 
       // Verify menu item exists
