@@ -21,7 +21,8 @@ interface GammaFileMetadata {
 
 interface PresignedUploadResponse {
   success: true;
-  token: string;
+  url?: string;
+  token?: string;
 }
 
 interface PresignedDownloadResponse {
@@ -79,19 +80,28 @@ export async function uploadFile(
       }
     );
 
+    const uploadUrl = presignedUrl.url
+      ? new URL(presignedUrl.url)
+      : new URL('/api/files/upload-presigned', gammaBaseUrl);
+    const token =
+      presignedUrl.token || uploadUrl.searchParams.get('token');
+
+    if (!token) {
+      throw new Error('Gamma did not return a presigned upload token.');
+    }
+
     console.log('[Gamma upload] presigned response', {
       ...presignedUrl,
-      token: presignedUrl.token
-        ? `[present, length=${presignedUrl.token.length}]`
-        : presignedUrl.token,
+      url: `${uploadUrl.origin}${uploadUrl.pathname}?token=[redacted]`,
+      token: `[present, length=${token.length}]`,
     });
 
     console.log('[Gamma upload] uploading with token', {
-      baseUrl: gammaBaseUrl,
+      baseUrl: uploadUrl.origin,
       filename,
       mimeType,
-      tokenPresent: Boolean(presignedUrl.token),
-      tokenLength: presignedUrl.token?.length,
+      tokenPresent: true,
+      tokenLength: token.length,
     });
 
     const result = await uploadWithToken(
@@ -99,9 +109,9 @@ export async function uploadFile(
         file,
         filename,
         mimeType,
-        token: presignedUrl.token,
+        token,
       },
-      gammaBaseUrl
+      uploadUrl.origin
     );
 
     console.log('[Gamma upload] upload result', result);
