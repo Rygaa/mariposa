@@ -62,6 +62,13 @@ export async function uploadFile(
       );
     }
 
+    console.log('[Gamma upload] generating token', {
+      baseUrl: gammaBaseUrl,
+      folderId: targetFolderId,
+      filename,
+      mimeType,
+    });
+
     const presignedUrl = await makeTrpcRequest<PresignedUploadResponse>(
       'POST',
       '/trpc/generatePresignedFileUploadUrl',
@@ -71,6 +78,22 @@ export async function uploadFile(
         body: { folderId: targetFolderId },
       }
     );
+
+    console.log('[Gamma upload] presigned response', {
+      ...presignedUrl,
+      token: presignedUrl.token
+        ? `[present, length=${presignedUrl.token.length}]`
+        : presignedUrl.token,
+    });
+
+    console.log('[Gamma upload] uploading with token', {
+      baseUrl: gammaBaseUrl,
+      filename,
+      mimeType,
+      tokenPresent: Boolean(presignedUrl.token),
+      tokenLength: presignedUrl.token?.length,
+    });
+
     const result = await uploadWithToken(
       {
         file,
@@ -80,6 +103,8 @@ export async function uploadFile(
       },
       gammaBaseUrl
     );
+
+    console.log('[Gamma upload] upload result', result);
 
     return result;
   } catch (error) {
