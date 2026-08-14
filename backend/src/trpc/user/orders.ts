@@ -2,6 +2,8 @@ import { z } from "zod";
 import { protectedProcedure, protectedProcedureGlobalTransaction } from "../../index";
 import _ServiceOrders from "../../services/orders.service";
 
+process.env.TZ = "Africa/Algiers";
+
 const statusEnumValues = [
   "INITIALIZED",
   "CONFIRMED",
