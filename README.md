@@ -19,19 +19,43 @@ Development servers run locally. Docker is used for production.
 
 ## Docker deployment
 
-The setup follows Residanat: one multi-stage Node.js 24 image, PM2 running both servers, host networking, automatic restart, and a health check for both servers.
+The app follows the PM2 setup of Residanat: one multi-stage Node.js 24 image running both servers, host networking, automatic restart, and a health check. Mariposa also has a PostgreSQL 18 container with the persistent `mariposa-db` volume.
 
-On a Linux host with Docker Compose, Node.js 24, Corepack, and project dependencies installed:
+### Move the existing database into Docker
+
+Run these commands on the machine that holds the database configured in `backend/.env`. You need PostgreSQL 18 client tools (`pg_dump`, `pg_restore`, `psql`), Docker Compose, Node.js 24, Corepack, and installed project dependencies.
+
+```bash
+pnpm db:backup
+```
+
+The backup is a timestamped custom PostgreSQL archive in `backups/`, with a SHA-256 checksum. The command checks that the archive can be read. Backups and generated credentials are ignored by Git and Docker builds.
+
+Before the move, stop every app or worker that writes to the original database. Keep those writers stopped until the new app passes its health checks. Then run:
+
+```bash
+pnpm db:move
+pnpm docker:launch
+```
+
+`db:move` makes a fresh backup, starts PostgreSQL on `127.0.0.1:5433`, refuses a nonempty target, and restores in one transaction. It generates private Docker credentials and activates `.env.docker` only after the restore succeeds. It leaves the original database and `backend/.env` unchanged. A failed move leaves `.env.docker.pending` for retry; do not delete it because it contains the credentials of the new volume.
+
+The app switches to Docker PostgreSQL when `docker:launch` starts it. Do not restart the old app against the original database after the switch. This is a one-time copy, not continuous replication.
+
+### Later deployments
+
+On the same Linux host:
 
 ```bash
 pnpm docker:launch
 ```
 
-This applies pending migrations to the database configured in `backend/.env`, builds the image, and starts the container. It waits until both servers are healthy. It does not create or reset a database.
+This starts the existing Docker database, applies pending migrations to it, builds the app image, and waits until both servers are healthy. It reuses the database volume and does not repeat the import.
 
 - Frontend: port **8000**.
 - Backend: port **8100**.
-- Backend environment: `backend/.env`; `DATABASE_URL` is used without an override.
+- Backend environment: `backend/.env`, with `DATABASE_URL` overridden by `.env.docker` for production.
+- PostgreSQL: `127.0.0.1:5433`, persistent volume `mariposa-db` (PostgreSQL 18 mount: `/var/lib/postgresql`).
 - Server ports: configured in `ecosystem.config.cjs`.
 - Existing `backend/storage` and `backend/data` directories remain mounted from the host.
 - Admin settings persist in `backend/src/settings.json`, mounted at the compiled runtime path.
@@ -47,12 +71,14 @@ Docker does not copy `.env` files into the image or read `frontend/.env` for the
 ```bash
 pnpm docker:logs    # View container logs
 pnpm docker:ps      # Show container status
-pnpm docker:stop    # Stop the application
+pnpm docker:stop    # Stop the app and database; retain the database volume
 ```
 
 `pnpm docker:start` and `pnpm docker:prod` are aliases for `pnpm docker:launch`.
 
 ## Database commands
+
+After the move, `db:backup` backs up the Docker database. Local `db:migrate` and `db:studio` still use `backend/.env`; production migrations run through `docker:launch`. Never use `docker compose down -v` for a normal restart: it deletes the database volume.
 
 ```bash
 pnpm db:generate

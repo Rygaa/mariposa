@@ -8,6 +8,10 @@ services:
         VITE_API_URL: ${VITE_API_URL:-https://api.mariposa.food}
     env_file:
       - backend/.env
+      - ${DOCKER_DB_ENV_FILE:-.env.docker}
+    depends_on:
+      db:
+        condition: service_healthy
     network_mode: host
     init: true
     restart: unless-stopped
@@ -25,3 +29,24 @@ services:
       timeout: 5s
       retries: 10
       start_period: 10s
+
+  db:
+    image: postgres:18-bookworm
+    container_name: mariposa-db
+    env_file:
+      - ${DOCKER_DB_ENV_FILE:-.env.docker}
+    ports:
+      - "127.0.0.1:5433:5432"
+    restart: unless-stopped
+    volumes:
+      - mariposa-db:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+      start_period: 10s
+
+volumes:
+  mariposa-db:
+    name: mariposa-db

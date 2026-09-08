@@ -66,3 +66,8 @@ backend/exports
 *.sql
 !backend/drizzle/*.sql
 *.tsbuildinfo
+
+# Database backups and Docker credentials
+backups/
+.env.docker
+.env.docker.pending

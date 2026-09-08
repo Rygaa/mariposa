@@ -16,7 +16,9 @@
     "docker:logs": "docker compose logs -f",
     "docker:ps": "docker compose ps",
     "docker:prod": "pnpm docker:launch",
-    "docker:launch": "COREPACK_ENABLE_PROJECT_SPEC=0 corepack pnpm@10.34.3 --filter backend db:migrate && docker compose -f docker-compose.yml up -d --build --wait"
+    "docker:launch": "node scripts/database.cjs launch",
+    "db:backup": "node scripts/database.cjs backup",
+    "db:move": "node scripts/database.cjs move"
   },
   "keywords": [],
   "author": "",
