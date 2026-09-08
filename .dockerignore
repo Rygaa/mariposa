@@ -31,9 +31,8 @@ Thumbs.db
 .gitignore
 
 # Environment
-.env
-.env.*
-!.env.example
+**/.env
+**/.env.*
 
 # Storage (will be mounted as volume)
 storage
@@ -57,3 +56,13 @@ docker-compose*
 *.ps1
 !setup.sh
 !setup.ps1
+
+# Private workspace and runtime data
+.agents
+.codex
+.pnpm-store
+backend/data
+backend/exports
+*.sql
+!backend/drizzle/*.sql
+*.tsbuildinfo
