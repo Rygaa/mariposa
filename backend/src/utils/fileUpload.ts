@@ -2,35 +2,16 @@ import { downloadFolder as downloadFolderWithToken } from '@oasis-path/gamma-sdk
 import { downloadWithToken } from '@oasis-path/gamma-sdk/dist/methods/downloadWithToken';
 import { uploadWithToken } from '@oasis-path/gamma-sdk/dist/methods/uploadWithToken';
 import { viewFile as viewFileWithToken } from '@oasis-path/gamma-sdk/dist/methods/viewFile';
-import { makeTrpcRequest } from '@oasis-path/gamma-sdk/dist/utils/makeTrpcRequest';
+import {
+  generatePresignedFileUploadUrl,
+  generatePresignedFileDownloadUrl,
+  listFolderFiles,
+  deleteFile as deleteGammaFile,
+  getFileMetadata as getGammaFileMetadata,
+} from '@oasis-path/gamma-sdk';
 
 const gammaBaseUrl = process.env.GAMMA_URL || 'http://localhost:3000';
 const gammaApiKey = process.env.GAMMA_API_KEY || '';
-
-interface GammaFileMetadata {
-  id: string;
-  name: string;
-  originalName: string;
-  mimeType: string;
-  size: number;
-  folderId: string;
-  uploadedBy: string;
-  createdAt: string;
-  updatedAt?: string | null;
-}
-
-interface PresignedUploadResponse {
-  success: true;
-  url?: string;
-  token?: string;
-}
-
-interface PresignedDownloadResponse {
-  success: true;
-  token: string;
-  url: string;
-  expiresAt: string;
-}
 
 function requireGammaApiKey() {
   if (!gammaApiKey) {
@@ -70,14 +51,10 @@ export async function uploadFile(
       mimeType,
     });
 
-    const presignedUrl = await makeTrpcRequest<PresignedUploadResponse>(
-      'POST',
-      '/trpc/generatePresignedFileUploadUrl',
-      gammaBaseUrl,
+    const presignedUrl = await generatePresignedFileUploadUrl(
+      { folderId: targetFolderId },
       requireGammaApiKey(),
-      {
-        body: { folderId: targetFolderId },
-      }
+      gammaBaseUrl
     );
 
     const uploadUrl = presignedUrl.url
@@ -196,17 +173,10 @@ export async function listFiles(folderId?: string) {
       );
     }
 
-    const input = encodeURIComponent(
-      JSON.stringify({ folderId: targetFolderId, sortBy: 'createdAt' })
-    );
-    const result = await makeTrpcRequest<{
-      success: true;
-      files: GammaFileMetadata[];
-    }>(
-      'GET',
-      `/trpc/listFolderFiles?input=${input}`,
-      gammaBaseUrl,
-      requireGammaApiKey()
+    const result = await listFolderFiles(
+      targetFolderId,
+      requireGammaApiKey(),
+      gammaBaseUrl
     );
     return result.files;
   } catch (error) {
@@ -222,15 +192,10 @@ export async function listFiles(folderId?: string) {
  */
 export async function deleteFile(fileId: string) {
   try {
-    const result = await makeTrpcRequest<{
-      success: true;
-      message: string;
-    }>(
-      'POST',
-      '/trpc/deleteFile',
-      gammaBaseUrl,
+    const result = await deleteGammaFile(
+      fileId,
       requireGammaApiKey(),
-      { body: { fileId } }
+      gammaBaseUrl
     );
     return result;
   } catch (error) {
@@ -246,15 +211,10 @@ export async function deleteFile(fileId: string) {
  */
 export async function getFileMetadata(fileId: string) {
   try {
-    const input = encodeURIComponent(JSON.stringify({ fileId }));
-    const result = await makeTrpcRequest<{
-      success: true;
-      file: GammaFileMetadata;
-    }>(
-      'GET',
-      `/trpc/getFileMetadata?input=${input}`,
-      gammaBaseUrl,
-      requireGammaApiKey()
+    const result = await getGammaFileMetadata(
+      fileId,
+      requireGammaApiKey(),
+      gammaBaseUrl
     );
     return result.file;
   } catch (error) {
@@ -276,18 +236,10 @@ export async function generatePresignedUrl(
   maxUsageCount?: number
 ) {
   try {
-    const result = await makeTrpcRequest<PresignedDownloadResponse>(
-      'POST',
-      '/trpc/generatePresignedFileDownloadUrl',
-      gammaBaseUrl,
+    const result = await generatePresignedFileDownloadUrl(
+      { fileId, expiresIn, maxUsageCount },
       requireGammaApiKey(),
-      {
-        body: {
-          fileId,
-          expiresIn,
-          maxUsageCount,
-        },
-      }
+      gammaBaseUrl
     );
     return result;
   } catch (error) {
