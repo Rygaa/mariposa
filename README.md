@@ -38,7 +38,7 @@ pnpm db:move
 pnpm docker:launch
 ```
 
-`db:move` makes a fresh backup, starts PostgreSQL on `127.0.0.1:5433`, refuses a nonempty target, and restores in one transaction. It generates private Docker credentials and activates `.env.docker` only after the restore succeeds. It leaves the original database and `backend/.env` unchanged. A failed move leaves `.env.docker.pending` for retry; do not delete it because it contains the credentials of the new volume.
+`db:move` makes a fresh backup, starts PostgreSQL on `127.0.0.1:5434`, refuses a nonempty target, and restores in one transaction. It generates private Docker credentials and activates `.env.docker` only after the restore succeeds. It leaves the original database and `backend/.env` unchanged. A failed move leaves `.env.docker.pending` for retry; do not delete it because it contains the credentials of the new volume.
 
 The app switches to Docker PostgreSQL when `docker:launch` starts it. Do not restart the old app against the original database after the switch. This is a one-time copy, not continuous replication.
 
@@ -55,7 +55,7 @@ This starts the existing Docker database, applies pending migrations to it, buil
 - Frontend: port **8000**.
 - Backend: port **8100**.
 - Backend environment: `backend/.env`, with `DATABASE_URL` overridden by `.env.docker` for production.
-- PostgreSQL: `127.0.0.1:5433`, persistent volume `mariposa-db` (PostgreSQL 18 mount: `/var/lib/postgresql`).
+- PostgreSQL: `127.0.0.1:5434`, persistent volume `mariposa-db` (PostgreSQL 18 mount: `/var/lib/postgresql`).
 - Server ports: configured in `ecosystem.config.cjs`.
 - Existing `backend/storage` and `backend/data` directories remain mounted from the host.
 - Admin settings persist in `backend/src/settings.json`, mounted at the compiled runtime path.

@@ -64,7 +64,7 @@ function move() {
             'POSTGRES_USER=mariposa',
             'POSTGRES_DB=mariposa',
             `POSTGRES_PASSWORD=${password}`,
-            `DATABASE_URL=postgresql://mariposa:${password}@127.0.0.1:5433/mariposa`,
+            `DATABASE_URL=postgresql://mariposa:${password}@127.0.0.1:5434/mariposa`,
             '',
         ].join('\n'), { flag: 'wx', mode: 0o600 });
     }
