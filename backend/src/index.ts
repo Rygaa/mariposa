@@ -268,6 +268,7 @@ function getAllowedOrigins() {
     "http://localhost:5174", 
     "https://mariposa.food",
     "https://www.mariposa.food",
+    "https://mariposa.aissabenfodda.ca",
     "https://coffee.oasispath.ca",
     "https://www.coffee.oasispath.ca",
     "http://coffee.oasispath.ca",

@@ -10,15 +10,20 @@ let ws: WebSocket | null = null;
 
 
 
+// API URL for each public frontend domain
+const API_URL_BY_HOSTNAME: Record<string, string> = {
+  "mariposa.aissabenfodda.ca": "https://mariposaapi.aissabenfodda.ca",
+};
+
 // HTTP URL for API calls
 const getBaseUrl = () => {
-  return import.meta.env.VITE_API_URL || "http://localhost:6200";
+  const hostname = typeof window !== "undefined" ? window.location.hostname : "";
+  return API_URL_BY_HOSTNAME[hostname] || import.meta.env.VITE_API_URL || "http://localhost:6200";
 };
 
 // WebSocket URL
 const getWsUrl = () => {
-  const base = import.meta.env.VITE_API_URL || "http://localhost:6200";
-  return base.replace(/^http/, "ws") + "/ws";
+  return getBaseUrl().replace(/^http/, "ws") + "/ws";
 };
 
 // configure TRPCClient to use HTTP only
